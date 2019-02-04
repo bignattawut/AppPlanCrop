@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="#cccccc"
+        android:padding="15dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/texPlan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="พืชปลอดสาร"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:id="@+id/textTypePlan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="110dp"
+                android:layout_marginLeft="110dp"
+                android:layout_marginTop="0dp"
+                android:text="ประเภทพืช"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:id="@+id/textArePlant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="195dp"
+                android:layout_marginLeft="195dp"
+                android:layout_marginTop="0dp"
+                android:text="พื้นที่ปลูก"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:id="@+id/textDataplant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="288dp"
+                android:layout_marginLeft="288dp"
+                android:layout_marginTop="0dp"
+                android:text="วันที่"
+                android:textColor="#ffffff" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>
