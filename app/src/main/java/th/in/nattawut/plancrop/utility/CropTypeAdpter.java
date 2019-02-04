@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import th.in.nattawut.plancrop.fragment.CropFragment;
 
 public class CropTypeAdpter {
+
     private int tid;
     private String croptype;
 

@@ -17,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import th.in.nattawut.plancrop.fragment.CropFragment;
+import th.in.nattawut.plancrop.fragment.CropTypeFragment;
+import th.in.nattawut.plancrop.fragment.CropTypeViewFragment;
 import th.in.nattawut.plancrop.fragment.HomeFragment;
 import th.in.nattawut.plancrop.fragment.PlanFragment;
 import th.in.nattawut.plancrop.fragment.PlanViewFragment;
@@ -100,12 +102,25 @@ public class HomeActivity extends AppCompatActivity {
                     case 4:
                         getSupportFragmentManager()
                                 .beginTransaction()
-                                //.add(R.id.contentHomeFragment, new CropFragment())
-                                .replace(R.id.contentHomeFragment, new PlantPicture())
+                                .replace(R.id.contentHomeFragment, new CropTypeFragment())
                                 .addToBackStack(null)
                                 .commit();
                         break;
                     case 5:
+                        getSupportFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.contentHomeFragment, new CropTypeViewFragment())
+                                .addToBackStack(null)
+                                .commit();
+                        break;
+                    case 6:
+                        getSupportFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.contentHomeFragment, new PlantPicture())
+                                .addToBackStack(null)
+                                .commit();
+                        break;
+                    case 7:
                         Intent intent = new Intent(getApplication(),MainActivity.class);
                         startActivity(intent);
                         finish();

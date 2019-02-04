@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,6 +42,7 @@ public class RegisterFragment extends Fragment {
 
     private Spinner spdistrict;
 
+    private String sectionString;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -61,6 +63,27 @@ public class RegisterFragment extends Fragment {
 
         //Spinner Amphur
         Amphur();
+
+        //SpinnerDistrice
+        spinnerDistrice();
+    }
+    private void spinnerDistrice(){
+        final String[] strings = new String[]{"Section1", "Section2", "Section3", "Section่4",};
+        Spinner spinner = getView().findViewById(R.id.spDistrice);
+        ArrayAdapter<String> stringArrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, strings);
+        spinner.setAdapter(stringArrayAdapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                sectionString = strings[1];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                sectionString = strings[0];
+            }
+        });
     }
 
     private void registerController() {

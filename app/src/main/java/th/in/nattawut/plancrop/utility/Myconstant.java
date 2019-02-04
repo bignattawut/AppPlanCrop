@@ -5,35 +5,41 @@ import th.in.nattawut.plancrop.R;
 public class Myconstant {
 
 
-    private String urlGetUser = "http://192.168.1.121/android/php/getAll.php";
-    private String urlRegister = "http://192.168.1.121/android/php/addregister.php";
-    private String urlGetPlan = "http://192.168.1.121/android/php/getPlanView.php";
-    private String urlAddCrpo = "http://192.168.1.121/android/php/addcrop.php";
-    private String urladdPlan = "http://192.168.1.121/android/php/addPlan.php";
-    public static String getUrlCrop ="http://192.168.1.121/android/php/selectCrop.php";
-    public static String getUrlCropType = "http://192.168.1.121/android/php/selectcroptype.php";
-    public static String getUrlProvince = "http://192.168.1.121/android/php/selectprovince.php";
-    public static String urlmid = "http://192.168.1.121/android/php/selectmid.php";
-    private  String urlGetRegister = "http://192.168.1.121/android/php/getregister.php";
-
+    private String urlGetUser = "http://192.168.1.110/android/php/getAll.php";
+    private String urlRegister = "http://192.168.1.110/android/php/addregister.php";
+    private String urlGetPlan = "http://192.168.1.110/android/php/getPlanView.php";
+    private String urlAddCrpo = "http://192.168.1.110/android/php/addcrop.php";
+    private String urladdPlan = "http://192.168.1.110/android/php/addPlan.php";
+    public static String getUrlCrop ="http://192.168.137.1/android/php/selectCrop.php";
+    public static String getUrlCropType = "http://192.168.137.1/android/php/selectcroptype.php";
+    public static String getUrlProvince = "http://192.168.137.1/android/php/selectprovince.php";
+    public static String urlmid = "http://192.168.137.1/android/php/selectmid.php";
+    private  String urlGetRegister = "http://192.168.1.110/android/php/getregister.php";
+    private String urlAddCropType = "http://192.168.1.110/android/php/insertcroptype.php";
+    private String urlselectcroptype = "http://192.168.1.110/android/php/selectcroptype.php";
 
     //ทดสอบ
-    private String urlplantpicture = "http://192.168.1.121/android/php/addPlantPicture.php";
-
+    private String urlplantpicture = "http://192.168.1.110/android/php/addPlantPicture.php";
     private String hostnametp = "localhost";
     private String uerFtp = "root";
     private String passFtp = "";
     private int portAnInt = 21;
-    //
 
+    //รอ
     public static String getUrlAmphur = "http://192.168.1.130/android/php/selectdistrict.php";
 
+    private String[] columnCropTypeString = new String[]{"TID","croptype"};
     private String[] columnPlanString = new String[]{"No", "MID", "PDate", "CID", "Area"};
     private String[] comlumRegisterString = new String[]{"MID","UserID","PWD","ID","Name","Address","Tel","EMail"};
+
+
+
     private int[] iconInts = new int[]{
             R.drawable.ic_action_drawerplan,
             R.drawable.ic_action_date,
             R.drawable.ic_action_drawerdata,
+            R.drawable.ic_action_drawerplan,
+            R.drawable.ic_action_drawerplan,
             R.drawable.ic_action_drawerplan,
             R.drawable.ic_action_userregister,
             R.drawable.ic_action_exit};
@@ -43,6 +49,8 @@ public class Myconstant {
             "ปฏิทินการเพาะปลูก",
             "ข้อมูลการเพาะปลูก",
             "ข้อมูลพืชเพาะปลูก",
+            "เพิ่มข้อมูลประเภทพืช",
+            "เข้อมูลประเภทพืช",
             "ข้อมูลเพาะปลูก",
             "Exit"};
 
@@ -86,6 +94,18 @@ public class Myconstant {
         return urladdPlan;
     }
 
+    public String getUrlAddCropType() {
+        return urlAddCropType;
+    }
+
+    public String[] getColumnCropTypeString() {
+        return columnCropTypeString;
+    }
+
+    public String getUrlselectcroptype() {
+        return urlselectcroptype;
+    }
+
     //ทดสอบ
     public String getUrlplantpicture() {
         return urlplantpicture;
@@ -102,4 +122,5 @@ public class Myconstant {
     public int getPortAnInt() {
         return portAnInt;
     }
+
 }
