@@ -1,5 +1,7 @@
 package th.in.nattawut.plancrop.fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,13 +10,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.CropTypeViewAapter;
+import th.in.nattawut.plancrop.utility.DeleteCropType;
+import th.in.nattawut.plancrop.utility.EditCropType;
 import th.in.nattawut.plancrop.utility.GetData;
 import th.in.nattawut.plancrop.utility.Myconstant;
 
@@ -52,8 +59,111 @@ public class CropTypeViewFragment extends Fragment {
             CropTypeViewAapter cropTypeViewAapter = new CropTypeViewAapter(getActivity(),tidString,cropTypeString);
             listView.setAdapter(cropTypeViewAapter);
 
+            //edit
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    deleteorEditCropType(tidString[position],cropTypeString[position]);
+                }
+            });
+
 
         }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private void deleteorEditCropType(final String tidString, final String cropTypeString ) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setCancelable(false);
+        builder.setIcon(R.drawable.ic_action_drawerplan);
+        builder.setTitle("ลบ หรือ แก้ไข");
+        builder.setMessage("กรุณาเลือก ลบ หรือ แก้ไข ?");
+        builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.setNeutralButton("ลบ", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                deleteCropType(tidString);
+                dialog.dismiss();
+            }
+        });
+        builder.setPositiveButton("แก้ไข", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                editCropType(tidString,cropTypeString);
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+    }
+    private void editCropType(final String tidString, final String cropTypeString){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setCancelable(false);
+        builder.setTitle("กรุณากรอกประเภทใหม่");
+        builder.setMessage("ประเภทพืช ==> " + cropTypeString );
+
+        LayoutInflater layoutInflater = getActivity().getLayoutInflater();
+        final View view = layoutInflater.inflate(R.layout.edit_croptype, null);
+        builder.setView(view);
+
+        builder.setPositiveButton("แก้ไข", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                EditText editText = view.findViewById(R.id.edtEditCropType);
+                String newCropType = editText.getText().toString();
+                if (newCropType.isEmpty()) {
+                    newCropType = "0";
+                }
+                updateCropType(tidString,newCropType);
+
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+    }
+    private void updateCropType(String tidString, String newCropType){
+
+        Myconstant myconstant = new Myconstant();
+
+        try {
+            EditCropType editCropType = new EditCropType(getActivity());
+            editCropType.execute(tidString,newCropType,
+                    myconstant.getUrlEditCropType());
+
+            if (Boolean.parseBoolean(editCropType.get())) {
+                createListView();
+            }else {
+                Toast.makeText(getActivity(),"แก้ไขข้อมูลสำเร็จ",
+                        Toast.LENGTH_SHORT).show();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void deleteCropType(String tidString){
+
+        Myconstant myconstant = new Myconstant();
+
+        try {
+            DeleteCropType deleteCropType = new DeleteCropType(getActivity());
+            deleteCropType.execute(tidString, myconstant.getUrlDeleteCropType());
+
+            if (Boolean.parseBoolean(deleteCropType.get())) {
+                createListView();
+            } else {
+                Toast.makeText(getActivity(),"ลบประเภทพืช",Toast.LENGTH_SHORT).show();
+            }
+
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

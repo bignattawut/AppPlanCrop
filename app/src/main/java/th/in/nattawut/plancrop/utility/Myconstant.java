@@ -15,8 +15,12 @@ public class Myconstant {
     public static String getUrlProvince = "http://192.168.137.1/android/php/selectprovince.php";
     public static String urlmid = "http://192.168.137.1/android/php/selectmid.php";
     private  String urlGetRegister = "http://192.168.1.110/android/php/getregister.php";
+
+    //ประเภทพืช
     private String urlAddCropType = "http://192.168.1.110/android/php/insertcroptype.php";
     private String urlselectcroptype = "http://192.168.1.110/android/php/selectcroptype.php";
+    private String urlEditCropType = "http://192.168.1.110/android/php/editcroptype.php";
+    private String urlDeleteCropType = "http://192.168.1.110/android/php/deletecroptype.php";
 
     //ทดสอบ
     private String urlplantpicture = "http://192.168.1.110/android/php/addPlantPicture.php";
@@ -94,16 +98,21 @@ public class Myconstant {
         return urladdPlan;
     }
 
+    //ประเภทพืช
     public String getUrlAddCropType() {
         return urlAddCropType;
     }
-
     public String[] getColumnCropTypeString() {
         return columnCropTypeString;
     }
-
     public String getUrlselectcroptype() {
         return urlselectcroptype;
+    }
+    public String getUrlEditCropType() {
+        return urlEditCropType;
+    }
+    public String getUrlDeleteCropType() {
+        return urlDeleteCropType;
     }
 
     //ทดสอบ
