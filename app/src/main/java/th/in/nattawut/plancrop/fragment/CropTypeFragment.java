@@ -30,7 +30,26 @@ public class CropTypeFragment extends Fragment {
 
         //CropTypeController
         croptypeController();
+
+        //CropTypeViewController
+        croptypeviewController();
     }
+
+    private void croptypeviewController() {
+        Button button = getView().findViewById(R.id.btnCropTypeView);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentHomeFragment,new CropTypeViewFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+    }
+
     private void croptypeController() {
         Button button = getView().findViewById(R.id.btnCropType);
         button.setOnClickListener(new View.OnClickListener() {

@@ -86,7 +86,7 @@ public class CropTypeViewFragment extends Fragment {
                 dialog.dismiss();
             }
         });
-        builder.setNeutralButton("ลบ", new DialogInterface.OnClickListener() {
+        builder.setNeutralButton("ลบ" ,new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 deleteCropType(tidString);
@@ -106,13 +106,19 @@ public class CropTypeViewFragment extends Fragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
-        builder.setTitle("กรุณากรอกประเภทใหม่");
+        builder.setTitle("กำหนดชื่อประเภทใหม่");
         builder.setMessage("ประเภทพืช ==> " + cropTypeString );
 
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
         final View view = layoutInflater.inflate(R.layout.edit_croptype, null);
         builder.setView(view);
 
+        builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
         builder.setPositiveButton("แก้ไข", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -151,7 +157,6 @@ public class CropTypeViewFragment extends Fragment {
     private void deleteCropType(String tidString){
 
         Myconstant myconstant = new Myconstant();
-
         try {
             DeleteCropType deleteCropType = new DeleteCropType(getActivity());
             deleteCropType.execute(tidString, myconstant.getUrlDeleteCropType());
