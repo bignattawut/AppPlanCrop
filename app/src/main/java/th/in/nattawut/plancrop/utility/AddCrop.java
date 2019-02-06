@@ -22,13 +22,13 @@ public class AddCrop extends AsyncTask<String, Void, String> {
         try {
             OkHttpClient okHttpClient = new OkHttpClient();
             RequestBody requestBody = new FormEncodingBuilder()
-                    .add("isAdd", "true")
-                    .add("Crop", strings[0])
-                    .add("TID",strings[1])
-                    .add("BeginHarvest", strings[2])
-                    .add("HarvestPeriod", strings[3])
-                    .add("Yield", strings[4])
-                    .add("CropType", strings[5])
+                    //.add("isAdd", "true")
+                    .add("crop", strings[0])
+                    .add("tid",strings[1])
+                    .add("beginharvest", strings[2])
+                    .add("harvestperiod", strings[3])
+                    .add("yield", strings[4])
+                    //.add("CropType", strings[5])
                     .build();
             Request.Builder builder = new Request.Builder();
             Request request = builder.url(strings[5]).post(requestBody).build();

@@ -29,18 +29,22 @@
             android:orientation="horizontal"
             android:padding="12dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/edtCropName"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/style1"
+                android:hint="พืชเพาะปลูก :"
                 android:inputType="text"
-                android:text="พืชเพาะปลูก :"
+                android:padding="1dp"
                 android:textSize="20dp" />
 
-            <Spinner
+           <!-- <Spinner
                 android:id="@+id/cropSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="1dp"></Spinner>
+                android:layout_marginLeft="1dp"></Spinner>-->
+
         </LinearLayout>
 
         <LinearLayout

@@ -73,6 +73,7 @@ public class CropTypeViewFragment extends Fragment {
         }
     }
 
+    //alertให้เลือกลบหรือแก้ไข
     private void deleteorEditCropType(final String tidString, final String cropTypeString ) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -102,6 +103,30 @@ public class CropTypeViewFragment extends Fragment {
         });
         builder.show();
     }
+
+    //alertให้เลือกจะลบรายการหรือไม่
+    private void deleteCropType(final String tidString){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setCancelable(false);
+        builder.setTitle("ต้องการลบรายการนี้หรือไม่?");
+        builder.setNegativeButton("ไม่ใช่", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.setPositiveButton("ใช่", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                editDeleteCropType(tidString);
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+
+    }
+
+    //แก้ไขประเทพืชเพาะปลูก
     private void editCropType(final String tidString, final String cropTypeString){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -134,6 +159,8 @@ public class CropTypeViewFragment extends Fragment {
         });
         builder.show();
     }
+
+    //updateข้อมูลประเภทพืชเพาะปลูก
     private void updateCropType(String tidString, String newCropType){
 
         Myconstant myconstant = new Myconstant();
@@ -154,7 +181,9 @@ public class CropTypeViewFragment extends Fragment {
             e.printStackTrace();
         }
     }
-    private void deleteCropType(String tidString){
+
+    //ลบรายการประเภทพืชเพาะปลูก
+   private void editDeleteCropType(String tidString){
 
         Myconstant myconstant = new Myconstant();
         try {

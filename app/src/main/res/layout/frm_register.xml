@@ -211,7 +211,7 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_marginLeft="5dp"
-                   android:text="ตำบล/แขวง"
+                   android:text="อำเภอ :"
                    android:textSize="20dp" />
 
                <Spinner
@@ -238,7 +238,7 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_marginLeft="5dp"
-                   android:text="หมู่บ้าน"
+                   android:text="ตำบล/แขวง :"
                    android:textSize="20dp" />
 
                <Spinner

@@ -46,16 +46,11 @@ public class CropFragment extends Fragment {
 
         client = new AsyncHttpClient();
 
-        //พืชเพาะปลูก
-        cropSpinner = getActivity().findViewById(R.id.cropSpinner);
-        cropSpinner();
 
         //ประเภทพืชเพาะปลูก
         cropTypeSpinner = getActivity().findViewById(R.id.cropTypeSpinner);
         cropTypeSpinner();
 
-        //Addcrop
-        //AddCrop();
         //CropController
         cropController();
     }
@@ -71,13 +66,15 @@ public class CropFragment extends Fragment {
 
 
     private void AddCrop() {
-        Spinner cropSpinner = getView().findViewById(R.id.cropSpinner);
+        //Spinner cropSpinner = getView().findViewById(R.id.cropSpinner);
+        EditText edtCrop = getView().findViewById(R.id.edtCropName);
         Spinner cropTypeSpinner = getView().findViewById(R.id.cropTypeSpinner);
         EditText edtBeginHarvest = getView().findViewById(R.id.edtBeginHarvest);
         EditText edtHarvestPeriod = getView().findViewById(R.id.edtHarvestPeriod);
         EditText edtYield = getView().findViewById(R.id.edtYield);
 
-        String cropString = cropSpinner.getSelectedItem().toString().trim();
+        //String cropString = cropSpinner.getSelectedItem().toString().trim();
+        String cropString = edtCrop.getText().toString().trim();
         String cropTyperString = cropTypeSpinner.getSelectedItem().toString().trim();
         String BeginHarvestString = edtBeginHarvest.getText().toString().trim();
         String HarvestPeriodString = edtHarvestPeriod.getText().toString().trim();
@@ -128,6 +125,7 @@ public class CropFragment extends Fragment {
             JSONArray jsonArray = new JSONArray(respuesta);
             for (int i=0; i<jsonArray.length(); i++){
                 CropTypeAdpter p = new CropTypeAdpter(getActivity(),this, android.R.layout.simple_dropdown_item_1line,list);
+                //p.setCroptype(jsonArray.getJSONObject(i).getString("tid"));
                 p.setCroptype(jsonArray.getJSONObject(i).getString("croptype"));
                 list.add(p);
             }
@@ -139,38 +137,6 @@ public class CropFragment extends Fragment {
         }
     }
 
-    //พืชเพาะปลูก
-    private void cropSpinner() {
-        client.post(Myconstant.getUrlCrop, new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                if (statusCode == 200) {
-                    url(new String(responseBody));
-                }
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-
-            }
-        });
-    }
-    private void url(String respuesta){
-        ArrayList<CropAdapter> list = new ArrayList<CropAdapter>();
-        try {
-            JSONArray jsonArray = new JSONArray(respuesta);
-            for (int i=0; i<jsonArray.length(); i++){
-                CropAdapter p = new CropAdapter(getActivity(),this, android.R.layout.simple_dropdown_item_1line,list);
-                p.setCrop(jsonArray.getJSONObject(i).getString("crop"));
-                list.add(p);
-            }
-            ArrayAdapter<CropAdapter> adapter = new ArrayAdapter<CropAdapter>(this.getActivity(),android.R.layout.simple_spinner_item,list);
-            adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-            cropSpinner.setAdapter(adapter);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     //toolbal
     private void createToolbal() {
