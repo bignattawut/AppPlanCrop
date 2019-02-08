@@ -48,6 +48,7 @@ public class CropTypeViewFragment extends Fragment {
             Log.d("4กุมภาพันธ์","Json CropType ==> " + jsonString);
 
             JSONArray jsonArray = new JSONArray(jsonString);
+
             final String[] tidString = new String[jsonArray.length()];
             final String[] cropTypeString = new String[jsonArray.length()];
 

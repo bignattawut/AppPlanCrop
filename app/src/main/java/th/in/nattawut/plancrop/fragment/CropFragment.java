@@ -1,20 +1,13 @@
 package th.in.nattawut.plancrop.fragment;
 
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -26,33 +19,26 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.loopj.android.http.*;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import cz.msebera.android.httpclient.Header;
 import th.in.nattawut.plancrop.HomeActivity;
-import th.in.nattawut.plancrop.MainActivity;
 import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.AddCrop;
-import th.in.nattawut.plancrop.utility.CropAdapter;
-import th.in.nattawut.plancrop.utility.CropTypeAdpter;
-import th.in.nattawut.plancrop.utility.CropTypeAdpter;
 import th.in.nattawut.plancrop.utility.GetData;
 import th.in.nattawut.plancrop.utility.MyAlert;
 import th.in.nattawut.plancrop.utility.Myconstant;
 
 public class CropFragment extends Fragment {
 
-    private ArrayList<String> arrCropType = new ArrayList<>();
+    /*private ArrayList<String> arrCropType = new ArrayList<>();
     private ArrayList<String> arrCropTypeID = new ArrayList<>();
     private ArrayAdapter<String> adpCropType,adpCropTypeID;
     private Spinner cropTypeSpinner;
-    private int rubIDprovince;
+    private int rubIDprovince;*/
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -79,7 +65,7 @@ public class CropFragment extends Fragment {
             getData.execute(Myconstant.getUrlCropType);
 
             String jsonString = getData.get();
-            Log.d("1/Jan", "JSON ==>" + jsonString);
+            Log.d("5/Jan CropType", "JSON ==>" + jsonString);
             JSONArray data = new JSONArray(jsonString);
 
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
@@ -92,20 +78,16 @@ public class CropFragment extends Fragment {
                 map.put("TID", c.getString("TID"));
                 map.put("croptype", c.getString("croptype"));
                 MyArrList.add(map);
-
             }
             SimpleAdapter sAdap;
-            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.cc,
-                    new String[] {"TID", "croptype"}, new int[] {R.id.ColCustomerID, R.id.ColName});
+            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_crop,
+                    new String[] {"TID", "croptype"}, new int[] {R.id.textTID, R.id.textCropType});
             spin.setAdapter(sAdap);
             spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-                public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
-                                           int position, long id) {
-                    String sCustomerID = MyArrList.get(position).get("TID")
-                            .toString();
-                    String sName = MyArrList.get(position).get("croptype")
-                            .toString();
+                public void onItemSelected(AdapterView<?> arg0, View selectedItemView, int position, long id) {
+                    //String sCustomerID = MyArrList.get(position).get("TID").toString();
+                    //String sName = MyArrList.get(position).get("croptype").toString();
                 }
                 public void onNothingSelected(AdapterView<?> arg0) {
 
@@ -182,24 +164,14 @@ public class CropFragment extends Fragment {
     }
 
     private void AddCrop() {
-
-
         EditText edtCrop = getView().findViewById(R.id.edtCropName);
-
-        //EditText tid = getView().findViewById(R.id.tid);
-        //Spinner tid = getView().findViewById(R.id.cropTypeSpinner);
-        TextView tid = getView().findViewById(R.id.ColCustomerID);
-
-
+        TextView tid = getView().findViewById(R.id.textTID);
         EditText edtBeginHarvest = getView().findViewById(R.id.edtBeginHarvest);
         EditText edtHarvestPeriod = getView().findViewById(R.id.edtHarvestPeriod);
         EditText edtYield = getView().findViewById(R.id.edtYield);
 
         String cropString = edtCrop.getText().toString().trim();
-
         String tidString = tid.getText().toString().trim();
-        //String tidString = tid.getSelectedItem().toString();
-
         String BeginHarvestString = edtBeginHarvest.getText().toString().trim();
         String HarvestPeriodString = edtHarvestPeriod.getText().toString().trim();
         String YieldString = edtYield.getText().toString().trim();

@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbarCrop"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:titleTextColor="@color/colorWhite" />
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,7 +20,7 @@
             android:padding="12dp">
 
             <EditText
-                android:id="@+id/edtCropName"
+                android:id="@+id/edtEditCropName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/style1"
@@ -62,7 +52,7 @@
                 android:textSize="20dp" />
 
             <Spinner
-                android:id="@+id/cropTypeSpinner"
+                android:id="@+id/EditcropTypeSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="1dp"></Spinner>
@@ -78,7 +68,7 @@
             android:padding="1dp">
 
             <EditText
-                android:id="@+id/edtBeginHarvest"
+                android:id="@+id/edtEditBeginHarvest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/style1"
@@ -98,7 +88,7 @@
             android:padding="1dp">
 
             <EditText
-                android:id="@+id/edtHarvestPeriod"
+                android:id="@+id/edtEditHarvestPeriod"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/style1"
@@ -118,7 +108,7 @@
             android:padding="1dp">
 
             <EditText
-                android:id="@+id/edtYield"
+                android:id="@+id/edtEditYield"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/style1"
@@ -127,42 +117,5 @@
                 android:padding="10dp"
                 android:textSize="20dp" />
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="120dp"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btnCrop"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="12dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="50dp"
-                android:background="@color/colorlightGreen"
-                android:text="เพิ่ม"
-                android:textColor="@color/colorWhite"
-                android:textSize="20dp" />
-
-            <Button
-                android:id="@+id/btnCropView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="50dp"
-                android:background="@color/colorlightGreen"
-                android:padding="10dp"
-                android:text="แสดงรายการ"
-                android:textColor="@color/colorWhite"
-                android:textSize="20dp" />
-
-
-        </LinearLayout>
     </LinearLayout>
-
-
 </LinearLayout>

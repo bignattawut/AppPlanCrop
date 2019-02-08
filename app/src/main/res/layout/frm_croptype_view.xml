@@ -13,8 +13,6 @@
         android:layout_marginLeft="19dp"
         android:text="ลำดับ"
         android:textSize="20dp" />
-
-
     <TextView
         android:id="@+id/textCropType"
         android:layout_width="wrap_content"

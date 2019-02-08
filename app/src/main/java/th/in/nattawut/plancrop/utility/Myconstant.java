@@ -5,28 +5,30 @@ import th.in.nattawut.plancrop.R;
 public class Myconstant {
 
 
-    private String urlGetUser = "http://192.168.1.30/android/php/getAll.php";
-    private String urlRegister = "http://192.168.1.30/android/php/addregister.php";
-    private String urlGetPlan = "http://192.168.1.30/android/php/getPlanView.php";
-    private String urladdPlan = "http://192.168.1.30/android/php/addPlan.php";
-    public static String getUrlCrop ="http://192.168.1.30/android/php/selectCrop.php";
-    public static String getUrlCropType = "http://192.168.1.30/android/php/selectcroptype.php";
+    private String urlGetUser = "http://192.168.1.25/android/php/getAll.php";
+    private String urlRegister = "http://192.168.1.25/android/php/addregister.php";
+    private String urlGetPlan = "http://192.168.1.25/android/php/getPlanView.php";
+    private String urladdPlan = "http://192.168.1.25/android/php/addPlan.php";
+    public static String getUrlCrop ="http://192.168.1.25/android/php/selectCrop.php";
+    public static String getUrlCropType = "http://192.168.1.25/android/php/selectcroptype.php";
 
-    public static String urlmid = "http://192.168.1.30/android/php/selectmid.php";
-    private  String urlGetRegister = "http://192.168.1.30/android/php/getregister.php";
+    public static String urlmid = "http://192.168.1.25/android/php/selectmid.php";
+    private  String urlGetRegister = "http://192.168.1.25/android/php/getregister.php";
 
     //spinner จังหวัด อำเภอ ตำบล
-    public static String getUrlProvince = "http://192.168.1.30/android/php/selectprovince.php";
-    public static String getUrlAmphur = "http://192.168.1.30/android/php/selectdistrict.php";
+    public static String getUrlProvince = "http://192.168.1.25/android/php/selectprovince.php";
+    public static String getUrlAmphur = "http://192.168.1.25/android/php/selectdistrict.php";
 
     //พืช
-    private String urlAddCrop = "http://192.168.1.30/android/php/insertcrop.php";
+    private String urlAddCrop = "http://192.168.1.25/android/php/insertcrop.php";
+    private String urlselectCrop = "http://192.168.1.25/android/php/a.php";
+    private String[] columnCropString = new String[]{"cid","crop","tid","beginharvest","harvestperiod","yield"};
 
     //ประเภทพืช
-    private String urlAddCropType = "http://192.168.1.30/android/php/insertcroptype.php";
-    private String urlselectcroptype = "http://192.168.1.30/android/php/selectcroptype.php";
-    private String urlEditCropType = "http://192.168.1.30/android/php/editcroptype.php";
-    private String urlDeleteCropType = "http://192.168.130/android/php/deletecroptype.php";
+    private String urlAddCropType = "http://192.168.1.25/android/php/insertcroptype.php";
+    private String urlselectcroptype = "http://192.168.1.25/android/php/selectcroptype.php";
+    private String urlEditCropType = "http://192.168.1.25/android/php/editcroptype.php";
+    private String urlDeleteCropType = "http://192.168.25/android/php/deletecroptype.php";
     private String[] columnCropTypeString = new String[]{"TID","croptype"};
 
     //ทดสอบ
@@ -100,10 +102,14 @@ public class Myconstant {
 
 
     //พืช
-
-
     public String getUrlAddCrop() {
         return urlAddCrop;
+    }
+    public String getUrlselectCrop() {
+        return urlselectCrop;
+    }
+    public String[] getColumnCropString() {
+        return columnCropString;
     }
 
     //ประเภทพืช
