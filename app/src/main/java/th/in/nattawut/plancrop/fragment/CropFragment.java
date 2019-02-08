@@ -1,10 +1,14 @@
 package th.in.nattawut.plancrop.fragment;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,29 +17,42 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SimpleAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.loopj.android.http.*;
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import cz.msebera.android.httpclient.Header;
 import th.in.nattawut.plancrop.HomeActivity;
+import th.in.nattawut.plancrop.MainActivity;
 import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.AddCrop;
 import th.in.nattawut.plancrop.utility.CropAdapter;
 import th.in.nattawut.plancrop.utility.CropTypeAdpter;
 import th.in.nattawut.plancrop.utility.CropTypeAdpter;
+import th.in.nattawut.plancrop.utility.GetData;
 import th.in.nattawut.plancrop.utility.MyAlert;
 import th.in.nattawut.plancrop.utility.Myconstant;
 
 public class CropFragment extends Fragment {
 
-    private AsyncHttpClient client;
-    private Spinner cropSpinner,cropTypeSpinner;
+    private ArrayList<String> arrCropType = new ArrayList<>();
+    private ArrayList<String> arrCropTypeID = new ArrayList<>();
+    private ArrayAdapter<String> adpCropType,adpCropTypeID;
+    private Spinner cropTypeSpinner;
+    private int rubIDprovince;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -44,16 +61,116 @@ public class CropFragment extends Fragment {
         //Create Toolbal
         createToolbal();
 
-        client = new AsyncHttpClient();
-
-
-        //ประเภทพืชเพาะปลูก
-        cropTypeSpinner = getActivity().findViewById(R.id.cropTypeSpinner);
+        //cropTypeSpinner
         cropTypeSpinner();
+
 
         //CropController
         cropController();
     }
+    private void cropTypeSpinner(){
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+        final Spinner spin = getView().findViewById(R.id.cropTypeSpinner);
+        try {
+            GetData getData = new GetData(getActivity());
+            getData.execute(Myconstant.getUrlCropType);
+
+            String jsonString = getData.get();
+            Log.d("1/Jan", "JSON ==>" + jsonString);
+            JSONArray data = new JSONArray(jsonString);
+
+            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
+            HashMap<String, String> map;
+
+            for(int i = 0; i < data.length(); i++){
+                JSONObject c = data.getJSONObject(i);
+
+                map = new HashMap<String, String>();
+                map.put("TID", c.getString("TID"));
+                map.put("croptype", c.getString("croptype"));
+                MyArrList.add(map);
+
+            }
+            SimpleAdapter sAdap;
+            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.cc,
+                    new String[] {"TID", "croptype"}, new int[] {R.id.ColCustomerID, R.id.ColName});
+            spin.setAdapter(sAdap);
+            spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+                public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
+                                           int position, long id) {
+                    String sCustomerID = MyArrList.get(position).get("TID")
+                            .toString();
+                    String sName = MyArrList.get(position).get("croptype")
+                            .toString();
+                }
+                public void onNothingSelected(AdapterView<?> arg0) {
+
+                }
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /*
+    private void cropTypeSpinner() {
+        cropTypeSpinner = getView().findViewById(R.id.cropTypeSpinner);
+        final ArrayList<String>listCropType;
+        final ArrayList<String>listCropTypeID;
+        listCropType = new ArrayList<>();
+        listCropTypeID = new ArrayList<>();
+
+        try {
+            GetData getData = new GetData(getActivity());
+            getData.execute(Myconstant.getUrlCropType);
+
+            String jsonString = getData.get();
+            Log.d("1/Jan", "JSON ==>" + jsonString);
+
+            JSONArray jsonArray = new JSONArray(jsonString);
+            JSONObject jsonObject = null;
+
+            for (int i = 0; i < jsonArray.length(); i++){
+                jsonObject = jsonArray.getJSONObject(i);
+                listCropType.add(jsonObject.getString("croptype"));
+                listCropTypeID.add(jsonObject.getString("TID"));
+
+            }
+            adpCropType = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item,arrCropType);
+            //adpCropTypeID = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item,arrCropTypeID);
+            cropTypeSpinner.setAdapter(adpCropType);
+            arrCropType.addAll(listCropType);
+            arrCropTypeID.addAll(listCropTypeID);
+            adpCropType.notifyDataSetChanged();
+
+            cropTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    if (cropTypeSpinner.getSelectedItem() != null) {
+
+                        //Toast.makeText(getActivity(),"spinner" + listCropTypeID,Toast.LENGTH_SHORT).show();
+                        //rubIDprovince = Integer.parseInt(listCropTypeID.get(position));
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }*/
+
+
     private void cropController() {
         Button button = getView().findViewById(R.id.btnCrop);
         button.setOnClickListener(new View.OnClickListener() {
@@ -64,31 +181,38 @@ public class CropFragment extends Fragment {
         });
     }
 
-
     private void AddCrop() {
-        //Spinner cropSpinner = getView().findViewById(R.id.cropSpinner);
+
+
         EditText edtCrop = getView().findViewById(R.id.edtCropName);
-        Spinner cropTypeSpinner = getView().findViewById(R.id.cropTypeSpinner);
+
+        //EditText tid = getView().findViewById(R.id.tid);
+        //Spinner tid = getView().findViewById(R.id.cropTypeSpinner);
+        TextView tid = getView().findViewById(R.id.ColCustomerID);
+
+
         EditText edtBeginHarvest = getView().findViewById(R.id.edtBeginHarvest);
         EditText edtHarvestPeriod = getView().findViewById(R.id.edtHarvestPeriod);
         EditText edtYield = getView().findViewById(R.id.edtYield);
 
-        //String cropString = cropSpinner.getSelectedItem().toString().trim();
         String cropString = edtCrop.getText().toString().trim();
-        String cropTyperString = cropTypeSpinner.getSelectedItem().toString().trim();
+
+        String tidString = tid.getText().toString().trim();
+        //String tidString = tid.getSelectedItem().toString();
+
         String BeginHarvestString = edtBeginHarvest.getText().toString().trim();
         String HarvestPeriodString = edtHarvestPeriod.getText().toString().trim();
         String YieldString = edtYield.getText().toString().trim();
 
-        if (cropString.isEmpty() || cropTyperString.isEmpty() || BeginHarvestString.isEmpty() || HarvestPeriodString.isEmpty() || YieldString.isEmpty()) {
+        if (cropString.isEmpty() || tidString.isEmpty()|| BeginHarvestString.isEmpty() || HarvestPeriodString.isEmpty() || YieldString.isEmpty()) {
             MyAlert myAlert = new MyAlert(getActivity());
             myAlert.onrmaIDialog("สวัสดี", "กรุณากรอกข้อมูลให้ครบ");
         }else {
             try {
                 Myconstant myconstant = new Myconstant();
                 AddCrop addCrop = new AddCrop(getActivity());
-                addCrop.execute(cropString, cropTyperString, BeginHarvestString, HarvestPeriodString, YieldString,
-                        myconstant.getUrlAddCrpo());
+                addCrop.execute(cropString,tidString, BeginHarvestString, HarvestPeriodString, YieldString,
+                        myconstant.getUrlAddCrop());
 
                 String result = addCrop.get();
                 Log.d("crop", "result ==> " + result);
@@ -102,41 +226,6 @@ public class CropFragment extends Fragment {
             }
         }
     }
-
-    //ประเภทพืชเพาะปลูก
-    private void cropTypeSpinner() {
-        client.post(Myconstant.getUrlCropType, new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                if (statusCode == 200) {
-                    croptype(new String(responseBody));
-                }
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-
-            }
-        });
-    }
-    private void croptype(String respuesta){
-        ArrayList<CropTypeAdpter> list = new ArrayList<CropTypeAdpter>();
-        try {
-            JSONArray jsonArray = new JSONArray(respuesta);
-            for (int i=0; i<jsonArray.length(); i++){
-                CropTypeAdpter p = new CropTypeAdpter(getActivity(),this, android.R.layout.simple_dropdown_item_1line,list);
-                //p.setCroptype(jsonArray.getJSONObject(i).getString("tid"));
-                p.setCroptype(jsonArray.getJSONObject(i).getString("croptype"));
-                list.add(p);
-            }
-            ArrayAdapter<CropTypeAdpter> adapter = new ArrayAdapter<CropTypeAdpter>(this.getActivity(),android.R.layout.simple_spinner_item,list);
-            adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-            cropTypeSpinner.setAdapter(adapter);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
 
     //toolbal
     private void createToolbal() {

@@ -9,24 +9,24 @@ public class Myconstant {
     private String urlRegister = "http://192.168.1.30/android/php/addregister.php";
     private String urlGetPlan = "http://192.168.1.30/android/php/getPlanView.php";
     private String urladdPlan = "http://192.168.1.30/android/php/addPlan.php";
-    public static String getUrlCrop ="http://192.168.197.2/android/php/selectCrop.php";
-    public static String getUrlCropType = "http://192.168.197.2/android/php/selectcroptype.php";
+    public static String getUrlCrop ="http://192.168.1.30/android/php/selectCrop.php";
+    public static String getUrlCropType = "http://192.168.1.30/android/php/selectcroptype.php";
 
-    public static String urlmid = "http://192.168.197.2/android/php/selectmid.php";
+    public static String urlmid = "http://192.168.1.30/android/php/selectmid.php";
     private  String urlGetRegister = "http://192.168.1.30/android/php/getregister.php";
 
     //spinner จังหวัด อำเภอ ตำบล
-    public static String getUrlProvince = "http://192.168.197.2/android/php/selectprovince.php";
+    public static String getUrlProvince = "http://192.168.1.30/android/php/selectprovince.php";
     public static String getUrlAmphur = "http://192.168.1.30/android/php/selectdistrict.php";
 
     //พืช
-    private String urlAddCrpo = "http://192.168.1.30/android/php/insertcrop.php";
+    private String urlAddCrop = "http://192.168.1.30/android/php/insertcrop.php";
 
     //ประเภทพืช
     private String urlAddCropType = "http://192.168.1.30/android/php/insertcroptype.php";
     private String urlselectcroptype = "http://192.168.1.30/android/php/selectcroptype.php";
     private String urlEditCropType = "http://192.168.1.30/android/php/editcroptype.php";
-    private String urlDeleteCropType = "http://192.168.1.30/android/php/deletecroptype.php";
+    private String urlDeleteCropType = "http://192.168.130/android/php/deletecroptype.php";
     private String[] columnCropTypeString = new String[]{"TID","croptype"};
 
     //ทดสอบ
@@ -100,8 +100,10 @@ public class Myconstant {
 
 
     //พืช
-    public String getUrlAddCrpo() {
-        return urlAddCrpo;
+
+
+    public String getUrlAddCrop() {
+        return urlAddCrop;
     }
 
     //ประเภทพืช

@@ -28,7 +28,6 @@ public class AddCrop extends AsyncTask<String, Void, String> {
                     .add("beginharvest", strings[2])
                     .add("harvestperiod", strings[3])
                     .add("yield", strings[4])
-                    //.add("CropType", strings[5])
                     .build();
             Request.Builder builder = new Request.Builder();
             Request request = builder.url(strings[5]).post(requestBody).build();
