@@ -12,16 +12,20 @@ import th.in.nattawut.plancrop.R;
 public class CropViewAdpter extends BaseAdapter {
 
     private Context context;
-    private String[] cropStrings,tidStrings,beginharvestStrings,harvestperiodStrings,yield;
+    private String[] cidString,cropStrings,tidStrings,croptypeString,beginharvestStrings,harvestperiodStrings,yield;
 
     public CropViewAdpter(Context context,
+                          String[] cidString,
                           String[] cropStrings,
                           String[] tidStrings,
+                          //String[] croptypeString,
                           String[] beginharvestStrings,
                           String[] harvestperiodStrings,
                           String[] yield) {
         this.context = context;
+        this.cidString = cidString;
         this.cropStrings = cropStrings;
+        //this.croptypeString = croptypeString;
         this.tidStrings = tidStrings;
         this.beginharvestStrings = beginharvestStrings;
         this.harvestperiodStrings = harvestperiodStrings;
@@ -48,14 +52,18 @@ public class CropViewAdpter extends BaseAdapter {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.frm_crop_view, parent, false);
 
+        TextView textCidView = view.findViewById(R.id.textCid);
         TextView textCropView = view.findViewById(R.id.textCrop);
         TextView textTidView = view.findViewById(R.id.textCropTID);
+        //TextView textCropTidView = view.findViewById(R.id.textCropTypeTID);
         TextView textBeginHarvestView = view.findViewById(R.id.textBeginHarvest);
         TextView textHarvestPeriodView = view.findViewById(R.id.textHarvestPeriod);
         TextView textYieldView = view.findViewById(R.id.textYield);
 
+        textCidView.setText(cidString[position]);
         textCropView.setText(cropStrings[position]);
         textTidView.setText(tidStrings[position]);
+        //textCropTidView.setText(croptypeString[position]);
         textBeginHarvestView.setText(beginharvestStrings[position]);
         textHarvestPeriodView.setText(harvestperiodStrings[position]);
         textYieldView.setText(yield[position]);

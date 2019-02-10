@@ -1,51 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="horizontal"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
 
-    <LinearLayout
+    <TableLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/textCrop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="5dp"
-        android:text="พืช"
-        android:textSize="20dp" />
+        <TableRow>
+            <TextView
+                android:id="@+id/textCid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="ลำดับ"
+                android:textSize="20dp" />
 
-    <TextView
-        android:id="@+id/textCropTID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="5dp"
-        android:text="ประเภท"
-        android:textSize="20dp" />
+            <TextView
+                android:id="@+id/textCrop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="พืช"
+                android:textSize="20dp" />
 
-    <TextView
-        android:id="@+id/textBeginHarvest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="5dp"
-        android:text="จำนวนวัน"
-        android:textSize="20dp" />
+            <TextView
+                android:id="@+id/textCropTID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="ลำดับ"
+                android:textSize="20dp" />
 
-    <TextView
-        android:id="@+id/textHarvestPeriod"
-        android:layout_width="wrap_content"
-        android:layout_marginRight="5dp"
-        android:layout_height="wrap_content"
-        android:text="ระยะเวลา"
-        android:textSize="20dp" />
+            <!--<TextView
+                android:id="@+id/textCropTypeTID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="ปรเภท"
+                android:textSize="20dp" />-->
+
+            <TextView
+                android:id="@+id/textBeginHarvest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="จำนวนวัน"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/textHarvestPeriod"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="ระยะเวลา"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/textYield"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="ผลผลิต"
+                android:textSize="20dp" />
+        </TableRow>
+    </TableLayout>
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textCid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:text="ลำดับ"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/textCrop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:text="พืช"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/textCropTID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:text="ประเภท"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/textCropTypeTID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:text="ชื่อ"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/textBeginHarvest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:text="จำนวนวัน"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/textHarvestPeriod"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:text="ระยะเวลา"
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/textYield"
             android:layout_width="wrap_content"
-            android:layout_marginRight="5dp"
             android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
             android:text="ผลผลิต"
             android:textSize="20dp" />
-    </LinearLayout>
+    </LinearLayout>-->
 </RelativeLayout>

@@ -42,9 +42,10 @@ public class CropViewFragment extends Fragment {
 
             JSONArray jsonArray = new JSONArray(jsonString);
 
-            final String[] cid = new String[jsonArray.length()];
+            final String[] cidString = new String[jsonArray.length()];
             final String[] cropString = new String[jsonArray.length()];
             final String[] tidString = new String[jsonArray.length()];
+            //final String[] croptypeString = new String[jsonArray.length()];
             final String[] beginharvestString = new String[jsonArray.length()];
             final String[] harvestperiodString = new String[jsonArray.length()];
             final String[] yield = new String[jsonArray.length()];
@@ -52,16 +53,17 @@ public class CropViewFragment extends Fragment {
             for (int i=0; i<jsonArray.length(); i+=1){
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                cid[i] = jsonObject.getString(columnStrings[0]);
+                cidString[i] = jsonObject.getString(columnStrings[0]);
                 cropString[i] = jsonObject.getString(columnStrings[1]);
                 tidString[i] = jsonObject.getString(columnStrings[2]);
+                //croptypeString[i] = jsonObject.getString(columnStrings[3]);
                 beginharvestString[i] = jsonObject.getString(columnStrings[3]);
                 harvestperiodString[i] = jsonObject.getString(columnStrings[4]);
                 yield[i] = jsonObject.getString(columnStrings[5]);
             }
 
             CropViewAdpter cropViewAdpter = new CropViewAdpter(getActivity(),
-                    cropString,tidString,beginharvestString,harvestperiodString,yield);
+                    cidString,cropString,tidString,beginharvestString,harvestperiodString,yield);
             listView.setAdapter(cropViewAdpter);
             //edit
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

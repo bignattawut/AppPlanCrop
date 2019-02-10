@@ -78,8 +78,8 @@ public class HomeActivity extends AppCompatActivity {
                     case 1:
                         getSupportFragmentManager()
                                 .beginTransaction()
-                                .replace(R.id.contentHomeFragment, new CropViewFragment())
-                                //.replace(R.id.contentHomeFragment, new PlantFragment())
+                                //.replace(R.id.contentHomeFragment, new CropViewFragment())
+                                .replace(R.id.contentHomeFragment, new PlantFragment())
                                 .addToBackStack(null)
                                 .commit();
 

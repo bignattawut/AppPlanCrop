@@ -4,6 +4,171 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--Wallpaper-->
+        <ImageView
+            android:scaleType="centerCrop"
+            android:src="@drawable/bg1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:background="#82ffffff"
+        android:padding="20dp"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <!--Blue Layout-->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <!--Green Layout-->
+            <RelativeLayout
+                android:layout_margin="@dimen/margin"
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon">
+
+                <!--Station1-->
+                <ImageView
+                    android:id="@+id/imageViewPlan"
+                    android:src="@drawable/planning"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <!--Title-->
+                <TextView
+                    android:clickable="true"
+                    android:id="@+id/textViewStation1"
+                    android:layout_alignParentBottom="true"
+                    android:padding="5dp"
+                    android:gravity="center_horizontal"
+                    android:textColor="#ffffff"
+                    android:background="#82000000"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:text="@string/station1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+
+            <!--Green Layout-->
+            <RelativeLayout
+                android:layout_margin="@dimen/margin"
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon">
+
+                <!--Station2-->
+                <ImageView
+                    android:id="@+id/imageViewPlantPicture"
+                    android:src="@drawable/camera"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+
+                <!--Title-->
+                <TextView
+                    android:clickable="true"
+                    android:id="@+id/textViewStation2"
+                    android:layout_alignParentBottom="true"
+                    android:padding="5dp"
+                    android:gravity="center_horizontal"
+                    android:textColor="#ffffff"
+                    android:background="#82000000"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:text="@string/station2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </RelativeLayout>
+
+
+
+
+        </LinearLayout>
+
+
+        <!--Blue Layout-->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <!--Green Layout-->
+            <RelativeLayout
+                android:layout_margin="@dimen/margin"
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon">
+
+                <!--Station3-->
+                <ImageView
+                    android:id="@+id/imageViewPlant"
+                    android:src="@drawable/sprout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+
+                <!--Title-->
+                <TextView
+                    android:id="@+id/textViewStation3"
+                    android:layout_alignParentBottom="true"
+                    android:padding="5dp"
+                    android:gravity="center_horizontal"
+                    android:textColor="#ffffff"
+                    android:background="#82000000"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:text="@string/station3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </RelativeLayout>
+
+            <!--Green Layout-->
+            <RelativeLayout
+                android:layout_margin="@dimen/margin"
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon">
+
+                <!--Station4-->
+                <ImageView
+                    android:id="@+id/imageViewListPlan"
+                    android:src="@drawable/list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <!--Title-->
+                <TextView
+                    android:id="@+id/textViewStation4"
+                    android:layout_alignParentBottom="true"
+                    android:padding="5dp"
+                    android:gravity="center_horizontal"
+                    android:textColor="#ffffff"
+                    android:background="#82000000"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:text="@string/station4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
 <!--
         <LinearLayout
             android:layout_width="match_parent"

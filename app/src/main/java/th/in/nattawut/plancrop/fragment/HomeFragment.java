@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import th.in.nattawut.plancrop.R;
 
@@ -16,20 +17,21 @@ public class HomeFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-/*
+
         //Plan Controller
         planController();
 
-        //PlanViewController
-        planViewController();
+        //Picture Controller
+        pictureController();
 
-        //CropController
-        cropController();
+        //Plant Controller
+        plantController();
 
-        PlantController
+    }
 
-        Button btnPlant = getView().findViewById(R.id.btnPlant);
-        btnPlant.setOnClickListener(new View.OnClickListener() {
+    private void plantController() {
+        ImageView imageView = getView().findViewById(R.id.imageViewPlant);
+        imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getActivity()
@@ -40,38 +42,25 @@ public class HomeFragment extends Fragment {
                         .commit();
             }
         });
+    }
 
-    private void cropController() {
-        Button btnCrop = getView().findViewById(R.id.btnCrop);
-        btnCrop.setOnClickListener(new View.OnClickListener() {
+    private void pictureController() {
+        ImageView imageView = getView().findViewById(R.id.imageViewPlantPicture);
+        imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment,new CropFragment())
+                        .replace(R.id.contentHomeFragment, new PlantPicture())
                         .addToBackStack(null)
                         .commit();
             }
         });
     }
-
-    private void planViewController() {
-        Button buttonplan = getView().findViewById(R.id.btnPlanView);
-        buttonplan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity()
-                        .getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new PlanViewFragment())
-                        .commit();
-            }
-        });
-    }
-    private void planController() {
-        Button button = getView().findViewById(R.id.btnPlanmain);
-        button.setOnClickListener(new View.OnClickListener() {
+    private void planController(){
+        ImageView imageView = getView().findViewById(R.id.imageViewPlan);
+        imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getActivity()
@@ -81,14 +70,12 @@ public class HomeFragment extends Fragment {
                         .addToBackStack(null)
                         .commit();
             }
-        });*/
-
-    }
-
+        });
+}
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.frm_list_drawer, container, false);
+        View view = inflater.inflate(R.layout.frm_main, container, false);
         return view;
     }
 }

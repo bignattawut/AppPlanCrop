@@ -5,30 +5,33 @@ import th.in.nattawut.plancrop.R;
 public class Myconstant {
 
 
-    private String urlGetUser = "http://192.168.1.25/android/php/getAll.php";
-    private String urlRegister = "http://192.168.1.25/android/php/addregister.php";
-    private String urlGetPlan = "http://192.168.1.25/android/php/getPlanView.php";
-    private String urladdPlan = "http://192.168.1.25/android/php/addPlan.php";
-    public static String getUrlCrop ="http://192.168.1.25/android/php/selectCrop.php";
-    public static String getUrlCropType = "http://192.168.1.25/android/php/selectcroptype.php";
+    private String urlGetUser = "http://192.168.1.111/android/php/getAll.php";
+    private String urlRegister = "http://192.168.1.111/android/php/addregister.php";
+    private String urlGetPlan = "http://192.168.1.111/android/php/getPlanView.php";
+    private String urladdPlan = "http://192.168.1.111/android/php/addPlan.php";
+    public static String getUrlCrop ="http://192.168.1.111/android/php/selectCrop.php";
+    public static String getUrlCropType = "http://192.168.1.111/android/php/selectcroptype.php";
 
-    public static String urlmid = "http://192.168.1.25/android/php/selectmid.php";
-    private  String urlGetRegister = "http://192.168.1.25/android/php/getregister.php";
+    public static String urlmid = "http://192.168.1.111/android/php/selectmid.php";
+    private  String urlGetRegister = "http://192.168.1.111/android/php/getregister.php";
 
     //spinner จังหวัด อำเภอ ตำบล
-    public static String getUrlProvince = "http://192.168.1.25/android/php/selectprovince.php";
-    public static String getUrlAmphur = "http://192.168.1.25/android/php/selectdistrict.php";
+    public static String getUrlProvince = "http://192.168.1.111/android/php/selectprovince.php";
+    public static String getUrlAmphur = "http://192.168.1.111/android/php/selectdistrict.php";
 
     //พืช
-    private String urlAddCrop = "http://192.168.1.25/android/php/insertcrop.php";
-    private String urlselectCrop = "http://192.168.1.25/android/php/a.php";
-    private String[] columnCropString = new String[]{"cid","crop","tid","beginharvest","harvestperiod","yield"};
+    private String urlAddCrop = "http://192.168.1.111/android/php/insertcrop.php";
 
+    //private String urlselectCrop = "http://192.168.1.111/android/php/selectcrop.php";
+    //private String[] columnCropString = new String[]{"crop.cid","crop.crop","croptype.tid","croptype.croptype","crop.beginharvest","crop.harvestperiod","crop.yield"};
+
+    private String urlselectCrop = "http://192.168.1.111/android/php/a.php";
+    private String[] columnCropString = new String[]{"cid","crop","tid","beginharvest","harvestperiod","yield"};
     //ประเภทพืช
-    private String urlAddCropType = "http://192.168.1.25/android/php/insertcroptype.php";
-    private String urlselectcroptype = "http://192.168.1.25/android/php/selectcroptype.php";
-    private String urlEditCropType = "http://192.168.1.25/android/php/editcroptype.php";
-    private String urlDeleteCropType = "http://192.168.25/android/php/deletecroptype.php";
+    private String urlAddCropType = "http://192.168.1.111/android/php/insertcroptype.php";
+    private String urlselectcroptype = "http://192.168.1.111/android/php/selectcroptype.php";
+    private String urlEditCropType = "http://192.168.1.111/android/php/editcroptype.php";
+    private String urlDeleteCropType = "http://192.168.1.111/android/php/deletecroptype.php";
     private String[] columnCropTypeString = new String[]{"TID","croptype"};
 
     //ทดสอบ
@@ -46,7 +49,7 @@ public class Myconstant {
     private int[] iconInts = new int[]{
             R.drawable.ic_action_drawerplan,
             R.drawable.ic_action_date,
-            R.drawable.ic_action_drawerdata,
+            R.drawable.ic_action_drawerplan,
             R.drawable.ic_action_drawerplan,
             R.drawable.ic_action_drawerplan,
             R.drawable.ic_action_drawerplan,
@@ -57,10 +60,10 @@ public class Myconstant {
             "วางแผนเพาะปลูก",
             "ปฏิทินการเพาะปลูก",
             "ข้อมูลการเพาะปลูก",
-            "ข้อมูลพืชเพาะปลูก",
+            "เพิ่มข้อมูลพืชเพาะปลูก",
             "เพิ่มข้อมูลประเภทพืช",
-            "เข้อมูลประเภทพืช",
-            "ข้อมูลเพาะปลูก",
+            "ข้อมูลประเภทพืช",
+            "กิจกรรม",
             "Exit"};
 
     // getUrl
