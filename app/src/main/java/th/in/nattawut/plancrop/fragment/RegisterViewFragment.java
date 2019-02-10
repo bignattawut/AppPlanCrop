@@ -16,7 +16,7 @@ import org.json.JSONObject;
 import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.GetData;
 import th.in.nattawut.plancrop.utility.Myconstant;
-import th.in.nattawut.plancrop.utility.RegisterAdpter;
+import th.in.nattawut.plancrop.utility.RegisterViewAdpter;
 
 public class RegisterViewFragment extends Fragment {
 
@@ -62,7 +62,7 @@ public class RegisterViewFragment extends Fragment {
                 emailString[i] = jsonObject.getString(columString[7]);
                 midString[i] = jsonObject.getString(columString[0]);
             }
-            RegisterAdpter registerAdpter = new RegisterAdpter(getActivity(),userString, passwordString, nameString, idString, addressString, phonString, emailString);
+            RegisterViewAdpter registerAdpter = new RegisterViewAdpter(getActivity(),userString, passwordString, nameString, idString, addressString, phonString, emailString);
             listView.setAdapter(registerAdpter);
 
         } catch (Exception e) {

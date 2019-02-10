@@ -11,9 +11,15 @@ public class Myconstant {
     private String urladdPlan = "http://192.168.1.111/android/php/addPlan.php";
     public static String getUrlCrop ="http://192.168.1.111/android/php/selectCrop.php";
     public static String getUrlCropType = "http://192.168.1.111/android/php/selectcroptype.php";
-
     public static String urlmid = "http://192.168.1.111/android/php/selectmid.php";
+
+
+    //เกษตรกร
     private  String urlGetRegister = "http://192.168.1.111/android/php/getregister.php";
+    private String[] comlumRegisterString = new String[]{"MID","UserID","PWD","ID","Name","Address","Tel","EMail"};
+    //private  String urlGetRegister = "http://192.168.1.111/android/php/selectfarmer.php";
+    //private String[] comlumRegisterString = new String[]{"mid","userid","pwd","id","name","address","vid","sid","tel","email","area"};
+
 
     //spinner จังหวัด อำเภอ ตำบล
     public static String getUrlProvince = "http://192.168.1.111/android/php/selectprovince.php";
@@ -21,7 +27,6 @@ public class Myconstant {
 
     //พืช
     private String urlAddCrop = "http://192.168.1.111/android/php/insertcrop.php";
-
     //private String urlselectCrop = "http://192.168.1.111/android/php/selectcrop.php";
     //private String[] columnCropString = new String[]{"crop.cid","crop.crop","croptype.tid","croptype.croptype","crop.beginharvest","crop.harvestperiod","crop.yield"};
 
@@ -42,10 +47,7 @@ public class Myconstant {
     private int portAnInt = 21;
 
 
-
     private String[] columnPlanString = new String[]{"No", "MID", "PDate", "CID", "Area"};
-    private String[] comlumRegisterString = new String[]{"MID","UserID","PWD","ID","Name","Address","Tel","EMail"};
-
     private int[] iconInts = new int[]{
             R.drawable.ic_action_drawerplan,
             R.drawable.ic_action_date,
@@ -55,7 +57,6 @@ public class Myconstant {
             R.drawable.ic_action_drawerplan,
             R.drawable.ic_action_userregister,
             R.drawable.ic_action_exit};
-
     private String[] titleStrings = new String[]{
             "วางแผนเพาะปลูก",
             "ปฏิทินการเพาะปลูก",
@@ -102,6 +103,9 @@ public class Myconstant {
     public String getUrladdPlan() {
         return urladdPlan;
     }
+
+
+    //เกษตรกร
 
 
     //พืช

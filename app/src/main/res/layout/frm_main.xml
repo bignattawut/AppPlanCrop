@@ -25,6 +25,44 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <!--Green Layout-->
+            <RelativeLayout
+                android:layout_margin="@dimen/margin"
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon">
+
+                <!--Station1-->
+                <ImageView
+                    android:id="@+id/imageViewMember"
+                    android:src="@drawable/gardener"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <!--Title-->
+                <TextView
+                    android:clickable="true"
+                    android:layout_alignParentBottom="true"
+                    android:padding="5dp"
+                    android:gravity="center_horizontal"
+                    android:textColor="#ffffff"
+                    android:background="#82000000"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:text="@string/member"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
         <!--Blue Layout-->
         <LinearLayout
             android:orientation="horizontal"
@@ -167,6 +205,9 @@
 
             </RelativeLayout>
         </LinearLayout>
+
+
+
     </LinearLayout>
 
 <!--

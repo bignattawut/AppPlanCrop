@@ -1,13 +1,19 @@
 package th.in.nattawut.plancrop.fragment;
 
 import android.app.AlertDialog;
+import android.content.ClipData;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -18,6 +24,7 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import th.in.nattawut.plancrop.HomeActivity;
 import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.CropTypeViewAapter;
 import th.in.nattawut.plancrop.utility.DeleteCropType;
@@ -33,6 +40,9 @@ public class CropTypeViewFragment extends Fragment {
 
         //Create ListView
         createListView();
+
+        //Create Toolbal
+        CreateToolbal();
     }
 
     private void createListView() {
@@ -184,7 +194,7 @@ public class CropTypeViewFragment extends Fragment {
     }
 
     //ลบรายการประเภทพืชเพาะปลูก
-   private void editDeleteCropType(String tidString){
+    private void editDeleteCropType(String tidString){
 
         Myconstant myconstant = new Myconstant();
         try {
@@ -201,6 +211,56 @@ public class CropTypeViewFragment extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.itemupload) {
+            item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    getActivity()
+                            .getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.contentHomeFragment, new CropTypeFragment())
+                            .addToBackStack(null)
+                            .commit();
+                    return false;
+                }
+            });
+
+           // uploadValueToSever();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+
+        inflater.inflate(R.menu.manu_register, menu);
+
+    }
+    private void CreateToolbal() {
+        Toolbar toolbar = getView().findViewById(R.id.toolbarCropType);
+        ((HomeActivity)getActivity()).setSupportActionBar(toolbar);
+
+        ((HomeActivity)getActivity()).getSupportActionBar().setTitle("            ประเภทพืช");
+        //((MainActivity)getActivity()).getSupportActionBar().setSubtitle("ddbdbvd");
+
+        ((HomeActivity)getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
+        ((HomeActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().popBackStack();
+            }
+        });
+        setHasOptionsMenu(true);
+
     }
 
     @Nullable

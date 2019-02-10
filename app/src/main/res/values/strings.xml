@@ -4,6 +4,7 @@
     <string name="open">Open Drawer</string>
     <string name="close">Close Drawer</string>
 
+    <string name="member">ข้อมูลส่วนตัว</string>
     <string name="station1">วางแผนเพาะปลูก</string>
     <string name="station2">บันทึกการเพาะปลูก</string>
     <string name="station3">เพาะปลูก</string>
