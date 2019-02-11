@@ -51,6 +51,10 @@ public class PlanFragment extends Fragment {
     DatePickerDialog dataPickerDialog;
     Calendar calendar;
 
+    //ล็อคอิน
+    private TextView texPlanLogin;
+    private String strTexeShowMid;
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -69,11 +73,33 @@ public class PlanFragment extends Fragment {
         planFarmerSpinner();
 
         //PlanMidSpinner
-        planMidSpinner();
+        //planMidSpinner();
+
+        //setUpTexeShowMid
+        setUpTexeShowMid();
 
     }
+    private void setUpTexeShowMid(){
+        TextView texPlanLogin = getView().findViewById(R.id.texPlanLogin);
+        TextView texPlanMid = getView().findViewById(R.id.texPlanMid);
 
+        String strTextShow = getActivity().getIntent().getExtras().getString("Name");
+        texPlanLogin.setText(strTextShow);
+
+        String strTextShowmid = getActivity().getIntent().getExtras().getString("MID");
+        texPlanMid.setText(strTextShowmid);
+
+
+
+
+        //TextView texPlanLogin = getView().findViewById(R.id.texPlanLogin);
+        //String strTextShow = getActivity().getIntent().getExtras().getString("Name");
+        //String strTextShowMid = getActivity().getIntent().getExtras().getString("Mid");
+        //texPlanLogin.setText(strTexeShowMid);
+    }
+/*
     private void planMidSpinner() {
+        //setup policy เเพื่อมือถือที่มีประปฏิบัติการสูงกว่านีจะไม่สามารถconnectกับโปรโตรคอลได้
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -116,7 +142,7 @@ public class PlanFragment extends Fragment {
             e.printStackTrace();
         }
     }
-
+*/
     private void planFarmerSpinner() {
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -197,7 +223,8 @@ public class PlanFragment extends Fragment {
     }
 
     private void AddCrop() {
-        TextView textCidmid = getView().findViewById(R.id.textCidmid);
+        //TextView textCidmid = getView().findViewById(R.id.textCidmid);
+        TextView textCidmid = getView().findViewById(R.id.texPlanMid);
         TextView textPlanCidSpinner = getView().findViewById(R.id.textPlanCidSpinner);
         TextView textmyDate = getView().findViewById(R.id.myDate);
         EditText editText = getView().findViewById(R.id.addplan1);

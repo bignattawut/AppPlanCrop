@@ -56,7 +56,7 @@ public class MainFragment extends Fragment{
                 }else {
                     Myconstant myconstant = new Myconstant();
                     Boolean b = true;
-                    String truePass = null, nameuser = null;
+                    String truePass = null, nameuser = null, miduser = null;
                     MyAlert myAlert = new MyAlert(getActivity());
 
                 try {
@@ -74,6 +74,7 @@ public class MainFragment extends Fragment{
                             b = false;
                             truePass = jsonObject.getString("PWD");
                             nameuser = jsonObject.getString("Name");
+                            miduser = jsonObject.getString("MID");
                         }
                     }
                     if (b) {
@@ -84,6 +85,7 @@ public class MainFragment extends Fragment{
                         //Intent to HomeActivity
                         Intent intent = new Intent(getActivity(),HomeActivity.class);
                         intent.putExtra("Name",nameuser);
+                        intent.putExtra("MID",miduser);
                         startActivity(intent);
                         getActivity().finish();
 

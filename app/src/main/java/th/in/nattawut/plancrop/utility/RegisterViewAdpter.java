@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import th.in.nattawut.plancrop.R;
 
+//สืบทอดมาจาก BaseAdapter
+
 public class RegisterViewAdpter extends BaseAdapter {
 
     private Context context;

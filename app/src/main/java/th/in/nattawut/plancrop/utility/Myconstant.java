@@ -5,45 +5,45 @@ import th.in.nattawut.plancrop.R;
 public class Myconstant {
 
     //ล็อคอิน
-    private String urlGetUser = "http://192.168.2.50/android/php/getAll.php";
+    private String urlGetUser = "http://192.168.1.130/android/php/getAll.php";
 
     //วางแผนเพาะปลูก
-    private String urladdPlan = "http://192.168.2.50/android/php/insertplan.php";
-    public static String getUrlCrop ="http://192.168.2.50/android/php/selectspinnercrop.php";
-    public static String getUrlmid = "http://192.168.2.50/android/php/selectmidspinner.php";
+    private String urladdPlan = "http://192.168.1.130/android/php/insertplan.php";
+    public static String getUrlCrop ="http://192.168.1.130/android/php/selectspinnercrop.php";
+    public static String getUrlmid = "http://192.168.1.130/android/php/selectmidspinner.php";
     private String[] columnPlanString = new String[]{"No", "MID", "PDate", "CID", "Area"};
-    private String urlGetPlan = "http://192.168.2.50/android/php/getPlanView.php";
-    private String urlselectPlan = "http://192.168.2.50/android/php/selectplan.php";
+    private String urlGetPlan = "http://192.168.1.130/android/php/getPlanView.php";
+    private String urlselectPlan = "http://192.168.1.130/android/php/selectplan.php";
 
     //เกษตรกร
-    private String urlRegister = "http://192.168.2.50/android/php/addregister.php";
-    private  String urlGetRegister = "http://192.168.2.50/android/php/getregister.php";
+    private String urlRegister = "http://192.168.1.130/android/php/addregister.php";
+    private  String urlGetRegister = "http://192.168.1.130/android/php/getregister.php";
     private String[] comlumRegisterString = new String[]{"MID","UserID","PWD","ID","Name","Address","Tel","EMail"};
     //private  String urlGetRegister = "http://192.168.1.111/android/php/selectfarmer.php";
     //private String[] comlumRegisterString = new String[]{"mid","userid","pwd","id","name","address","vid","sid","tel","email","area"};
 
     //spinner จังหวัด อำเภอ ตำบล
-    public static String getUrlProvince = "http://192.168.2.50/android/php/selectprovince.php";
-    public static String getUrlAmphur = "http://192.168.2.50/android/php/selectdistrict.php";
+    public static String getUrlProvince = "http://192.168.1.130/android/php/selectprovince.php";
+    public static String getUrlAmphur = "http://192.168.1.130/android/php/selectdistrict.php";
 
     //พืช
-    private String urlAddCrop = "http://192.168.1.50/android/php/insertcrop.php";
+    private String urlAddCrop = "http://192.168.1.130/android/php/insertcrop.php";
     //private String urlselectCrop = "http://192.168.1.111/android/php/selectcrop.php";
     //private String[] columnCropString = new String[]{"crop.cid","crop.crop","croptype.tid","croptype.croptype","crop.beginharvest","crop.harvestperiod","crop.yield"};
 
-    private String urlselectCrop = "http://192.168.2.50/android/php/a.php";
+    private String urlselectCrop = "http://192.168.1.130/android/php/a.php";
     private String[] columnCropString = new String[]{"cid","crop","tid","beginharvest","harvestperiod","yield"};
 
     //ประเภทพืช
-    public static String getUrlCropType = "http://192.168.2.50/android/php/selectcroptype.php";
-    private String urlAddCropType = "http://192.168.2.50/android/php/insertcroptype.php";
-    private String urlselectcroptype = "http://192.168.2.50/android/php/selectcroptype.php";
-    private String urlEditCropType = "http://192.168.2.50/android/php/editcroptype.php";
-    private String urlDeleteCropType = "http://192.168.2.50/android/php/deletecroptype.php";
+    public static String getUrlCropType = "http://192.168.1.130/android/php/selectcroptype.php";
+    private String urlAddCropType = "http://192.168.1.130/android/php/insertcroptype.php";
+    private String urlselectcroptype = "http://192.168.1.130/android/php/selectcroptype.php";
+    private String urlEditCropType = "http://192.168.1.130/android/php/editcroptype.php";
+    private String urlDeleteCropType = "http://192.168.1.130/android/php/deletecroptype.php";
     private String[] columnCropTypeString = new String[]{"TID","croptype"};
 
     //ทดสอบ
-    private String urlplantpicture = "http://192.168.1.30/android/php/addPlantPicture.php";
+    private String urlplantpicture = "http://192.168.1.130/android/php/addPlantPicture.php";
     private String hostnametp = "localhost";
     private String uerFtp = "root";
     private String passFtp = "";

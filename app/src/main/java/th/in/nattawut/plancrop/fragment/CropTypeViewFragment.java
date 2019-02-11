@@ -5,6 +5,7 @@ import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -25,6 +26,9 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.Collections;
+import java.util.List;
+
 import th.in.nattawut.plancrop.HomeActivity;
 import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.CropTypeViewAapter;
@@ -37,6 +41,7 @@ public class CropTypeViewFragment extends Fragment {
 
     SwipeRefreshLayout mSwipeRefreshLayout;
     ListView listView;
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -48,26 +53,26 @@ public class CropTypeViewFragment extends Fragment {
         CreateToolbal();
 
         //Swipe Refresh Layout
-        //swipeRefreshLayout();
+        swipeRefreshLayout();
 
+    }
+
+    private void swipeRefreshLayout() {
         mSwipeRefreshLayout = getView().findViewById(R.id.swiRefreshLayouCropType);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                @Override
-                public void onRefresh() {
-                    refresh();
-                }
-            });
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //Create ListView
+                        createListView();
+
+                    }
+                },2);
+            }
+        });
     }
-
-    private void refresh() {
-        //Create ListView
-        //createListView();
-        listView.invalidateViews();
-        mSwipeRefreshLayout.setRefreshing(false);
-
-
-    }
-
 
     private void createListView() {
         listView = getView().findViewById(R.id.listViewCropType);
@@ -91,6 +96,8 @@ public class CropTypeViewFragment extends Fragment {
                 tidString[i] = jsonObject.getString(columnStrings[0]);
                 cropTypeString[i] = jsonObject.getString(columnStrings[1]);
             }
+
+
             CropTypeViewAapter cropTypeViewAapter = new CropTypeViewAapter(getActivity(),tidString,cropTypeString);
             listView.setAdapter(cropTypeViewAapter);
 
@@ -99,14 +106,17 @@ public class CropTypeViewFragment extends Fragment {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     deleteorEditCropType(tidString[position],cropTypeString[position]);
+                    //mSwipeRefreshLayout.setRefreshing(false);
                 }
             });
-
+            mSwipeRefreshLayout.setRefreshing(false);
 
         }catch (Exception e){
             e.printStackTrace();
         }
     }
+
+
 
     //alertให้เลือกลบหรือแก้ไข
     private void deleteorEditCropType(final String tidString, final String cropTypeString ) {

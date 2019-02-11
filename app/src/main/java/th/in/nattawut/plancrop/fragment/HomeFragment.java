@@ -100,11 +100,17 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 getActivity()
-                        .getSupportFragmentManager()
+                .getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.contentHomeFragment, new PlanFragment())
                         .addToBackStack(null)
                         .commit();
+                /*getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentHomeFragment, new PlanFragment())
+                        .addToBackStack(null)
+                        .commit();*/
             }
         });
 }
