@@ -30,6 +30,24 @@ public class HomeFragment extends Fragment {
         //Register Controller
         registerController();
 
+        //PlanView Controller
+        planViewController();
+
+    }
+
+    private void planViewController() {
+        ImageView imageView = getView().findViewById(R.id.imageViewListPlan);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentHomeFragment, new PlanViewFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
     }
 
     private void registerController() {

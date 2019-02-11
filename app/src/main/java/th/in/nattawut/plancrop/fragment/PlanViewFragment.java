@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,20 @@ public class PlanViewFragment extends Fragment {
 
         //Create ListView
         createListView();
+
+        //Swipe Refresh Layout
+        swipeRefreshLayout();
+
+    }
+
+    private void swipeRefreshLayout() {
+        SwipeRefreshLayout swipeRefreshLayout = getView().findViewById(R.id.swiRefreshLayou);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+            }
+        });
     }
 
     private void createListView() {

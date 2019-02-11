@@ -164,6 +164,7 @@ public class CropFragment extends Fragment {
     }
 
     private void AddCrop() {
+
         EditText edtCrop = getView().findViewById(R.id.edtCropName);
         TextView tid = getView().findViewById(R.id.textTID);
         EditText edtBeginHarvest = getView().findViewById(R.id.edtBeginHarvest);

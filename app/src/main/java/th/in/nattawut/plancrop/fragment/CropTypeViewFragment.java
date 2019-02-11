@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,6 +35,8 @@ import th.in.nattawut.plancrop.utility.Myconstant;
 
 public class CropTypeViewFragment extends Fragment {
 
+    SwipeRefreshLayout mSwipeRefreshLayout;
+    ListView listView;
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -43,10 +46,31 @@ public class CropTypeViewFragment extends Fragment {
 
         //Create Toolbal
         CreateToolbal();
+
+        //Swipe Refresh Layout
+        //swipeRefreshLayout();
+
+        mSwipeRefreshLayout = getView().findViewById(R.id.swiRefreshLayouCropType);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    refresh();
+                }
+            });
     }
 
+    private void refresh() {
+        //Create ListView
+        //createListView();
+        listView.invalidateViews();
+        mSwipeRefreshLayout.setRefreshing(false);
+
+
+    }
+
+
     private void createListView() {
-        ListView listView = getView().findViewById(R.id.listViewCropType);
+        listView = getView().findViewById(R.id.listViewCropType);
         Myconstant myconstant = new Myconstant();
         String[] columnStrings = myconstant.getColumnCropTypeString();
 

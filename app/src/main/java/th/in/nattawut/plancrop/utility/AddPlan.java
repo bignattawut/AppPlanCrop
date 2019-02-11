@@ -21,14 +21,14 @@ public class AddPlan extends AsyncTask<String, Void, String> {
         try {
             OkHttpClient okHttpClient = new OkHttpClient();
             RequestBody requestBody = new FormEncodingBuilder()
-                    .add("isAdd", "true")
-                    .add("MID", strings[0])
-                    //.add("PDate",strings[1])
-                    .add("CID", strings[1])
-                    //.add("Area", strings[3])
+                    //.add("isAdd", "true")
+                    .add("mid", strings[0])
+                    .add("pdate",strings[1])
+                    .add("cid", strings[2])
+                    .add("area", strings[3])
                     .build();
             Request.Builder builder = new Request.Builder();
-            Request request = builder.url(strings[2]).post(requestBody).build();
+            Request request = builder.url(strings[4]).post(requestBody).build();
             Response response=okHttpClient.newCall(request).execute();
             return response.body().string();
 
