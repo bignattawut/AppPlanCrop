@@ -88,7 +88,7 @@ public class HomeFragment extends Fragment {
                 getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new PlantPicture())
+                        .replace(R.id.contentHomeFragment, new PlantPictureFragment())
                         .addToBackStack(null)
                         .commit();
             }

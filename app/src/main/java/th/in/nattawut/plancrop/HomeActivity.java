@@ -24,7 +24,8 @@ import th.in.nattawut.plancrop.fragment.HomeFragment;
 import th.in.nattawut.plancrop.fragment.PlanFragment;
 import th.in.nattawut.plancrop.fragment.PlanViewFragment;
 import th.in.nattawut.plancrop.fragment.PlantFragment;
-import th.in.nattawut.plancrop.fragment.PlantPicture;
+//import th.in.nattawut.plancrop.fragment.PlantPicture;
+import th.in.nattawut.plancrop.fragment.PlantPictureFragment;
 import th.in.nattawut.plancrop.fragment.RegisterViewFragment;
 import th.in.nattawut.plancrop.utility.DrawerAdapter;
 import th.in.nattawut.plancrop.utility.Myconstant;
@@ -117,7 +118,7 @@ public class HomeActivity extends AppCompatActivity {
                     case 6:
                         getSupportFragmentManager()
                                 .beginTransaction()
-                                .replace(R.id.contentHomeFragment, new PlantPicture())
+                                .replace(R.id.contentHomeFragment, new PlantPictureFragment())
                                 .addToBackStack(null)
                                 .commit();
                         break;

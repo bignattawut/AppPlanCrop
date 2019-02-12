@@ -1,4 +1,4 @@
-package th.in.nattawut.plancrop.fragment;
+/*package th.in.nattawut.plancrop.fragment;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
@@ -291,3 +291,4 @@ public class PlantPicture extends Fragment {
         }
     }//MyFTPData
 }
+*/
