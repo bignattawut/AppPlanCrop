@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Get Value Login
+        //String[] loginString = getIntent().getStringArrayExtra("MID");
         if (savedInstanceState == null) {
 
             getSupportFragmentManager()

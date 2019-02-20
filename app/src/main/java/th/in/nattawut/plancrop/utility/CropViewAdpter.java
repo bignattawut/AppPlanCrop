@@ -18,14 +18,14 @@ public class CropViewAdpter extends BaseAdapter {
                           String[] cidString,
                           String[] cropStrings,
                           String[] tidStrings,
-                          //String[] croptypeString,
+                          String[] croptypeString,
                           String[] beginharvestStrings,
                           String[] harvestperiodStrings,
                           String[] yield) {
         this.context = context;
         this.cidString = cidString;
         this.cropStrings = cropStrings;
-        //this.croptypeString = croptypeString;
+        this.croptypeString = croptypeString;
         this.tidStrings = tidStrings;
         this.beginharvestStrings = beginharvestStrings;
         this.harvestperiodStrings = harvestperiodStrings;
@@ -55,7 +55,7 @@ public class CropViewAdpter extends BaseAdapter {
         TextView textCidView = view.findViewById(R.id.textCid);
         TextView textCropView = view.findViewById(R.id.textCrop);
         TextView textTidView = view.findViewById(R.id.textCropTID);
-        //TextView textCropTidView = view.findViewById(R.id.textCropTypeTID);
+        TextView textCropTidView = view.findViewById(R.id.textCropTypeTID);
         TextView textBeginHarvestView = view.findViewById(R.id.textBeginHarvest);
         TextView textHarvestPeriodView = view.findViewById(R.id.textHarvestPeriod);
         TextView textYieldView = view.findViewById(R.id.textYield);
@@ -63,7 +63,7 @@ public class CropViewAdpter extends BaseAdapter {
         textCidView.setText(cidString[position]);
         textCropView.setText(cropStrings[position]);
         textTidView.setText(tidStrings[position]);
-        //textCropTidView.setText(croptypeString[position]);
+        textCropTidView.setText(croptypeString[position]);
         textBeginHarvestView.setText(beginharvestStrings[position]);
         textHarvestPeriodView.setText(harvestperiodStrings[position]);
         textYieldView.setText(yield[position]);

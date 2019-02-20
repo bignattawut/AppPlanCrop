@@ -41,9 +41,8 @@ public class PlantPictureFragment extends Fragment {
 
     private ImageView photoImageView;
     private Uri uri;
-    private String photoURlString;
-    private boolean aBoolean = true;
-    private ProgressDialog progressDialog;
+
+
 
     //Button selctDate;
     ImageView selctDate;
@@ -88,32 +87,6 @@ public class PlantPictureFragment extends Fragment {
     private void UploadImage() {
 
     }
-
-//    private void UploadPic() {
-//
-//        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy
-//                .Builder().permitAll().build();
-//        StrictMode.setThreadPolicy(policy);
-//
-//        FTPClient ftpClient = new FTPClient();
-//        Myconstant myconstant = new Myconstant();
-//        File file = new File();
-//
-//        try {
-//            ftpClient.connect(myconstant.getUrlplantpicture());
-//            ftpClient.setType(FTPClient.TYPE_BINARY);
-//            ftpClient.changeDirectory("no");
-//            ftpClient.upload(file,new MyUploadPic());
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            try {
-//                ftpClient.disconnect(true);
-//            } catch (Exception e1) {
-//                e1.printStackTrace();
-//            }
-//        }
-//    }
 
     private void addPlantPicture() {
         Button button = getView().findViewById(R.id.btnPlantPicture);
@@ -278,34 +251,5 @@ public class PlantPictureFragment extends Fragment {
         View view = inflater.inflate(R.layout.frm_plantpicture, container, false);
         return view;
     }
-
-   /*public class MyUploadPic implements FTPDataTransferListener{
-        @Override
-        public void started() {
-            Toast.makeText(getActivity(),"Upload Start",Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        public void transferred(int i) {
-            Toast.makeText(getActivity(),"Transferred...",Toast.LENGTH_SHORT).show();
-
-        }
-
-        @Override
-        public void completed() {
-            Toast.makeText(getActivity(),"Upload Complated",Toast.LENGTH_SHORT).show();
-
-        }
-
-        @Override
-        public void aborted() {
-
-        }
-
-        @Override
-        public void failed() {
-
-        }
-    }*/
 }
 

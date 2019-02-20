@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -30,7 +31,8 @@ public class CropViewFragment extends Fragment {
     }
 
     private void createListView() {
-        ListView listView = getView().findViewById(R.id.listViewCrop);
+        final ListView listView = getView().findViewById(R.id.listViewCrop);
+        Spinner spinner = getView().findViewById(R.id.CropSpinnerView);
         Myconstant myconstant = new Myconstant();
         String[] columnStrings = myconstant.getColumnCropString();
         try{
@@ -45,7 +47,7 @@ public class CropViewFragment extends Fragment {
             final String[] cidString = new String[jsonArray.length()];
             final String[] cropString = new String[jsonArray.length()];
             final String[] tidString = new String[jsonArray.length()];
-            //final String[] croptypeString = new String[jsonArray.length()];
+            final String[] croptypeString = new String[jsonArray.length()];
             final String[] beginharvestString = new String[jsonArray.length()];
             final String[] harvestperiodString = new String[jsonArray.length()];
             final String[] yield = new String[jsonArray.length()];
@@ -56,14 +58,14 @@ public class CropViewFragment extends Fragment {
                 cidString[i] = jsonObject.getString(columnStrings[0]);
                 cropString[i] = jsonObject.getString(columnStrings[1]);
                 tidString[i] = jsonObject.getString(columnStrings[2]);
-                //croptypeString[i] = jsonObject.getString(columnStrings[3]);
-                beginharvestString[i] = jsonObject.getString(columnStrings[3]);
-                harvestperiodString[i] = jsonObject.getString(columnStrings[4]);
-                yield[i] = jsonObject.getString(columnStrings[5]);
+                croptypeString[i] = jsonObject.getString(columnStrings[3]);
+                beginharvestString[i] = jsonObject.getString(columnStrings[4]);
+                harvestperiodString[i] = jsonObject.getString(columnStrings[5]);
+                yield[i] = jsonObject.getString(columnStrings[6]);
             }
 
             CropViewAdpter cropViewAdpter = new CropViewAdpter(getActivity(),
-                    cidString,cropString,tidString,beginharvestString,harvestperiodString,yield);
+                    cidString,cropString,tidString,croptypeString,beginharvestString,harvestperiodString,yield);
             listView.setAdapter(cropViewAdpter);
             //edit
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

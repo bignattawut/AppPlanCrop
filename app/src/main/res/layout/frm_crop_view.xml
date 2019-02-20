@@ -15,7 +15,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:text="ลำดับ"
-                android:textSize="20dp" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/textCrop"
@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:text="พืช"
-                android:textSize="20dp" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/textCropTID"
@@ -31,15 +31,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:text="ลำดับ"
-                android:textSize="20dp" />
+                android:textSize="16dp" />
 
-            <!--<TextView
+            <TextView
                 android:id="@+id/textCropTypeTID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:text="ปรเภท"
-                android:textSize="20dp" />-->
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/textBeginHarvest"
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:text="จำนวนวัน"
-                android:textSize="20dp" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/textHarvestPeriod"
@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:text="ระยะเวลา"
-                android:textSize="20dp" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/textYield"
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:text="ผลผลิต"
-                android:textSize="20dp" />
+                android:textSize="16dp" />
         </TableRow>
     </TableLayout>
     <!--<LinearLayout
