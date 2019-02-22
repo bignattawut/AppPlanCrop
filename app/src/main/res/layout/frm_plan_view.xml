@@ -1,8 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/texPlan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="พืชปลอดสาร"
+                android:textSize="0dp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/textMid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="เกษตรกร"
+                android:textSize="0dp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/textTypePlan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="เกษตรกร" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/textCid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="พืช" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/textArePlant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="พื้นที่" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/textDataplant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="วันที่" />
+        </TableRow>
+
+    </TableLayout>
+    <!--
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -61,10 +130,9 @@
                 android:layout_marginTop="0dp"
                 android:text="วันที่"
                 android:textColor="#ffffff" />
+
         </RelativeLayout>
-    </RelativeLayout>
-
-
+    </RelativeLayout>-->
 
 
 </RelativeLayout>

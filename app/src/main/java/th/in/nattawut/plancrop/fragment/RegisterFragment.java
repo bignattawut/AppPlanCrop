@@ -51,8 +51,11 @@ public class RegisterFragment extends Fragment {
     private ArrayList<String> arrAmphur = new ArrayList<>();
     private ArrayList<String> arrAmphurID = new ArrayList<>();
 
-    private ArrayAdapter<String> adpProvince,adpAmphur;
-    private Spinner spProvince,spAmphur;
+    private ArrayList<String> arrVid = new ArrayList<>();
+    private ArrayList<String> arrVidID = new ArrayList<>();
+
+    private ArrayAdapter<String> adpProvince,adpAmphur,adpVid;
+    private Spinner spProvince,spAmphur,spVid;
     private int rubIDprovince;
 
     @Override
@@ -75,6 +78,10 @@ public class RegisterFragment extends Fragment {
         adpAmphur = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, arrAmphur);
         spAmphur.setAdapter(adpAmphur);
 
+        //หมู่บ้าน
+        spVid = getView().findViewById(R.id.spDistrice);
+        adpVid = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, arrVid);
+        spVid.setAdapter(adpVid);
 
     }
     @Override
@@ -82,6 +89,7 @@ public class RegisterFragment extends Fragment {
         super.onStart();
         new DataProvince().execute();
         new DataAmphur().execute("1");
+        new DataDistrict().execute("1","1");
     }
 
     public class DataProvince extends AsyncTask<String, Void, String> {
@@ -215,6 +223,9 @@ public class RegisterFragment extends Fragment {
                         //new DataDistrict().execute(listamphur.get(position), String.valueOf(rubIDprovince));
                         //rubIDprovince = Integer.parseInt(listamphurid.get(position));
                         //arrDistrict.clear();
+                        new DataDistrict().execute(listamphur.get(position));
+                        rubIDprovince = Integer.parseInt(listamphurid.get(position));
+                        arrVid.clear();
 
                     }
                 }
@@ -224,6 +235,59 @@ public class RegisterFragment extends Fragment {
 
                 }
             });
+            //new DataDistrict().execute(listamphur.get(0), String.valueOf(rubIDprovince));
+        }
+    }
+    private class DataDistrict extends AsyncTask<String, Void, String> {
+
+        String result;
+        private ArrayList<String> listavid;
+        private ArrayList<String> listavidid;
+
+        @Override
+        protected void onPreExecute() {
+            listavid = new ArrayList<>();
+            listavidid = new ArrayList<>();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            RequestBody requestBody = new FormEncodingBuilder()
+                    .add("did", strings[0])
+                    //.add("pid",strings[1])
+                    .build();
+            OkHttpClient okHttpClient = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .url(Myconstant.getUrlVid)
+                    .post(requestBody)
+                    .build();
+            try {
+                Response response = okHttpClient.newCall(request).execute();
+                result = response.body().string();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            try {
+                JSONArray jsonArray = new JSONArray(result);
+                JSONObject jsonObject = null;
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    jsonObject = jsonArray.getJSONObject(i);
+                    listavidid.add(jsonObject.getString("vid"));
+                    listavid.add(jsonObject.getString("thai"));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return result;
+        }
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            arrVidID.addAll(listavidid);
+            arrVid.addAll(listavid);
+            adpVid.notifyDataSetChanged();
         }
     }
 
@@ -255,8 +319,8 @@ public class RegisterFragment extends Fragment {
 
         EditText username = getView().findViewById(R.id.edtusername);
         EditText password = getView().findViewById(R.id.edtpassword);
-        EditText name = getView().findViewById(R.id.edtname);
         EditText id = getView().findViewById(R.id.edtid);
+        EditText name = getView().findViewById(R.id.edtname);
         EditText address = getView().findViewById(R.id.edtaddress);
         EditText phon = getView().findViewById(R.id.edtphone);
         EditText email = getView().findViewById(R.id.edtemail);
@@ -274,7 +338,7 @@ public class RegisterFragment extends Fragment {
         String amphurString = amphur.getSelectedItem().toString().trim();
 
 
-        if (userString.isEmpty() || passwordString.isEmpty() || nameString.isEmpty() || idString.isEmpty() || addressString.isEmpty() || phonString.isEmpty() || emailString.isEmpty() || passwordString.isEmpty() || amphurString.isEmpty()) {
+        if (userString.isEmpty() || passwordString.isEmpty() || idString.isEmpty() || nameString.isEmpty()  || addressString.isEmpty() || phonString.isEmpty() || emailString.isEmpty() || provinceString.isEmpty() || amphurString.isEmpty()) {
 
             MyAlert myAlert = new MyAlert(getActivity());
             myAlert.onrmaIDialog("สวัสดี", "กรุณากรอกข้อมูล");
@@ -283,7 +347,7 @@ public class RegisterFragment extends Fragment {
             try {
                 Myconstant myconstant = new Myconstant();
                 AddNewUserUpload addNewUserUpload = new AddNewUserUpload(getActivity());
-                addNewUserUpload.execute(userString, passwordString, nameString, idString, addressString, phonString, emailString, provinceString, amphurString,
+                addNewUserUpload.execute(userString, passwordString,  idString,nameString, addressString, phonString, emailString, provinceString, amphurString,
                         myconstant.getUrlRegister());
 
                 String result = addNewUserUpload.get();

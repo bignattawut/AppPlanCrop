@@ -2,4 +2,5 @@
 <resources>
     <dimen name="icon">120dp</dimen>
     <dimen name="margin">10dp</dimen>
+    <dimen name="admin">80dp</dimen>
 </resources>

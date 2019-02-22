@@ -195,7 +195,7 @@ public class CropTypeViewFragment extends Fragment {
                 EditText editText = view.findViewById(R.id.edtEditCropType);
                 String newCropType = editText.getText().toString();
                 if (newCropType.isEmpty()) {
-                    newCropType = "0";
+                    //newCropType = "0";
                 }
                 updateCropType(tidString,newCropType);
 
@@ -281,7 +281,7 @@ public class CropTypeViewFragment extends Fragment {
         Toolbar toolbar = getView().findViewById(R.id.toolbarCropType);
         ((HomeActivity)getActivity()).setSupportActionBar(toolbar);
 
-        ((HomeActivity)getActivity()).getSupportActionBar().setTitle("            ประเภทพืช");
+        ((HomeActivity)getActivity()).getSupportActionBar().setTitle("         แสดงรายการประเภทพืช");
         //((MainActivity)getActivity()).getSupportActionBar().setSubtitle("ddbdbvd");
 
         ((HomeActivity)getActivity()).getSupportActionBar().setHomeButtonEnabled(true);

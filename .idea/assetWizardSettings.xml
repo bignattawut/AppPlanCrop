@@ -33,9 +33,10 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="imageAsset" value="D:\PlanCrop\img\user.png" />
-                                      <entry key="outputName" value="ic_action_gallery" />
-                                      <entry key="themeColor" value="ffffff" />
+                                      <entry key="assetType" value="IMAGE" />
+                                      <entry key="imageAsset" value="C:\Users\BN'B13\Downloads\plus.png" />
+                                      <entry key="outputName" value="ic_action_add1" />
+                                      <entry key="themeColor" value="1ee524" />
                                     </map>
                                   </option>
                                 </PersistentState>

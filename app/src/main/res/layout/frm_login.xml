@@ -58,15 +58,6 @@
                 android:inputType="textPassword" />
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="ลืมรหัสผ่าน"
-            android:textColor="@color/colorAccent"
-            android:textSize="16dp"
-            android:textStyle="bold" />
-
         <Button
             android:id="@+id/btnlogin"
             android:layout_width="match_parent"

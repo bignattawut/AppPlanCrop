@@ -15,7 +15,7 @@ import th.in.nattawut.plancrop.R;
 public class RegisterViewAdpter extends BaseAdapter {
 
     private Context context;
-    private String[] userString,passwordString,nameString,idString,addressString,phonString,emailString;
+    private String[] userString,passwordString,nameString,idString,addressString,vidString,sidString,phonString,emailString;
 
     public RegisterViewAdpter(Context context,
                               String[] userString,
@@ -23,6 +23,8 @@ public class RegisterViewAdpter extends BaseAdapter {
                               String[] nameString,
                               String[] idString,
                               String[] addressString,
+                              String[] vidString,
+                              String[] sidString,
                               String[] phonString,
                               String[] emailString) {
         this.context = context;
@@ -31,6 +33,8 @@ public class RegisterViewAdpter extends BaseAdapter {
         this.nameString = nameString;
         this.idString = idString;
         this.addressString = addressString;
+        this.vidString = vidString;
+        this.sidString = sidString;
         this.phonString = phonString;
         this.emailString = emailString;
     }
@@ -60,6 +64,8 @@ public class RegisterViewAdpter extends BaseAdapter {
         TextView name = view.findViewById(R.id.textName);
         TextView id = view.findViewById(R.id.textID);
         TextView address = view.findViewById(R.id.textAddress);
+        TextView vid = view.findViewById(R.id.textVid);
+        TextView sid = view.findViewById(R.id.textSid);
         TextView phon = view.findViewById(R.id.textPhone);
         TextView email = view.findViewById(R.id.textEmail);
 
@@ -68,6 +74,8 @@ public class RegisterViewAdpter extends BaseAdapter {
         name.setText(nameString[position]);
         id.setText(idString[position]);
         address.setText(addressString[position]);
+        vid.setText(vidString[position]);
+        sid.setText(sidString[position]);
         phon.setText(phonString[position]);
         email.setText(emailString[position]);
 

@@ -44,11 +44,12 @@
             android:orientation="horizontal"
             android:padding="12dp">
 
-            <TextView
+            <EditText
+                android:id="@+id/EditcropType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:text="ประเภทพืชเพาะปลูก :"
+                android:hint="ประเภทพืชเพาะปลูก :"
                 android:textSize="20dp" />
 
             <Spinner

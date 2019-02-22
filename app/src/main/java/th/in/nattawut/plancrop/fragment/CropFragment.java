@@ -50,9 +50,25 @@ public class CropFragment extends Fragment {
         //cropTypeSpinner
         cropTypeSpinner();
 
-
         //CropController
         cropController();
+
+        //CropViewController
+        cropViewController();
+    }
+    private void cropViewController() {
+        Button button = getView().findViewById(R.id.btnCropView);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentHomeFragment,new CropViewFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
     }
     private void cropTypeSpinner(){
         if (android.os.Build.VERSION.SDK_INT > 9) {

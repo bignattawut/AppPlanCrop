@@ -9,4 +9,7 @@
     <string name="station2">บันทึกการเพาะปลูก</string>
     <string name="station3">เพาะปลูก</string>
     <string name="station4">รายการเพาะปลูก</string>
+    <string name="croptype">ประเภทพืช</string>
+    <string name="crop">พืชเพาะปลูก</string>
+    <string name="site">แปลงเพาะปลูก</string>
 </resources>

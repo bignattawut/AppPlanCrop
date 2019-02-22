@@ -15,7 +15,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:text="ลำดับ"
-                android:textSize="16dp" />
+                android:textSize="0dp" />
 
             <TextView
                 android:id="@+id/textCrop"
@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:text="ลำดับ"
-                android:textSize="16dp" />
+                android:textSize="0dp" />
 
             <TextView
                 android:id="@+id/textCropTypeTID"

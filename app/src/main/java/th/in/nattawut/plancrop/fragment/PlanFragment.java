@@ -223,21 +223,15 @@ public class PlanFragment extends Fragment {
     }
 
     private void AddCrop() {
-        //TextView textCidmid = getView().findViewById(R.id.textCidmid);
         TextView textCidmid = getView().findViewById(R.id.texPlanMid);
         TextView textPlanCidSpinner = getView().findViewById(R.id.textPlanCidSpinner);
         TextView textmyDate = getView().findViewById(R.id.myDate);
         EditText editText = getView().findViewById(R.id.addplan1);
 
-        //Spinner midSpinner = getView().findViewById(R.id.midSpinner);
-        //Spinner cropSpinner = getView().findViewById(R.id.plancropspinner);
-
         String cidmidString = textCidmid.getText().toString().trim();
         String cidNameString = textPlanCidSpinner.getText().toString().trim();
         String myDataString = textmyDate.getText().toString().trim();
         String editTextString = editText.getText().toString().trim();
-        //String midString = midSpinner.getSelectedItem().toString().trim();
-        //String cropString = cropSpinner.getSelectedItem().toString().trim();
 
 
         if (cidmidString.isEmpty() || myDataString.isEmpty() || cidNameString.isEmpty() || editTextString.isEmpty()) {

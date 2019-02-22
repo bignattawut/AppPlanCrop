@@ -14,26 +14,30 @@
         app:titleTextColor="@color/colorWhite" />
 
     <TableLayout
-        android:layout_marginTop="65dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="65dp">
+
         <TableRow>
+
             <TextView
+                android:text="ลำดับ"
                 android:textColor="@color/colorblack"
-                android:textSize="20dp"
-                android:text="ลำดับ"/>
+                android:textSize="20dp" />
+
             <TextView
-                android:textColor="@color/colorblack"
                 android:layout_marginLeft="30dp"
-                android:textSize="20dp"
-                android:text="ประเภท"/>
+                android:text="ประเภท"
+                android:textColor="@color/colorblack"
+                android:textSize="20dp" />
         </TableRow>
     </TableLayout>
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swiRefreshLayouCropType"
-        android:layout_marginTop="95dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="95dp">
 
         <ListView
             android:id="@+id/listViewCropType"

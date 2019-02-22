@@ -10,129 +10,126 @@
 
         <!--Wallpaper-->
         <ImageView
-            android:scaleType="centerCrop"
-            android:src="@drawable/bg1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bg1" />
 
     </RelativeLayout>
 
     <LinearLayout
-        android:background="#82ffffff"
-        android:padding="20dp"
-        android:layout_centerInParent="true"
-        android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="#82ffffff"
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
 
             <!--Green Layout-->
             <RelativeLayout
-                android:layout_margin="@dimen/margin"
                 android:layout_width="@dimen/icon"
-                android:layout_height="@dimen/icon">
+                android:layout_height="@dimen/icon"
+                android:layout_margin="@dimen/margin">
 
                 <!--Station1-->
                 <ImageView
                     android:id="@+id/imageViewMember"
-                    android:src="@drawable/gardener"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:src="@drawable/gardener" />
 
                 <!--Title-->
                 <TextView
-                    android:clickable="true"
-                    android:layout_alignParentBottom="true"
-                    android:padding="5dp"
-                    android:gravity="center_horizontal"
-                    android:textColor="#ffffff"
-                    android:background="#82000000"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
-                    android:text="@string/member"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="#82000000"
+                    android:clickable="true"
+                    android:gravity="center_horizontal"
+                    android:padding="5dp"
+                    android:text="@string/member"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
             </RelativeLayout>
-
 
 
         </LinearLayout>
         <!--Blue Layout-->
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <!--Green Layout-->
             <RelativeLayout
-                android:layout_margin="@dimen/margin"
                 android:layout_width="@dimen/icon"
-                android:layout_height="@dimen/icon">
+                android:layout_height="@dimen/icon"
+                android:layout_margin="@dimen/margin">
 
                 <!--Station1-->
                 <ImageView
                     android:id="@+id/imageViewPlan"
-                    android:src="@drawable/planning"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:src="@drawable/planning" />
 
                 <!--Title-->
                 <TextView
-                    android:clickable="true"
                     android:id="@+id/textViewStation1"
-                    android:layout_alignParentBottom="true"
-                    android:padding="5dp"
-                    android:gravity="center_horizontal"
-                    android:textColor="#ffffff"
-                    android:background="#82000000"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
-                    android:text="@string/station1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="#82000000"
+                    android:clickable="true"
+                    android:gravity="center_horizontal"
+                    android:padding="5dp"
+                    android:text="@string/station1"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
             </RelativeLayout>
 
 
             <!--Green Layout-->
             <RelativeLayout
-                android:layout_margin="@dimen/margin"
                 android:layout_width="@dimen/icon"
-                android:layout_height="@dimen/icon">
+                android:layout_height="@dimen/icon"
+                android:layout_margin="@dimen/margin">
 
                 <!--Station2-->
                 <ImageView
                     android:id="@+id/imageViewPlantPicture"
-                    android:src="@drawable/camera"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:src="@drawable/camera" />
 
 
                 <!--Title-->
                 <TextView
-                    android:clickable="true"
                     android:id="@+id/textViewStation2"
-                    android:layout_alignParentBottom="true"
-                    android:padding="5dp"
-                    android:gravity="center_horizontal"
-                    android:textColor="#ffffff"
-                    android:background="#82000000"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
-                    android:text="@string/station2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="#82000000"
+                    android:clickable="true"
+                    android:gravity="center_horizontal"
+                    android:padding="5dp"
+                    android:text="@string/station2"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
 
             </RelativeLayout>
-
-
 
 
         </LinearLayout>
@@ -140,127 +137,126 @@
 
         <!--Blue Layout-->
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <!--Green Layout-->
             <RelativeLayout
-                android:layout_margin="@dimen/margin"
                 android:layout_width="@dimen/icon"
-                android:layout_height="@dimen/icon">
+                android:layout_height="@dimen/icon"
+                android:layout_margin="@dimen/margin">
 
                 <!--Station3-->
                 <ImageView
                     android:id="@+id/imageViewPlant"
-                    android:src="@drawable/sprout"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:src="@drawable/sprout" />
 
 
                 <!--Title-->
                 <TextView
                     android:id="@+id/textViewStation3"
-                    android:layout_alignParentBottom="true"
-                    android:padding="5dp"
-                    android:gravity="center_horizontal"
-                    android:textColor="#ffffff"
-                    android:background="#82000000"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
-                    android:text="@string/station3"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="#82000000"
+                    android:gravity="center_horizontal"
+                    android:padding="5dp"
+                    android:text="@string/station3"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
 
             </RelativeLayout>
 
             <!--Green Layout-->
             <RelativeLayout
-                android:layout_margin="@dimen/margin"
                 android:layout_width="@dimen/icon"
-                android:layout_height="@dimen/icon">
+                android:layout_height="@dimen/icon"
+                android:layout_margin="@dimen/margin">
 
                 <!--Station4-->
                 <ImageView
                     android:id="@+id/imageViewListPlan"
-                    android:src="@drawable/list"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:src="@drawable/list" />
 
                 <!--Title-->
                 <TextView
                     android:id="@+id/textViewStation4"
-                    android:layout_alignParentBottom="true"
-                    android:padding="5dp"
-                    android:gravity="center_horizontal"
-                    android:textColor="#ffffff"
-                    android:background="#82000000"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
-                    android:text="@string/station4"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="#82000000"
+                    android:gravity="center_horizontal"
+                    android:padding="5dp"
+                    android:text="@string/station4"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
             </RelativeLayout>
         </LinearLayout>
 
 
-
     </LinearLayout>
 
-<!--
-        <LinearLayout
-            android:layout_width="match_parent"
+    <!--
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnPlanmain"
+                    android:text="วาางแผนเพาะปลูก"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:id="@+id/btnPlanView"
+                    android:text="รายการวางแผนพืชปลอดสาร"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:id="@+id/btnPlant"
+                    android:text="ข้อมูลการเพาะปลูก"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:id="@+id/btnCrop"
+                    android:text="พืชเพาะปลูก"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="47dp"
+            android:layout_marginTop="138dp"
+            android:text="กรุณาวางแผนเพาะปลูกพืชปลอดสาร"
+            android:textColor="@color/colorAccent"
+            android:textSize="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="47dp" />
 
-            <Button
-                android:id="@+id/btnPlanmain"
-                android:text="วาางแผนเพาะปลูก"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <Button
-                android:id="@+id/btnPlanView"
-                android:text="รายการวางแผนพืชปลอดสาร"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <Button
-                android:id="@+id/btnPlant"
-                android:text="ข้อมูลการเพาะปลูก"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:id="@+id/btnCrop"
-                android:text="พืชเพาะปลูก"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-
-    </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="47dp"
-        android:layout_marginTop="138dp"
-        android:text="กรุณาวางแผนเพาะปลูกพืชปลอดสาร"
-        android:textColor="@color/colorAccent"
-        android:textSize="20dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="47dp" />
-
-    <Button
-        android:id="@+id/btnPlanmain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="221dp"
-        android:background="@drawable/red_button"
-        android:text="วาางแผนเพาะปลูก"
-        android:textColor="@color/colorGreen"
-        android:textSize="20dp" />-->
+        <Button
+            android:id="@+id/btnPlanmain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="221dp"
+            android:background="@drawable/red_button"
+            android:text="วาางแผนเพาะปลูก"
+            android:textColor="@color/colorGreen"
+            android:textSize="20dp" />-->
 
 
 </RelativeLayout>
