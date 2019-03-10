@@ -59,6 +59,7 @@ public class CropTypeFragment extends Fragment {
             }
         });
     }
+
     private void addcroptype() {
         EditText edtCroptype = getView().findViewById(R.id.edtCroptype);
 

@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp">
 
         <!--Wallpaper-->
         <ImageView
@@ -14,6 +21,27 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@drawable/bg1" />
+        <ImageView
+            android:src="@drawable/plan"
+            android:background="@color/colorba"
+            android:layout_width="match_parent"
+            android:layout_height="90dp" />
+
+        <ImageView
+            android:id="@+id/ImageView"
+            android:layout_width="72dp"
+            android:layout_height="67dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="289dp"
+            android:layout_marginLeft="289dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginEnd="23dp"
+            android:layout_marginRight="23dp"
+            android:src="@drawable/user" />
 
     </RelativeLayout>
 
@@ -25,44 +53,6 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-
-            <!--Green Layout-->
-            <RelativeLayout
-                android:layout_width="@dimen/icon"
-                android:layout_height="@dimen/icon"
-                android:layout_margin="@dimen/margin">
-
-                <!--Station1-->
-                <ImageView
-                    android:id="@+id/imageViewMember"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/gardener" />
-
-                <!--Title-->
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:background="#82000000"
-                    android:clickable="true"
-                    android:gravity="center_horizontal"
-                    android:padding="5dp"
-                    android:text="@string/member"
-                    android:textColor="#ffffff"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-            </RelativeLayout>
-
-
-        </LinearLayout>
-        <!--Blue Layout-->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -79,7 +69,7 @@
                     android:id="@+id/imageViewPlan"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/planning" />
+                    android:src="@drawable/shovel" />
 
                 <!--Title-->
                 <TextView
@@ -94,7 +84,8 @@
                     android:text="@string/station1"
                     android:textColor="#ffffff"
                     android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:focusable="true" />
 
             </RelativeLayout>
 
@@ -110,7 +101,7 @@
                     android:id="@+id/imageViewPlantPicture"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/camera" />
+                    android:src="@drawable/harvest" />
 
 
                 <!--Title-->
@@ -126,7 +117,8 @@
                     android:text="@string/station2"
                     android:textColor="#ffffff"
                     android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:focusable="true" />
 
 
             </RelativeLayout>
@@ -152,7 +144,7 @@
                     android:id="@+id/imageViewPlant"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/sprout" />
+                    android:src="@drawable/notepad" />
 
 
                 <!--Title-->
@@ -183,7 +175,7 @@
                     android:id="@+id/imageViewListPlan"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/list" />
+                    android:src="@drawable/chart" />
 
                 <!--Title-->
                 <TextView

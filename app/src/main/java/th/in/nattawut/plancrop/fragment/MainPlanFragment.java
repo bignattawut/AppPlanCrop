@@ -8,23 +8,18 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
 
 import th.in.nattawut.plancrop.R;
 
-public class HomeFragment extends Fragment {
-
+public class MainPlanFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        //Register Controller
-        registerController();
-
-        /*
         //PlanView Controller
-        //planViewController();
+        planViewController();
+
+
+
 
     }
 
@@ -40,31 +35,13 @@ public class HomeFragment extends Fragment {
                         .addToBackStack(null)
                         .commit();
             }
-        });*/
-    }
-
-    private void registerController() {
-        ImageView imageView = getView().findViewById(R.id.ImageView);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity()
-                        .getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.contentMainFragment, new MainFragment())
-                        .addToBackStack(null)
-                        .commit();
-            }
         });
     }
-
-
-
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.frm_main, container, false);
+        View view = inflater.inflate(R.layout.frm_plan_add, container, false);
         return view;
     }
 }

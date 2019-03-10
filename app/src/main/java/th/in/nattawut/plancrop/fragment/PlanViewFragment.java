@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
@@ -41,6 +42,23 @@ public class PlanViewFragment extends Fragment {
         //Swipe Refresh Layout
         swipeRefreshLayout();
 
+        //planViewController
+        planViewController();
+
+    }
+    private void planViewController() {
+        FloatingActionButton floatingActionButton = getView().findViewById(R.id.floatingActionButton);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentHomeFragment, new PlanFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
     }
 
     private void swipeRefreshLayout() {
@@ -137,7 +155,7 @@ public class PlanViewFragment extends Fragment {
         builder.setPositiveButton("แก้ไข", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //editPlan(NoStrings,planStrings);
+                //editPlan(planStrings);
                 dialog.dismiss();
             }
         });
@@ -185,6 +203,9 @@ public class PlanViewFragment extends Fragment {
             e.printStackTrace();
         }
     }
+
+
+
 
     @Nullable
     @Override

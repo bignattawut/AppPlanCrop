@@ -6,7 +6,13 @@
 
     <TableLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="11dp">
 
         <TableRow>
 
@@ -33,40 +39,71 @@
         <TableRow>
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:textStyle="bold"
+                android:text="เกษตรกร :" />
+
+            <TextView
                 android:id="@+id/textTypePlan"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginRight="5dp"
+                android:textColor="@color/colorGreen"
                 android:text="เกษตรกร" />
         </TableRow>
 
         <TableRow>
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="พืช :" />
+
+            <TextView
                 android:id="@+id/textCid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
+                android:textColor="@color/colorGreen"
                 android:text="พืช" />
         </TableRow>
 
         <TableRow>
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:textStyle="bold"
+                android:text="วันที่้เพาะปลูก :" />
+
+            <TextView
                 android:id="@+id/textArePlant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
+                android:textColor="@color/colorGreen"
                 android:text="พื้นที่" />
         </TableRow>
 
         <TableRow>
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:textStyle="bold"
+                android:text="พื้นที่เพาะปลูก :" />
+
+            <TextView
                 android:id="@+id/textDataplant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
+                android:textColor="@color/colorGreen"
                 android:text="วันที่" />
         </TableRow>
 

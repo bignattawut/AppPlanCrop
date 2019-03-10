@@ -8,9 +8,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -20,7 +17,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.loopj.android.http.*;
 import com.squareup.okhttp.FormEncodingBuilder;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -34,12 +30,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import cz.msebera.android.httpclient.Header;
 import th.in.nattawut.plancrop.MainActivity;
 import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.AddNewUserUpload;
-import th.in.nattawut.plancrop.utility.Amphur;
-import th.in.nattawut.plancrop.utility.Devs;
 import th.in.nattawut.plancrop.utility.MyAlert;
 import th.in.nattawut.plancrop.utility.Myconstant;
 
@@ -55,7 +48,7 @@ public class RegisterFragment extends Fragment {
     private ArrayList<String> arrVidID = new ArrayList<>();
 
     private ArrayAdapter<String> adpProvince,adpAmphur,adpVid;
-    private Spinner spProvince,spAmphur,spVid;
+    private Spinner spProvince,spAmphur, spDistrice;
     private int rubIDprovince;
 
     @Override
@@ -79,9 +72,9 @@ public class RegisterFragment extends Fragment {
         spAmphur.setAdapter(adpAmphur);
 
         //หมู่บ้าน
-        spVid = getView().findViewById(R.id.spDistrice);
+        spDistrice = getView().findViewById(R.id.spDistrice);
         adpVid = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, arrVid);
-        spVid.setAdapter(adpVid);
+        spDistrice.setAdapter(adpVid);
 
     }
     @Override
@@ -145,7 +138,6 @@ public class RegisterFragment extends Fragment {
             arrProvinceID.addAll(listprovinceid);
             adpProvince.notifyDataSetChanged();
 
-
             spProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -165,6 +157,7 @@ public class RegisterFragment extends Fragment {
 
         }
     }
+
     public class DataAmphur extends AsyncTask<String, Void, String> {
 
         String result;
@@ -248,13 +241,14 @@ public class RegisterFragment extends Fragment {
         protected void onPreExecute() {
             listavid = new ArrayList<>();
             listavidid = new ArrayList<>();
+            //Toast.makeText(getActivity(), "ting", Toast.LENGTH_LONG).show();
             super.onPreExecute();
         }
 
         @Override
         protected String doInBackground(String... strings) {
             RequestBody requestBody = new FormEncodingBuilder()
-                    .add("did", strings[0])
+                    .add("did",strings[0])
                     //.add("pid",strings[1])
                     .build();
             OkHttpClient okHttpClient = new OkHttpClient();
@@ -274,7 +268,7 @@ public class RegisterFragment extends Fragment {
                 JSONObject jsonObject = null;
                 for (int i = 0; i < jsonArray.length(); i++) {
                     jsonObject = jsonArray.getJSONObject(i);
-                    listavidid.add(jsonObject.getString("vid"));
+                    listavidid.add(jsonObject.getString("sid"));
                     listavid.add(jsonObject.getString("thai"));
                 }
             } catch (JSONException e) {
@@ -282,6 +276,30 @@ public class RegisterFragment extends Fragment {
             }
             return result;
         }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            arrVid.addAll(listavid);
+            arrVidID.addAll(listavidid);
+            adpVid.notifyDataSetChanged();
+
+            spDistrice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    if (spDistrice.getSelectedItem() != null) {
+                        //arrVid.clear();
+
+                    }
+                }
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+        }
+    }
+    /*
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
@@ -289,7 +307,7 @@ public class RegisterFragment extends Fragment {
             arrVid.addAll(listavid);
             adpVid.notifyDataSetChanged();
         }
-    }
+    }*/
 
     private void registerController() {
         Button button = getView().findViewById(R.id.btnRegister);
@@ -315,6 +333,7 @@ public class RegisterFragment extends Fragment {
 
             return super.onOptionsItemSelected(item);
         }*/
+
     private void uploadValueToSever() {
 
         EditText username = getView().findViewById(R.id.edtusername);
@@ -363,7 +382,7 @@ public class RegisterFragment extends Fragment {
             }
         }
     }
-/*
+    /*
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);

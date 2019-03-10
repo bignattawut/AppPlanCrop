@@ -10,6 +10,7 @@ import android.widget.Spinner;
 import java.util.List;
 
 import th.in.nattawut.plancrop.MainActivity;
+import th.in.nattawut.plancrop.fragment.HomeFragment;
 import th.in.nattawut.plancrop.fragment.MainFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.contentMainFragment, new MainFragment())
+                    .add(R.id.contentMainFragment, new HomeFragment())
                     .commit();
 
             }

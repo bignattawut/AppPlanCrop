@@ -84,7 +84,7 @@
                 android:background="@drawable/style1"
                 android:hint="จำนวนวันที่เก็บเกี่ยว :"
                 android:inputType="number"
-                android:maxLength="4"
+                android:maxLength="3"
                 android:padding="10dp"
                 android:textSize="20dp" />
         </LinearLayout>
@@ -104,7 +104,7 @@
                 android:background="@drawable/style1"
                 android:hint="ระยะเวลาที่เก็บเกี่ยว :"
                 android:inputType="number"
-                android:maxLength="4"
+                android:maxLength="3"
                 android:padding="10dp"
                 android:textSize="20dp" />
         </LinearLayout>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="86dp"
+        android:layout_marginEnd="29dp"
+        android:layout_marginRight="29dp"
+        android:text="@string/plan"
+        android:textColor="@color/colorblack"
+        android:textSize="28sp" />
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="179dp"
+        android:layout_marginRight="179dp"
+        android:layout_marginBottom="304dp"
+        app:backgroundTint="@color/colorlightGreen"
+        app:fabSize="mini"
+        app:srcCompat="@drawable/ic_action_add" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton5"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="29dp"
+        android:layout_marginRight="29dp"
+        android:layout_marginBottom="19dp"
+        android:clickable="true"
+        app:backgroundTint="@color/colorlightGreen"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/ic_action_add"
+        android:focusable="true" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="112dp"
+        android:layout_height="135dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="118dp"
+        android:layout_marginLeft="118dp"
+        android:layout_marginEnd="154dp"
+        android:layout_marginRight="154dp"
+        android:layout_marginBottom="190dp"
+        app:srcCompat="@drawable/ic_action_hand" />
+
+</RelativeLayout>

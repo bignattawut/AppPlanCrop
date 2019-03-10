@@ -177,7 +177,7 @@ public class CropTypeViewFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
         builder.setTitle("กำหนดชื่อประเภทใหม่");
-        builder.setMessage("ประเภทพืช ==> " + cropTypeString );
+        builder.setMessage("ประเภทพืช ==> " + cropTypeString);
 
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
         final View view = layoutInflater.inflate(R.layout.edit_croptype, null);

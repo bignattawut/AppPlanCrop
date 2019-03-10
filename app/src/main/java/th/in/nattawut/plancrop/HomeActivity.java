@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import th.in.nattawut.plancrop.fragment.CropFragment;
@@ -20,10 +21,14 @@ import th.in.nattawut.plancrop.fragment.CropTypeFragment;
 import th.in.nattawut.plancrop.fragment.CropTypeViewFragment;
 import th.in.nattawut.plancrop.fragment.CropViewFragment;
 import th.in.nattawut.plancrop.fragment.HomeFragment;
+import th.in.nattawut.plancrop.fragment.MainPlanFragment;
 import th.in.nattawut.plancrop.fragment.PlanFragment;
+import th.in.nattawut.plancrop.fragment.PlanViewFragment;
 import th.in.nattawut.plancrop.fragment.PlantFragment;
 //import th.in.nattawut.plancrop.fragment.PlantPicture;
 import th.in.nattawut.plancrop.fragment.AdminFrament;
+import th.in.nattawut.plancrop.fragment.RegisterFragment;
+import th.in.nattawut.plancrop.fragment.RegisterViewFragment;
 import th.in.nattawut.plancrop.fragment.SiteFragment;
 import th.in.nattawut.plancrop.utility.DrawerAdapter;
 import th.in.nattawut.plancrop.utility.Myconstant;
@@ -67,66 +72,39 @@ public class HomeActivity extends AppCompatActivity {
 
                 switch (position) {
                     case 0:
-                        PlanFragment planFragment =new PlanFragment();
-                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.contentHomeFragment,planFragment);
-
-                        fragmentTransaction.addToBackStack(null).commit();
-                        /*
+                        setTitle("ข้อมูลส่วนตัว");
+                        getSupportFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.contentHomeFragment, new RegisterViewFragment())
+                                .addToBackStack(null)
+                                .commit();
+                        break;
+                    case 1:
+                        setTitle("วางแผนเพาะปลูก");
                         getSupportFragmentManager()
                                 .beginTransaction()
                                 .replace(R.id.contentHomeFragment, new PlanFragment())
                                 .addToBackStack(null)
                                 .commit();
-                        drawerLayout.closeDrawers();*/
+                        drawerLayout.closeDrawers();
                         break;
-                    case 1:
+                    case 2:
+                        setTitle("ปฏิทินการเพาะปลูก");
                         getSupportFragmentManager()
                                 .beginTransaction()
-                                .replace(R.id.contentHomeFragment, new SiteFragment())
-                                .addToBackStack(null)
-                                .commit();
-
-                        break;
-                    /*case 2:
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                //.add(R.id.contentHomeFragment, new PlantFragment())
-                                .replace(R.id.contentHomeFragment, new CropViewFragment())
+                                .replace(R.id.contentHomeFragment, new PlanViewFragment())
                                 .addToBackStack(null)
                                 .commit();
                         break;
                     case 3:
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                //.add(R.id.contentHomeFragment, new CropFragment())
-                                .replace(R.id.contentHomeFragment, new CropFragment())
-                                .addToBackStack(null)
-                                .commit();
-                        break;
-                    case 4:
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .replace(R.id.contentHomeFragment, new CropTypeFragment())
-                                .addToBackStack(null)
-                                .commit();
-                        break;
-                    case 5:
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .replace(R.id.contentHomeFragment, new CropTypeViewFragment())
-                                .addToBackStack(null)
-                                .commit();
-                        break;
-                        */
-                    case 2:
+                        setTitle("admin");
                         getSupportFragmentManager()
                                 .beginTransaction()
                                 .replace(R.id.contentHomeFragment, new AdminFrament())
                                 .addToBackStack(null)
                                 .commit();
                         break;
-                    case 3:
+                    case 4:
                         Intent intent = new Intent(getApplication(),MainActivity.class);
                         startActivity(intent);
                         finish();
@@ -141,8 +119,8 @@ public class HomeActivity extends AppCompatActivity {
         if (savedInstanceState == null){
             getSupportFragmentManager()
                     .beginTransaction()
-                    //.add(R.id.contentHomeFragment, new HomeFragment())
-                    .replace(R.id.contentHomeFragment, new HomeFragment())
+                    .add(R.id.contentHomeFragment, new MainPlanFragment())
+                    //.replace(R.id.contentHomeFragment, new HomeFragment())
                     .commit();
         }
     }
@@ -176,8 +154,9 @@ public class HomeActivity extends AppCompatActivity {
     private void createToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbarHone);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("เกษตร&Plan");
-        getSupportActionBar().setSubtitle(nameString);
+        //getSupportActionBar().setTitle("เกษตร&Plan");
+        //getSupportActionBar().setLogo(R.drawable.ic_action_exit);
+        //getSupportActionBar().setSubtitle("Login by" + nameString);
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -187,20 +166,5 @@ public class HomeActivity extends AppCompatActivity {
                 drawerLayout, R.string.open, R.string.close);
 
     }
-    /*
-    private void createToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbarHone);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("เกษตร&Plan");
-        getSupportActionBar().setSubtitle(nameString);
-
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        drawerLayout = findViewById(R.id.drawerLayout);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(HomeActivity.this,
-                drawerLayout, R.string.open, R.string.close);
-    }*/
-
 }
 

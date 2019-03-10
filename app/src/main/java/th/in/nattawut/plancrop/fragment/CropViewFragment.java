@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,16 +18,23 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import th.in.nattawut.plancrop.HomeActivity;
 import th.in.nattawut.plancrop.R;
+import th.in.nattawut.plancrop.utility.CropTypeViewAapter;
 import th.in.nattawut.plancrop.utility.CropViewAdpter;
 import th.in.nattawut.plancrop.utility.DeleteCrop;
 import th.in.nattawut.plancrop.utility.DeleteCropType;
@@ -40,6 +48,8 @@ public class CropViewFragment extends Fragment {
 
     SwipeRefreshLayout mSwipeRefreshLayout;
     ListView listView;
+
+    Spinner spinner;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -56,6 +66,7 @@ public class CropViewFragment extends Fragment {
 
 
     }
+
     private void swipeRefreshLayout() {
         mSwipeRefreshLayout = getView().findViewById(R.id.swiRefreshLayouCrop);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -114,12 +125,7 @@ public class CropViewFragment extends Fragment {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    deleteorEditCropType(cidString[position]/*,
-                            cropString[position],
-                            tidString[position],
-                            beginharvestString[position],
-                            harvestperiodString[position],
-                            yield[position]*/);
+                    deleteorEditCropType(cidString[position],cropString[position]);
                 }
             });
             mSwipeRefreshLayout.setRefreshing(false);
@@ -131,12 +137,7 @@ public class CropViewFragment extends Fragment {
     }
 
     //alertให้เลือกลบหรือแก้ไข
-    private void deleteorEditCropType(final String cidString/*,
-                                      final String cropString,
-                                      final String tidString,
-                                      final String beginharvestString,
-                                      final String harvestperiodString,
-                                      final String yield*/) {
+    private void deleteorEditCropType(final String cidString, final String cropString) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
@@ -159,7 +160,7 @@ public class CropViewFragment extends Fragment {
         builder.setPositiveButton("แก้ไข", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //editCrop(cidString, cropString,tidString,beginharvestString,harvestperiodString,yield);
+                editCrop(cidString,cropString);
                 dialog.dismiss();
             }
         });
@@ -186,14 +187,9 @@ public class CropViewFragment extends Fragment {
         });
         builder.show();
     }
-    /*
+
     //แก้ไขพืชเพาะปลูก
-    private void editCrop(final String cidString,
-                          final String cropString,
-                          final String tidString,
-                          final String beginharvestString,
-                          final String harvestperiodString,
-                          final String yield){
+    private void editCrop(final String cidString, final String cropString){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
@@ -201,6 +197,55 @@ public class CropViewFragment extends Fragment {
 
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
         final View view = layoutInflater.inflate(R.layout.edit_crop, null);
+
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+        final Spinner spin = view.findViewById(R.id.EditcropTypeSpinner);
+        try {
+            GetData getData = new GetData(getActivity());
+            getData.execute(Myconstant.getUrlCropType);
+
+            String jsonString = getData.get();
+            Log.d("5/Jan CropType", "JSON ==>" + jsonString);
+            JSONArray data = new JSONArray(jsonString);
+
+            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
+            HashMap<String, String> map;
+
+            for(int i = 0; i < data.length(); i++){
+                JSONObject c = data.getJSONObject(i);
+
+                map = new HashMap<String, String>();
+                map.put("TID", c.getString("TID"));
+                map.put("croptype", c.getString("croptype"));
+                MyArrList.add(map);
+            }
+            SimpleAdapter sAdap;
+            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_crop,
+                    new String[] {"TID", "croptype"}, new int[] {R.id.textTID, R.id.textCropType});
+            spin.setAdapter(sAdap);
+            spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+                public void onItemSelected(AdapterView<?> arg0, View selectedItemView, int position, long id) {
+
+                }
+                public void onNothingSelected(AdapterView<?> arg0) {
+
+                }
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        /*
+        spinner = view.findViewById(R.id.EditcropTypeSpinner);
+        ArrayAdapter<String> adp = new ArrayAdapter<String>(this.getActivity(),
+                android.R.layout.simple_spinner_item,
+                getResources().getStringArray(R.array.spinner));
+        spinner.setAdapter(adp);
+        */
         builder.setView(view);
 
         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
@@ -217,7 +262,7 @@ public class CropViewFragment extends Fragment {
                 EditText edtEditCropName = view.findViewById(R.id.edtEditCropName);
                 String newCropName = edtEditCropName.getText().toString();
                 //ประเภท
-                EditText EditcropType = view.findViewById(R.id.EditcropType);
+                TextView EditcropType = view.findViewById(R.id.textTID);
                 String newcropType = EditcropType.getText().toString();
                 //เริ่มต้นการเก็บเกี่ยว
                 EditText edtEditBeginHarvest = view.findViewById(R.id.edtEditBeginHarvest);
@@ -229,16 +274,10 @@ public class CropViewFragment extends Fragment {
                 EditText edtEditYield = view.findViewById(R.id.edtEditYield);
                 String newYield = edtEditYield.getText().toString();
 
-                if (newCropName.isEmpty() || newcropType.isEmpty() || newBeginHarvest.isEmpty() || newHarvestPeriod.isEmpty() || newYield.isEmpty()) {
-                    //newCropName = "0";
+                if (newCropName.isEmpty() || newcropType.isEmpty() || newBeginHarvest.isEmpty() || newHarvestPeriod.isEmpty() || newYield.isEmpty()  ) {
 
                 }
-                updateCrop(cidString,newCropName,
-                        cropString,newcropType,
-                        tidString,newBeginHarvest,
-                        beginharvestString,newHarvestPeriod,
-                        harvestperiodString,newYield,
-                        yield);
+                updateCrop(cidString,newCropName,newcropType,newBeginHarvest,newHarvestPeriod,newYield);
                 dialog.dismiss();
             }
         });
@@ -246,19 +285,12 @@ public class CropViewFragment extends Fragment {
     }
 
     //updateข้อมูลพืชเพาะปลูก
-    private void updateCrop(String cidString, String newCropName,
-                            String cropString, String newcropType,
-                            String tidString, String newBeginHarvest,
-                            String beginharvestString, String newHarvestPeriod,
-                            String harvestperiodString, String newYield,
-                            String yield){
+    private void updateCrop(String cidString, String newCropName, String newcropType, String newBeginHarvest, String newHarvestPeriod, String newYield){
         Myconstant myconstant = new Myconstant();
 
         try {
             EditCrop editCrop = new EditCrop(getActivity());
-            editCrop.execute(cidString,newCropName,
-                    cropString,newcropType,tidString,newBeginHarvest,
-                    beginharvestString,newHarvestPeriod,harvestperiodString,newYield,yield,
+            editCrop.execute(cidString,newCropName,newcropType,newBeginHarvest,newHarvestPeriod,newYield,
                     myconstant.getUrlEditCrop());
 
             if (Boolean.parseBoolean(editCrop.get())) {
@@ -270,7 +302,7 @@ public class CropViewFragment extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }*/
+    }
 
     //ลบรายการประเภทพืชเพาะปลูก
     private void editDeleteCrop(String tidString){

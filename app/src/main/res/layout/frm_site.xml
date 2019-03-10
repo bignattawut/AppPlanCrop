@@ -5,15 +5,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
+    <!--<android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         app:navigationIcon="@drawable/ic_action_back"
         app:title="เพิ่มแปลงเพาะปลูก"
         app:titleTextColor="@color/colorWhite">
-
-    </android.support.v7.widget.Toolbar>
+    </android.support.v7.widget.Toolbar>-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,9 +38,10 @@
                 android:textSize="20dp" />
 
             <Spinner
-                android:layout_width="wrap_content"
+                android:id="@+id/a"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="220dp"></Spinner>
+                android:layout_marginLeft="1dp"></Spinner>
         </LinearLayout>
 
         <LinearLayout

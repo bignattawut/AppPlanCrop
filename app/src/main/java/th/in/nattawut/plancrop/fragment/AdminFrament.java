@@ -23,36 +23,6 @@ public class AdminFrament extends Fragment {
         //Crop Controller
         cropController();
 
-        //Site Controller
-        siteController();
-    }
-    /*
-    private void cropController() {
-        ImageView imageView = getView().findViewById(R.id.imageViewSite);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SiteFragment cropFragment = new SiteFragment();
-                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.contentHomeFragment,cropFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-            }
-        });
-    }*/
-    private void  siteController() {
-        ImageView imageView = getView().findViewById(R.id.imageViewSite);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity()
-                .getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new SiteFragment())
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });
     }
 
     private void cropController() {
