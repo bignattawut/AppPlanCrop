@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -22,6 +23,8 @@ import org.json.JSONObject;
 import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.DeleteCrop;
 import th.in.nattawut.plancrop.utility.DeleteFammer;
+import th.in.nattawut.plancrop.utility.EditCropType;
+import th.in.nattawut.plancrop.utility.EditRegister;
 import th.in.nattawut.plancrop.utility.GetData;
 import th.in.nattawut.plancrop.utility.Myconstant;
 import th.in.nattawut.plancrop.utility.RegisterViewAdpter;
@@ -133,6 +136,7 @@ public class RegisterViewFragment extends Fragment {
         builder.setPositiveButton("แก้ไข", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                editRegister(midString);
                 dialog.dismiss();
             }
         });
@@ -159,6 +163,90 @@ public class RegisterViewFragment extends Fragment {
         });
         builder.show();
     }
+
+    //แก้ไขประเทพืชเพาะปลูก
+    private void editRegister(final String midString){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setCancelable(false);
+        builder.setTitle("ข้อมูลส่วนตัว");
+
+        LayoutInflater layoutInflater = getActivity().getLayoutInflater();
+        final View view = layoutInflater.inflate(R.layout.edit_register, null);
+        builder.setView(view);
+
+        builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.setPositiveButton("แก้ไข", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                EditText editText = view.findViewById(R.id.EditEdtUsername);
+                String newUsername = editText.getText().toString();
+
+                EditText EditEdtPassword = view.findViewById(R.id.EditEdtPassword);
+                String newPassword = EditEdtPassword.getText().toString();
+
+
+                EditText EditEdtName = view.findViewById(R.id.EditEdtName);
+                String newName = EditEdtName.getText().toString();
+
+                EditText EditEdtId = view.findViewById(R.id.EditEdtId);
+                String newID = EditEdtId.getText().toString();
+
+                EditText EditEdtAddress = view.findViewById(R.id.EditEdtAddress);
+                String newAddress = EditEdtAddress.getText().toString();
+
+                EditText EditEdtPhone = view.findViewById(R.id.EditEdtPhone);
+                String newPhone = EditEdtPhone.getText().toString();
+
+                EditText EditEdtEmail = view.findViewById(R.id.EditEdtEmail);
+                String newEmail = EditEdtEmail.getText().toString();
+
+                if (newUsername.isEmpty() || newPassword.isEmpty() || newName.isEmpty() || newID.isEmpty() || newAddress.isEmpty() || newPhone.isEmpty() || newEmail.isEmpty()) {
+
+                }
+                updateRegister(midString,newUsername,newPassword,newName,newID,newAddress,newPhone,newEmail);
+
+/*
+                if (newName.isEmpty()) {
+
+                }
+                updateRegister(midString,newName);*/
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+    }
+
+    //updateข้อมูลประเภทพืชเพาะปลูก
+    private void updateRegister(String midString, String newUsername ,String newPassword, String newName, String newID, String newAddress, String newPhone, String newEmail){
+    //private void updateRegister(String midString,String newName){
+
+        Myconstant myconstant = new Myconstant();
+
+        try {
+            EditRegister editRegister = new EditRegister(getActivity());
+             editRegister.execute(midString,newUsername,newPassword,newName,newID,newAddress,newPhone,newEmail,
+            //editRegister.execute(midString,newName,
+
+                    myconstant.getUrlEditRegister());
+
+            if (Boolean.parseBoolean(editRegister.get())) {
+
+            }else {
+                Toast.makeText(getActivity(),"แก้ไขข้อมูลสำเร็จ",
+                        Toast.LENGTH_SHORT).show();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     //ลบรายการประเภทพืชเพาะปลูก
     private void editDeleteRegister(String midString){
 

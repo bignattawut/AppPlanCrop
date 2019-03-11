@@ -55,6 +55,7 @@
                 android:text="เกษตรกร :"
                 android:textSize="20dp" />
 
+
             <TextView
                 android:id="@+id/texPlanMid"
                 android:layout_width="wrap_content"
