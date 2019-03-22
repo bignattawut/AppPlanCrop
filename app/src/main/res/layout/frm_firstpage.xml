@@ -1,16 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <LinearLayout
+
+    <android.support.v7.widget.Toolbar
+
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="1dp"
-        android:background="@drawable/red_button"
-        android:backgroundTint="@color/colorlightGreen"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.Toolbar
+        >
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="#82ffffff"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!--Green Layout-->
+            <RelativeLayout
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon"
+                android:layout_margin="@dimen/margin">
+
+                <!--Station1-->
+                <ImageView
+                    android:id="@+id/imageViewPlan"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/shovel" />
+
+                <!--Title-->
+                <TextView
+                    android:id="@+id/textViewStation1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="#82000000"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_horizontal"
+                    android:padding="5dp"
+                    android:text="@string/station1"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!--Green Layout-->
+            <RelativeLayout
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon"
+                android:layout_margin="@dimen/margin">
+
+                <!--Station2-->
+                <ImageView
+                    android:id="@+id/imageViewPlantPicture"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/harvest" />
 
 
+                <!--Title-->
+                <TextView
+                    android:id="@+id/textViewStation2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="#82000000"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_horizontal"
+                    android:padding="5dp"
+                    android:text="@string/station2"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+        <!--Blue Layout-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!--Green Layout-->
+            <RelativeLayout
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon"
+                android:layout_margin="@dimen/margin">
+
+                <!--Station3-->
+                <ImageView
+                    android:id="@+id/imageViewPlant"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/notepad" />
+
+
+                <!--Title-->
+                <TextView
+                    android:id="@+id/textViewStation3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="#82000000"
+                    android:gravity="center_horizontal"
+                    android:padding="5dp"
+                    android:text="@string/station3"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <!--Blue Layout-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!--Green Layout-->
+            <RelativeLayout
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon"
+                android:layout_margin="@dimen/margin">
+
+                <!--Station4-->
+                <ImageView
+                    android:id="@+id/imageViewListPlan"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/chart" />
+
+                <!--Title-->
+                <TextView
+                    android:id="@+id/textViewStation4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="#82000000"
+                    android:gravity="center_horizontal"
+                    android:padding="5dp"
+                    android:text="@string/station4"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 </RelativeLayout>

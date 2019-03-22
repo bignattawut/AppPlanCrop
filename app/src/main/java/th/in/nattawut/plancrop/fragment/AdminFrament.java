@@ -33,7 +33,7 @@ public class AdminFrament extends Fragment {
                 getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new CropFragment())
+                        .replace(R.id.contentHomeFragment, new PlantPictureFragment())
                         .addToBackStack(null)
                         .commit();
             }
@@ -48,7 +48,7 @@ public class AdminFrament extends Fragment {
                 getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new CropTypeFragment())
+                        .replace(R.id.contentHomeFragment, new CropTypeViewFragment())
                         .addToBackStack(null)
                         .commit();
             }

@@ -8,10 +8,19 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import th.in.nattawut.plancrop.R;
 
 public class MainPlanFragment extends Fragment {
+
+
+    ImageView imageView;
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -20,8 +29,12 @@ public class MainPlanFragment extends Fragment {
 
 
 
+        imageView = getView().findViewById(R.id.imvplan_add);
+        Animation animation = AnimationUtils.loadAnimation(getActivity(),R.anim.anim);
+        imageView.startAnimation(animation);
 
     }
+
 
     private void planViewController() {
         FloatingActionButton floatingActionButton = getView().findViewById(R.id.floatingActionButton5);

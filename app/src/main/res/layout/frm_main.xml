@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
+   <!-- <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarmain"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/common_google_signin_btn_text_light_normal_background"
+        android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:titleTextColor="@color/colorblack" />-->
+
+
+    <!--<ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg1"/>-->
+
+   <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
@@ -15,7 +31,7 @@
         android:layout_marginLeft="0dp"
         android:layout_marginTop="0dp">
 
-        <!--Wallpaper-->
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -23,25 +39,25 @@
             android:src="@drawable/bg1" />
         <ImageView
             android:src="@drawable/plan"
-            android:background="@color/colorba"
+            android:background="@android:drawable/editbox_dropdown_light_frame"
             android:layout_width="match_parent"
             android:layout_height="90dp" />
 
-        <ImageView
-            android:id="@+id/ImageView"
-            android:layout_width="72dp"
-            android:layout_height="67dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginStart="289dp"
-            android:layout_marginLeft="289dp"
-            android:layout_marginTop="19dp"
-            android:layout_marginEnd="23dp"
-            android:layout_marginRight="23dp"
-            android:src="@drawable/user" />
+       <ImageView
+           android:id="@+id/ImageView"
+           android:layout_width="wrap_content"
+           android:layout_height="52dp"
+           android:layout_alignParentStart="true"
+           android:layout_alignParentLeft="true"
+           android:layout_alignParentTop="true"
+           android:layout_alignParentEnd="true"
+           android:layout_alignParentRight="true"
+           android:layout_marginStart="301dp"
+           android:layout_marginLeft="301dp"
+           android:layout_marginTop="14dp"
+           android:layout_marginEnd="11dp"
+           android:layout_marginRight="11dp"
+           android:src="@drawable/ic_action_user" />
 
     </RelativeLayout>
 
@@ -49,9 +65,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:background="#82ffffff"
+        android:background="@drawable/common_google_signin_btn_text_light_normal_background"
         android:orientation="vertical"
         android:padding="20dp">
+
+        <LinearLayout
+            android:background="@drawable/common_google_signin_btn_text_light_normal_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/textLogin"
+            android:fontFamily="casual"
+            android:textColor="@color/colorPrimary"
+            android:text="Welecom Plan Crop"
+            android:textSize="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"

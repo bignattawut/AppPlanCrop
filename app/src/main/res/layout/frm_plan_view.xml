@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
     <TableLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,8 +15,12 @@
         android:layout_marginLeft="21dp"
         android:layout_marginTop="11dp">
 
-        <TableRow>
+        <ImageView
+            android:id="@+id/ImageViewPlan"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
 
+        <TableRow>
             <TextView
                 android:id="@+id/texPlan"
                 android:layout_width="wrap_content"
@@ -26,7 +31,6 @@
         </TableRow>
 
         <TableRow>
-
             <TextView
                 android:id="@+id/textMid"
                 android:layout_width="wrap_content"

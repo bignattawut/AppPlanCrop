@@ -274,9 +274,9 @@ public class CropViewFragment extends Fragment {
                 EditText edtEditYield = view.findViewById(R.id.edtEditYield);
                 String newYield = edtEditYield.getText().toString();
 
-                if (newCropName.isEmpty() || newcropType.isEmpty() || newBeginHarvest.isEmpty() || newHarvestPeriod.isEmpty() || newYield.isEmpty()  ) {
+               //if (newCropName.isEmpty() || newcropType.isEmpty() || newBeginHarvest.isEmpty() || newHarvestPeriod.isEmpty() || newYield.isEmpty()  ) {
 
-                }
+                //}
                 updateCrop(cidString,newCropName,newcropType,newBeginHarvest,newHarvestPeriod,newYield);
                 dialog.dismiss();
             }

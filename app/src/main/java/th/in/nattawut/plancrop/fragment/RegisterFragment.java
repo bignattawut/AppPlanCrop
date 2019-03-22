@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -144,7 +145,7 @@ public class RegisterFragment extends Fragment {
                     if (spProvince.getSelectedItem() != null) {
                         new DataAmphur().execute(listprovinceid.get(position));
                         rubIDprovince = Integer.parseInt(listprovinceid.get(position));
-                        //arrDistrict.clear();
+                        arrVid.clear();
                         arrAmphur.clear();
                     }
                 }
@@ -196,7 +197,7 @@ public class RegisterFragment extends Fragment {
                     listamphurid.add(jsonObject.getString("did"));
                     listamphur.add(jsonObject.getString("thai"));
                 }
-            } catch (Exception e) {
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
             return result;
@@ -213,10 +214,10 @@ public class RegisterFragment extends Fragment {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     if (spAmphur.getSelectedItem() != null) {
-                        //new DataDistrict().execute(listamphur.get(position), String.valueOf(rubIDprovince));
-                        //rubIDprovince = Integer.parseInt(listamphurid.get(position));
-                        //arrDistrict.clear();
-                        new DataDistrict().execute(listamphur.get(position));
+                        /*new DataDistrict().execute(listamphur.get(position), String.valueOf(rubIDprovince));
+                        rubIDprovince = Integer.parseInt(listamphurid.get(position));
+                       arrVid.clear();*/
+                       new DataDistrict().execute(listamphur.get(position));
                         rubIDprovince = Integer.parseInt(listamphurid.get(position));
                         arrVid.clear();
 
@@ -239,17 +240,17 @@ public class RegisterFragment extends Fragment {
 
         @Override
         protected void onPreExecute() {
+            super.onPreExecute();
             listavid = new ArrayList<>();
             listavidid = new ArrayList<>();
             //Toast.makeText(getActivity(), "ting", Toast.LENGTH_LONG).show();
-            super.onPreExecute();
-        }
 
+        }
         @Override
         protected String doInBackground(String... strings) {
             RequestBody requestBody = new FormEncodingBuilder()
-                    .add("did",strings[0])
-                    //.add("pid",strings[1])
+                    .add("did", strings[0])
+                    //.add("pid", strings[1])
                     .build();
             OkHttpClient okHttpClient = new OkHttpClient();
             Request request = new Request.Builder()
@@ -277,7 +278,7 @@ public class RegisterFragment extends Fragment {
             return result;
         }
 
-        @Override
+        /*@Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             arrVid.addAll(listavid);
@@ -298,8 +299,8 @@ public class RegisterFragment extends Fragment {
                 }
             });
         }
-    }
-    /*
+    }*/
+
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
@@ -307,7 +308,7 @@ public class RegisterFragment extends Fragment {
             arrVid.addAll(listavid);
             adpVid.notifyDataSetChanged();
         }
-    }*/
+    }
 
     private void registerController() {
         Button button = getView().findViewById(R.id.btnRegister);
@@ -360,7 +361,7 @@ public class RegisterFragment extends Fragment {
         if (userString.isEmpty() || passwordString.isEmpty() || idString.isEmpty() || nameString.isEmpty()  || addressString.isEmpty() || phonString.isEmpty() || emailString.isEmpty() || provinceString.isEmpty() || amphurString.isEmpty()) {
 
             MyAlert myAlert = new MyAlert(getActivity());
-            myAlert.onrmaIDialog("สวัสดี", "กรุณากรอกข้อมูล");
+            myAlert.onrmaIDialog("สวัสดี", "*กรุณากรอกข้อมูลให้ครบ");
         } else {
 
             try {
@@ -376,6 +377,12 @@ public class RegisterFragment extends Fragment {
                     getActivity().getSupportFragmentManager().popBackStack();
                 } else {
                     Toast.makeText(getActivity(), "สมัครสมาชิกเรียบร้อย", Toast.LENGTH_LONG).show();
+                    getActivity()
+                            .getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.contentMainFragment, new MainFragment())
+                            .addToBackStack(null)
+                            .commit();
                 }
             } catch (Exception e) {
                 e.printStackTrace();

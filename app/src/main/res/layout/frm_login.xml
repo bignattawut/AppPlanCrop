@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:layout_margin="30dp"
         android:background="@drawable/red_button"
         android:backgroundTint="@color/colorlightGreen"
@@ -17,6 +19,7 @@
             android:background="@drawable/plan">
 
         </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,12 +33,21 @@
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/ic_action_userregister" />
 
-            <EditText
-                android:id="@+id/edtusername"
+
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="User :"
-                android:inputType="text" />
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edtusername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="ชื่อผู้ใช้งาน :"
+                    android:inputType="text" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
         </LinearLayout>
 
         <LinearLayout
@@ -50,12 +62,26 @@
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/ic_action_password" />
 
-            <EditText
-                android:id="@+id/edtpassword"
+                <!--<EditText
+                    android:id="@+id/edtpassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="รหัสผ่าน :"
+                    android:inputType="textPassword"
+                    android:maxLength="20" />-->
+            <android.support.design.widget.TextInputLayout
+                app:passwordToggleEnabled="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Password :"
-                android:inputType="textPassword" />
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/edtpassword"
+                    android:hint="รหัสผ่าน :"
+                    android:inputType="textPassword"
+                    android:maxLength="20" />
+            </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
         <Button
@@ -66,8 +92,7 @@
             android:layout_marginTop="23dp"
             android:layout_marginRight="25dp"
             android:layout_marginBottom="15dp"
-            android:background="@color/colorlightGreen"
-            android:backgroundTint="@color/colorlightGreen"
+            android:background="@drawable/button"
             android:text="เข้าสู่ระบบ"
             android:textColor="@color/colorWhite"
             android:textSize="20dp"
@@ -81,13 +106,13 @@
             android:layout_marginTop="1dp"
             android:layout_marginRight="25dp"
             android:layout_marginBottom="60dp"
-            android:background="@color/colorlightGreen"
-            android:backgroundTint="@color/colorlightGreen"
+            android:background="@drawable/button"
             android:text="สมัครเข้าใช้งาน"
             android:textColor="@color/colorWhite"
             android:textSize="20dp"
             android:textStyle="bold" />
 
-
     </LinearLayout>
+
+
 </RelativeLayout>

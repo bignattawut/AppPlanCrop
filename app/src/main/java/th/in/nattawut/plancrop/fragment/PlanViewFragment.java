@@ -80,7 +80,7 @@ public class PlanViewFragment extends Fragment {
     }
 
     private void createListView() {
-        ListView listView = getView().findViewById(R.id.listViewPlan);
+        final ListView listView = getView().findViewById(R.id.listViewPlan);
         Myconstant myconstant = new Myconstant();
         String[] columnStrings = myconstant.getColumnPlanString();
 

@@ -13,12 +13,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.DeleteCrop;
@@ -36,6 +41,7 @@ public class RegisterViewFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
         //CreateLisView
         createLisView();
 
@@ -59,8 +65,9 @@ public class RegisterViewFragment extends Fragment {
         });
     }
 
+
     private void createLisView() {
-        ListView listView = getView().findViewById(R.id.listViewRegister);
+        final ListView listView = getView().findViewById(R.id.listViewRegister);
         Myconstant myconstant = new Myconstant();
         String[] columString = myconstant.getComlumRegisterString();
 
@@ -97,7 +104,7 @@ public class RegisterViewFragment extends Fragment {
                 emailString[i] = jsonObject.getString(columString[9]);
                 midString[i] = jsonObject.getString(columString[0]);
             }
-            RegisterViewAdpter registerAdpter = new RegisterViewAdpter(getActivity(),
+            final RegisterViewAdpter registerAdpter = new RegisterViewAdpter(getActivity(),
                     userString, passwordString, nameString, idString, addressString,vidString,sidString, phonString, emailString);
             listView.setAdapter(registerAdpter);
 
@@ -105,13 +112,17 @@ public class RegisterViewFragment extends Fragment {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     deleteorEditRegister(midString[position]);
+
                 }
             });
             mSwipeRefreshLayout.setRefreshing(false);
         } catch (Exception e) {
             e.printStackTrace();
+
         }
+
     }
+
     //alertให้เลือกลบหรือแก้ไข
     private void deleteorEditRegister(final String midString) {
 
@@ -171,7 +182,7 @@ public class RegisterViewFragment extends Fragment {
         builder.setTitle("ข้อมูลส่วนตัว");
 
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
-        final View view = layoutInflater.inflate(R.layout.edit_register, null);
+        final View view = layoutInflater.inflate(R.layout.edit_register1, null);
         builder.setView(view);
 
         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
@@ -206,16 +217,10 @@ public class RegisterViewFragment extends Fragment {
                 EditText EditEdtEmail = view.findViewById(R.id.EditEdtEmail);
                 String newEmail = EditEdtEmail.getText().toString();
 
-                if (newUsername.isEmpty() || newPassword.isEmpty() || newName.isEmpty() || newID.isEmpty() || newAddress.isEmpty() || newPhone.isEmpty() || newEmail.isEmpty()) {
+                //if (newUsername.isEmpty() || newPassword.isEmpty() || newName.isEmpty() || newID.isEmpty() || newAddress.isEmpty() || newPhone.isEmpty() || newEmail.isEmpty()) {
 
-                }
+                //}
                 updateRegister(midString,newUsername,newPassword,newName,newID,newAddress,newPhone,newEmail);
-
-/*
-                if (newName.isEmpty()) {
-
-                }
-                updateRegister(midString,newName);*/
                 dialog.dismiss();
             }
         });
@@ -267,6 +272,7 @@ public class RegisterViewFragment extends Fragment {
         }
     }
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -274,3 +280,4 @@ public class RegisterViewFragment extends Fragment {
         return view;
     }
 }
+

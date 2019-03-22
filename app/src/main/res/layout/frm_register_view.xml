@@ -3,9 +3,16 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <TableLayout
+        android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="ชื่อผู้ใช้งาน :"
+                android:textSize="10dp" />
             <TextView
                 android:id="@+id/textUsername"
                 android:layout_width="wrap_content"
@@ -13,12 +20,28 @@
                 android:layout_marginRight="5dp"
                 android:text="ชื่อผู้ใช้งาน"
                 android:textSize="10dp" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="รหัสผ่าน :"
+                android:textSize="10dp" />
             <TextView
                 android:id="@+id/textPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:text="รหัสผ่าน"
+                android:textSize="10dp" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="ชื่อ-สกุล :"
                 android:textSize="10dp" />
             <TextView
                 android:id="@+id/textName"
@@ -27,12 +50,28 @@
                 android:layout_marginRight="5dp"
                 android:text="ชื่อ-สกุล "
                 android:textSize="10dp" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="เลขประจำตัวประชาชน :"
+                android:textSize="10dp" />
             <TextView
                 android:id="@+id/textID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:text="เลขประจำตัวประชาชน"
+                android:textSize="10dp" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="จังหวัด :"
                 android:textSize="10dp" />
             <TextView
                 android:id="@+id/textAddress"
@@ -41,12 +80,28 @@
                 android:layout_marginRight="5dp"
                 android:text="จังหวัด"
                 android:textSize="10dp" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="อำเภอ :"
+                android:textSize="10dp" />
             <TextView
                 android:id="@+id/textVid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:text="อำเภอ"
+                android:textSize="10dp" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="ที่อยู่"
                 android:textSize="10dp" />
             <TextView
                 android:id="@+id/textSid"
@@ -55,12 +110,28 @@
                 android:layout_marginRight="5dp"
                 android:text="ที่อยู่"
                 android:textSize="10dp" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="เบอร์โทร :"
+                android:textSize="10dp" />
             <TextView
                 android:id="@+id/textPhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:text="เบอร์โทร"
+                android:textSize="10dp" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="gmail :"
                 android:textSize="10dp" />
             <TextView
                 android:id="@+id/textEmail"
@@ -70,78 +141,5 @@
                 android:text="example@gmail.com "
                 android:textSize="10dp" />
         </TableRow>
-        <!--
-        <TableRow>
-            <TextView
-                android:id="@+id/textPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:text="รหัสผ่าน"
-                android:textSize="20dp" />
-        </TableRow>
-        <TableRow>
-            <TextView
-                android:id="@+id/textName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:text="ชื่อ-สกุล "
-                android:textSize="20dp" />
-        </TableRow>
-        <TableRow>
-            <TextView
-                android:id="@+id/textID"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:text="เลขประจำตัวประชาชน"
-                android:textSize="20dp" />
-        </TableRow>
-        <TableRow>
-            <TextView
-                android:id="@+id/textAddress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:text="จังหวัด"
-                android:textSize="20dp" />
-        </TableRow>
-        <TableRow>
-            <TextView
-                android:id="@+id/textVid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:text="อำเภอ"
-                android:textSize="20dp" />
-        </TableRow>
-        <TableRow>
-            <TextView
-                android:id="@+id/textSid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:text="ที่อยู่"
-                android:textSize="20dp" />
-        </TableRow>
-        <TableRow>
-            <TextView
-                android:id="@+id/textPhone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:text="เบอร์โทร"
-                android:textSize="20dp" />
-        </TableRow>
-        <TableRow>
-            <TextView
-                android:id="@+id/textEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:text="example@gmail.com "
-                android:textSize="20dp" />
-        </TableRow>-->
     </TableLayout>
 </RelativeLayout>

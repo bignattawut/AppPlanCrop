@@ -14,20 +14,18 @@
         app:titleTextColor="@color/colorWhite" />
 
     <TableLayout
-        android:layout_width="wrap_content"
+        android:background="@drawable/common_google_signin_btn_text_light_normal_background"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="65dp">
+        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="55dp">
 
         <TableRow>
-
             <TextView
-                android:text="ลำดับ"
-                android:textColor="@color/colorblack"
-                android:textSize="20dp" />
-
-            <TextView
-                android:layout_marginLeft="30dp"
-                android:text="ประเภท"
+                android:text="ข้อมูลประเภทพืช"
+                android:textStyle="bold"
                 android:textColor="@color/colorblack"
                 android:textSize="20dp" />
         </TableRow>
@@ -36,7 +34,7 @@
         android:id="@+id/swiRefreshLayouCropType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="95dp">
+        android:layout_marginTop="110dp">
 
         <ListView
             android:id="@+id/listViewCropType"

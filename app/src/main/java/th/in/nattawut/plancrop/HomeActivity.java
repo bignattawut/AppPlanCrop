@@ -30,7 +30,6 @@ import th.in.nattawut.plancrop.fragment.AdminFrament;
 import th.in.nattawut.plancrop.fragment.RegisterFragment;
 import th.in.nattawut.plancrop.fragment.RegisterViewFragment;
 import th.in.nattawut.plancrop.fragment.SiteFragment;
-import th.in.nattawut.plancrop.fragment.UserFragment;
 import th.in.nattawut.plancrop.utility.DrawerAdapter;
 import th.in.nattawut.plancrop.utility.Myconstant;
 

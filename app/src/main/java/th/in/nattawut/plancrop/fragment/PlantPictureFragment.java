@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
@@ -14,6 +15,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,15 +27,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.okhttp.FormEncodingBuilder;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.Response;
+
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Random;
 
 import it.sauronsoftware.ftp4j.FTPClient;
 import it.sauronsoftware.ftp4j.FTPDataTransferListener;
 import th.in.nattawut.plancrop.HomeActivity;
 import th.in.nattawut.plancrop.R;
+import th.in.nattawut.plancrop.utility.AddPictute;
 import th.in.nattawut.plancrop.utility.AddPlantPictuteUpload;
+import th.in.nattawut.plancrop.utility.GetData;
 import th.in.nattawut.plancrop.utility.MyAlert;
 import th.in.nattawut.plancrop.utility.Myconstant;
 
@@ -41,8 +54,6 @@ public class PlantPictureFragment extends Fragment {
 
     private ImageView photoImageView;
     private Uri uri;
-
-
 
     //Button selctDate;
     ImageView selctDate;
@@ -76,17 +87,36 @@ public class PlantPictureFragment extends Fragment {
         //AddPlantPicture
         addPlantPicture();
 
-        //UploadPic
-       // UploadPic();
 
-        //UploadImage
-        UploadImage();
+        //public static final String UPLOAD_URL = "http://http://192.168.1.17/android/nn/upload.php";
+                   //public static final String UPLOAD_KEY = "image";
 
-    }
-
-    private void UploadImage() {
 
     }
+
+
+    private void uploadImage() {
+        ImageView imageViewimagePhoto = getView().findViewById(R.id.imagePhoto);
+        String ImagePhotoString = imageViewimagePhoto.toString().trim();
+
+        if (ImagePhotoString.isEmpty()) {
+            MyAlert myAlert = new MyAlert(getActivity());
+            myAlert.onrmaIDialog("vvv","aa");
+
+        }else {
+            try {
+                Myconstant myconstant = new Myconstant();
+                AddPictute addPictute = new AddPictute(getActivity());
+                addPictute.execute(ImagePhotoString,
+                        myconstant.UPLOAD_URL);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    //////
 
     private void addPlantPicture() {
         Button button = getView().findViewById(R.id.btnPlantPicture);
@@ -94,18 +124,19 @@ public class PlantPictureFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 uploadValueToServer();
+                uploadImage();
             }
         });
     }
 
     private void uploadValueToServer() {
-        ImageView imageViewimagePhoto = getView().findViewById(R.id.imagePhoto);
-        //EditText imageViewimagePhoto = getView().findViewById(R.id.e);
+        //ImageView imageViewimagePhoto = getView().findViewById(R.id.imagePhoto);
+        EditText imageViewimagePhoto = getView().findViewById(R.id.e);
         TextView textmyDate = getView().findViewById(R.id.textViewDatePicture);
         EditText edtDescription = getView().findViewById(R.id.edtDescription);
 
-        String ImagePhotoString = imageViewimagePhoto.toString().trim();
-        //String ImagePhotoString = imageViewimagePhoto.getText().toString().trim();
+        //String ImagePhotoString = imageViewimagePhoto.toString().trim();
+        String ImagePhotoString = imageViewimagePhoto.getText().toString().trim();
         String DatepictureString = textmyDate.getText().toString().trim();
         String DescriptionString = edtDescription.getText().toString().trim();
 

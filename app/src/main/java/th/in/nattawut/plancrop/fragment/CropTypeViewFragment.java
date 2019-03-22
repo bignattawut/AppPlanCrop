@@ -1,9 +1,7 @@
 package th.in.nattawut.plancrop.fragment;
 
 import android.app.AlertDialog;
-import android.content.ClipData;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -21,13 +19,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import java.util.Collections;
-import java.util.List;
 
 import th.in.nattawut.plancrop.HomeActivity;
 import th.in.nattawut.plancrop.R;
@@ -41,6 +37,7 @@ public class CropTypeViewFragment extends Fragment {
 
     SwipeRefreshLayout mSwipeRefreshLayout;
     ListView listView;
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -106,7 +103,7 @@ public class CropTypeViewFragment extends Fragment {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     deleteorEditCropType(tidString[position],cropTypeString[position]);
-                    //mSwipeRefreshLayout.setRefreshing(false);
+
                 }
             });
             mSwipeRefreshLayout.setRefreshing(false);
