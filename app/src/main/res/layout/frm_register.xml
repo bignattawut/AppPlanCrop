@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -60,8 +61,8 @@
                         android:background="@drawable/style1"
                         android:hint="ชื่อผู้ใช้งาน :"
                         android:inputType="text"
-                        android:padding="10dp"
-                        android:textSize="20dp" />
+                        android:padding="5dp"
+                        android:textSize="18dp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
@@ -91,8 +92,8 @@
                         android:background="@drawable/style1"
                         android:hint="รหัสผ่าน :"
                         android:inputType="textPassword"
-                        android:padding="10dp"
-                        android:textSize="20dp" />
+                        android:padding="5dp"
+                        android:textSize="18dp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
@@ -122,8 +123,8 @@
                         android:background="@drawable/style1"
                         android:hint="ชื่อ-สกุล :"
                         android:inputType="text"
-                        android:padding="10dp"
-                        android:textSize="20dp" />
+                        android:padding="5dp"
+                        android:textSize="18dp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
@@ -154,8 +155,8 @@
                         android:hint="เลขประจำตัวประชาชน :"
                         android:inputType="number"
                         android:maxLength="13"
-                        android:padding="9dp"
-                        android:textSize="20dp" />
+                        android:padding="5dp"
+                        android:textSize="18dp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
@@ -185,8 +186,8 @@
                         android:background="@drawable/style1"
                         android:hint="ที่อยู่ :"
                         android:inputType="text"
-                        android:padding="10dp"
-                        android:textSize="20dp" />
+                        android:padding="5dp"
+                        android:textSize="18dp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
@@ -210,7 +211,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:text="จังหวัด :"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
                 <Spinner
                     android:id="@+id/spProvince"
@@ -239,7 +240,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:text="อำเภอ :"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
                 <Spinner
                     android:id="@+id/spAmphur"
@@ -267,7 +268,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:text="ตำบล/แขวง :"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
                 <Spinner
                     android:id="@+id/spDistrice"
@@ -303,8 +304,8 @@
                         android:hint="เบอร์โทร :"
                         android:inputType="phone"
                         android:maxLength="10"
-                        android:padding="10dp"
-                        android:textSize="20dp" />
+                        android:padding="5dp"
+                        android:textSize="18dp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
@@ -334,8 +335,8 @@
                         android:background="@drawable/style1"
                         android:hint="example@gmail.com :"
                         android:inputType="textEmailAddress"
-                        android:padding="10dp"
-                        android:textSize="20dp" />
+                        android:padding="5dp"
+                        android:textSize="18dp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 

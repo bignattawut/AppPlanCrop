@@ -28,7 +28,7 @@
 
     <LinearLayout
         android:layout_gravity="start"
-        android:background="#ffffff"
+        android:background="@drawable/common_google_signin_btn_text_light_normal_background"
         android:orientation="vertical"
         android:layout_width="320dp"
         android:layout_height="match_parent">

@@ -152,8 +152,8 @@ public class PlanFragment extends Fragment {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int y, int m, int d) {
-                                //date.setText(d + "/" + (m + 1) + "/" + y);
                                 date.setText(y + "/" + (m + 1) + "/" + d);
+                                //date.setText(y + "/" + (m + 1) + "/" + d);
                             }
                         },day,month,year);
                 dataPickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());

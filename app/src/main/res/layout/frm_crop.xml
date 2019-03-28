@@ -29,12 +29,18 @@
             android:orientation="horizontal"
             android:padding="12dp">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:text="พืชเพาะปลูก :"
+                android:textSize="20dp" />
+
             <EditText
                 android:id="@+id/edtCropName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/style1"
-                android:hint="พืชเพาะปลูก :"
                 android:inputType="text"
                 android:padding="1dp"
                 android:textSize="20dp" />
@@ -77,12 +83,19 @@
             android:orientation="horizontal"
             android:padding="1dp">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:inputType="text"
+                android:text="จำนวนวันที่เก็บเกี่ยว :"
+                android:textSize="20dp" />
+
             <EditText
                 android:id="@+id/edtBeginHarvest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/style1"
-                android:hint="จำนวนวันที่เก็บเกี่ยว :"
                 android:inputType="number"
                 android:maxLength="3"
                 android:padding="10dp"
@@ -96,13 +109,20 @@
             android:background="@drawable/style1"
             android:orientation="horizontal"
             android:padding="1dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:inputType="text"
+                android:text="ระยะเวลาที่เก็บเกี่ยว :"
+                android:textSize="20dp" />
 
             <EditText
                 android:id="@+id/edtHarvestPeriod"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/style1"
-                android:hint="ระยะเวลาที่เก็บเกี่ยว :"
                 android:inputType="number"
                 android:maxLength="3"
                 android:padding="10dp"
@@ -117,12 +137,19 @@
             android:orientation="horizontal"
             android:padding="1dp">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:inputType="text"
+                android:text="ผลผลิตต่อไร่ :"
+                android:textSize="20dp" />
+
             <EditText
                 android:id="@+id/edtYield"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/style1"
-                android:hint="ผลผลิตต่อไร่ :"
                 android:inputType="number"
                 android:padding="10dp"
                 android:textSize="20dp" />

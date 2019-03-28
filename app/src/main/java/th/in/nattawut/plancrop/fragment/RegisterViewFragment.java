@@ -128,7 +128,7 @@ public class RegisterViewFragment extends Fragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
-        builder.setIcon(R.drawable.ic_action_drawerplan);
+        builder.setIcon(R.drawable.ic_action_draweruser);
         builder.setTitle("ลบ หรือ แก้ไข");
         builder.setMessage("กรุณาเลือก ลบ หรือ แก้ไข ?");
         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
@@ -179,10 +179,10 @@ public class RegisterViewFragment extends Fragment {
     private void editRegister(final String midString){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
-        builder.setTitle("ข้อมูลส่วนตัว");
+        builder.setTitle("แก้ไขข้อมูลส่วนตัว");
 
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
-        final View view = layoutInflater.inflate(R.layout.edit_register1, null);
+        final View view = layoutInflater.inflate(R.layout.edit_register, null);
         builder.setView(view);
 
         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {

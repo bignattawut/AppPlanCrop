@@ -27,6 +27,7 @@ import th.in.nattawut.plancrop.fragment.PlanViewFragment;
 import th.in.nattawut.plancrop.fragment.PlantFragment;
 //import th.in.nattawut.plancrop.fragment.PlantPicture;
 import th.in.nattawut.plancrop.fragment.AdminFrament;
+import th.in.nattawut.plancrop.fragment.PlantPictureFragment;
 import th.in.nattawut.plancrop.fragment.RegisterFragment;
 import th.in.nattawut.plancrop.fragment.RegisterViewFragment;
 import th.in.nattawut.plancrop.fragment.SiteFragment;
@@ -97,6 +98,14 @@ public class HomeActivity extends AppCompatActivity {
                                 .commit();
                         break;
                     case 3:
+                        setTitle("บันทึกการเพาะปลูก");
+                        getSupportFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.contentHomeFragment, new PlantPictureFragment())
+                                .addToBackStack(null)
+                                .commit();
+                        break;
+                    case 4:
                         setTitle("admin");
                         getSupportFragmentManager()
                                 .beginTransaction()
@@ -104,7 +113,7 @@ public class HomeActivity extends AppCompatActivity {
                                 .addToBackStack(null)
                                 .commit();
                         break;
-                    case 4:
+                    case 5:
                         Intent intent = new Intent(getApplication(),MainActivity.class);
                         startActivity(intent);
                         finish();

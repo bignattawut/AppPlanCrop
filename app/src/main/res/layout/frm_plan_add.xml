@@ -43,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
-        app:backgroundTint="@color/colorlightGreen"
+        app:backgroundTint="@color/colorAccent"
         app:fabSize="mini"
         app:srcCompat="@drawable/ic_action_add" />
 
@@ -65,7 +65,7 @@
         android:layout_marginRight="29dp"
         android:layout_marginBottom="19dp"
         android:clickable="true"
-        app:backgroundTint="@color/colorlightGreen"
+        app:backgroundTint="@color/colorAccent"
         app:fabSize="normal"
         app:srcCompat="@drawable/ic_action_add"
         android:focusable="true" />

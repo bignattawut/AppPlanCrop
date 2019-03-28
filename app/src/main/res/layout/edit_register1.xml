@@ -228,19 +228,6 @@
                     android:textSize="18dp" />
             </LinearLayout>
 
-            <Button
-                android:id="@+id/btnEditRegister"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginRight="50dp"
-                android:layout_marginBottom="50dp"
-                android:background="@color/colorAccent"
-                android:text="อัพเดทข้อมูลส่วนตัว"
-                android:textColor="@color/colorWhite"
-                android:textSize="18dp" />
-
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

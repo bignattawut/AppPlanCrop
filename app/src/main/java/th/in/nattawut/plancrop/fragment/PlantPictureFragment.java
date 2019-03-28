@@ -1,7 +1,9 @@
 package th.in.nattawut.plancrop.fragment;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -65,12 +67,16 @@ public class PlantPictureFragment extends Fragment {
         //
     }
 
+    ////////
+    private static final String[] Camara = {"เลือกรูปจากคลัง","ถ่ายรูป"};
+    ///////
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
         //CreateToolbar
-        createToolbar();
+        //createToolbar();
 
         //imageViewPhoto
         photoImageView = getView().findViewById(R.id.imagePhoto);
@@ -87,13 +93,41 @@ public class PlantPictureFragment extends Fragment {
         //AddPlantPicture
         addPlantPicture();
 
+        // AddCamaraGalleryController
+        addCamaraGalleryController();
 
         //public static final String UPLOAD_URL = "http://http://192.168.1.17/android/nn/upload.php";
-                   //public static final String UPLOAD_KEY = "image";
+        //public static final String UPLOAD_KEY = "image";
 
 
     }
 
+    private void  addCamaraGalleryController() {
+        ImageView imageView = getView().findViewById(R.id.imagePhoto);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setCancelable(false);
+                //กำหนดหัวเเรื้อง
+                builder.setTitle("เลือกสิ่งที่คุณต้องการ?");
+                //กำหนดปุ่ม
+                builder.setItems(Camara, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String select = Camara[which];
+                        Toast.makeText(getActivity(),"เลือก"+select,Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+
+                    }
+                });
+                builder.setNegativeButton("ยกเลิก",null);
+                builder.create();
+                builder.show();
+            }
+        });
+
+    }
 
     private void uploadImage() {
         ImageView imageViewimagePhoto = getView().findViewById(R.id.imagePhoto);
@@ -115,7 +149,6 @@ public class PlantPictureFragment extends Fragment {
             }
         }
     }
-
     //////
 
     private void addPlantPicture() {
@@ -259,7 +292,7 @@ public class PlantPictureFragment extends Fragment {
         });
     }
 
-    private void createToolbar() {
+    /*private void createToolbar() {
         Toolbar toolbar = getView().findViewById(R.id.toolbarPlantPicture);
         ((HomeActivity)getActivity()).setSupportActionBar(toolbar);
 
@@ -274,7 +307,7 @@ public class PlantPictureFragment extends Fragment {
             }
 
         });
-    }
+    }*/
 
     @Nullable
     @Override

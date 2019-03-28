@@ -113,8 +113,6 @@ public class CropTypeViewFragment extends Fragment {
         }
     }
 
-
-
     //alertให้เลือกลบหรือแก้ไข
     private void deleteorEditCropType(final String tidString, final String cropTypeString ) {
 
@@ -173,13 +171,16 @@ public class CropTypeViewFragment extends Fragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
+        //กำหนดหัวเเรื้อง
         builder.setTitle("กำหนดชื่อประเภทใหม่");
+        //กำหนดเนื้อหา
         builder.setMessage("ประเภทพืช ==> " + cropTypeString);
 
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
         final View view = layoutInflater.inflate(R.layout.edit_croptype, null);
         builder.setView(view);
 
+        //กำหนดปุ่ม
         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -187,9 +188,11 @@ public class CropTypeViewFragment extends Fragment {
             }
         });
         builder.setPositiveButton("แก้ไข", new DialogInterface.OnClickListener() {
+
+            //กำหนด Event ให้กับปุ่ม
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                EditText editText = view.findViewById(R.id.edtEditCropType);
+               EditText editText = view.findViewById(R.id.edtEditCropType);
                 String newCropType = editText.getText().toString();
                 if (newCropType.isEmpty()) {
                     //newCropType = "0";
@@ -243,6 +246,7 @@ public class CropTypeViewFragment extends Fragment {
             e.printStackTrace();
         }
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

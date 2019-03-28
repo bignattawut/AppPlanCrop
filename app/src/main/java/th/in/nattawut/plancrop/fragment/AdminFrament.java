@@ -23,6 +23,9 @@ public class AdminFrament extends Fragment {
         //Crop Controller
         cropController();
 
+        //PlanPicture Controller
+        planPictureController();
+
     }
 
     private void cropController() {
@@ -33,7 +36,7 @@ public class AdminFrament extends Fragment {
                 getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new PlantPictureFragment())
+                        .replace(R.id.contentHomeFragment, new CropViewFragment())
                         .addToBackStack(null)
                         .commit();
             }
@@ -49,6 +52,21 @@ public class AdminFrament extends Fragment {
                         .getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.contentHomeFragment, new CropTypeViewFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+    }
+
+    private void planPictureController() {
+        ImageView imageView = getView().findViewById(R.id.imageViewSite);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentHomeFragment, new PlantPictureFragment())
                         .addToBackStack(null)
                         .commit();
             }

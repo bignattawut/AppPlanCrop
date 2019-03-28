@@ -15,11 +15,6 @@
         android:layout_marginLeft="21dp"
         android:layout_marginTop="11dp">
 
-        <ImageView
-            android:id="@+id/ImageViewPlan"
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
-
         <TableRow>
             <TextView
                 android:id="@+id/texPlan"

@@ -81,6 +81,12 @@ public class CropTypeFragment extends Fragment {
                     getActivity().getSupportFragmentManager().popBackStack();
                 } else {
                     Toast.makeText(getActivity(), "เพิ่มข้อมูลเรียบร้อย", Toast.LENGTH_LONG).show();
+                    getActivity()
+                            .getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.contentHomeFragment, new CropTypeViewFragment())
+                            .addToBackStack(null)
+                            .commit();
                 }
 
             }catch (Exception e){
