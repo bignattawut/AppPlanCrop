@@ -178,15 +178,16 @@ public class PlanFragment extends Fragment {
         TextView textCidmid = getView().findViewById(R.id.texPlanMid);
         TextView textPlanCidSpinner = getView().findViewById(R.id.textPlanCidSpinner);
         TextView textmyDate = getView().findViewById(R.id.myDate);
-        EditText editText = getView().findViewById(R.id.addplan1);
+
+        EditText plan1 = getView().findViewById(R.id.addplan1);
+        EditText plan2 = getView().findViewById(R.id.addplan2);
+        EditText plan3 = getView().findViewById(R.id.addplan3);
 
         String cidmidString = textCidmid.getText().toString().trim();
         String cidNameString = textPlanCidSpinner.getText().toString().trim();
         String myDataString = textmyDate.getText().toString().trim();
-        String editTextString = editText.getText().toString().trim();
 
-        //Float editTextString = Float.valueOf(editText.getText().toString());
-
+        String editTextString = Float.toString(Float.parseFloat(plan1.getText().toString().trim())+(Float.parseFloat(plan2.getText().toString().trim())*100 +Float.parseFloat(plan3.getText().toString().trim()))/400);
 
         if (cidmidString.isEmpty() || myDataString.isEmpty() || cidNameString.isEmpty() || editTextString.isEmpty()) {
             MyAlert myAlert = new MyAlert(getActivity());
@@ -215,7 +216,7 @@ public class PlanFragment extends Fragment {
                 e.printStackTrace();
             }
         }
-    }/*
+    }
 
 
     /*

@@ -217,7 +217,7 @@ public class RegisterFragment extends Fragment {
                         /*new DataDistrict().execute(listamphur.get(position), String.valueOf(rubIDprovince));
                         rubIDprovince = Integer.parseInt(listamphurid.get(position));
                        arrVid.clear();*/
-                       new DataDistrict().execute(listamphur.get(position));
+                        new DataDistrict().execute(listamphur.get(position));
                         rubIDprovince = Integer.parseInt(listamphurid.get(position));
                         arrVid.clear();
 

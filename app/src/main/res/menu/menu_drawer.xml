@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+
+    <item
+        android:id="@+id/menu_user"
+        android:icon="@drawable/ic_action_draweruser"
+        android:title="ข้อมูลส่วนตัว" />
+
+
+    <item android:title="จัดการแปลงเพาะปลูก">
+        <menu>
+            <item
+                android:id="@+id/menu_plan"
+                android:icon="@drawable/ic_action_drawerplan"
+                android:title="วางแผนเพาะปลูก" />
+            <item
+                android:id="@+id/munu_PlanView"
+                android:icon="@drawable/ic_action_date"
+                android:title="ปฏิทินเพาะปลูก" />
+            <item
+                android:id="@+id/munu_PlantPicture"
+                android:icon="@drawable/ic_action_drawerpicture"
+                android:title="บันทึกการเพาะปลูก" />
+        </menu>
+    </item>
+
+    <item android:title="รายงาน">
+        <menu>
+            <item
+                android:id="@+id/munu_produce"
+                android:icon="@drawable/harvest"
+                android:title="ผลผลิต" />
+            <item
+                android:id="@+id/munu_Seeding"
+                android:icon="@drawable/shovel"
+                android:title="การเพาะปลูก" />
+            <item
+                android:id="@+id/menu_want"
+                android:icon="@drawable/ic_action_want"
+                android:title="แจ้งความต้องการ" />
+            <item
+                android:id="@+id/menu_chart"
+                android:icon="@drawable/chart"
+                android:title="สถิตการเพาะปลูก" />
+        </menu>
+    </item>
+
+
+    <item
+        android:id="@+id/menu_exit"
+        android:icon="@drawable/ic_action_exit"
+        android:title="ออกจากระบบ" />
+
+
+</menu>

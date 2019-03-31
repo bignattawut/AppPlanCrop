@@ -16,11 +16,26 @@ public class DrawerAdapter extends BaseAdapter {
     private int[] iconInts;
     private String[] titileStrings;
 
+    ////
+    //private int[] ion;
+    //private String[] titil;
+    ///
+
     public DrawerAdapter(Context context, int[] iconInts, String[] titile){
         this.context = context;
         this.iconInts = iconInts;
         this.titileStrings = titile;
+
     }
+
+    /*public DrawerAdapter(Context context, int[] iconInts, String[] titileStrings, int[] ion, String[] titil) {
+        this.context = context;
+        this.iconInts = iconInts;
+        this.titileStrings = titileStrings;
+        this.ion = ion;
+        this.titil = titil;
+    }*/
+
     @Override
     public int getCount() {
         return titileStrings.length;
@@ -47,6 +62,12 @@ public class DrawerAdapter extends BaseAdapter {
 
         TextView textView = view.findViewById(R.id.txtTitle);
         textView.setText(titileStrings[position]);
+
+        /*ImageView imageView1 = view.findViewById(R.id.ion);
+        imageView1.setImageResource(ion[position]);
+
+        TextView textView1 = view.findViewById(R.id.titil);
+        textView1.setText(titil[position]);*/
         return view;
     }
 }
