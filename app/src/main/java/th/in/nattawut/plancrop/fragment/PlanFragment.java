@@ -30,6 +30,7 @@ import com.loopj.android.http.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -147,12 +148,15 @@ public class PlanFragment extends Fragment {
                 int year = calendar.get(Calendar.YEAR);
                 int month = calendar.get(Calendar.MONTH);
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
+                //final String currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(date);
 
                 dataPickerDialog = new DatePickerDialog(getActivity(),
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int y, int m, int d) {
+
                                 date.setText(y + "/" + (m + 1) + "/" + d);
+                                //date.setText(currentDateString + y + "/" + (m + 1) + "/" + d);
                                 //date.setText(y + "/" + (m + 1) + "/" + d);
                             }
                         },day,month,year);
@@ -187,7 +191,10 @@ public class PlanFragment extends Fragment {
         String cidNameString = textPlanCidSpinner.getText().toString().trim();
         String myDataString = textmyDate.getText().toString().trim();
 
-        String editTextString = Float.toString(Float.parseFloat(plan1.getText().toString().trim())+(Float.parseFloat(plan2.getText().toString().trim())*100 +Float.parseFloat(plan3.getText().toString().trim()))/400);
+        String editTextString = Float.toString(Float.parseFloat(plan1.getText().toString().trim())
+                +(Float.parseFloat(plan2.getText().toString().trim())*100+Float.parseFloat(plan3.getText().toString().trim()))/400);
+
+        Log.d("are","are ===>" + editTextString);
 
         if (cidmidString.isEmpty() || myDataString.isEmpty() || cidNameString.isEmpty() || editTextString.isEmpty()) {
             MyAlert myAlert = new MyAlert(getActivity());

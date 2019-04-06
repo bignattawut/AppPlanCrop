@@ -184,11 +184,20 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         .addToBackStack(null)
                         .commit();
                 break;
+            case R.id.menu_admin:
+                setTitle("ผู้ดูแลระบบ");
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentHomeFragment, new AdminFrament())
+                        .addToBackStack(null)
+                        .commit();
+                break;
             case R.id.menu_exit:
                 Intent intent = new Intent(getApplication(),MainActivity.class);
                 startActivity(intent);
                 finish();
                 break;
+
         }
         //drawerLayout.closeDrawer(GravityCompat.START);
         drawerLayout.closeDrawers();

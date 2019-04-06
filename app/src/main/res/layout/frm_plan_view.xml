@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
 
-    <TableLayout
+   <!-- <TableLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -34,7 +34,6 @@
                 android:text="เกษตรกร"
                 android:textSize="0dp" />
         </TableRow>
-
         <TableRow>
 
             <TextView
@@ -106,69 +105,104 @@
                 android:text="วันที่" />
         </TableRow>
 
-    </TableLayout>
-    <!--
-    <RelativeLayout
+    </TableLayout>-->
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:background="#cccccc"
+        android:orientation="vertical"
         android:padding="15dp">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="10dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/ic_action_planviewdata" />
+
+            <TextView
+                android:textColor="@color/colorAccent"
+                android:id="@+id/textArePlant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="วันที่เพาะปลูก"
+                android:textSize="14dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/ic_action_planviewuser" />
 
             <TextView
                 android:id="@+id/texPlan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="พืชปลอดสาร"
-                android:textColor="#ffffff" />
+                android:text="ชื่อ-สกุล"
+                android:textSize="0dp" />
+
+            <TextView
+                android:id="@+id/textMid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ชื่อ-สกุล"
+                android:textSize="0dp" />
 
             <TextView
                 android:id="@+id/textTypePlan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="110dp"
-                android:layout_marginLeft="110dp"
-                android:layout_marginTop="0dp"
-                android:text="ประเภทพืช"
-                android:textColor="#ffffff" />
+                android:text="ชื่อ-สกุล"
+                android:textSize="14dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/ic_action_planviewharvest" />
 
             <TextView
-                android:id="@+id/textArePlant"
+                android:id="@+id/textCid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="195dp"
-                android:layout_marginLeft="195dp"
-                android:layout_marginTop="0dp"
-                android:text="พื้นที่ปลูก"
-                android:textColor="#ffffff" />
+                android:layout_marginRight="10dp"
+                android:text="พืชเพาะปลูก"
+                android:textSize="14dp" />
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="พื้นที่เปลูก :"
+                android:textSize="14dp" />
+
+            <TextView
+                android:textColor="@color/colorlightGreen"
                 android:id="@+id/textDataplant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="288dp"
-                android:layout_marginLeft="288dp"
-                android:layout_marginTop="0dp"
-                android:text="วันที่"
-                android:textColor="#ffffff" />
+                android:text="พืชที่เพาะปลูก"
+                android:textSize="14dp" />
+        </LinearLayout>
 
-        </RelativeLayout>
-    </RelativeLayout>-->
+
+    </LinearLayout>
 
 
 </RelativeLayout>

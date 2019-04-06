@@ -2,6 +2,7 @@ package th.in.nattawut.plancrop.fragment;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.StrictMode;
@@ -33,6 +34,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import th.in.nattawut.plancrop.HomeActivity;
+import th.in.nattawut.plancrop.MainActivity;
 import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.CropTypeViewAapter;
 import th.in.nattawut.plancrop.utility.CropViewAdpter;
@@ -116,6 +118,8 @@ public class CropViewFragment extends Fragment {
                 beginharvestString[i] = jsonObject.getString(columnStrings[4]);
                 harvestperiodString[i] = jsonObject.getString(columnStrings[5]);
                 yield[i] = jsonObject.getString(columnStrings[6]);
+
+
             }
 
             CropViewAdpter cropViewAdpter = new CropViewAdpter(getActivity(),
@@ -125,7 +129,9 @@ public class CropViewFragment extends Fragment {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    deleteorEditCropType(cidString[position],cropString[position]);
+                    deleteorEditCropType(cidString[position],
+                            cropString[position],beginharvestString[position],
+                            harvestperiodString[position],yield[position]);
                 }
             });
             mSwipeRefreshLayout.setRefreshing(false);
@@ -137,7 +143,8 @@ public class CropViewFragment extends Fragment {
     }
 
     //alertให้เลือกลบหรือแก้ไข
-    private void deleteorEditCropType(final String cidString, final String cropString) {
+    private void deleteorEditCropType(final String cidString, final String cropString,
+                                      final String beginharvestString, final String harvestperiodString, final String yield) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
@@ -160,7 +167,7 @@ public class CropViewFragment extends Fragment {
         builder.setPositiveButton("แก้ไข", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                editCrop(cidString,cropString);
+                editCrop(cidString,cropString,beginharvestString,harvestperiodString,yield);
                 dialog.dismiss();
             }
         });
@@ -189,7 +196,8 @@ public class CropViewFragment extends Fragment {
     }
 
     //แก้ไขพืชเพาะปลูก
-    private void editCrop(final String cidString, final String cropString){
+    private void editCrop(final String cidString, final String cropString,
+                          final String beginharvestString,final String harvestperiodString, final String yield){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
@@ -197,6 +205,22 @@ public class CropViewFragment extends Fragment {
 
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
         final View view = layoutInflater.inflate(R.layout.edit_crop, null);
+
+        EditText edtEditCropName = view.findViewById(R.id.edtEditCropName);
+        String newCropName = getActivity().getIntent().getExtras().getString("crop",cropString);
+        edtEditCropName.setText(newCropName);
+
+        EditText edtEditBeginHarvest = view.findViewById(R.id.edtEditBeginHarvest);
+        String newBeginHarvest = getActivity().getIntent().getExtras().getString("beginharvest",beginharvestString);
+        edtEditBeginHarvest.setText(newBeginHarvest);
+
+        EditText edtEditHarvestPeriod = view.findViewById(R.id.edtEditHarvestPeriod);
+        String newHarvestPeriod = getActivity().getIntent().getExtras().getString("harvestperiod",harvestperiodString);
+        edtEditHarvestPeriod.setText(newHarvestPeriod);
+
+        EditText edtEditYield = view.findViewById(R.id.edtEditYield);
+        String newYield = getActivity().getIntent().getExtras().getString("yield",yield);
+        edtEditYield.setText(newYield);
 
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -274,9 +298,10 @@ public class CropViewFragment extends Fragment {
                 EditText edtEditYield = view.findViewById(R.id.edtEditYield);
                 String newYield = edtEditYield.getText().toString();
 
-               //if (newCropName.isEmpty() || newcropType.isEmpty() || newBeginHarvest.isEmpty() || newHarvestPeriod.isEmpty() || newYield.isEmpty()  ) {
-
-                //}
+               if (newCropName.isEmpty() || newcropType.isEmpty() || newBeginHarvest.isEmpty() || newHarvestPeriod.isEmpty() || newYield.isEmpty()  ) {
+                   MyAlert myAlert = new MyAlert(getActivity());
+                   myAlert.onrmaIDialog("สวัสดี", "กรุณากรอกข้อมูลให้ครบ");
+                }
                 updateCrop(cidString,newCropName,newcropType,newBeginHarvest,newHarvestPeriod,newYield);
                 dialog.dismiss();
             }
@@ -296,7 +321,7 @@ public class CropViewFragment extends Fragment {
             if (Boolean.parseBoolean(editCrop.get())) {
                 createListView();
             } else {
-                Toast.makeText(getActivity(),"แก้ไขข้อมูลสำเร็จ",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(),"แก้ไขข้อมูลสำเร็จ",Toast.LENGTH_SHORT).show();
             }
 
         } catch (Exception e) {

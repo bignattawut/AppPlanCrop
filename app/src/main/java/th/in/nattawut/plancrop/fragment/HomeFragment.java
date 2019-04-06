@@ -1,5 +1,6 @@
 package th.in.nattawut.plancrop.fragment;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -93,7 +94,6 @@ public class HomeFragment extends Fragment {
 
         }*/
 
-
     private void registerController() {
         ImageView imageView = getView().findViewById(R.id.ImageView);
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -108,9 +108,6 @@ public class HomeFragment extends Fragment {
             }
         });
     }
-
-
-
 
     @Nullable
     @Override

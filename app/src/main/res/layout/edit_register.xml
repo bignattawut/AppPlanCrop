@@ -353,6 +353,14 @@
                         android:textSize="18dp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
+            <TextView
+                android:id="@+id/textSid"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <TextView
+                android:id="@+id/textVid"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
         </LinearLayout>
     </ScrollView>

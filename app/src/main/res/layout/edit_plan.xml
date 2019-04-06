@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:background="@drawable/style3"
+         android:orientation="vertical"
+         android:padding="10dp">
+
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginBottom="8dp"
+             android:background="@drawable/style1"
+             android:orientation="horizontal"
+             android:padding="10dp">
+
+             <TextView
+                 android:id="@+id/texPlanMid"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="เกษตรกร :"
+                 android:textSize="20dp" />
+
+             <TextView
+                 android:id="@+id/EditTextMidPlan"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:inputType="text"
+                 android:textSize="0dp" />
+
+             <TextView
+                 android:id="@+id/EditTexPlanLogin"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:inputType="text"
+                 android:text="เกษตรกร :"
+                 android:textSize="20dp" />
+
+
+
+
+
+         </LinearLayout>
+
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginBottom="8dp"
+             android:background="@drawable/style1"
+             android:orientation="horizontal"
+             android:padding="10dp">
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:inputType="text"
+                 android:text="ชื่อพืช :"
+                 android:textSize="20dp" />
+
+             <Spinner
+                 android:id="@+id/EditPlanCropSpinner"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="1dp"></Spinner>
+         </LinearLayout>
+
+
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginBottom="8dp"
+             android:background="@drawable/style1"
+             android:orientation="horizontal"
+             android:padding="10dp">
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:inputType="date"
+                 android:text="วันที่เพาะปลูก :"
+                 android:textSize="20dp" />
+
+             <TextView
+                 android:id="@+id/EditMyDate"
+                 android:layout_width="130dp"
+                 android:layout_height="wrap_content"
+                 android:textSize="20dp" />
+
+             <ImageView
+                 android:id="@+id/EditImageViewDate"
+                 android:layout_width="wrap_content"
+                 android:layout_height="match_parent"
+                 android:layout_gravity="right"
+                 android:src="@drawable/dateplan" />
+
+
+         </LinearLayout>
+
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:background="@color/colorlightGreen"
+             android:orientation="vertical"
+             android:padding="10dp">
+
+             <TextView
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:text="ขนาดพื้นที่เพาะปลูก"
+                 android:textColor="@color/colorWhite"
+                 android:textSize="18dp"
+                 android:textStyle="bold" />
+         </LinearLayout>
+
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:gravity="center"
+             android:orientation="horizontal">
+
+             <GridLayout
+                 android:layout_width="94dp"
+                 android:layout_height="100dp"
+                 android:layout_marginTop="10dp"
+                 android:layout_marginBottom="10dp"
+                 android:background="@drawable/red_button"
+                 android:backgroundTint="@color/colorlightGreen"
+                 android:orientation="vertical">
+
+                 <LinearLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:orientation="vertical"
+                     android:padding="10dp">
+
+                     <TextView
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:text="ไร่"
+                         android:textColor="@color/colorblack"
+                         android:textSize="16dp" />
+
+                     <EditText
+                         android:id="@+id/EditAddPlan1"
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                         android:layout_margin="1dp"
+                         android:hint="0"
+                         android:inputType="numberDecimal"
+                         android:maxLength="5"
+                         android:textSize="15dp" />
+                 </LinearLayout>
+             </GridLayout>
+
+             <GridLayout
+                 android:layout_width="100dp"
+                 android:layout_height="100dp"
+                 android:layout_marginTop="10dp"
+                 android:layout_marginBottom="10dp"
+                 android:background="@drawable/red_button"
+                 android:backgroundTint="@color/colorlightGreen"
+                 android:orientation="vertical">
+
+                 <LinearLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:orientation="vertical"
+                     android:padding="10dp">
+
+                     <TextView
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:text="งาน"
+                         android:textColor="@color/colorblack"
+                         android:textSize="16dp" />
+
+                     <EditText
+                         android:id="@+id/EditAddPlan2"
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                         android:layout_margin="1dp"
+                         android:hint="0"
+                         android:inputType="number"
+                         android:maxLength="4"
+                         android:textSize="15dp" />
+                 </LinearLayout>
+             </GridLayout>
+
+             <GridLayout
+                 android:layout_width="97dp"
+                 android:layout_height="100dp"
+                 android:layout_marginTop="10dp"
+                 android:layout_marginBottom="10dp"
+                 android:background="@drawable/red_button"
+                 android:backgroundTint="@color/colorlightGreen"
+                 android:orientation="vertical">
+
+                 <LinearLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:orientation="vertical"
+                     android:padding="10dp">
+
+                     <TextView
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:text="ว่า"
+                         android:textColor="@color/colorblack"
+                         android:textSize="16dp" />
+
+                     <EditText
+                         android:id="@+id/EditAddPlan3"
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                         android:layout_margin="1dp"
+                         android:hint="0"
+                         android:inputType="number"
+                         android:maxLength="4"
+                         android:textSize="15dp" />
+                 </LinearLayout>
+             </GridLayout>
+         </LinearLayout>
+     </LinearLayout>
+</LinearLayout>

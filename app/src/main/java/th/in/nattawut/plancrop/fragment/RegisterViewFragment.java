@@ -80,7 +80,7 @@ public class RegisterViewFragment extends Fragment {
 
             JSONArray jsonArray = new JSONArray(jsonString);
 
-            String[] userString = new String[jsonArray.length()];
+            final String[] userString = new String[jsonArray.length()];
             String[] passwordString = new String[jsonArray.length()];
             String[] nameString = new String[jsonArray.length()];
             String[] idString = new String[jsonArray.length()];
@@ -111,7 +111,7 @@ public class RegisterViewFragment extends Fragment {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    deleteorEditRegister(midString[position]);
+                    deleteorEditRegister(midString[position],userString[position]);
 
                 }
             });
@@ -124,7 +124,7 @@ public class RegisterViewFragment extends Fragment {
     }
 
     //alertให้เลือกลบหรือแก้ไข
-    private void deleteorEditRegister(final String midString) {
+    private void deleteorEditRegister(final String midString,final String userString) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
@@ -147,7 +147,7 @@ public class RegisterViewFragment extends Fragment {
         builder.setPositiveButton("แก้ไข", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                editRegister(midString);
+                editRegister(midString,userString);
                 dialog.dismiss();
             }
         });
@@ -176,13 +176,17 @@ public class RegisterViewFragment extends Fragment {
     }
 
     //แก้ไขประเทพืชเพาะปลูก
-    private void editRegister(final String midString){
+    private void editRegister(final String midString,final String userString){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
         builder.setTitle("แก้ไขข้อมูลส่วนตัว");
 
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
         final View view = layoutInflater.inflate(R.layout.edit_register, null);
+
+        EditText EditEdtUsername = view.findViewById(R.id.EditEdtUsername);
+        String newCropName = getActivity().getIntent().getExtras().getString("Name",userString);
+        EditEdtUsername.setText(newCropName);
         builder.setView(view);
 
         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="160dp"
-    android:background="@color/colorlightGreen"
+    android:background="@drawable/drawer_header"
     android:gravity="bottom"
     android:padding="18dp"
     android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"
@@ -17,14 +17,14 @@
         android:id="@+id/nav_header_name"
         android:textColor="@color/colorWhite"
         android:paddingTop="8dp"
-        android:textSize="18dp"
+        android:textSize="16dp"
         android:fontFamily="sans-serif"
         android:text="ณัฐวุฒิ เอี่ยมอยู่แท้"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <TextView
-        android:textSize="18dp"
+        android:textSize="16dp"
         android:textColor="@color/colorWhite"
         android:text="nattawut.aim@bru.ac.th"
         android:layout_width="wrap_content"

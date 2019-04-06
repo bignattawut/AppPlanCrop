@@ -57,7 +57,7 @@ public class RegisterViewAdpter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = layoutInflater.inflate(R.layout.frm_register_view,parent,false);
+        View view = layoutInflater.inflate(R.layout.frm_register_view1,parent,false);
 
         TextView username = view.findViewById(R.id.textUsername);
         TextView password = view.findViewById(R.id.textPassword);
@@ -79,6 +79,26 @@ public class RegisterViewAdpter extends BaseAdapter {
         phon.setText(phonString[position]);
         email.setText(emailString[position]);
 
+        /*View view = layoutInflater.inflate(R.layout.edit_register,parent,false);
+        EditText username = view.findViewById(R.id.EditEdtUsername);
+        EditText password = view.findViewById(R.id.EditEdtPassword);
+        EditText name = view.findViewById(R.id.EditEdtName);
+        EditText id = view.findViewById(R.id.EditEdtId);
+        EditText address = view.findViewById(R.id.EditEdtAddress);
+        TextView vid = view.findViewById(R.id.textVid);
+        TextView sid = view.findViewById(R.id.textSid);
+        EditText phon = view.findViewById(R.id.EditEdtPhone);
+        EditText email = view.findViewById(R.id.EditEdtEmail);
+
+        username.setText(userString[position]);
+        password.setText(passwordString[position]);
+        name.setText(nameString[position]);
+        id.setText(idString[position]);
+        address.setText(addressString[position]);
+        vid.setText(vidString[position]);
+        sid.setText(sidString[position]);
+        phon.setText(phonString[position]);
+        email.setText(emailString[position]);*/
         return view;
     }
 

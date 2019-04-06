@@ -20,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -174,10 +175,18 @@ public class CropTypeViewFragment extends Fragment {
         //กำหนดหัวเเรื้อง
         builder.setTitle("กำหนดชื่อประเภทใหม่");
         //กำหนดเนื้อหา
-        builder.setMessage("ประเภทพืช ==> " + cropTypeString);
+        ///builder.setMessage("ประเภทพืช ==> " + cropTypeString);
 
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
         final View view = layoutInflater.inflate(R.layout.edit_croptype, null);
+
+        TextView texPlanLogin = view.findViewById(R.id.edtEditCropType);
+        TextView texPlanMid = view.findViewById(R.id.editCropTypeId);
+
+        String strTextShow = getActivity().getIntent().getExtras().getString("croptype",cropTypeString);
+        texPlanLogin.setText(strTextShow);
+        String strTextShowmid = getActivity().getIntent().getExtras().getString("TID",tidString);
+        texPlanMid.setText(strTextShowmid);
         builder.setView(view);
 
         //กำหนดปุ่ม

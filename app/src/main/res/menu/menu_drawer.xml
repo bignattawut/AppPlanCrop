@@ -49,11 +49,18 @@
         </menu>
     </item>
 
+    <group android:id="@+id/group_admin">
+        <item
+            android:id="@+id/menu_admin"
+            android:icon="@drawable/ic_action_userregister"
+            android:title="ผู้ดูแลระบบ" />
+    </group>
 
+    <group android:id="@+id/group_menu">
     <item
         android:id="@+id/menu_exit"
         android:icon="@drawable/ic_action_exit"
         android:title="ออกจากระบบ" />
-
+    </group>
 
 </menu>
