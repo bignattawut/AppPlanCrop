@@ -33,7 +33,9 @@ import org.json.JSONObject;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 
 import cz.msebera.android.httpclient.Header;
 import th.in.nattawut.plancrop.HomeActivity;
@@ -148,16 +150,17 @@ public class PlanFragment extends Fragment {
                 int year = calendar.get(Calendar.YEAR);
                 int month = calendar.get(Calendar.MONTH);
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
-                //final String currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(date);
+
+                //final Date cha = calendar.getTime();
 
                 dataPickerDialog = new DatePickerDialog(getActivity(),
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int y, int m, int d) {
-
-                                date.setText(y + "/" + (m + 1) + "/" + d);
-                                //date.setText(currentDateString + y + "/" + (m + 1) + "/" + d);
                                 //date.setText(y + "/" + (m + 1) + "/" + d);
+                                date.setText(y + "/" + (m + 1) + "/" + d);
+                                //DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM,Locale.UK);
+
                             }
                         },day,month,year);
                 dataPickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());

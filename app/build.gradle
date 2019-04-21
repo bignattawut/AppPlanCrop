@@ -35,7 +35,6 @@ dependencies {
     implementation 'eu.the4thfloor.volley:com.android.volley:2015.05.28'
     implementation 'com.squareup.okhttp:okhttp:2.7.5'
     implementation 'com.loopj.android:android-async-http:1.4.9'
-    implementation files('libs/ftp4j-1.7.2.jar')
     implementation 'com.google.firebase:firebase-core:16.0.1'
     implementation 'com.google.firebase:firebase-storage:16.0.1'
     implementation 'com.android.support:design:28.0.0'

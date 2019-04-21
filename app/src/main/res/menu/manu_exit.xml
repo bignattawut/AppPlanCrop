@@ -4,9 +4,7 @@
 
     <item
         app:showAsAction="always"
-        android:icon="@drawable/ic_action_itemupload"
-        android:id="@+id/itemupload"
-        android:title="Upload User"/>
-
-
+        android:icon="@drawable/ic_action_exit"
+        android:id="@+id/itemSingOut"
+        android:title="Sing out"/>
 </menu>

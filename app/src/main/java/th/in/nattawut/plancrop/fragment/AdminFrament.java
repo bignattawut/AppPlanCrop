@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.TextView;
 
 import th.in.nattawut.plancrop.R;
 
@@ -26,11 +26,49 @@ public class AdminFrament extends Fragment {
         //PlanPicture Controller
         planPictureController();
 
+        //Register Controller
+        RegisterController();
+
+        //Farmer Controller
+        farmerController();
+
+
+
+    }
+    private void farmerController() {
+        TextView textView = getView().findViewById(R.id.imageViewFarmer);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentHomeFragment, new FarmerViewFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
     }
 
+    private void RegisterController() {
+        TextView textView = getView().findViewById(R.id.imageViewRegister);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentHomeFragment, new RegisterViewFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+    }
+
+
     private void cropController() {
-        ImageView imageView = getView().findViewById(R.id.imageViewCrop);
-        imageView.setOnClickListener(new View.OnClickListener() {
+        TextView textView = getView().findViewById(R.id.imageViewCrop);
+        textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getActivity()
@@ -44,8 +82,8 @@ public class AdminFrament extends Fragment {
     }
 
     private void cropTypeController() {
-        ImageView imageView = getView().findViewById(R.id.imageViewCropTypr);
-        imageView.setOnClickListener(new View.OnClickListener() {
+        TextView textView = getView().findViewById(R.id.imageViewCropTypr);
+        textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getActivity()
@@ -59,8 +97,8 @@ public class AdminFrament extends Fragment {
     }
 
     private void planPictureController() {
-        ImageView imageView = getView().findViewById(R.id.imageViewSite);
-        imageView.setOnClickListener(new View.OnClickListener() {
+        TextView textView = getView().findViewById(R.id.imageViewSite);
+        textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getActivity()

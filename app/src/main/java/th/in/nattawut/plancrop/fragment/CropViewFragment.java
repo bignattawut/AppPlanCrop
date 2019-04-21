@@ -384,7 +384,7 @@ public class CropViewFragment extends Fragment {
         Toolbar toolbar = getView().findViewById(R.id.toolbarCropView);
         ((HomeActivity)getActivity()).setSupportActionBar(toolbar);
 
-        ((HomeActivity)getActivity()).getSupportActionBar().setTitle("แสดงรายการพืช");
+        ((HomeActivity)getActivity()).getSupportActionBar().setTitle("ข้อมูลพืช");
         //((MainActivity)getActivity()).getSupportActionBar().setSubtitle("ddbdbvd");
 
         ((HomeActivity)getActivity()).getSupportActionBar().setHomeButtonEnabled(true);

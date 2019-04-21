@@ -74,6 +74,7 @@ public class CropTypeViewFragment extends Fragment {
 
     private void createListView() {
         listView = getView().findViewById(R.id.listViewCropType);
+        //listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         Myconstant myconstant = new Myconstant();
         String[] columnStrings = myconstant.getColumnCropTypeString();
 
@@ -96,7 +97,7 @@ public class CropTypeViewFragment extends Fragment {
             }
 
 
-            CropTypeViewAapter cropTypeViewAapter = new CropTypeViewAapter(getActivity(),tidString,cropTypeString);
+            CropTypeViewAapter cropTypeViewAapter = new CropTypeViewAapter(getActivity(),tidString,cropTypeString/*,android.R.layout.simple_list_item_checked*/);
             listView.setAdapter(cropTypeViewAapter);
 
             //edit
@@ -256,7 +257,6 @@ public class CropTypeViewFragment extends Fragment {
         }
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -287,11 +287,12 @@ public class CropTypeViewFragment extends Fragment {
         inflater.inflate(R.menu.manu_register, menu);
 
     }
+
     private void CreateToolbal() {
         Toolbar toolbar = getView().findViewById(R.id.toolbarCropType);
         ((HomeActivity)getActivity()).setSupportActionBar(toolbar);
 
-        ((HomeActivity)getActivity()).getSupportActionBar().setTitle("         แสดงรายการประเภทพืช");
+        ((HomeActivity)getActivity()).getSupportActionBar().setTitle("ข้อมูลประเภทพืช");
         //((MainActivity)getActivity()).getSupportActionBar().setSubtitle("ddbdbvd");
 
         ((HomeActivity)getActivity()).getSupportActionBar().setHomeButtonEnabled(true);

@@ -23,20 +23,20 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import th.in.nattawut.plancrop.HomeActivity;
 import th.in.nattawut.plancrop.MainActivity;
 import th.in.nattawut.plancrop.R;
-import th.in.nattawut.plancrop.utility.AddRegister;
+import th.in.nattawut.plancrop.utility.AddFarmer;
 import th.in.nattawut.plancrop.utility.MyAlert;
 import th.in.nattawut.plancrop.utility.Myconstant;
 
-public class RegisterFragment extends Fragment {
+public class FarmerFragment extends Fragment {
 
     private ArrayList<String> arrProvince = new ArrayList<>();
     private ArrayList<String> arrProvinceID = new ArrayList<>();
@@ -56,27 +56,28 @@ public class RegisterFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         //Create Toolbar
-        createToolbar();
+        CreateToolbal();
 
-        //RegisterController
-        registerController();
+        //FarmerController
+        farmerController();
 
         //จังหวัด
-        spProvince = getView().findViewById(R.id.spProvince);
+        spProvince = getView().findViewById(R.id.spProvinceFarmer);
         adpProvince = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, arrProvince);
         spProvince.setAdapter(adpProvince);
 
         //อำเภอ
-        spAmphur = getView().findViewById(R.id.spAmphur);
+        spAmphur = getView().findViewById(R.id.spAmphurFarmer);
         adpAmphur = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, arrAmphur);
         spAmphur.setAdapter(adpAmphur);
 
         //หมู่บ้าน
-        spDistrice = getView().findViewById(R.id.spDistrice);
+        spDistrice = getView().findViewById(R.id.spDistriceFarmer);
         adpSid = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, arrSid);
         spDistrice.setAdapter(adpSid);
 
     }
+
     @Override
     public void onStart() {
         super.onStart();
@@ -225,7 +226,7 @@ public class RegisterFragment extends Fragment {
 
                 }
             });
-           // new DataDistrict().execute(listamphur.get(0),String.valueOf(rubIDprovince));
+            // new DataDistrict().execute(listamphur.get(0),String.valueOf(rubIDprovince));
         }
     }
 
@@ -285,8 +286,8 @@ public class RegisterFragment extends Fragment {
         }
     }
 
-    private void registerController() {
-        Button button = getView().findViewById(R.id.btnRegister);
+    private void farmerController() {
+        Button button = getView().findViewById(R.id.btnFarmer);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -294,21 +295,6 @@ public class RegisterFragment extends Fragment {
             }
         });
     }
-
-    /*
-        @Override
-        public boolean onOptionsItemSelected(MenuItem item) {
-
-            if (item.getItemId() == R.id.itemupload) {
-
-                uploadValueToSever();
-                return true;
-
-            }
-
-
-            return super.onOptionsItemSelected(item);
-        }*/
 
     private void uploadValueToSever() {
 
@@ -319,8 +305,10 @@ public class RegisterFragment extends Fragment {
         EditText address = getView().findViewById(R.id.edtaddress);
         EditText phon = getView().findViewById(R.id.edtphone);
         EditText email = getView().findViewById(R.id.edtemail);
-        Spinner province = getView().findViewById(R.id.spProvince);
-        Spinner amphur = getView().findViewById(R.id.spAmphur);
+        Spinner province = getView().findViewById(R.id.spProvinceFarmer);
+        Spinner amphur = getView().findViewById(R.id.spAmphurFarmer);
+
+
 
         String userString = username.getText().toString().trim();
         String passwordString = password.getText().toString().trim();
@@ -333,7 +321,15 @@ public class RegisterFragment extends Fragment {
         String amphurString = amphur.getSelectedItem().toString().trim();
 
 
-        if (userString.isEmpty() || passwordString.isEmpty() || idString.isEmpty() || nameString.isEmpty()  || addressString.isEmpty()  || provinceString.isEmpty() || amphurString.isEmpty() || phonString.isEmpty() || emailString.isEmpty()) {
+        EditText plan1 = getView().findViewById(R.id.add1);
+        EditText plan2 = getView().findViewById(R.id.add2);
+        EditText plan3 = getView().findViewById(R.id.add3);
+
+        String editTextString = Float.toString(Float.parseFloat(plan1.getText().toString().trim())
+                +(Float.parseFloat(plan2.getText().toString().trim())*100+Float.parseFloat(plan3.getText().toString().trim()))/400);
+
+
+        if (userString.isEmpty() || passwordString.isEmpty() || idString.isEmpty() || nameString.isEmpty()  || addressString.isEmpty()  || provinceString.isEmpty() || amphurString.isEmpty() || phonString.isEmpty() || emailString.isEmpty() || editTextString.isEmpty()) {
 
             MyAlert myAlert = new MyAlert(getActivity());
             myAlert.onrmaIDialog("สวัสดี", "*กรุณากรอกข้อมูลให้ครบ");
@@ -341,12 +337,9 @@ public class RegisterFragment extends Fragment {
 
             try {
                 Myconstant myconstant = new Myconstant();
-                /*AddNewUserUpload addNewUserUpload = new AddNewUserUpload(getActivity());
-                addNewUserUpload.execute(userString, passwordString,  idString,nameString, addressString, phonString, emailString, provinceString, amphurString,
-                        myconstant.getUrlRegister());*/
-                AddRegister addFarmer = new AddRegister(getActivity());
-                addFarmer.execute(userString, passwordString, idString, nameString, addressString, provinceString, amphurString, phonString, emailString,
-                        myconstant.getUrlRegister());
+                AddFarmer addFarmer = new AddFarmer(getActivity());
+                addFarmer.execute(userString, passwordString, idString, nameString, addressString,provinceString,amphurString,phonString, emailString,editTextString,
+                        myconstant.getUrlFarmer());
 
                 String result = addFarmer.get();
                 Log.d("1jan", "result ==>" + result);
@@ -354,36 +347,28 @@ public class RegisterFragment extends Fragment {
                 if (Boolean.parseBoolean(result)) {
                     getActivity().getSupportFragmentManager().popBackStack();
                 } else {
-                    Toast.makeText(getActivity(), "สมัครสมาชิกเรียบร้อย", Toast.LENGTH_LONG).show();
-                    getActivity()
+                    Toast.makeText(getActivity(), "ลงทะเบียนเกษตรกรเรียบร้อย", Toast.LENGTH_LONG).show();
+                    /*getActivity()
                             .getSupportFragmentManager()
                             .beginTransaction()
                             .replace(R.id.contentMainFragment, new MainFragment())
                             .addToBackStack(null)
-                            .commit();
+                            .commit();*/
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
-    /*
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
+    private void CreateToolbal() {
+        Toolbar toolbar = getView().findViewById(R.id.toolbarFarmer);
+        ((HomeActivity)getActivity()).setSupportActionBar(toolbar);
 
-        inflater.inflate(R.menu.manu_register, menu);
-    }*/
-
-    private void createToolbar() {
-        Toolbar toolbar = getView().findViewById(R.id.toolbarRegister);
-        ((MainActivity) getActivity()).setSupportActionBar(toolbar);
-
-        ((MainActivity) getActivity()).getSupportActionBar().setTitle("สมัครสมาชิก");
+        ((HomeActivity)getActivity()).getSupportActionBar().setTitle("เพิ่มข้อมูลเกษตรกร");
         //((MainActivity)getActivity()).getSupportActionBar().setSubtitle("ddbdbvd");
 
-        ((MainActivity) getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
-        ((MainActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((HomeActivity)getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
+        ((HomeActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -395,12 +380,14 @@ public class RegisterFragment extends Fragment {
 
     }
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.frm_register, container, false);
+        View view = inflater.inflate(R.layout.frm_farmer, container, false);
         return view;
     }
 }
+
 
 

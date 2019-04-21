@@ -18,6 +18,7 @@ import org.json.JSONObject;
 
 import th.in.nattawut.plancrop.HomeActivity;
 import th.in.nattawut.plancrop.R;
+import th.in.nattawut.plancrop.utility.AddlLogin;
 import th.in.nattawut.plancrop.utility.GetData;
 import th.in.nattawut.plancrop.utility.MyAlert;
 import th.in.nattawut.plancrop.utility.Myconstant;
@@ -48,6 +49,7 @@ public class MainFragment extends Fragment{
                 String userString = username.getText().toString().trim();
                 String passwordString = password.getText().toString().trim();
 
+
                 if (userString.isEmpty() || passwordString.isEmpty()) {
 
                     MyAlert myAlert = new MyAlert(getActivity());
@@ -60,21 +62,26 @@ public class MainFragment extends Fragment{
                     MyAlert myAlert = new MyAlert(getActivity());
 
                 try {
-                    GetData getData = new GetData(getActivity());
-                    getData.execute(myconstant.getUrlGetUser());
+                    /*GetData getData = new GetData(getActivity());
+                    getData.execute(myconstant.getUrlGetUser());*/
 
-                    String jsonString = getData.get();
+                    AddlLogin addlLogin = new AddlLogin(getActivity());
+                    addlLogin.execute(userString,passwordString,
+                            myconstant.getUrlGetUser());
+
+                    //String jsonString = getData.get();
+                    String jsonString = addlLogin.get();
                     Log.d("1/Jan", "JSON ==>" + jsonString);
 
                     JSONArray jsonArray = new JSONArray(jsonString);
                     for (int i = 0; i < jsonArray.length(); i += 1) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                        if (userString.equals(jsonObject.getString("UserID"))) {
+                        if (userString.equals(jsonObject.getString("userid"))) {
                             b = false;
-                            truePass = jsonObject.getString("PWD");
-                            nameuser = jsonObject.getString("Name");
-                            miduser = jsonObject.getString("MID");
+                            truePass = jsonObject.getString("pwd");
+                            nameuser = jsonObject.getString("name");
+                            miduser = jsonObject.getString("mid");
                         }
                     }
                     if (b) {
@@ -84,8 +91,8 @@ public class MainFragment extends Fragment{
 
                         //Intent to HomeActivity
                         Intent intent = new Intent(getActivity(),HomeActivity.class);
-                        intent.putExtra("Name",nameuser);
-                        intent.putExtra("MID",miduser);
+                        intent.putExtra("name",nameuser);
+                        intent.putExtra("mid",miduser);
                         startActivity(intent);
                         getActivity().finish();
 

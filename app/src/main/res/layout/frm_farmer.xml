@@ -4,22 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
     <!--Toolbar-->
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbarFarmer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:navigationIcon="@drawable/ic_action_back"
-        app:title="ข้อมูลเกษตรกร"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
         app:titleTextColor="@color/colorWhite" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent">◘
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -52,14 +48,20 @@
                     android:layout_marginLeft="9dp"
                     android:src="@drawable/ic_action_userregister" />
 
-                <EditText
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/style1"
-                    android:hint="ชื่อผู้ใช้งาน :"
-                    android:inputType="text"
-                    android:padding="10dp"
-                    android:textSize="20dp" />
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/edtusername"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/style1"
+                        android:hint="ชื่อผู้ใช้งาน :"
+                        android:inputType="text"
+                        android:padding="5dp"
+                        android:textSize="18dp" />
+                </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -77,39 +79,20 @@
                     android:layout_marginLeft="9dp"
                     android:src="@drawable/ic_action_password" />
 
-                <EditText
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/style1"
-                    android:hint="รหัสผ่าน :"
-                    android:inputType="textPassword"
-                    android:padding="10dp"
-                    android:textSize="20dp" />
-            </LinearLayout>
+                    android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/style1"
-                android:orientation="horizontal"
-                android:padding="1dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="9dp"
-                    android:src="@drawable/ic_action_password" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/style1"
-                    android:hint="ยืนยันหัสผ่าน :"
-                    android:inputType="textPassword"
-                    android:padding="10dp"
-                    android:textSize="20dp" />
+                    <EditText
+                        android:id="@+id/edtpassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/style1"
+                        android:hint="รหัสผ่าน :"
+                        android:inputType="textPassword"
+                        android:padding="5dp"
+                        android:textSize="18dp" />
+                </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -127,14 +110,20 @@
                     android:layout_marginLeft="9dp"
                     android:src="@drawable/ic_action_name" />
 
-                <EditText
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/style1"
-                    android:hint="ชื่อ-สกุล :"
-                    android:inputType="text"
-                    android:padding="10dp"
-                    android:textSize="20dp" />
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/edtname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/style1"
+                        android:hint="ชื่อ-สกุล :"
+                        android:inputType="text"
+                        android:padding="5dp"
+                        android:textSize="18dp" />
+                </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -152,15 +141,21 @@
                     android:layout_marginLeft="9dp"
                     android:src="@drawable/ic_action_id" />
 
-                <EditText
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/style1"
-                    android:hint="เลขประจำตัวประชาชน :"
-                    android:inputType="number"
-                    android:maxLength="13"
-                    android:padding="9dp"
-                    android:textSize="20dp" />
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/edtid"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/style1"
+                        android:hint="เลขประจำตัวประชาชน :"
+                        android:inputType="number"
+                        android:maxLength="13"
+                        android:padding="5dp"
+                        android:textSize="18dp" />
+                </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -178,14 +173,20 @@
                     android:layout_marginLeft="9dp"
                     android:src="@drawable/ic_action_home" />
 
-                <EditText
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/style1"
-                    android:hint="ที่อยู่ :"
-                    android:inputType="text"
-                    android:padding="10dp"
-                    android:textSize="20dp" />
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/edtaddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/style1"
+                        android:hint="ที่อยู่ :"
+                        android:inputType="text"
+                        android:padding="5dp"
+                        android:textSize="18dp" />
+                </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -201,47 +202,21 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/ic_action_home" />
+
                 <TextView
+                    android:id="@+id/province"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:text="จังหวัด :"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
                 <Spinner
-                    android:id="@+id/car_Name"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/spProvinceFarmer"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="190dp"></Spinner>
+                    android:layout_marginLeft="1dp"></Spinner>
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/style1"
-                android:orientation="horizontal"
-                android:padding="12dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/ic_action_home" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:hint="ตำบล/แขวง :"
-                    android:textSize="20dp" />
-
-                <Spinner
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="160dp"></Spinner>
-            </LinearLayout>
-
 
 
             <LinearLayout
@@ -262,13 +237,42 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:hint="หมู่บ้าน :"
-                    android:textSize="20dp" />
+                    android:text="อำเภอ :"
+                    android:textSize="18dp" />
 
                 <Spinner
+                    android:id="@+id/spAmphurFarmer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"></Spinner>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/style1"
+                android:orientation="horizontal"
+                android:padding="12dp">
+
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="200dp"></Spinner>
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_action_home" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="ตำบล/แขวง :"
+                    android:textSize="18dp" />
+
+                <Spinner
+                    android:id="@+id/spDistriceFarmer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"></Spinner>
             </LinearLayout>
 
             <LinearLayout
@@ -286,15 +290,21 @@
                     android:layout_marginLeft="9dp"
                     android:src="@drawable/ic_action_phon" />
 
-                <EditText
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/style1"
-                    android:hint="เบอร์โทร :"
-                    android:inputType="phone"
-                    android:maxLength="10"
-                    android:padding="10dp"
-                    android:textSize="20dp" />
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/edtphone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/style1"
+                        android:hint="เบอร์โทร :"
+                        android:inputType="phone"
+                        android:maxLength="10"
+                        android:padding="5dp"
+                        android:textSize="18dp" />
+                </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -312,14 +322,20 @@
                     android:layout_marginLeft="9dp"
                     android:src="@drawable/ic_action_email" />
 
-                <EditText
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/style1"
-                    android:hint="example@gmail.com :"
-                    android:inputType="textEmailAddress"
-                    android:padding="10dp"
-                    android:textSize="20dp" />
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/edtemail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/style1"
+                        android:hint="example@gmail.com :"
+                        android:inputType="textEmailAddress"
+                        android:padding="5dp"
+                        android:textSize="18dp" />
+                </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -366,6 +382,7 @@
                             android:textSize="16dp" />
 
                         <EditText
+                            android:id="@+id/add1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_margin="1dp"
@@ -398,6 +415,7 @@
                             android:textSize="16dp" />
 
                         <EditText
+                            android:id="@+id/add2"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_margin="1dp"
@@ -430,6 +448,7 @@
                             android:textSize="16dp" />
 
                         <EditText
+                            android:id="@+id/add3"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_margin="1dp"
@@ -440,19 +459,22 @@
                 </GridLayout>
             </LinearLayout>
 
+
             <Button
+                android:id="@+id/btnFarmer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="90dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="90dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="50dp"
                 android:layout_marginBottom="50dp"
-                android:background="@color/colorlightGreen"
-                android:text="บันทึก"
+                android:background="@drawable/button"
+                android:text="ลงทะเบียนเกษตรกร"
                 android:textColor="@color/colorWhite"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textSize="20dp" />
 
         </LinearLayout>
     </ScrollView>
+
+
 </LinearLayout>

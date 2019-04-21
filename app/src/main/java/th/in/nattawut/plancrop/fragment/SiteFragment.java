@@ -88,7 +88,7 @@ public class SiteFragment extends Fragment {
         final Spinner spin = getView().findViewById(R.id.vidSiteSpinner);
         try {
             GetData getData = new GetData(getActivity());
-            getData.execute(Myconstant.getUrlVid);
+            getData.execute(Myconstant.getUrlSid);
 
             String jsonString = getData.get();
             Log.d("5/Jan VidSite", "JSON ==>" + jsonString);

@@ -41,7 +41,7 @@ public class RegisterViewAdpter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 1;
+        return userString.length;
     }
 
     @Override

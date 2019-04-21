@@ -8,7 +8,7 @@
     <string name="station2">ผลผลิต</string>
     <string name="station3">แจ้งความต้องการ</string>
     <string name="station4">สถิตการเพาะปลูก</string>
-    <string name="croptype">ประเภทพืช</string>
+    <string name="croptype">ข้อมูลประเภทพืช</string>
     <string name="crop">พืชเพาะปลูก</string>
     <string name="site">แปลงเพาะปลูก</string>
     <string name="plan">กรุณาวางแผนเพาะปลูก</string>

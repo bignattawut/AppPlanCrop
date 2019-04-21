@@ -4,6 +4,38 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15dp"/>
+
+    <LinearLayout
+        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/ic_action_planviewharvest" />
+
+        <TextView
+            android:textSize="0dp"
+            android:id="@+id/textTid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/textCropType"
+            android:textColor="@color/colorblack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="วันที่เพาะปลูก"
+            android:textSize="18dp" />
+
+    </LinearLayout>
+    <!--<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp">
 
@@ -35,7 +67,7 @@
             </TableRow>
         </TableLayout>
 
-    </LinearLayout>
+    </LinearLayout>-->
     <!-- <EditText
          android:id="@+id/textCropType"
          android:layout_width="wrap_content"

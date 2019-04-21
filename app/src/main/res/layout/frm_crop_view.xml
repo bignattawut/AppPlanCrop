@@ -4,194 +4,281 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
-    <TableLayout
-        android:layout_marginLeft="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/textCid"
+    <!-- <TableLayout
+         android:layout_marginLeft="10dp"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content">
+         <TextView
+             android:id="@+id/textCid"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginRight="5dp"
+             android:text="ลำดับ"
+             android:textSize="0dp" />
+         <TableRow>
+             <TextView
+                 android:textStyle="bold"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginRight="5dp"
+                 android:text="ชนิดพืช :"
+                 android:textSize="16dp" />
+
+             <TextView
+                 android:textColor="@color/colorGreen"
+                 android:id="@+id/textCrop"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginRight="5dp"
+                 android:text="พืช"
+                 android:textSize="16dp" />
+
+
+         </TableRow>
+         <TextView
+             android:id="@+id/textCropTID"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginRight="5dp"
+             android:text="ลำดับ"
+             android:textSize="0dp" />
+         <TableRow>
+             <TextView
+                 android:textStyle="bold"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginRight="5dp"
+                 android:text="ประเภทพืช :"
+                 android:textSize="16dp" />
+             <TextView
+                 android:textColor="@color/colorGreen"
+                 android:id="@+id/textCropTypeTID"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginRight="5dp"
+                 android:text="ปรเภท"
+                 android:textSize="16dp" />
+         </TableRow>
+         <TableRow>
+             <TextView
+                 android:textStyle="bold"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginRight="5dp"
+                 android:text="จำนวนวันเก็บเกี่ยว :"
+                 android:textSize="16dp" />
+             <TextView
+                 android:textColor="@color/colorGreen"
+                 android:id="@+id/textBeginHarvest"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginRight="5dp"
+                 android:text="จำนวนวัน"
+                 android:textSize="16dp" />
+
+             <TextView
+                 android:textStyle="bold"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginRight="5dp"
+                 android:text="วัน"
+                 android:textSize="16dp" />
+         </TableRow>
+         <TableRow>
+             <TextView
+                 android:textStyle="bold"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginRight="5dp"
+                 android:text="ระยะเวลาเก็บเกี่ยว :"
+                 android:textSize="16dp" />
+             <TextView
+                 android:textColor="@color/colorGreen"
+                 android:id="@+id/textHarvestPeriod"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginRight="5dp"
+                 android:text="ระยะเวลา"
+                 android:textSize="16dp" />
+             <TextView
+                 android:textStyle="bold"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginRight="5dp"
+                 android:text="วัน"
+                 android:textSize="16dp" />
+         </TableRow>
+         <TableRow>
+             <TextView
+                 android:textStyle="bold"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginRight="5dp"
+                 android:text="ผลผลิต :"
+                 android:textSize="16dp" />
+             <TextView
+                 android:textColor="@color/colorGreen"
+                 android:id="@+id/textYield"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginRight="5dp"
+                 android:text="ผลผลิต"
+                 android:textSize="16dp" />
+             <TextView
+                 android:textStyle="bold"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginRight="5dp"
+                 android:text="กิโลกรัม/ไร่"
+                 android:textSize="16dp" />
+         </TableRow>
+     </TableLayout>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:text="ลำดับ"
-            android:textSize="0dp" />
-        <TableRow>
-            <TextView
-                android:textStyle="bold"
+            android:layout_height="wrap_content">
+
+            <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginRight="5dp"
-                android:text="ชนิดพืช :"
-                android:textSize="16dp" />
+                android:src="@drawable/ic_action_planviewharvest" />
 
             <TextView
-                android:textColor="@color/colorGreen"
+                android:id="@+id/textCid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="0dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="พืช :"
+                android:textColor="@color/colorblack"
+                android:textSize="14dp" />
+
+            <TextView
                 android:id="@+id/textCrop"
-                android:layout_width="wrap_content"
+                android:layout_width="128dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
                 android:text="พืช"
-                android:textSize="16dp" />
+                android:textColor="@color/colorlightGreen"
+                android:textSize="14dp" />
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/ic_action_planviewharvest" />
 
-        </TableRow>
-        <TextView
-            android:id="@+id/textCropTID"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:text="ลำดับ"
-            android:textSize="0dp" />
-        <TableRow>
             <TextView
-                android:textStyle="bold"
+                android:id="@+id/textCropTID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:text="ประเภทพืช :"
-                android:textSize="16dp" />
+                android:textSize="0dp" />
+
             <TextView
-                android:textColor="@color/colorGreen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ประเภท : "
+                android:textColor="@color/colorblack"
+                android:textSize="14dp" />
+
+            <TextView
                 android:id="@+id/textCropTypeTID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:text="ปรเภท"
-                android:textSize="16dp" />
-        </TableRow>
-        <TableRow>
-            <TextView
-                android:textStyle="bold"
+                android:text="ประเภท : "
+                android:textColor="@color/colorlightGreen"
+                android:textSize="14dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginRight="5dp"
-                android:text="จำนวนวันเก็บเกี่ยว :"
-                android:textSize="16dp" />
-            <TextView
-                android:textColor="@color/colorGreen"
-                android:id="@+id/textBeginHarvest"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:text="จำนวนวัน"
-                android:textSize="16dp" />
+                android:src="@drawable/ic_action_planviewdata" />
+
 
             <TextView
-                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:text="วัน"
-                android:textSize="16dp" />
-        </TableRow>
-        <TableRow>
+                android:text="วันเก็บเกี่ยว :"
+                android:textColor="@color/colorblack"
+                android:textSize="14dp" />
+
             <TextView
-                android:textStyle="bold"
+                android:id="@+id/textBeginHarvest"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="วันเก็บเกี่ยว"
+                android:textColor="@color/colorAccent"
+                android:textSize="14dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:gravity="center"
+                android:src="@drawable/ic_action_planviewdata" />
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:text="ระยะเวลาเก็บเกี่ยว :"
-                android:textSize="16dp" />
+                android:layout_marginRight="1dp"
+                android:text="ระยะเวลา :"
+                android:textColor="@color/colorblack"
+                android:textSize="14dp" />
+
             <TextView
-                android:textColor="@color/colorGreen"
                 android:id="@+id/textHarvestPeriod"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
+                android:layout_marginRight="10dp"
                 android:text="ระยะเวลา"
-                android:textSize="16dp" />
+                android:textColor="@color/colorAccent"
+                android:textSize="14dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/ic_action_planviewharvest" />
+
             <TextView
-                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:text="วัน"
-                android:textSize="16dp" />
-        </TableRow>
-        <TableRow>
+                android:layout_marginRight="1dp"
+                android:text="ผลผลิต/ไร่ :"
+                android:textColor="@color/colorblack"
+                android:textSize="14dp" />
+
             <TextView
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:text="ผลผลิต :"
-                android:textSize="16dp" />
-            <TextView
-                android:textColor="@color/colorGreen"
                 android:id="@+id/textYield"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
                 android:text="ผลผลิต"
-                android:textSize="16dp" />
-            <TextView
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:text="กิโลกรัม/ไร่"
-                android:textSize="16dp" />
-        </TableRow>
-    </TableLayout>
-    <!--<LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+                android:textColor="@color/colorGreen"
+                android:textSize="14dp" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/textCid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:text="ลำดับ"
-            android:textSize="20dp" />
 
-        <TextView
-            android:id="@+id/textCrop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="5dp"
-            android:text="พืช"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/textCropTID"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:text="ประเภท"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/textCropTypeTID"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:text="ชื่อ"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/textBeginHarvest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:text="จำนวนวัน"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/textHarvestPeriod"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:text="ระยะเวลา"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/textYield"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:text="ผลผลิต"
-            android:textSize="20dp" />
-    </LinearLayout>-->
+    </LinearLayout>
 </RelativeLayout>

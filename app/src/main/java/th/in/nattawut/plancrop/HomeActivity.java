@@ -1,5 +1,7 @@
 package th.in.nattawut.plancrop;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -13,11 +15,15 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import th.in.nattawut.plancrop.fragment.CropFragment;
 import th.in.nattawut.plancrop.fragment.CropTypeFragment;
@@ -35,6 +41,7 @@ import th.in.nattawut.plancrop.fragment.RegisterFragment;
 import th.in.nattawut.plancrop.fragment.RegisterViewFragment;
 import th.in.nattawut.plancrop.fragment.SiteFragment;
 import th.in.nattawut.plancrop.utility.DrawerAdapter;
+import th.in.nattawut.plancrop.utility.MyAlert;
 import th.in.nattawut.plancrop.utility.Myconstant;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -43,6 +50,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +58,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         //createToolbar();
 
-        //receiveValueFromMain();
+        receiveValueFromMain();
 
         //Add Fragment to Activity
         addFragment(savedInstanceState);
@@ -65,12 +73,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawerLayout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        //nameString = getIntent().getStringExtra("Name");
+        //getSupportActionBar().setSubtitle(nameString);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,
                 R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         ///////
+
 
     }
 
@@ -146,6 +157,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()) {
             case R.id.menu_user:
                 setTitle("ข้อมูลส่วนตัว");
+                getSupportActionBar().setSubtitle(nameString);
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.contentHomeFragment, new RegisterViewFragment())
@@ -154,14 +166,23 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.menu_plan:
                 setTitle("วางแผนเพาะปลูก");
+
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.contentHomeFragment, new PlanFragment())
                         .addToBackStack(null)
                         .commit();
                 break;
+            case R.id.munu_Plant:
+                setTitle("แปลงเพาะปลูก");
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentHomeFragment, new PlantFragment())
+                        .addToBackStack(null)
+                        .commit();
+                break;
             case R.id.munu_PlanView:
-                setTitle("ปฏิทินการเพาะปลูก");
+                setTitle("ปฏิทินการวางแผนเพาะปลูก");
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.contentHomeFragment, new PlanViewFragment())
@@ -197,7 +218,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 finish();
                 break;
-
         }
         //drawerLayout.closeDrawer(GravityCompat.START);
         drawerLayout.closeDrawers();
@@ -215,7 +235,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    /*
+
     private void receiveValueFromMain() {
         nameString = getIntent().getStringExtra("Name");
         Log.d("1Jan","nameString ==> " + nameString);
@@ -223,9 +243,32 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.manu_option,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.option:
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentHomeFragment, new RegisterViewFragment())
+                        .addToBackStack(null)
+                        .commit();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    /*
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (actionBarDrawerToggle.onOptionsItemSelected(item)){
             return true;
+            }
         }
         return super.onOptionsItemSelected(item);
     }

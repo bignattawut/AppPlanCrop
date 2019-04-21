@@ -18,9 +18,13 @@
                 android:icon="@drawable/ic_action_drawerplan"
                 android:title="วางแผนเพาะปลูก" />
             <item
+                android:id="@+id/munu_Plant"
+                android:icon="@drawable/shovel"
+                android:title="แปลงเพาะปลูก" />
+            <item
                 android:id="@+id/munu_PlanView"
                 android:icon="@drawable/ic_action_date"
-                android:title="ปฏิทินเพาะปลูก" />
+                android:title="ปฏิทินการวางแผนเพาะปลูก" />
             <item
                 android:id="@+id/munu_PlantPicture"
                 android:icon="@drawable/ic_action_drawerpicture"

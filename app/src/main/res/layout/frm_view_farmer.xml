@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbarRegister"
+        android:id="@+id/toolbarFarmerView"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
@@ -19,26 +19,9 @@
         android:layout_height="wrap_content">
 
         <ListView
-            android:id="@+id/listViewRegister"
+            android:id="@+id/listViewFarmer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"></ListView>
 
     </android.support.v4.widget.SwipeRefreshLayout>
-
-   <!-- <Button
-        android:id="@+id/ava"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="510dp"
-        android:layout_marginBottom="9dp"
-        android:background="@drawable/buttonedit"
-        android:padding="10dp"
-        android:text="แก้ไขข้อมูลส่วนตัว"
-        android:textColor="@color/colorWhite"
-        android:textSize="20dp"
-        android:textStyle="bold" />-->
-
 </RelativeLayout>

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="160dp"
-    android:background="@drawable/drawer_header"
+    android:background="@drawable/header"
     android:gravity="bottom"
     android:padding="18dp"
     android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"
@@ -19,7 +19,7 @@
         android:paddingTop="8dp"
         android:textSize="16dp"
         android:fontFamily="sans-serif"
-        android:text="ณัฐวุฒิ เอี่ยมอยู่แท้"
+        android:text="ณัฐวุฒิ"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
