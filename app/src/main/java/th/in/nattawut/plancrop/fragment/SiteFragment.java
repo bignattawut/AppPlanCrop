@@ -31,54 +31,8 @@ public class SiteFragment extends Fragment {
         //vidSpinner
         vidSpinner();
 
-        cropTypeSpinner();
     }
 
-    private void cropTypeSpinner(){
-        if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }
-        final Spinner spin = getView().findViewById(R.id.a);
-        try {
-            GetData getData = new GetData(getActivity());
-            getData.execute(Myconstant.getUrlCropType);
-
-            String jsonString = getData.get();
-            Log.d("5/Jan CropType", "JSON ==>" + jsonString);
-            JSONArray data = new JSONArray(jsonString);
-
-            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
-            HashMap<String, String> map;
-
-            for(int i = 0; i < data.length(); i++){
-                JSONObject c = data.getJSONObject(i);
-
-                map = new HashMap<String, String>();
-                map.put("TID", c.getString("TID"));
-                map.put("croptype", c.getString("croptype"));
-                MyArrList.add(map);
-            }
-            SimpleAdapter sAdap;
-            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_crop,
-                    new String[] {"TID", "croptype"}, new int[] {R.id.textTID, R.id.textCropType});
-            spin.setAdapter(sAdap);
-            spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-                public void onItemSelected(AdapterView<?> arg0, View selectedItemView, int position, long id) {
-                    //String sCustomerID = MyArrList.get(position).get("TID").toString();
-                    //String sName = MyArrList.get(position).get("croptype").toString();
-                }
-                public void onNothingSelected(AdapterView<?> arg0) {
-
-                }
-            });
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
 
     private void vidSpinner(){
         if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -88,7 +42,7 @@ public class SiteFragment extends Fragment {
         final Spinner spin = getView().findViewById(R.id.vidSiteSpinner);
         try {
             GetData getData = new GetData(getActivity());
-            getData.execute(Myconstant.getUrlSid);
+            getData.execute(Myconstant.getUrlAmphur);
 
             String jsonString = getData.get();
             Log.d("5/Jan VidSite", "JSON ==>" + jsonString);

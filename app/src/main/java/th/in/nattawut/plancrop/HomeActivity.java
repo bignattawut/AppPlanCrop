@@ -252,12 +252,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.option:
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new RegisterViewFragment())
-                        .addToBackStack(null)
-                        .commit();
+            case R.id.exit:
+                Intent intent = new Intent(getApplication(),MainActivity.class);
+                startActivity(intent);
+                finish();
                 break;
         }
         return super.onOptionsItemSelected(item);

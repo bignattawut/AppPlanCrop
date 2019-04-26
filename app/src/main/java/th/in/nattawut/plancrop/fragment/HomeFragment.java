@@ -17,6 +17,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import th.in.nattawut.plancrop.MainActivity;
@@ -95,7 +96,7 @@ public class HomeFragment extends Fragment {
         }*/
 
     private void registerController() {
-        ImageView imageView = getView().findViewById(R.id.ImageView);
+        LinearLayout imageView = getView().findViewById(R.id.ImageView);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

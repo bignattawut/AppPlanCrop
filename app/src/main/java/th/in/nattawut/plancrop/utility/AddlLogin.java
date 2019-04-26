@@ -22,11 +22,13 @@ public class AddlLogin extends AsyncTask<String, Void, String> {
         try {
             OkHttpClient okHttpClient = new OkHttpClient();
             RequestBody requestBody = new FormEncodingBuilder()
-                    .add("userid", strings[0])
-                    .add("pwd",strings[1])
+                    .add("username", strings[0])
+                    .add("passwd",strings[1])
                     .build();
             Request.Builder builder = new Request.Builder();
-            Request request = builder.url(strings[2]).post(requestBody).build();
+            //Request request = builder.url(strings[2])
+            Request request = builder.url("http://192.168.1.109/android/php/memberlogin.php")
+                    .post(requestBody).build();
             Response response=okHttpClient.newCall(request).execute();
             return response.body().string();
 

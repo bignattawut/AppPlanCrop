@@ -1,6 +1,8 @@
 package th.in.nattawut.plancrop.fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,11 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 import th.in.nattawut.plancrop.HomeActivity;
 import th.in.nattawut.plancrop.R;
@@ -24,6 +29,7 @@ import th.in.nattawut.plancrop.utility.MyAlert;
 import th.in.nattawut.plancrop.utility.Myconstant;
 
 public class MainFragment extends Fragment{
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -54,63 +60,42 @@ public class MainFragment extends Fragment{
 
                     MyAlert myAlert = new MyAlert(getActivity());
                     myAlert.onrmaIDialog("สวัสดี", "กรุณากรอกชื่อผู้ใช้หรือรหัสผ่าน");
-
                 }else {
-                    Myconstant myconstant = new Myconstant();
-                    Boolean b = true;
-                    String truePass = null, nameuser = null, miduser = null;
-                    MyAlert myAlert = new MyAlert(getActivity());
 
-                try {
-                    /*GetData getData = new GetData(getActivity());
-                    getData.execute(myconstant.getUrlGetUser());*/
+                    try {
+                        AddlLogin addlLogin = new AddlLogin(getActivity());
+                        addlLogin.execute(userString,passwordString);
+                        String jsonString = addlLogin.get();
+                        Log.d("1/may", "JSON ==>" + jsonString);
 
-                    AddlLogin addlLogin = new AddlLogin(getActivity());
-                    addlLogin.execute(userString,passwordString,
-                            myconstant.getUrlGetUser());
+                        if (jsonString.equals("null")) {
+                            MyAlert myAlert = new MyAlert(getActivity());
+                            myAlert.onrmaIDialog("กรุณากรอกข้อมูล", "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
+                        } else {
+                            JSONArray jsonArray = new JSONArray(jsonString);
+                            JSONObject jsonObject = jsonArray.getJSONObject(0);
 
-                    //String jsonString = getData.get();
-                    String jsonString = addlLogin.get();
-                    Log.d("1/Jan", "JSON ==>" + jsonString);
-
-                    JSONArray jsonArray = new JSONArray(jsonString);
-                    for (int i = 0; i < jsonArray.length(); i += 1) {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-                        if (userString.equals(jsonObject.getString("userid"))) {
-                            b = false;
-                            truePass = jsonObject.getString("pwd");
-                            nameuser = jsonObject.getString("name");
-                            miduser = jsonObject.getString("mid");
+                            if (passwordString.equals(jsonObject.getString("pwd"))) {
+                                Toast.makeText(getActivity(),
+                                        "Welcome " + jsonObject.getString("Name"), Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getActivity(),HomeActivity.class);
+                                String nameuser = null, miduser = null;
+                                nameuser = jsonObject.getString("Name");
+                                miduser = jsonObject.getString("MID");
+                                intent.putExtra("Name",nameuser);
+                                intent.putExtra("MID",miduser);
+                                startActivity(intent);
+                                getActivity().finish();
+                            }else {
+                                MyAlert myAlert = new MyAlert(getActivity());
+                                myAlert.onrmaIDialog("Password", "Password False");
+                            }
                         }
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                    if (b) {
-                        myAlert.onrmaIDialog("กรุณากรอกข้อมูล", "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
-                    } else if (passwordString.equals(truePass)) {
-                        Toast.makeText(getActivity(), "ยินดีต้อนรับ" + nameuser, Toast.LENGTH_LONG).show();
-
-                        //Intent to HomeActivity
-                        Intent intent = new Intent(getActivity(),HomeActivity.class);
-                        intent.putExtra("name",nameuser);
-                        intent.putExtra("mid",miduser);
-                        startActivity(intent);
-                        getActivity().finish();
-
-                        /*getActivity().getSupportFragmentManager()
-                                .beginTransaction()
-                                .replace(R.id.contentMainFragment, new HomeFragment())
-                                .commit();*/
-
-                    } else {
-                        myAlert.onrmaIDialog("รหัสไม่ถูกต้อง", "กรุณากรอกรหัสผ่านใหม่");
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
-
-                } //if
-
             }
         });
     }

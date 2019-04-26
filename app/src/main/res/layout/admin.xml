@@ -178,7 +178,6 @@
 
                 <!--Title-->
                 <TextView
-                    android:id="@+id/imageViewSite"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
@@ -207,6 +206,7 @@
 
                 <!--Title-->
                 <TextView
+                    android:id="@+id/imageViewSite"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
@@ -214,7 +214,7 @@
                     android:clickable="true"
                     android:gravity="center_horizontal"
                     android:padding="5dp"
-                    android:text="ข้อมูลกิจกรรม"
+                    android:text="ข้อมูลแปลงเพาะปลูก"
                     android:textColor="#ffffff"
                     android:textSize="18sp"
                     android:textStyle="bold" />

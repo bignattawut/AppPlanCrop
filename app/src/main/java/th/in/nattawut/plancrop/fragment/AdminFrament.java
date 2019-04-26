@@ -104,7 +104,7 @@ public class AdminFrament extends Fragment {
                 getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new PlantPictureFragment())
+                        .replace(R.id.contentHomeFragment, new SiteFragment())
                         .addToBackStack(null)
                         .commit();
             }

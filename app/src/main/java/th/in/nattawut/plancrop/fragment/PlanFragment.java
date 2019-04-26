@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,6 +56,8 @@ public class PlanFragment extends Fragment {
     TextView date;
     DatePickerDialog dataPickerDialog;
     Calendar calendar;
+
+
 
 
    Button button;
@@ -190,7 +193,7 @@ public class PlanFragment extends Fragment {
         EditText plan2 = getView().findViewById(R.id.addplan2);
         EditText plan3 = getView().findViewById(R.id.addplan3);
 
-        String cidmidString = textCidmid.getText().toString().trim();
+        String cidmidString = textCidmid.getText().toString().trim();//แปลงค่าText ให้เป็น String , trim ลบค่าที่เว้นวรรคอัตโนวัติ
         String cidNameString = textPlanCidSpinner.getText().toString().trim();
         String myDataString = textmyDate.getText().toString().trim();
 
@@ -202,11 +205,12 @@ public class PlanFragment extends Fragment {
         if (cidmidString.isEmpty() || myDataString.isEmpty() || cidNameString.isEmpty() || editTextString.isEmpty()) {
             MyAlert myAlert = new MyAlert(getActivity());
             myAlert.onrmaIDialog("สวัสดี", "กรุณากรอกข้อมูลให้ครบ");
-        }else {
+
+        } else {
             try {
                 Myconstant myconstant = new Myconstant();
                 AddPlan addPlan = new AddPlan(getActivity());
-                addPlan.execute(cidmidString,myDataString,cidNameString,editTextString,
+                addPlan.execute(cidmidString, myDataString, cidNameString, editTextString,
                         myconstant.getUrladdPlan());
 
                 String result = addPlan.get();
@@ -227,6 +231,7 @@ public class PlanFragment extends Fragment {
             }
         }
     }
+
 
 
     /*

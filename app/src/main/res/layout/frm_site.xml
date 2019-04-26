@@ -75,11 +75,16 @@
             android:background="@drawable/style1"
             android:orientation="horizontal">
 
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ละติจูด :"
+                android:textSize="20dp" />
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/style1"
-                android:hint="ละติจูด :"
                 android:inputType="number"
                 android:padding="10dp"
                 android:textSize="20dp" />
@@ -92,11 +97,16 @@
             android:background="@drawable/style1"
             android:orientation="horizontal">
 
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ลองจิจูด :"
+                android:textSize="20dp" />
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/style1"
-                android:hint="ลองจิจูด :"
                 android:inputType="number"
                 android:padding="10dp"
                 android:textSize="20dp" />
