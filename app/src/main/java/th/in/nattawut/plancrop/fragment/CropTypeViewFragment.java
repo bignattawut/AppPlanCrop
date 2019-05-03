@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -144,6 +145,21 @@ public class CropTypeViewFragment extends Fragment {
             }
         });
         builder.show();
+
+        /*ImageView imageView = getView().findViewById(R.id.DEl);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteCropType(tidString);
+            }
+        });
+        ImageView Edit = getView().findViewById(R.id.Edit);
+        Edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editCropType(tidString,cropTypeString);
+            }
+        });*/
     }
 
     //alertให้เลือกจะลบรายการหรือไม่

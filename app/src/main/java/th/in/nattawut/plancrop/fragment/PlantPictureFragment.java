@@ -224,7 +224,7 @@ public class PlantPictureFragment extends Fragment {
                 }
                 Random random = new Random();
                 int i = random.nextInt(1000);
-                File cameraFlie1 = new File(file, "master" +Integer.toString(i) + ".jpg");
+                File cameraFlie1 = new File(file, "big" +Integer.toString(i) + ".jpg");
 
                 uri = Uri.fromFile(cameraFlie1);
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);

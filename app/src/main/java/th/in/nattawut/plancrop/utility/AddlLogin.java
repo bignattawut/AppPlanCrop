@@ -27,7 +27,7 @@ public class AddlLogin extends AsyncTask<String, Void, String> {
                     .build();
             Request.Builder builder = new Request.Builder();
             //Request request = builder.url(strings[2])
-            Request request = builder.url("http://192.168.1.109/android/php/memberlogin.php")
+            Request request = builder.url("http://192.168.1.118/android/php/memberlogin.php")
                     .post(requestBody).build();
             Response response=okHttpClient.newCall(request).execute();
             return response.body().string();

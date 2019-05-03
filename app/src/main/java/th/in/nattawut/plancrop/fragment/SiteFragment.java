@@ -1,9 +1,15 @@
 package th.in.nattawut.plancrop.fragment;
 
+import android.annotation.SuppressLint;
+import android.location.Criteria;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
+
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -23,7 +30,16 @@ import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.GetData;
 import th.in.nattawut.plancrop.utility.Myconstant;
 
+
+
 public class SiteFragment extends Fragment {
+
+    private LocationManager locationManager;  //1
+    private Criteria criteria;//2
+    private double latDouble, longDouble;
+
+    @SuppressLint("ServiceCast")
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);

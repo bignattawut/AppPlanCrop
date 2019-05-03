@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="15dp"/>
 
     <LinearLayout
         android:padding="10dp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
@@ -34,50 +30,51 @@
             android:text="วันที่เพาะปลูก"
             android:textSize="18dp" />
 
+
     </LinearLayout>
-    <!--<LinearLayout
+
+    <!--<android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
 
-        <TableLayout
-            android:layout_marginTop="7dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <TableRow>
-                <TextView
-                    android:id="@+id/textTid"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginStart="19dp"
-                    android:layout_marginLeft="19dp"
-                    android:text="ลำดับ"
-                    android:textSize="0dp" />
-                <TextView
-                    android:id="@+id/textCropType"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="bottom"
-                    android:text="ประเภท"
-                    android:textColor="@color/colorblack"
-                    android:textSize="18dp" />
-            </TableRow>
-        </TableLayout>
+        <TextView
+            android:id="@+id/textTid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="0dp" />
 
-    </LinearLayout>-->
-    <!-- <EditText
-         android:id="@+id/textCropType"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_alignParentStart="true"
-         android:layout_alignParentLeft="true"
-         android:layout_alignParentTop="true"
-         android:layout_marginStart="74dp"
-         android:layout_marginLeft="74dp"
+        <TextView
+            android:id="@+id/textCropType"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:text="วันที่เพาะปลูก"
+            android:textColor="@color/colorblack"
+            android:textSize="18dp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="23dp"
+            tools:layout_editor_absoluteY="3dp" />
 
-         android:textSize="20dp" />-->
+        <ImageView
+            android:id="@+id/Edit"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_action_ic_action_edit"
+            app:layout_constraintEnd_toStartOf="@+id/DEl"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
 
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/DEl"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_action_ic_action_del"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="0dp" />
+    </android.support.constraint.ConstraintLayout>-->
+
+
+</LinearLayout>
