@@ -35,6 +35,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 import th.in.nattawut.plancrop.R;
+import th.in.nattawut.plancrop.utility.Cccc;
 import th.in.nattawut.plancrop.utility.DeleteCropType;
 import th.in.nattawut.plancrop.utility.DeletePlan;
 import th.in.nattawut.plancrop.utility.EditPlan;
@@ -107,6 +108,7 @@ public class PlanViewFragment extends Fragment {
 
             GetData getData = new GetData(getActivity());
             getData.execute(myconstant.getUrlselectPlan());
+
 
             String jsonString = getData.get();
             Log.d("22big","JSON plan ==> " + jsonString);

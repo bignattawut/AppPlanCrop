@@ -76,8 +76,7 @@ public class MainFragment extends Fragment{
                             JSONObject jsonObject = jsonArray.getJSONObject(0);
 
                             if (passwordString.equals(jsonObject.getString("pwd"))) {
-                                Toast.makeText(getActivity(),
-                                        "Welcome " + jsonObject.getString("Name"), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Welcome " + jsonObject.getString("Name"), Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getActivity(),HomeActivity.class);
                                 String nameuser = null, miduser = null;
                                 nameuser = jsonObject.getString("Name");
@@ -88,7 +87,7 @@ public class MainFragment extends Fragment{
                                 getActivity().finish();
                             }else {
                                 MyAlert myAlert = new MyAlert(getActivity());
-                                myAlert.onrmaIDialog("Password", "Password False");
+                                myAlert.onrmaIDialog("รหัสผ่าน", "รหัสผ่านไม่ถูกต้อง");
                             }
                         }
 

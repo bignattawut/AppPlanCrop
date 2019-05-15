@@ -189,7 +189,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="พื้นที่เปลูก :"
+                android:text="พื้นที่เพาะปลูก :"
+                android:textColor="@color/colorblack"
                 android:textSize="14dp" />
 
             <TextView
