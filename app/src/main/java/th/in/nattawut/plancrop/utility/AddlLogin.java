@@ -18,7 +18,7 @@ public class AddlLogin extends AsyncTask<String, Void, String> {
         this.context = context;
     }
 
-    public static final String LOGIN_URL = "http://192.168.1.113/android/php/memberlogin.php";
+    public static final String LOGIN_URL = "http://192.168.1.124/android/php/memberlogin.php";
 
     @Override
     protected String doInBackground(String... strings) {

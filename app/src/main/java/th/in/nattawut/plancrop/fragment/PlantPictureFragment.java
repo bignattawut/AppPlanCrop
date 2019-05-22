@@ -65,13 +65,13 @@ public class PlantPictureFragment extends Fragment {
     ////////
     private static final String[] Camara = {"เลือกรูปจากคลัง","ถ่ายรูป"};
 
-    public static final String UPLOAD_URL = "http://192.168.1.113/android/php/upload.php";
+    public static final String UPLOAD_URL = "http://192.168.1.124/android/php/upload.php";
     public static final String UPLOAD_KEY = "URL";
-
     private int PICK_IMAGE_REQUEST = 1;
 
-    private Button buttonChoose;
+    private ImageView buttonChoose;
     private Button buttonUpload;
+
 
     private ImageView imageView;
     private Bitmap bitmap;
@@ -86,7 +86,7 @@ public class PlantPictureFragment extends Fragment {
         //createToolbar();
 
         //imageViewPhoto
-        photoImageView = getView().findViewById(R.id.imagePhoto);
+        //photoImageView = getView().findViewById(R.id.imagePhoto);
 
         //Gallery Controller
         //galleryController();
@@ -100,21 +100,15 @@ public class PlantPictureFragment extends Fragment {
         //AddPlantPicture
         addPlantPicture();
 
-        // AddCamaraGalleryController
-        addCamaraGalleryController();
-
         //uploadimage
         uploadimage();
-
-    }
-    private void uploadimage(){
-        buttonChoose = getView().findViewById(R.id.btnsele);
-        buttonUpload = getView().findViewById(R.id.btnUpload);
-
         imageView = getView().findViewById(R.id.imagePhoto);
 
-        //buttonChoose.setOnClickListener((View.OnClickListener) getActivity());
-        //buttonUpload.setOnClickListener((View.OnClickListener) getActivity());
+    }
+
+    private void uploadimage(){
+        buttonChoose = getView().findViewById(R.id.imvGallery);
+        buttonUpload = getView().findViewById(R.id.btnUpload);
         buttonChoose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,13 +124,15 @@ public class PlantPictureFragment extends Fragment {
                     if(filePath!=null) {
                         uploadImage();
                     } else {
-                        Toast.makeText(getActivity(),"Select Image",Toast.LENGTH_LONG).show();
+                        MyAlert myAlert = new MyAlert(getActivity());
+                        myAlert.onrmaIDialog("สวัสดี", "กรุณาเพิ่มรูปภาพกิจกรรมเพาะปลูก");
+                        //Toast.makeText(getActivity(),"Select Image",Toast.LENGTH_LONG).show();
                     }
                 }
             }
         });
-
     }
+
 
     private void showFileChooser() {
         Intent intent = new Intent();
@@ -176,7 +172,7 @@ public class PlantPictureFragment extends Fragment {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(getActivity(), "Uploading Image", "Please wait...",true,true);
+                loading = ProgressDialog.show(getActivity(), "กำลังอัพโหลดรูปภาพ", "กรุณารอสักครู่.....",true,true);
             }
 
             @Override
@@ -225,35 +221,6 @@ public class PlantPictureFragment extends Fragment {
         }
         return result;
     }
-
-
-    private void  addCamaraGalleryController() {
-        ImageView imageView = getView().findViewById(R.id.imagePhoto);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setCancelable(false);
-                //กำหนดหัวเเรื้อง
-                builder.setTitle("เลือกสิ่งที่คุณต้องการ?");
-                //กำหนดปุ่ม
-                builder.setItems(Camara, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String select = Camara[which];
-                        Toast.makeText(getActivity(),"เลือก"+select,Toast.LENGTH_SHORT).show();
-                        dialog.dismiss();
-
-                    }
-                });
-                builder.setNegativeButton("ยกเลิก",null);
-                builder.create();
-                builder.show();
-            }
-        });
-
-    }
-    ///
 
     private void addPlantPicture() {
         Button button = getView().findViewById(R.id.btnPlantPicture);
@@ -327,6 +294,7 @@ public class PlantPictureFragment extends Fragment {
         });
     }
 
+
     /*
     //ถ่ายรูปกล้อง
     private void cameraController() {
@@ -353,6 +321,7 @@ public class PlantPictureFragment extends Fragment {
             }
         });
     }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

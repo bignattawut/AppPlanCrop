@@ -12,6 +12,9 @@
     <string name="crop">พืชเพาะปลูก</string>
     <string name="site">แปลงเพาะปลูก</string>
     <string name="plan">กรุณาวางแผนเพาะปลูก</string>
+    <string name="admin">ผู้ดูแลระบบ</string>
+    <string name="Agriculture">ข้อมูลเกษตรกร</string>
+    <string name="register">ข้อมูล สมาชิก</string>
 
     <string-array name="spinner">
         <item>a</item>

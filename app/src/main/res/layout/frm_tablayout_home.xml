@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--TabLayout--><android.support.design.widget.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:pointerIcon="zoom_out"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+
+    <!--View Pager-->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!--<android.support.design.widget.TabLayout
+        android:id="@+id/tabLayout"
+        app:tabTextAppearance="@style/TabLayoutTextStyle"
+        app:tabTextColor="@color/colorlightGreen"
+        android:background="@drawable/style3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">-->
+    <!--<android.support.design.widget.TabLayout-->
+        <!--android:id="@+id/tabLayout"-->
+        <!--app:tabTextAppearance="@style/TabLayoutTextStyle"-->
+        <!--android:background="#82ffffff"-->
+        <!--app:tabTextColor="@color/colorlightGreen"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+
+        <!--<android.support.design.widget.TabItem-->
+            <!--android:text="วางแผน"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:icon="@drawable/ic_action_tabplan"/>-->
+
+
+        <!--<android.support.design.widget.TabItem-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:icon="@drawable/ic_action_adplant"-->
+            <!--android:text="เพาะปลูก" />-->
+
+        <!--<android.support.design.widget.TabItem-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:icon="@drawable/ic_action_camera"-->
+            <!--android:text="กิจกรรม" />-->
+
+    <!--</android.support.design.widget.TabLayout>-->
+
+    <!--<android.support.v4.view.ViewPager-->
+        <!--android:id="@+id/viewPager"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent" />-->
+
+</LinearLayout>
