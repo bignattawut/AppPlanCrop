@@ -37,7 +37,7 @@
                 android:textSize="20dp" />
 
             <Spinner
-                android:id="@+id/PlantId"
+                android:id="@+id/Siteid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="1dp"></Spinner>
@@ -80,13 +80,13 @@
                 android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/myDate"
+                android:id="@+id/myDatePlant"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:textSize="20dp" />
 
             <ImageView
-                android:id="@+id/imageViewDate"
+                android:id="@+id/imageViewDatePlant"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="right"
@@ -138,6 +138,7 @@
                         android:textSize="16dp" />
 
                     <EditText
+                        android:id="@+id/addplan1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="1dp"
@@ -171,6 +172,7 @@
                         android:textSize="16dp" />
 
                     <EditText
+                        android:id="@+id/addplan2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="1dp"
@@ -204,6 +206,7 @@
                         android:textSize="16dp" />
 
                     <EditText
+                        android:id="@+id/addplan3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="1dp"
@@ -216,6 +219,7 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/btnPlant"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="90dp"

@@ -3,4 +3,6 @@
     <dimen name="icon">120dp</dimen>
     <dimen name="margin">10dp</dimen>
     <dimen name="admin">80dp</dimen>
+    <dimen name="tab_label">14sp</dimen>
+
 </resources>

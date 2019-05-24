@@ -12,8 +12,6 @@ public class Myconstant {
     //ล็อคอิน
     private String urlGetUser = "http://192.168.1.110/android/php/memberlogin.php";
 
-    //แปลงเพาะปลูก
-
 
     //วางแผนเพาะปลูก
     private String urladdPlan = "http://192.168.1.124/android/php/insertplan.php";
@@ -71,8 +69,26 @@ public class Myconstant {
     private String urlDeleteCropType = "http://192.168.1.124/android/php/deletecroptype.php";
     private String[] columnCropTypeString = new String[]{"TID","croptype"};
 
+    //การเพาะปลูก
+    private String urladdPlant = "http://192.168.1.124/android/php/insertplant.php";
+    public static String getUrlSite ="http://192.168.1.124/android/php/selectspinnersite.php";
+    private String urlselectPlant = "http://192.168.1.124/android/php/selectplant.php";
+    private String[] columnPlantString = new String[]{"no","pdate","cid","yield","crop","area","mid","name","sno","lat","lon"};
+
+
+    public String[] getColumnPlantString() {
+        return columnPlantString;
+    }
+    public String getUrlselectPlant() {
+        return urlselectPlant;
+    }
+    public String getUrladdPlant() {
+        return urladdPlant;
+    }
+
     //กิจกรรม
     private String urlAddPlantPicture = " http://192.168.1.124/android/php/insertactivity.php";
+
 
     //drawerLayout
     private int[] iconInts = new int[]{

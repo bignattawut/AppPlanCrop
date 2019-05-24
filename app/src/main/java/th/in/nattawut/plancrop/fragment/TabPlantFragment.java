@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.tuann.floatingactionbuttonexpandable.FloatingActionButtonExpandable;
+
 import th.in.nattawut.plancrop.R;
 
 public class TabPlantFragment extends Fragment {
@@ -22,20 +24,36 @@ public class TabPlantFragment extends Fragment {
         addPlant();
     }
 
+
     private void addPlant() {
-       floatingActionButton = getView().findViewById(R.id.plantAdd);
-       floatingActionButton.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               getActivity()
-                       .getSupportFragmentManager()
-                       .beginTransaction()
-                       .replace(R.id.contentHomeFragment, new PlantFragment())
-                       .addToBackStack(null)
-                       .commit();
-           }
-       });
+        FloatingActionButtonExpandable floatingActionButtonPlant = getView().findViewById(R.id.floatingActionButtonPlant);
+        floatingActionButtonPlant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentHomeFragment, new PlantFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
     }
+
+//    private void addPlant() {
+//       floatingActionButton = getView().findViewById(R.id.plantAdd);
+//       floatingActionButton.setOnClickListener(new View.OnClickListener() {
+//           @Override
+//           public void onClick(View v) {
+//               getActivity()
+//                       .getSupportFragmentManager()
+//                       .beginTransaction()
+//                       .replace(R.id.contentHomeFragment, new PlantFragment())
+//                       .addToBackStack(null)
+//                       .commit();
+//           }
+//       });
+//    }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

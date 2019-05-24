@@ -5,20 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--TabLayout--><android.support.design.widget.TabLayout
-        android:id="@+id/tabLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:pointerIcon="zoom_out"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <!--&lt;!&ndash;TabLayout&ndash;&gt;<android.support.design.widget.TabLayout-->
+        <!--android:id="@+id/tabLayout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@color/colorPrimary"-->
+        <!--android:pointerIcon="zoom_out"-->
+        <!--android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />-->
 
 
-    <!--View Pager-->
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <!--&lt;!&ndash;View Pager&ndash;&gt;-->
+    <!--<android.support.v4.view.ViewPager-->
+        <!--android:id="@+id/viewPager"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent" />-->
 
     <!--<android.support.design.widget.TabLayout
         android:id="@+id/tabLayout"
@@ -60,5 +60,25 @@
         <!--android:id="@+id/viewPager"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent" />-->
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            app:tabMode="fixed"
+            app:tabGravity="fill"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </LinearLayout>

@@ -5,14 +5,22 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+
+import com.tuann.floatingactionbuttonexpandable.FloatingActionButtonExpandable;
 
 import th.in.nattawut.plancrop.R;
 
 public class TabPlanFragment extends Fragment {
 
+    ImageView imageView;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -23,8 +31,8 @@ public class TabPlanFragment extends Fragment {
     }
 
     private void addPlan() {
-        FloatingActionButton floatingActionButton = getView().findViewById(R.id.floatingActionButton2);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButtonExpandable floatingActionButtonPlan = getView().findViewById(R.id.floatingActionButtonPlan);
+        floatingActionButtonPlan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getActivity()
@@ -36,6 +44,33 @@ public class TabPlanFragment extends Fragment {
             }
         });
     }
+
+
+
+//    private void addPlan() {
+//        FloatingActionButton floatingActionButton = getView().findViewById(R.id.floatingActionButton2);
+//        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                /*getActivity()
+//                        .getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .add(R.id.contentHomeFragment, new PlanFragment())
+//                        .addToBackStack(null)
+//                        .commit();*/
+//
+//
+//                PlanFragment planFragment = new PlanFragment();
+//                FragmentTransaction transaction = getActivity()
+//                        .getSupportFragmentManager()
+//                        .beginTransaction();
+//                transaction.replace(R.id.contentHomeFragment,planFragment);
+//                transaction.addToBackStack(null);
+//                transaction.commit();
+//
+//            }
+//        });
+//    }
 
     @Nullable
     @Override

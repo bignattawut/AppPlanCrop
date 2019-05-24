@@ -4,7 +4,8 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "th.in.nattawut.plancrop"
-        minSdkVersion 15
+        minSdkVersion 21
+        ///minSdkVersion 15 ก่อนจะติดตั้งfloatingbuttom24/5/62
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -42,6 +43,10 @@ dependencies {
     //text
     implementation 'com.tomer:fadingtextview:2.5'
     implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation 'com.github.imtuann:FloatingActionButtonExpandable:1.1.2'//ลองรับsdkversion 21 ขึ้นไป
+
+
+
 }
 
 apply plugin: 'com.google.gms.google-services'

@@ -23,10 +23,9 @@
         android:src="@drawable/ic_action_camera"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.985" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView"
@@ -37,14 +36,15 @@
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="120dp"
         android:fontFamily="casual"
         android:text="กรุณาบันทึกกิจกรรมเพาะปลูก"
-        android:textSize="18dp"
         android:textColor="@color/colorba"
+        android:textSize="18dp"
         android:textStyle="italic|bold"
         app:layout_constraintBottom_toTopOf="@+id/floatingActionButton3"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent" />
 
 
@@ -57,12 +57,16 @@
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="148dp"
         android:src="@drawable/ic_action_add"
+        android:tint="@color/colorWhite"
         app:backgroundTint="@color/colorGreen"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
+
+
 
 </android.support.constraint.ConstraintLayout>

@@ -20,6 +20,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url 'https://jitpack.io' }///ติดตั้งcom.github.imtuann:FloatingActionButtonExpandable:1.1.2 24/5/62
     }
 }
 

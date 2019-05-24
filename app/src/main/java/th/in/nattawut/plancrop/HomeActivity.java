@@ -174,7 +174,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         .commit();
                 break;
             case R.id.munu_Plant:
-                setTitle("แปลงเพาะปลูก");
+                setTitle("เพาะปลูก");
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.contentHomeFragment, new PlantFragment())
@@ -246,7 +246,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.manu_option,menu);
-        menuInflater.inflate(R.menu.menu_google,menu);
         return true;
     }
 

@@ -15,6 +15,10 @@
     <string name="admin">ผู้ดูแลระบบ</string>
     <string name="Agriculture">ข้อมูลเกษตรกร</string>
     <string name="register">ข้อมูล สมาชิก</string>
+    <string name="app_name1">Bottom Navigation</string>
+    <string name="title_Plan">วางแผน</string>
+    <string name="title_Plant">เพาะปลูก</string>
+    <string name="title_PlanPicture">บันทึกกิจกรรม</string>
 
     <string-array name="spinner">
         <item>a</item>
@@ -22,7 +26,9 @@
     </string-array>
 
     <string-array name="text">
-        <item>กรุณาวางแผนเพาะปลูก</item>
-        <item>กรุณาวางแผนเพาะปลูก</item>
+        <item name="android:textStyle">bold</item>
     </string-array>
+
+
+
 </resources>

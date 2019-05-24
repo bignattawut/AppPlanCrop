@@ -6,11 +6,12 @@
     <color name="colorGreen">#61d800</color>
     <color name="colorblack">#000000</color>
     <color name="colorba">#cccccc</color>
-    <color name="colorWhite">#ffffff</color>
+    <color name="colorWhite">#FFFFFF</color>
     <color name="colorlightGreen">#3c989e</color>
     <color name="colorCyan">#00FFFF</color>
     <color name="colorBlueViolet">#8A2BE2</color>
     <color name="colorCyan1">#00bcd4</color>
+    <color name="light_green">#b2d7d2</color>
 
 
 
@@ -22,8 +23,11 @@
     <color name="darkblue">#23283a</color>
     <color name="testcolorblue">#152b38</color>
     <color name="pink">#fe104d</color>
-
     <color name="black_overlay">#66000000</color>
+    <color name="colorPri">#2FAEB6</color>
+    <color name="colorBlue">#FF009EFD</color>
+
+
 
 </resources>
 
