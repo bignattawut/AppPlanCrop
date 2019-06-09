@@ -21,6 +21,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import th.in.nattawut.plancrop.AdminActivity;
 import th.in.nattawut.plancrop.HomeActivity;
 import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.AddlLogin;
@@ -54,30 +55,31 @@ public class MainFragment extends Fragment{
 
                 String userString = username.getText().toString().trim();
                 String passwordString = password.getText().toString().trim();
+                MyAlert myAlert = new MyAlert(getActivity());
 
 
                 if (userString.isEmpty() || passwordString.isEmpty()) {
-
-                    MyAlert myAlert = new MyAlert(getActivity());
                     myAlert.onrmaIDialog("สวัสดี", "กรุณากรอกชื่อผู้ใช้หรือรหัสผ่าน");
                 }else {
 
                     try {
+                        Myconstant myconstant = new Myconstant();
                         AddlLogin addlLogin = new AddlLogin(getActivity());
-                        addlLogin.execute(userString,passwordString);
+                        addlLogin.execute(userString, myconstant.getUrlGetUser());
                         String jsonString = addlLogin.get();
                         Log.d("1/may", "JSON ==>" + jsonString);
 
+
                         if (jsonString.equals("null")) {
-                            MyAlert myAlert = new MyAlert(getActivity());
-                            myAlert.onrmaIDialog("กรุณากรอกข้อมูล", "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
+                            myAlert.onrmaIDialog("ชื่อผู้ใช้งานไม่ถูกต้อง", "ไม่มี " + userString + "ชื่อผู้ใช้นี้");
                         } else {
                             JSONArray jsonArray = new JSONArray(jsonString);
                             JSONObject jsonObject = jsonArray.getJSONObject(0);
 
                             if (passwordString.equals(jsonObject.getString("pwd"))) {
                                 Toast.makeText(getActivity(), "Welcome " + jsonObject.getString("Name"), Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getActivity(),HomeActivity.class);
+
+                                Intent intent = new Intent(getActivity(), HomeActivity.class);
                                 String nameuser = null, miduser = null;
                                 nameuser = jsonObject.getString("Name");
                                 miduser = jsonObject.getString("MID");
@@ -86,12 +88,14 @@ public class MainFragment extends Fragment{
                                 startActivity(intent);
                                 getActivity().finish();
                             }else {
-                                MyAlert myAlert = new MyAlert(getActivity());
                                 myAlert.onrmaIDialog("รหัสผ่าน", "รหัสผ่านไม่ถูกต้อง");
                             }
+
                         }
 
-                    } catch (Exception e) {
+
+
+                } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
@@ -119,7 +123,51 @@ public class MainFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.frm_login, container, false);
+        View view = inflater.inflate(R.layout.frm_login1, container, false);
         return view;
     }
 }
+//}else {
+//        Myconstant myconstant = new Myconstant();
+//        Boolean b = true;
+//        String truePass = null, nameuser = null, miduser = null;
+//        MyAlert myAlert = new MyAlert(getActivity());
+//
+//        try {
+//        GetData getData = new GetData(getActivity());
+//        getData.execute(myconstant.getUrlGetUser());
+//
+//        String jsonString = getData.get();
+//        Log.d("1/Jan", "JSON ==>" + jsonString);
+//
+//        JSONArray jsonArray = new JSONArray(jsonString);
+//        for (int i = 0; i < jsonArray.length(); i += 1) {
+//        JSONObject jsonObject = jsonArray.getJSONObject(i);
+//
+//        if (userString.equals(jsonObject.getString("UserID"))) {
+//        b = false;
+//        truePass = jsonObject.getString("PWD");
+//        nameuser = jsonObject.getString("Name");
+//        miduser = jsonObject.getString("MID");
+//        }
+//        }
+//        if (b) {
+//        myAlert.onrmaIDialog("กรุณากรอกข้อมูล", "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
+//        } else if (passwordString.equals(truePass)) {
+//        Toast.makeText(getActivity(), "ยินดีต้อนรับ" + nameuser, Toast.LENGTH_LONG).show();
+//
+//        //Intent to HomeActivity
+//        Intent intent = new Intent(getActivity(),HomeActivity.class);
+//        intent.putExtra("Name",nameuser);
+//        intent.putExtra("MID",miduser);
+//        startActivity(intent);
+//        getActivity().finish();
+//
+//                        /*getActivity().getSupportFragmentManager()
+//                                .beginTransaction()
+//                                .replace(R.id.contentMainFragment, new HomeFragment())
+//                                .commit();*/
+//
+//        } else {
+//        myAlert.onrmaIDialog("รหัสไม่ถูกต้อง", "กรุณากรอกรหัสผ่านใหม่");
+//        }

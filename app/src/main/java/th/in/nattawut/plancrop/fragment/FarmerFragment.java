@@ -348,12 +348,12 @@ public class FarmerFragment extends Fragment {
                     getActivity().getSupportFragmentManager().popBackStack();
                 } else {
                     Toast.makeText(getActivity(), "ลงทะเบียนเกษตรกรเรียบร้อย", Toast.LENGTH_LONG).show();
-                    /*getActivity()
+                    getActivity()
                             .getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.contentMainFragment, new MainFragment())
+                            .replace(R.id.contentHomeFragment, new FarmerViewFragment())
                             .addToBackStack(null)
-                            .commit();*/
+                            .commit();
                 }
             } catch (Exception e) {
                 e.printStackTrace();

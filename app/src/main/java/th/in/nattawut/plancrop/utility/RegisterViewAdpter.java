@@ -57,7 +57,7 @@ public class RegisterViewAdpter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = layoutInflater.inflate(R.layout.frm_register_view1,parent,false);
+        View view = layoutInflater.inflate(R.layout.frm_register_view,parent,false);
 
         TextView username = view.findViewById(R.id.textUsername);
         TextView password = view.findViewById(R.id.textPassword);

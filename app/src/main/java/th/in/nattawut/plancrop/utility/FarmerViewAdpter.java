@@ -50,15 +50,11 @@ public class FarmerViewAdpter extends BaseAdapter {
         View view = layoutInflater.inflate(R.layout.frm_farmer_view,parent,false);
 
         TextView name = view.findViewById(R.id.textNamef);
-        //TextView vid = view.findViewById(R.id.textVidf);
         TextView phon = view.findViewById(R.id.textPhonef);
-        //TextView email = view.findViewById(R.id.textemailf);
 
 
         name.setText(nameString[position]);
-        //vid.setText(vidString[position]);
         phon.setText(phonString[position]);
-        //email.setText(emailString[position]);
 
         return view;
     }

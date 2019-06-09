@@ -44,65 +44,8 @@
             app:fab_icon="@drawable/ic_control_point_black_24dp">
 
         </com.tuann.floatingactionbuttonexpandable.FloatingActionButtonExpandable>
-
     </LinearLayout>
 
-    <!--<ImageView-->
-        <!--android:id="@+id/imageView1"-->
-        <!--android:layout_width="153dp"-->
-        <!--android:layout_height="147dp"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:layout_marginStart="8dp"-->
-        <!--android:layout_marginLeft="8dp"-->
-        <!--android:layout_marginTop="8dp"-->
-        <!--android:layout_marginEnd="8dp"-->
-        <!--android:layout_marginRight="8dp"-->
-        <!--android:layout_marginBottom="8dp"-->
-        <!--android:contentDescription="TODO"-->
-        <!--android:src="@drawable/ic_action_tabplan"-->
-        <!--app:layout_constraintBottom_toTopOf="@+id/textView2"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintHorizontal_bias="0.502"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent"-->
-        <!--app:layout_constraintVertical_bias="0.982" />-->
 
-    <!--<TextView-->
-        <!--android:id="@+id/textView2"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:layout_marginStart="8dp"-->
-        <!--android:layout_marginLeft="8dp"-->
-        <!--android:layout_marginEnd="8dp"-->
-        <!--android:layout_marginRight="8dp"-->
-        <!--android:layout_marginBottom="120dp"-->
-        <!--android:fontFamily="casual"-->
-        <!--android:text="กรุณาวางแผนเพาะปลูกพืชปลอดสาร"-->
-        <!--android:textColor="@color/colorba"-->
-        <!--android:textSize="18dp"-->
-        <!--android:textStyle="italic|bold"-->
-        <!--app:layout_constraintBottom_toTopOf="@+id/floatingActionButton2"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent" />-->
-
-    <!--<android.support.design.widget.FloatingActionButton-->
-        <!--android:id="@+id/floatingActionButton2"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="bottom|center"-->
-        <!--android:layout_marginStart="8dp"-->
-        <!--android:layout_marginLeft="8dp"-->
-        <!--android:layout_marginEnd="8dp"-->
-        <!--android:layout_marginRight="8dp"-->
-        <!--android:layout_marginBottom="148dp"-->
-        <!--android:src="@drawable/ic_action_add"-->
-        <!--app:backgroundTint="@color/colorCyan1"-->
-        <!--app:fabSize="normal"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent" />-->
 
 </RelativeLayout>

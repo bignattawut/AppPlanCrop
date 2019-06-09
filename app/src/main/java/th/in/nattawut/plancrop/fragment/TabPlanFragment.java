@@ -35,12 +35,13 @@ public class TabPlanFragment extends Fragment {
         floatingActionButtonPlan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity()
-                        .getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new PlanFragment())
-                        .addToBackStack(null)
-                        .commit();
+
+//                getActivity()
+//                        .getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .replace(R.id.contentHomeFragment, new PlanFragment())
+//                        .addToBackStack(null)
+//                        .commit();
             }
         });
     }

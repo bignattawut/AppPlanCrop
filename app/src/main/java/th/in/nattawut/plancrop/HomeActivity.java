@@ -1,14 +1,11 @@
 package th.in.nattawut.plancrop;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -18,31 +15,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import th.in.nattawut.plancrop.fragment.CropFragment;
-import th.in.nattawut.plancrop.fragment.CropTypeFragment;
-import th.in.nattawut.plancrop.fragment.CropTypeViewFragment;
-import th.in.nattawut.plancrop.fragment.CropViewFragment;
-import th.in.nattawut.plancrop.fragment.HomeFragment;
 import th.in.nattawut.plancrop.fragment.MainPlanFragment;
 import th.in.nattawut.plancrop.fragment.PlanFragment;
-import th.in.nattawut.plancrop.fragment.PlanViewFragment;
 import th.in.nattawut.plancrop.fragment.PlantFragment;
 //import th.in.nattawut.plancrop.fragment.PlantPicture;
 import th.in.nattawut.plancrop.fragment.AdminFrament;
 import th.in.nattawut.plancrop.fragment.PlantPictureFragment;
-import th.in.nattawut.plancrop.fragment.RegisterFragment;
 import th.in.nattawut.plancrop.fragment.RegisterViewFragment;
-import th.in.nattawut.plancrop.fragment.SiteFragment;
-import th.in.nattawut.plancrop.utility.DrawerAdapter;
-import th.in.nattawut.plancrop.utility.MyAlert;
-import th.in.nattawut.plancrop.utility.Myconstant;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -68,9 +48,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         ////navigationView
         Toolbar toolbar = findViewById(R.id.toolbarHone);
+        //toolbar.setNavigationIcon(R.drawable.ic_action_camera);
         setSupportActionBar(toolbar);
 
         drawerLayout = findViewById(R.id.drawerLayout);
+
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         //nameString = getIntent().getStringExtra("Name");
@@ -181,14 +163,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         .addToBackStack(null)
                         .commit();
                 break;
-            case R.id.munu_PlanView:
-                setTitle("ปฏิทินการวางแผนเพาะปลูก");
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new PlanViewFragment())
-                        .addToBackStack(null)
-                        .commit();
-                break;
+//            case R.id.munu_PlanView:
+//                setTitle("ปฏิทินการวางแผนเพาะปลูก");
+//                getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .replace(R.id.contentHomeFragment, new PlanViewFragment())
+//                        .addToBackStack(null)
+//                        .commit();
+//                break;
             case R.id.munu_PlantPicture:
                 setTitle("บันทึกการเพาะปลูก");
                 getSupportFragmentManager()
@@ -245,6 +227,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
+        //menuInflater.inflate(R.menu.menu_google,menu);
         menuInflater.inflate(R.menu.manu_option,menu);
         return true;
     }
@@ -252,6 +235,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+//            case R.id.itemlinkUrl:
+//                Intent intent = new Intent(Intent.ACTION_VIEW);
+////                intent.setData(Uri.parse("https://www.moc.go.th/index.php/rice-iframe-4.html"));
+////                startActivity(intent);
+////                finish();
             case R.id.exit:
                 Intent intent = new Intent(getApplication(),MainActivity.class);
                 startActivity(intent);

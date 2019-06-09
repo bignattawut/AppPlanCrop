@@ -2,7 +2,6 @@ package th.in.nattawut.plancrop.fragment;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.StrictMode;
@@ -19,7 +18,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -34,14 +32,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import th.in.nattawut.plancrop.HomeActivity;
-import th.in.nattawut.plancrop.MainActivity;
 import th.in.nattawut.plancrop.R;
-import th.in.nattawut.plancrop.utility.CropTypeViewAapter;
 import th.in.nattawut.plancrop.utility.CropViewAdpter;
 import th.in.nattawut.plancrop.utility.DeleteCrop;
-import th.in.nattawut.plancrop.utility.DeleteCropType;
 import th.in.nattawut.plancrop.utility.EditCrop;
-import th.in.nattawut.plancrop.utility.EditCropType;
 import th.in.nattawut.plancrop.utility.GetData;
 import th.in.nattawut.plancrop.utility.MyAlert;
 import th.in.nattawut.plancrop.utility.Myconstant;
@@ -352,7 +346,7 @@ public class CropViewFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if (item.getItemId() == R.id.itemupload) {
+        if (item.getItemId() == R.id.itemlinkUrl) {
             item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {

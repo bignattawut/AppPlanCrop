@@ -51,8 +51,8 @@ public class PlantFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        //Create Toolbal
-        createToolbal();
+//        //Create Toolbal
+//        createToolbal();
 
         //PlanFarmerSpinner
         cropSpinner();
@@ -229,21 +229,21 @@ public class PlantFragment extends Fragment {
         }
     }
 
-    private void createToolbal() {
-        Toolbar toolbar = getView().findViewById(R.id.toolbarPlant);
-        ((HomeActivity)getActivity()).setSupportActionBar(toolbar);
-
-        ((HomeActivity)getActivity()).getSupportActionBar().setTitle("แปลงเพาะปลูก");
-        ((HomeActivity)getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
-        ((HomeActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().getSupportFragmentManager().popBackStack();
-            }
-        });
-    }
+//    private void createToolbal() {
+//        Toolbar toolbar = getView().findViewById(R.id.toolbarPlant);
+//        ((HomeActivity)getActivity()).setSupportActionBar(toolbar);
+//
+//        ((HomeActivity)getActivity()).getSupportActionBar().setTitle("แปลงเพาะปลูก");
+//        ((HomeActivity)getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
+//        ((HomeActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//
+//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                getActivity().getSupportFragmentManager().popBackStack();
+//            }
+//        });
+//    }
 
 
 

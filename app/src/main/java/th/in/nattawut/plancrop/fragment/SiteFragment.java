@@ -1,105 +1,175 @@
 package th.in.nattawut.plancrop.fragment;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
-import android.location.Criteria;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.Build;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.SimpleAdapter;
+import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
+
+import com.squareup.okhttp.FormEncodingBuilder;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.Response;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import th.in.nattawut.plancrop.R;
-import th.in.nattawut.plancrop.utility.GetData;
 import th.in.nattawut.plancrop.utility.Myconstant;
 
 
+public class SiteFragment extends Fragment implements LocationListener {
 
-public class SiteFragment extends Fragment {
+    protected LocationManager locationManager;
+    protected LocationListener locationListener;
+    TextView txtLat;
+    TextView txtLong;
 
-    private LocationManager locationManager;  //1
-    private Criteria criteria;//2
-    private double latDouble, longDouble;
+    private ArrayList<String> arrProvince = new ArrayList<>();
+    private ArrayList<String> arrProvinceID = new ArrayList<>();
 
-    @SuppressLint("ServiceCast")
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    @Override
+    private ArrayAdapter<String> adpProvince,adpAmphur,adpSid;
+    private Spinner spProvince,spAmphur, spDistrice;
+
+
+    @SuppressLint("MissingPermission")
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        //vidSpinner
-        vidSpinner();
+
+        //setUpTexeShowMid
+        setUpTexeShowMid();
+
+        txtLat = getView().findViewById(R.id.txtLat);
+        txtLong = getView().findViewById(R.id.txtLong);
+
+        locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+
+        //จังหวัด
+        spProvince = getView().findViewById(R.id.vidSiteSpinner);
+        adpProvince = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, arrProvince);
+        spProvince.setAdapter(adpProvince);
 
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        new  DataPronvince().execute();
+    }
+    public class DataPronvince extends AsyncTask<String,Void,String> {
 
-    private void vidSpinner(){
-        if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
+        String result;
+        ArrayList<String> listprovice;
+        ArrayList<String> listprovinceid;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            listprovice = new ArrayList<>();
+            listprovinceid = new ArrayList<>();
         }
-        final Spinner spin = getView().findViewById(R.id.vidSiteSpinner);
-        try {
-            GetData getData = new GetData(getActivity());
-            getData.execute(Myconstant.getUrlAmphur);
 
-            String jsonString = getData.get();
-            Log.d("5/Jan VidSite", "JSON ==>" + jsonString);
-            JSONArray data = new JSONArray(jsonString);
+        @Override
+        protected String doInBackground(String... strings) {
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .url(Myconstant.getUrlProvince)
+                    .build();
 
-            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
-            HashMap<String, String> map;
+            try {
+                Response response = client.newCall(request)
+                        .execute();
 
-            for(int i = 0; i < data.length(); i++){
-                JSONObject c = data.getJSONObject(i);
+                result = response.body().string();
 
-                map = new HashMap<String, String>();
-                map.put("vid", c.getString("vid"));
-                map.put("thai", c.getString("thai"));
-                MyArrList.add(map);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            SimpleAdapter sAdap;
-            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_vidsite,
-                    new String[] {"vid", "thai"}, new int[] {R.id.textVidSite, R.id.textVidSiteName});
-            spin.setAdapter(sAdap);
-            spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-                public void onItemSelected(AdapterView<?> arg0, View selectedItemView, int position, long id) {
-                    //String sCustomerID = MyArrList.get(position).get("TID").toString();
-                    //String sName = MyArrList.get(position).get("croptype").toString();
+            try {
+                JSONArray jsonArray = new JSONArray(result);
+                JSONObject jsonObject = null;
+
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    jsonObject = jsonArray.getJSONObject(i);
+                    listprovice.add(jsonObject.getString("thai"));
+                    listprovinceid.add(jsonObject.getString("pid"));
                 }
-                public void onNothingSelected(AdapterView<?> arg0) {
 
-                }
-            });
-
-        } catch (Exception e) {
-            e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return result;
         }
 
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            arrProvince.addAll(listprovice);
+            arrProvinceID.addAll(listprovinceid);
+            adpProvince.notifyDataSetChanged();
+        }
     }
+
+    private void setUpTexeShowMid(){
+        TextView siteMidName = getView().findViewById(R.id.siteMidName);
+        TextView siteMid = getView().findViewById(R.id.siteMid);
+
+        String strTextShow = getActivity().getIntent().getExtras().getString("Name");
+        siteMidName.setText(strTextShow);
+
+        String strTextShowmid = getActivity().getIntent().getExtras().getString("MID");
+        siteMid.setText(strTextShowmid);
+
+    }
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frm_site, container,false);
         return view;
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        txtLat.setText("" + location.getLatitude());
+        txtLong.setText("" + location.getLongitude());
+
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
     }
 }

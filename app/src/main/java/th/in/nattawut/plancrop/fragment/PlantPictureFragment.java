@@ -1,17 +1,13 @@
 package th.in.nattawut.plancrop.fragment;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
@@ -23,26 +19,26 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.SimpleAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Random;
 
-import it.sauronsoftware.ftp4j.FTPClient;
-import it.sauronsoftware.ftp4j.FTPDataTransferListener;
-import th.in.nattawut.plancrop.HomeActivity;
 import th.in.nattawut.plancrop.R;
-import th.in.nattawut.plancrop.utility.AddPictute;
 import th.in.nattawut.plancrop.utility.AddPlantPictuteUpload;
 import th.in.nattawut.plancrop.utility.GetData;
 import th.in.nattawut.plancrop.utility.MyAlert;
@@ -65,7 +61,7 @@ public class PlantPictureFragment extends Fragment {
     ////////
     private static final String[] Camara = {"เลือกรูปจากคลัง","ถ่ายรูป"};
 
-    public static final String UPLOAD_URL = "http://192.168.1.124/android/php/upload.php";
+    public static final String UPLOAD_URL = "http://192.168.1.113/android/php/upload.php";
     public static final String UPLOAD_KEY = "URL";
     private int PICK_IMAGE_REQUEST = 1;
 
@@ -105,7 +101,6 @@ public class PlantPictureFragment extends Fragment {
         imageView = getView().findViewById(R.id.imagePhoto);
 
     }
-
     private void uploadimage(){
         buttonChoose = getView().findViewById(R.id.imvGallery);
         buttonUpload = getView().findViewById(R.id.btnUpload);
@@ -132,7 +127,6 @@ public class PlantPictureFragment extends Fragment {
             }
         });
     }
-
 
     private void showFileChooser() {
         Intent intent = new Intent();
@@ -233,26 +227,25 @@ public class PlantPictureFragment extends Fragment {
         });
     }
 
+
     private void uploadValueToServer() {
-        //ImageView imageViewimagePhoto = getView().findViewById(R.id.imagePhoto);
-        EditText imageViewimagePhoto = getView().findViewById(R.id.e);
+        EditText edtNo = getView().findViewById(R.id.edtNo);
         TextView textmyDate = getView().findViewById(R.id.textViewDatePicture);
         EditText edtDescription = getView().findViewById(R.id.edtDescription);
 
-        //String ImagePhotoString = imageViewimagePhoto.toString().trim();
-        String ImagePhotoString = imageViewimagePhoto.getText().toString().trim();
+        String NoString = edtNo.getText().toString().trim();
         String DatepictureString = textmyDate.getText().toString().trim();
         String DescriptionString = edtDescription.getText().toString().trim();
 
 
-        if (ImagePhotoString.isEmpty() || DatepictureString.isEmpty() || DescriptionString.isEmpty()) {
+        if (NoString.isEmpty() || DatepictureString.isEmpty() || DescriptionString.isEmpty()) {
             MyAlert myAlert = new MyAlert(getActivity());
             myAlert.onrmaIDialog("สวัสดี", "กรุณากรอกข้อมูล");
         } else {
             try {
                 Myconstant myconstant = new Myconstant();
                 AddPlantPictuteUpload addPlantPictuteUpload = new AddPlantPictuteUpload(getActivity());
-                addPlantPictuteUpload.execute(ImagePhotoString,DatepictureString,DescriptionString,
+                addPlantPictuteUpload.execute(NoString,DatepictureString,DescriptionString,
                         myconstant.getUrlAddPlantPicture());
 
                 String result = addPlantPictuteUpload.get();

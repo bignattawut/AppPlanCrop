@@ -28,6 +28,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.tuann.floatingactionbuttonexpandable.FloatingActionButtonExpandable;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -68,7 +70,7 @@ public class PlanViewFragment extends Fragment {
     }
 
     private void planViewController() {
-        FloatingActionButton floatingActionButton = getView().findViewById(R.id.floatingActionButton);
+        FloatingActionButtonExpandable floatingActionButton = getView().findViewById(R.id.floatingActionButtonViewPlan);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -316,7 +318,6 @@ public class PlanViewFragment extends Fragment {
                 String newEditTextMidPlan = EditTextMidPlan.getText().toString();
                 String newEditPlanCropSpinner = EditPlanCropSpinner.getText().toString();
                 String newEditMyDate = EditMyDate.getText().toString();
-
 
                 String newEditArea = Float.toString(Float.parseFloat(EditAddPlan1.getText().toString().trim())
                         +(Float.parseFloat(EditAddPlan2.getText().toString().trim()) *100

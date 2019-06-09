@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,6 +26,7 @@ import th.in.nattawut.plancrop.R;
 
 public class HomeFragment extends Fragment {
 
+    TextView scrollingText;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -35,68 +37,18 @@ public class HomeFragment extends Fragment {
 
         //createToolbar();
 
-        TextView textView = getView().findViewById(R.id.textLogin);
-        Animation animation = AnimationUtils.loadAnimation(getActivity(),R.anim.translate);
-        textView.startAnimation(animation);
+//        TextView textView = getView().findViewById(R.id.textLogin);
+//        Animation animation = AnimationUtils.loadAnimation(getActivity(),R.anim.translate);
+//        textView.startAnimation(animation);
+
+        scrollingText = getView().findViewById(R.id.textLogin);
+        scrollingText.setSelected(true);
+
 
     }
-    /*
-        @Override
-        public boolean onOptionsItemSelected(MenuItem item) {
-
-            if (item.getItemId() == R.id.itemlogin) {
-                item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        getActivity()
-                                .getSupportFragmentManager()
-                                .beginTransaction()
-                                .replace(R.id.contentMainFragment, new MainFragment())
-                                .addToBackStack(null)
-                                .commit();
-                        return false;
-                    }
-                });
-
-                return true;
-            }
-            return super.onOptionsItemSelected(item);
-        }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-
-        inflater.inflate(R.menu.menu_login, menu);
-    }
-        private void createToolbar() {
-            Toolbar toolbar = getView().findViewById(R.id.toolbarmain);
-            ((MainActivity) getActivity()).setSupportActionBar(toolbar);
-
-            ((MainActivity) getActivity()).getSupportActionBar().setTitle("Plan & เกษตร");
-            //((MainActivity)getActivity()).getSupportActionBar().setSubtitle("ddbdbvd");
-
-            ((MainActivity) getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
-            ((MainActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    getActivity()
-                            .getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.contentMainFragment, new MainFragment())
-                            .addToBackStack(null)
-                            .commit();
-
-                }
-            });
-            setHasOptionsMenu(true);
-
-        }*/
 
     private void registerController() {
-        LinearLayout imageView = getView().findViewById(R.id.ImageView);
+        ImageButton imageView = getView().findViewById(R.id.ImageView);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,7 +65,7 @@ public class HomeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.frm_main, container, false);
+        View view = inflater.inflate(R.layout.frm_main1, container, false);
         return view;
     }
 }

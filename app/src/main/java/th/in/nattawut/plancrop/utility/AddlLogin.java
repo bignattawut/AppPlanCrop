@@ -18,7 +18,7 @@ public class AddlLogin extends AsyncTask<String, Void, String> {
         this.context = context;
     }
 
-    public static final String LOGIN_URL = "http://192.168.1.124/android/php/memberlogin.php";
+    //public static final String LOGIN_URL = "http://192.168.1.113/android/php/memberlogin.php";
 
     @Override
     protected String doInBackground(String... strings) {
@@ -26,11 +26,11 @@ public class AddlLogin extends AsyncTask<String, Void, String> {
             OkHttpClient okHttpClient = new OkHttpClient();
             RequestBody requestBody = new FormEncodingBuilder()
                     .add("username", strings[0])
-                    .add("passwd",strings[1])
+                    //.add("passwd",strings[1])
                     .build();
             Request.Builder builder = new Request.Builder();
-            Request request = builder.url(LOGIN_URL)
-                    //Request request = builder.url(strings[2])
+            //Request request = builder.url(LOGIN_URL)
+                    Request request = builder.url(strings[1])
             //Request request = builder.url("http://192.168.1.110/android/php/memberlogin.php")
                     .post(requestBody).build();
             Response response=okHttpClient.newCall(request).execute();

@@ -19,6 +19,7 @@ public class AdminFrament extends Fragment {
     CardView register;
     CardView crop;
     CardView cropType;
+    CardView Site;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -36,6 +37,8 @@ public class AdminFrament extends Fragment {
         //Farmer Controller
         farmerController();
 
+        //Site Controller
+        siteController();
 
 
     }
@@ -180,11 +183,26 @@ public class AdminFrament extends Fragment {
         });
     }
 
+    private void siteController() {
+        Site = getView().findViewById(R.id.imageViewSite);
+        Site.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentHomeFragment, new SiteFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+    }
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.admin3, container, false);
+        View view = inflater.inflate(R.layout.admin2, container, false);
         return view;
     }
 }

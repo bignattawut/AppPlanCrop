@@ -4,7 +4,7 @@
     <string name="open">Open Drawer</string>
     <string name="close">Close Drawer</string>
 
-    <string name="station1">การเพาะปลูก</string>
+    <string name="station1">พืชเพาะปลูก</string>
     <string name="station2">ผลผลิต</string>
     <string name="station3">แจ้งความต้องการ</string>
     <string name="station4">สถิตการเพาะปลูก</string>
@@ -20,15 +20,11 @@
     <string name="title_Plant">เพาะปลูก</string>
     <string name="title_PlanPicture">บันทึกกิจกรรม</string>
 
+
     <string-array name="spinner">
         <item>a</item>
         <item>b</item>
     </string-array>
-
-    <string-array name="text">
-        <item name="android:textStyle">bold</item>
-    </string-array>
-
 
 
 </resources>

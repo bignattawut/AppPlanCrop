@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--<LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_margin="30dp"
         android:background="@drawable/red_button"
         android:backgroundTint="@color/colorlightGreen"
-        android:orientation="vertical">-->
+        android:orientation="vertical"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -27,7 +27,7 @@
 
     <LinearLayout
         android:layout_margin="40dp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:background="#82ffffff"
@@ -36,7 +36,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:background="@drawable/plan">
+            android:background="@drawable/plancrop">
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="150dp">-->
+        <!--<ImageView-->
+            <!--android:src="@drawable/plancrop"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent" /></LinearLayout>-->
 
         </LinearLayout>
 

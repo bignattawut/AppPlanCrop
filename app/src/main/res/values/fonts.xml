@@ -2,4 +2,8 @@
 <resources>
     <string name="font_fontFamily_medium">sans-serif</string>
     <string name="font_fontFamily_plan">casual</string>
+
+    <string-array name="big">
+        <item name="android:textSize">16dp</item>
+    </string-array>
 </resources>

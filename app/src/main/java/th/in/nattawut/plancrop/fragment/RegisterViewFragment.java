@@ -328,7 +328,7 @@ public class RegisterViewFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if (item.getItemId() == R.id.itemupload) {
+        if (item.getItemId() == R.id.itemlinkUrl) {
             item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {

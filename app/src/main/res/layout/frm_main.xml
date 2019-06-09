@@ -133,32 +133,23 @@
                     android:src="@drawable/plantmain" />
 
 
-            <LinearLayout
-                android:id="@+id/ImageView"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_gravity="center"
-                android:layout_marginRight="5dp"
-                android:background="@drawable/style4"
-                android:orientation="horizontal"
-                android:padding="5dp">
+            <!--<LinearLayout-->
+                <!--android:id="@+id/ImageView"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="55dp"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_marginRight="5dp"-->
+                <!--android:background="@drawable/style4"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:padding="5dp">-->
 
-                <ImageView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/ic_action_ic_action_user" />
-
-                <TextView
+                <ImageButton
+                    android:background="@drawable/buttonedit"
+                    android:src="@drawable/loginplancrop"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="1dp"
-                    android:text="ลงชื่อเข้าใช้"
-                    android:textColor="@color/design_default_color_primary"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                    android:layout_height="match_parent" />
+
+            <!--</LinearLayout>-->
         </LinearLayout>
 
     </LinearLayout>

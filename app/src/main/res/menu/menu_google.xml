@@ -2,10 +2,39 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+    <!--<item-->
+    <!--android:id="@+id/itemupload"-->
+    <!--android:icon="@drawable/ic_action_share"-->
+    <!--android:title="ช่วยเหลือ"-->
+    <!--app:showAsAction="always" />-->
+
     <item
-        app:showAsAction="always"
-        android:icon="@drawable/ic_action_menusearch"
-        android:id="@+id/itemupload"
-        android:title="Upload User"/>
+        android:id="@+id/aaa"
+        android:icon="@drawable/ic_action_share"
+        android:title=""
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:title="ความรู้ด้านเกษตร"
+                app:showAsAction="ifRoom" />
+            <item
+                android:id="@+id/itemlinkUrl"
+                android:icon="@drawable/ic_action_share"
+                android:title="ราคาผักสด"
+                app:showAsAction="ifRoom" />
+            <item
+                android:id="@+id/action_settings"
+                android:icon="@drawable/ic_action_share"
+                android:title="ราคาสินค้าเกษตร"
+                app:showAsAction="ifRoom" />
+            <item
+                android:id="@+id/action_about_us"
+                android:icon="@drawable/ic_action_share"
+                android:title="หนังสือด้านเกษตร"
+                app:showAsAction="ifRoom" />
+        </menu>
+    </item>
+
 
 </menu>

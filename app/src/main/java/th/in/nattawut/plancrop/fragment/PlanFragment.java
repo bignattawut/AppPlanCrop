@@ -57,10 +57,10 @@ public class PlanFragment extends Fragment {
     DatePickerDialog dataPickerDialog;
     Calendar calendar;
 
+    EditText plan1, plan2, plan3;
 
 
-
-   Button button;
+    Button button;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -87,7 +87,8 @@ public class PlanFragment extends Fragment {
         //AddCrop();
 
     }
-    private void setUpTexeShowMid(){
+
+    private void setUpTexeShowMid() {
         TextView texPlanLogin = getView().findViewById(R.id.texPlanLogin);
         TextView texPlanMid = getView().findViewById(R.id.texPlanMid);
 
@@ -116,7 +117,7 @@ public class PlanFragment extends Fragment {
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
 
-            for(int i = 0; i < data.length(); i++){
+            for (int i = 0; i < data.length(); i++) {
                 JSONObject c = data.getJSONObject(i);
 
                 map = new HashMap<String, String>();
@@ -126,13 +127,14 @@ public class PlanFragment extends Fragment {
             }
             SimpleAdapter sAdap;
             sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_plancrop,
-                    new String[] {"cid", "crop"}, new int[] {R.id.textPlanCidSpinner, R.id.textPlanCropSpinner});
+                    new String[]{"cid", "crop"}, new int[]{R.id.textPlanCidSpinner, R.id.textPlanCropSpinner});
             spin.setAdapter(sAdap);
             spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
                 public void onItemSelected(AdapterView<?> arg0, View selectedItemView, int position, long id) {
 
                 }
+
                 public void onNothingSelected(AdapterView<?> arg0) {
 
                 }
@@ -149,7 +151,7 @@ public class PlanFragment extends Fragment {
         selctDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                calendar  = Calendar.getInstance();
+                calendar = Calendar.getInstance();
                 int year = calendar.get(Calendar.YEAR);
                 int month = calendar.get(Calendar.MONTH);
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
@@ -165,7 +167,7 @@ public class PlanFragment extends Fragment {
                                 //DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM,Locale.UK);
 
                             }
-                        },day,month,year);
+                        }, day, month, year);
                 dataPickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
                 dataPickerDialog.show();
             }
@@ -189,18 +191,24 @@ public class PlanFragment extends Fragment {
         TextView textPlanCidSpinner = getView().findViewById(R.id.textPlanCidSpinner);
         TextView textmyDate = getView().findViewById(R.id.myDate);
 
-        EditText plan1 = getView().findViewById(R.id.addplan1);
-        EditText plan2 = getView().findViewById(R.id.addplan2);
-        EditText plan3 = getView().findViewById(R.id.addplan3);
+//        EditText plan1 = getView().findViewById(R.id.addplan1);
+//        EditText plan2 = getView().findViewById(R.id.addplan2);
+//        EditText plan3 = getView().findViewById(R.id.addplan3);
+
+        plan1 = getView().findViewById(R.id.addplan1);
+        plan2 = getView().findViewById(R.id.addplan2);
+        plan3 = getView().findViewById(R.id.addplan3);
 
         String cidmidString = textCidmid.getText().toString().trim();//แปลงค่าText ให้เป็น String , trim ลบค่าที่เว้นวรรคอัตโนวัติ
         String cidNameString = textPlanCidSpinner.getText().toString().trim();
         String myDataString = textmyDate.getText().toString().trim();
 
+//        String editTextString = Float.toString(Float.parseFloat(plan1.getText().toString().trim())
+//                +(Float.parseFloat(plan2.getText().toString().trim())*100+Float.parseFloat(plan3.getText().toString().trim()))/400);
         String editTextString = Float.toString(Float.parseFloat(plan1.getText().toString().trim())
-                +(Float.parseFloat(plan2.getText().toString().trim())*100+Float.parseFloat(plan3.getText().toString().trim()))/400);
+                + (Float.parseFloat(plan2.getText().toString().trim()) * 100 + Float.parseFloat(plan3.getText().toString().trim())) / 400);
 
-        Log.d("are","are ===>" + editTextString);
+        Log.d("are", "are ===>" + editTextString);
 
         if (cidmidString.isEmpty() || myDataString.isEmpty() || cidNameString.isEmpty() || editTextString.isEmpty()) {
             MyAlert myAlert = new MyAlert(getActivity());

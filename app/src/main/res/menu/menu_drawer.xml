@@ -20,11 +20,11 @@
             <item
                 android:id="@+id/munu_Plant"
                 android:icon="@drawable/shovel"
-                android:title="แปลงเพาะปลูก" />
-            <item
-                android:id="@+id/munu_PlanView"
-                android:icon="@drawable/ic_action_date"
-                android:title="ปฏิทินการวางแผนเพาะปลูก" />
+                android:title="เพาะปลูก" />
+            <!--<item-->
+                <!--android:id="@+id/munu_PlanView"-->
+                <!--android:icon="@drawable/ic_action_date"-->
+                <!--android:title="ปฏิทินการวางแผนเพาะปลูก" />-->
             <item
                 android:id="@+id/munu_PlantPicture"
                 android:icon="@drawable/ic_action_drawerpicture"

@@ -51,15 +51,15 @@ public class MainPlanFragment extends Fragment {
 
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    fragment = new TabPlanFragment();
+                    fragment = new PlanViewFragment();
                     loadFragment(fragment);
                     return true;
                 case R.id.navigation_dashboard:
-                    fragment = new TabPlantFragment();
+                    fragment = new PlantViewFragment();
                     loadFragment(fragment);
                     return true;
                 case R.id.navigation_notifications:
-                    fragment = new TabPlantPicFragment();
+                    fragment = new PlantPictureViewFragment();
                     loadFragment(fragment);
                     return true;
             }
