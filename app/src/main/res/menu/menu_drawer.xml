@@ -7,7 +7,7 @@
 
     <item
         android:id="@+id/menu_user"
-        android:icon="@drawable/ic_action_draweruser"
+        android:icon="@drawable/ic_action_planviewuser"
         android:title="ข้อมูลส่วนตัว" />
 
 
@@ -15,16 +15,16 @@
         <menu>
             <item
                 android:id="@+id/menu_plan"
-                android:icon="@drawable/ic_action_drawerplan"
+                android:icon="@drawable/ic_action_tabplan"
                 android:title="วางแผนเพาะปลูก" />
             <item
                 android:id="@+id/munu_Plant"
                 android:icon="@drawable/shovel"
                 android:title="เพาะปลูก" />
             <!--<item-->
-                <!--android:id="@+id/munu_PlanView"-->
-                <!--android:icon="@drawable/ic_action_date"-->
-                <!--android:title="ปฏิทินการวางแผนเพาะปลูก" />-->
+            <!--android:id="@+id/munu_PlanView"-->
+            <!--android:icon="@drawable/ic_action_date"-->
+            <!--android:title="ปฏิทินการวางแผนเพาะปลูก" />-->
             <item
                 android:id="@+id/munu_PlantPicture"
                 android:icon="@drawable/ic_action_drawerpicture"
@@ -36,35 +36,44 @@
         <menu>
             <item
                 android:id="@+id/munu_produce"
-                android:icon="@drawable/harvest"
+                android:icon="@drawable/ic_harvest"
                 android:title="ผลผลิต" />
             <item
                 android:id="@+id/munu_Seeding"
-                android:icon="@drawable/shovel"
+                android:icon="@drawable/tabplant"
+                android:iconTint="@color/yello"
                 android:title="การเพาะปลูก" />
             <item
                 android:id="@+id/menu_want"
-                android:icon="@drawable/ic_action_want"
+                android:icon="@drawable/ic_action_tabplan"
                 android:title="แจ้งความต้องการ" />
             <item
                 android:id="@+id/menu_chart"
-                android:icon="@drawable/chart"
+                android:icon="@drawable/ic_pie_chart"
                 android:title="สถิตการเพาะปลูก" />
         </menu>
     </item>
+
+    <group android:id="@+id/group_menu">
+
+        <item
+            android:icon="@drawable/ic_action_about"
+            android:title="เกี่ยวกับ Plan Crop" />
+        <item
+            android:id="@+id/menu_exit"
+            android:icon="@drawable/ic_action_exit"
+            android:title="ออกจากระบบ" />
+    </group>
 
     <group android:id="@+id/group_admin">
         <item
             android:id="@+id/menu_admin"
             android:icon="@drawable/ic_action_userregister"
             android:title="ผู้ดูแลระบบ" />
-    </group>
-
-    <group android:id="@+id/group_menu">
-    <item
-        android:id="@+id/menu_exit"
-        android:icon="@drawable/ic_action_exit"
-        android:title="ออกจากระบบ" />
+        <item
+            android:id="@+id/menu_member"
+            android:icon="@drawable/ic_action_userregister"
+            android:title="สมาชิก" />
     </group>
 
 </menu>

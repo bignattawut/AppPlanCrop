@@ -47,8 +47,11 @@ public class RegisterFragment extends Fragment {
     private ArrayList<String> arrSid = new ArrayList<>();
     private ArrayList<String> arrSidID = new ArrayList<>();
 
-    private ArrayAdapter<String> adpProvince,adpAmphur,adpSid;
-    private Spinner spProvince,spAmphur, spDistrice;
+    private ArrayList<String> arrVid = new ArrayList<>();
+    private ArrayList<String> arrVidID = new ArrayList<>();
+
+    private ArrayAdapter<String> adpProvince,adpAmphur,adpSid,adpVid;
+    private Spinner spProvince,spAmphur, spSubDistrice,spVillag;
     private int rubIDprovince;
 
     @Override
@@ -71,10 +74,15 @@ public class RegisterFragment extends Fragment {
         adpAmphur = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, arrAmphur);
         spAmphur.setAdapter(adpAmphur);
 
-        //หมู่บ้าน
-        spDistrice = getView().findViewById(R.id.spDistrice);
+        //ตำบล
+        spSubDistrice = getView().findViewById(R.id.spSubDistrice);
         adpSid = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, arrSid);
-        spDistrice.setAdapter(adpSid);
+        spSubDistrice.setAdapter(adpSid);
+
+        //ตำบล
+        spVillag = getView().findViewById(R.id.spVillag);
+        adpVid = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, arrVid);
+        spVillag.setAdapter(adpVid);
 
     }
     @Override
@@ -82,7 +90,8 @@ public class RegisterFragment extends Fragment {
         super.onStart();
         new DataProvince().execute();
         new DataAmphur().execute("1");
-        new DataDistrict().execute("1","1");
+        new DataSubDistrict().execute("1","1");
+        new DataVillag().execute("1","1","1");
     }
 
     public class DataProvince extends AsyncTask<String, Void, String> {
@@ -105,11 +114,14 @@ public class RegisterFragment extends Fragment {
                     .url(Myconstant.getUrlProvince)
                     .build();
 
+
             try {
                 Response response = client.newCall(request)
                         .execute();
 
                 result = response.body().string();
+
+
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -123,6 +135,8 @@ public class RegisterFragment extends Fragment {
                     jsonObject = jsonArray.getJSONObject(i);
                     listprovice.add(jsonObject.getString("thai"));
                     listprovinceid.add(jsonObject.getString("pid"));
+
+                    Log.d("5/Jan getUrlProvince", "JSON ==>" + result);
                 }
 
             } catch (JSONException e) {
@@ -144,7 +158,6 @@ public class RegisterFragment extends Fragment {
                     if (spProvince.getSelectedItem() != null) {
                         new DataAmphur().execute(listprovinceid.get(position));
                         rubIDprovince = Integer.parseInt(listprovinceid.get(position));
-                        arrSid.clear();
                         arrAmphur.clear();
                     }
                 }
@@ -195,6 +208,8 @@ public class RegisterFragment extends Fragment {
                     jsonObject = jsonArray.getJSONObject(i);
                     listamphurid.add(jsonObject.getString("did"));
                     listamphur.add(jsonObject.getString("thai"));
+
+                    Log.d("5/Jan getUrlAmphur", "JSON ==>" + result);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -209,14 +224,16 @@ public class RegisterFragment extends Fragment {
             arrAmphurID.addAll(listamphurid);
             adpAmphur.notifyDataSetChanged();
 
+
             spAmphur.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     if (spAmphur.getSelectedItem() != null) {
-                        new DataDistrict().execute(listamphur.get(position),String.valueOf(rubIDprovince));
-                        //rubIDprovince = Integer.parseInt(listamphur.get(position));
+                        new DataSubDistrict().execute(listamphurid.get(position));//String.valueOf(rubIDprovince)
+                        rubIDprovince = Integer.parseInt(listamphurid.get(position));
                         arrSid.clear();
-
+                        //MyAlert myAlert = new MyAlert(getActivity());
+                       // myAlert.onrmaIDialog("spAmphur","am");
                     }
                 }
 
@@ -225,21 +242,20 @@ public class RegisterFragment extends Fragment {
 
                 }
             });
-           // new DataDistrict().execute(listamphur.get(0),String.valueOf(rubIDprovince));
         }
     }
 
-    private class DataDistrict extends AsyncTask<String, Void, String> {
+    private class DataSubDistrict extends AsyncTask<String, Void, String> {
 
         String result;
-        private ArrayList<String> listavid;
-        private ArrayList<String> listavidid;
+        private ArrayList<String> listSid;
+        private ArrayList<String> listSidId;
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            listavid = new ArrayList<>();
-            listavidid = new ArrayList<>();
+            listSid = new ArrayList<>();
+            listSidId = new ArrayList<>();
 
         }
 
@@ -247,7 +263,6 @@ public class RegisterFragment extends Fragment {
         protected String doInBackground(String... strings) {
             RequestBody requestBody = new FormEncodingBuilder()
                     .add("did", strings[0])
-                    .add("pid",strings[1])
                     .build();
             OkHttpClient okHttpClient = new OkHttpClient();
             Request request = new Request.Builder()
@@ -266,8 +281,10 @@ public class RegisterFragment extends Fragment {
                 JSONObject jsonObject = null;
                 for (int i = 0; i < jsonArray.length(); i++) {
                     jsonObject = jsonArray.getJSONObject(i);
-                    listavidid.add(jsonObject.getString("sid"));
-                    listavid.add(jsonObject.getString("thai"));
+                    listSidId.add(jsonObject.getString("sid"));
+                    listSid.add(jsonObject.getString("thai"));
+
+                    Log.d("5/Jan getUrlSid", "JSON ==>" + result);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -278,9 +295,84 @@ public class RegisterFragment extends Fragment {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            arrSid.addAll(listavid);
-            arrSidID.addAll(listavidid);
+            arrSid.addAll(listSid);
+            arrSidID.addAll(listSidId);
             adpSid.notifyDataSetChanged();
+
+            spSubDistrice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    if (spSubDistrice.getSelectedItem() != null) {
+                        new DataVillag().execute(listSidId.get(position));
+                        rubIDprovince = Integer.parseInt(listSidId.get(position));
+                        arrVid.clear();
+                        //MyAlert myAlert = new MyAlert(getActivity());
+                        //myAlert.onrmaIDialog("spAmphur","am");
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
+        }
+    }
+
+    private class DataVillag extends AsyncTask<String, Void, String> {
+
+        String result;
+        private ArrayList<String> listVid;
+        private ArrayList<String> listVidId;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            listVid = new ArrayList<>();
+            listVidId = new ArrayList<>();
+
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            RequestBody requestBody = new FormEncodingBuilder()
+                    .add("sid", strings[0])
+                    .build();
+            OkHttpClient okHttpClient = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .url(Myconstant.getUrlVid)
+                    .post(requestBody)
+                    .build();
+            try {
+                Response response = okHttpClient.newCall(request).execute();
+                result = response.body().string();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            try {
+                JSONArray jsonArray = new JSONArray(result);
+                JSONObject jsonObject = null;
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    jsonObject = jsonArray.getJSONObject(i);
+                    listVidId.add(jsonObject.getString("vid"));
+                    listVid.add(jsonObject.getString("thai"));
+
+                    Log.d("5/Jan getUrlSid", "JSON ==>" + result);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            arrVid.addAll(listVid);
+            arrVidID.addAll(listVidId);
+            adpVid.notifyDataSetChanged();
 
         }
     }
@@ -317,24 +409,29 @@ public class RegisterFragment extends Fragment {
         EditText id = getView().findViewById(R.id.edtid);
         EditText name = getView().findViewById(R.id.edtname);
         EditText address = getView().findViewById(R.id.edtaddress);
-        EditText phon = getView().findViewById(R.id.edtphone);
-        EditText email = getView().findViewById(R.id.edtemail);
         Spinner province = getView().findViewById(R.id.spProvince);
         Spinner amphur = getView().findViewById(R.id.spAmphur);
+        Spinner subDistrice = getView().findViewById(R.id.spSubDistrice);
+        Spinner villag = getView().findViewById(R.id.spVillag);
+        EditText phon = getView().findViewById(R.id.edtphone);
+        EditText email = getView().findViewById(R.id.edtemail);
+
 
         String userString = username.getText().toString().trim();
         String passwordString = password.getText().toString().trim();
         String nameString = name.getText().toString().trim();
         String idString = id.getText().toString().trim();
         String addressString = address.getText().toString().trim();
-        String phonString = phon.getText().toString().trim();
-        String emailString = email.getText().toString().trim();
         String provinceString = province.getSelectedItem().toString().trim();
         String amphurString = amphur.getSelectedItem().toString().trim();
+        String subDistriceString = subDistrice.getSelectedItem().toString().trim();
+        String villagString = villag.getSelectedItem().toString().trim();
+        String phonString = phon.getText().toString().trim();
+        String emailString = email.getText().toString().trim();
 
 
-        if (userString.isEmpty() || passwordString.isEmpty() || idString.isEmpty() || nameString.isEmpty()  || addressString.isEmpty()  || provinceString.isEmpty() || amphurString.isEmpty() || phonString.isEmpty() || emailString.isEmpty()) {
 
+        if (userString.isEmpty() || passwordString.isEmpty() || idString.isEmpty() || nameString.isEmpty()  || addressString.isEmpty()  || provinceString.isEmpty() || amphurString.isEmpty() || subDistriceString.isEmpty() || villagString.isEmpty() || phonString.isEmpty() || emailString.isEmpty()) {
             MyAlert myAlert = new MyAlert(getActivity());
             myAlert.onrmaIDialog("สวัสดี", "*กรุณากรอกข้อมูลให้ครบ");
         } else {
@@ -345,7 +442,7 @@ public class RegisterFragment extends Fragment {
                 addNewUserUpload.execute(userString, passwordString,  idString,nameString, addressString, phonString, emailString, provinceString, amphurString,
                         myconstant.getUrlRegister());*/
                 AddRegister addFarmer = new AddRegister(getActivity());
-                addFarmer.execute(userString, passwordString, idString, nameString, addressString, provinceString, amphurString, phonString, emailString,
+                addFarmer.execute(userString, passwordString, idString, nameString, addressString, provinceString, amphurString, subDistriceString,villagString, phonString, emailString,
                         myconstant.getUrlRegister());
 
                 String result = addFarmer.get();

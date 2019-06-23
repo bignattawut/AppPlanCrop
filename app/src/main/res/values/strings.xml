@@ -18,13 +18,13 @@
     <string name="app_name1">Bottom Navigation</string>
     <string name="title_Plan">วางแผน</string>
     <string name="title_Plant">เพาะปลูก</string>
-    <string name="title_PlanPicture">บันทึกกิจกรรม</string>
+    <string name="title_PlanPicture">กิจกรรม</string>
 
 
-    <string-array name="spinner">
-        <item>a</item>
-        <item>b</item>
-    </string-array>
-
+    <string name="ales">
+        <item name="android:fontFamily">@font/fonts1</item>
+        <item name="android:text">กรุณากรอกข้อมูล</item>
+        <item name="android:textSize">22dp</item>
+    </string>
 
 </resources>

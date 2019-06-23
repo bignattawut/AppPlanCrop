@@ -11,6 +11,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
         android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:titleTextAppearance="@style/Toolbar.TitleText"
         app:titleTextColor="@color/colorWhite" />
 
     <LinearLayout
@@ -33,8 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:text="พืชเพาะปลูก :"
-                android:textSize="20dp" />
+                android:text="พืชเพาะปลูก :" />
 
             <EditText
                 android:id="@+id/edtCropName"
@@ -42,8 +42,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/style1"
                 android:inputType="text"
-                android:padding="1dp"
-                android:textSize="20dp" />
+                android:padding="1dp" />
 
             <!-- <Spinner
                  android:id="@+id/cropSpinner"
@@ -64,8 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:text="ประเภทพืชเพาะปลูก :"
-                android:textSize="20dp" />
+                android:text="ประเภทพืชเพาะปลูก :" />
 
             <Spinner
                 android:id="@+id/cropTypeSpinner"
@@ -88,8 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:inputType="text"
-                android:text="จำนวนวันที่เก็บเกี่ยว :"
-                android:textSize="20dp" />
+                android:text="จำนวนวันที่เก็บเกี่ยว :" />
 
             <EditText
                 android:id="@+id/edtBeginHarvest"
@@ -98,8 +95,7 @@
                 android:background="@drawable/style1"
                 android:inputType="number"
                 android:maxLength="3"
-                android:padding="10dp"
-                android:textSize="20dp" />
+                android:padding="10dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -115,8 +111,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:inputType="text"
-                android:text="ระยะเวลาที่เก็บเกี่ยว :"
-                android:textSize="20dp" />
+                android:text="ระยะเวลาที่เก็บเกี่ยว :" />
 
             <EditText
                 android:id="@+id/edtHarvestPeriod"
@@ -125,8 +120,7 @@
                 android:background="@drawable/style1"
                 android:inputType="number"
                 android:maxLength="3"
-                android:padding="10dp"
-                android:textSize="20dp" />
+                android:padding="10dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -142,8 +136,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:inputType="text"
-                android:text="ผลผลิตต่อไร่ :"
-                android:textSize="20dp" />
+                android:text="ผลผลิตต่อไร่ :" />
 
             <EditText
                 android:id="@+id/edtYield"
@@ -151,45 +144,32 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/style1"
                 android:inputType="number"
-                android:padding="10dp"
-                android:textSize="20dp" />
+                android:padding="10dp" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="120dp"
-            android:orientation="horizontal">
+           android:gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <Button
                 android:id="@+id/btnCrop"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="12dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginBottom="50dp"
-                android:background="@color/colorlightGreen"
-                android:text="เพิ่ม"
+                android:background="@drawable/button"
+                android:fontFamily="@font/fonts1"
+                android:text="เพิ่มข้อมูล"
                 android:textColor="@color/colorWhite"
-                android:textSize="20dp" />
-
-            <Button
-                android:id="@+id/btnCropView"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="50dp"
-                android:background="@color/colorlightGreen"
-                android:padding="10dp"
-                android:text="แสดงรายการ"
-                android:textColor="@color/colorWhite"
-                android:textSize="20dp" />
-
+                android:textSize="24dp"  />
 
         </LinearLayout>
+
+
     </LinearLayout>
+
+
+
+
 
 
 </LinearLayout>

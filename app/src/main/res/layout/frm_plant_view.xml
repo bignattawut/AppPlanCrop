@@ -45,7 +45,7 @@
                         android:layout_height="wrap_content"
                         android:text="วันที่เพาะปลูก"
                         android:textColor="@color/colorblack"
-                        android:textSize="14dp"
+                        android:textSize="22dp"
                         android:textStyle="bold" />
 
 
@@ -56,7 +56,7 @@
                         android:layout_gravity="right"
                         android:text="pdataString"
                         android:textColor="@color/yello"
-                        android:textSize="14dp"
+                        android:textSize="22dp"
                         android:textStyle="bold" />
                 </TableRow>
 
@@ -73,7 +73,7 @@
                         android:layout_height="wrap_content"
                         android:text="พืชเพาะปลูก"
                         android:textColor="@color/colorblack"
-                        android:textSize="14dp"
+                        android:textSize="22dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -83,7 +83,7 @@
                         android:layout_gravity="right"
                         android:text="cropStrings"
                         android:textColor="@color/yello"
-                        android:textSize="14dp"
+                        android:textSize="22dp"
                         android:textStyle="bold" />
                 </TableRow>
 
@@ -100,7 +100,7 @@
                         android:layout_height="wrap_content"
                         android:text="ผลผลิตเฉลี่ยกิโลกรัมต่อไร่"
                         android:textColor="@color/colorblack"
-                        android:textSize="14dp"
+                        android:textSize="22dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -110,7 +110,7 @@
                         android:layout_gravity="right"
                         android:text="ผลผลิตเฉลี่ยกิโลกรัมต่อไร่"
                         android:textColor="@color/yello"
-                        android:textSize="14dp"
+                        android:textSize="22dp"
                         android:textStyle="bold" />
                 </TableRow>
 
@@ -127,7 +127,7 @@
                         android:layout_height="wrap_content"
                         android:text="เกษตรกร"
                         android:textColor="@color/colorblack"
-                        android:textSize="14dp"
+                        android:textSize="22dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -137,7 +137,7 @@
                         android:layout_gravity="right"
                         android:text="เกษตรกร"
                         android:textColor="@color/yello"
-                        android:textSize="14dp"
+                        android:textSize="22dp"
                         android:textStyle="bold" />
                 </TableRow>
 

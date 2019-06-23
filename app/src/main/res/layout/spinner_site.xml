@@ -22,8 +22,7 @@
         android:id="@+id/textSiteSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="name"
-        android:textSize="20dp" />
+        android:text="name" />
 
 
 </LinearLayout>

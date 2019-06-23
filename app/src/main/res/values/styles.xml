@@ -6,10 +6,40 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textViewStyle">@style/FontsTextView</item>  <!--//ทำให้แอปเป็นfontเดี๋ยวกันทั้งหมด-->
+    </style>
+    
+    <!--//ทำให้แอปเป็นfontเดี๋ยวกันทั้งหมด-->
+    <style name="FontsTextView" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/fonts1</item>
+        <item name="android:textSize">26dp</item>
     </style>
 
     <style name="TabLayoutTextStyle">
-        <item name="android:textSize">16dp</item>
+        <item name="android:textSize">30dp</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <!--textsize toolbar-->
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">26dp</item>
+    </style>
+
+    <!--myAlert-->
+    <style name="AlertDialogTheme"
+        parent="Theme.Design.BottomSheetDialog">
+        <item name="colorAccent">@color/colorlightGreen</item>
+        <item name="android:background">@drawable/styles_alert</item>
+        <item name="android:textColorPrimary">#000000</item>
+        <item name="android:windowTitleStyle">@style/WindowTitleStyle</item>
+
+    </style>
+
+    <style name="WindowTitleStyle"
+        parent="TextAppearance.AppCompat.Title">
+        <item name="android:textColor">#000000</item>
+        <item name="android:fontFamily">@font/fonts1</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

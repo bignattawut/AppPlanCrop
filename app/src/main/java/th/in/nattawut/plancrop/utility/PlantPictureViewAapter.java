@@ -51,7 +51,14 @@ public class PlantPictureViewAapter extends BaseAdapter {
 
 
         textPicNo.setText(SCodeString[position]);
-        Picasso.get().load(imageStrings[position]).into(imageView);
+//        Picasso.get().load(imageStrings[position]).into(imageView);
+//
+        Picasso.get()
+                .load(imageStrings[position])
+                .resize(1280,720) //ย่อขนาดรูป
+                .into(imageView);
+
+
 
 
         return view;

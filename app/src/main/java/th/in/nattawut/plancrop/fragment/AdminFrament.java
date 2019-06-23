@@ -8,7 +8,6 @@ import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import th.in.nattawut.plancrop.R;
 
@@ -19,6 +18,8 @@ public class AdminFrament extends Fragment {
     CardView register;
     CardView crop;
     CardView cropType;
+    CardView plan;
+    CardView plant;
     CardView Site;
 
     @Override
@@ -37,89 +38,17 @@ public class AdminFrament extends Fragment {
         //Farmer Controller
         farmerController();
 
+        //Plan Controller
+        planController();
+
+        //Plant Controller
+        plantController();
+
         //Site Controller
         siteController();
 
 
     }
-    /*//layout admin
-    private void farmerController() {
-        TextView textView = getView().findViewById(R.id.imageViewFarmer);
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity()
-                        .getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new FarmerViewFragment())
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });
-    }
-
-    private void RegisterController() {
-        TextView textView = getView().findViewById(R.id.imageViewRegister);
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity()
-                        .getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new RegisterViewFragment())
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });
-    }
-
-
-    private void cropController() {
-        TextView textView = getView().findViewById(R.id.imageViewCrop);
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity()
-                        .getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new CropViewFragment())
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });
-    }
-
-    private void cropTypeController() {
-        TextView textView = getView().findViewById(R.id.imageViewCropTypr);
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity()
-                        .getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new CropTypeViewFragment())
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });
-    }
-
-    private void planPictureController() {
-        TextView textView = getView().findViewById(R.id.imageViewSite);
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity()
-                        .getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new SiteFragment())
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });
-    }
-    */
-
 
 
     private void farmerController() {
@@ -183,6 +112,36 @@ public class AdminFrament extends Fragment {
         });
     }
 
+    private void planController() {
+        plan = getView().findViewById(R.id.imageViewPlan);
+        plan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentHomeFragment, new PlanViewFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+    }
+
+    private void plantController() {
+        plant = getView().findViewById(R.id.imageViewPlant);
+        plant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentHomeFragment, new PlantViewFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+    }
+
     private void siteController() {
         Site = getView().findViewById(R.id.imageViewSite);
         Site.setOnClickListener(new View.OnClickListener() {
@@ -191,7 +150,7 @@ public class AdminFrament extends Fragment {
                 getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new SiteFragment())
+                        .replace(R.id.contentHomeFragment, new OrderViewFragment())
                         .addToBackStack(null)
                         .commit();
             }

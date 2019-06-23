@@ -2,6 +2,7 @@ package th.in.nattawut.plancrop.fragment;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -17,18 +18,29 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.squareup.okhttp.FormEncodingBuilder;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.Response;
+
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 import th.in.nattawut.plancrop.HomeActivity;
 import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.DeleteFammer;
 import th.in.nattawut.plancrop.utility.EditRegister;
-import th.in.nattawut.plancrop.utility.GetData;
+import th.in.nattawut.plancrop.utility.GetDataWhereRegister;
 import th.in.nattawut.plancrop.utility.Myconstant;
 import th.in.nattawut.plancrop.utility.RegisterViewAdpter;
 
@@ -36,6 +48,9 @@ public class RegisterViewFragment extends Fragment {
 
     SwipeRefreshLayout mSwipeRefreshLayout;
     ListView listView;
+
+
+    private String idLoginString;
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -49,7 +64,13 @@ public class RegisterViewFragment extends Fragment {
 
         //Swipe Refresh Layout
         swipeRefreshLayout();
+
+        //idLoginString = getActivity().getIntent().getExtras().getString("mid");
+
+
     }
+
+
     private void swipeRefreshLayout() {
         mSwipeRefreshLayout = getView().findViewById(R.id.swiRefreshLayouRegister);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -74,21 +95,26 @@ public class RegisterViewFragment extends Fragment {
         String[] columString = myconstant.getComlumRegisterString();
 
         try {
-            GetData getData = new GetData(getActivity());
-            getData.execute(myconstant.getUrlGetRegister());
+//            GetData getData = new GetData(getActivity());
+//            getData.execute(myconstant.getUrlGetRegister());
 
-            String jsonString = getData.get();
+            GetDataWhereRegister getDataWhereOneColumn = new GetDataWhereRegister(getActivity());
+            getDataWhereOneColumn.execute("mid",myconstant.getUrlselectMember());
+
+            String jsonString = getDataWhereOneColumn.get();
             Log.d("19jan","JSon register ==> "+ jsonString);
 
             JSONArray jsonArray = new JSONArray(jsonString);
 
             final String[] userString = new String[jsonArray.length()];
             final String[] passwordString = new String[jsonArray.length()];
-            final String[] nameString = new String[jsonArray.length()];
             final String[] idString = new String[jsonArray.length()];
+            final String[] nameString = new String[jsonArray.length()];
             final String[] addressString = new String[jsonArray.length()];
-            final String[] vidString = new String[jsonArray.length()];
+            final String[] pidString = new String[jsonArray.length()];
+            final String[] didString = new String[jsonArray.length()];
             final String[] sidString = new String[jsonArray.length()];
+            final String[] vidString = new String[jsonArray.length()];
             final String[] phonString = new String[jsonArray.length()];
             final String[] emailString = new String[jsonArray.length()];
             final String[] midString = new String[jsonArray.length()];
@@ -97,24 +123,26 @@ public class RegisterViewFragment extends Fragment {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     userString[i] = jsonObject.getString(columString[1]);
                     passwordString[i] = jsonObject.getString(columString[2]);
-                    nameString[i] = jsonObject.getString(columString[3]);
-                    idString[i] = jsonObject.getString(columString[4]);
+                    idString[i] = jsonObject.getString(columString[3]);
+                    nameString[i] = jsonObject.getString(columString[4]);
                     addressString[i] = jsonObject.getString(columString[5]);
-                    vidString[i] = jsonObject.getString(columString[6]);
-                    sidString[i] = jsonObject.getString(columString[7]);
-                    phonString[i] = jsonObject.getString(columString[8]);
-                    emailString[i] = jsonObject.getString(columString[9]);
+                    pidString[i] = jsonObject.getString(columString[6]);
+                    didString[i] = jsonObject.getString(columString[7]);
+                    sidString[i] = jsonObject.getString(columString[8]);
+                    vidString[i] = jsonObject.getString(columString[9]);
+                    phonString[i] = jsonObject.getString(columString[10]);
+                    emailString[i] = jsonObject.getString(columString[11]);
                     midString[i] = jsonObject.getString(columString[0]);
             }
             final RegisterViewAdpter registerAdpter = new RegisterViewAdpter(getActivity(),
-                    userString, passwordString, nameString, idString, addressString,vidString,sidString, phonString, emailString);
+                    userString, passwordString,idString,nameString, addressString,pidString,didString,sidString,vidString, phonString, emailString);
             listView.setAdapter(registerAdpter);
 
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     deleteorEditRegister(midString[position],userString[position],passwordString[position],nameString[position],
-                            idString[position],addressString[position],vidString[position],sidString[position],phonString[position],emailString[position]);
+                            idString[position],addressString[position],pidString[position],didString[position],sidString[position],vidString[position],phonString[position],emailString[position]);
 
                 }
             });
@@ -127,19 +155,9 @@ public class RegisterViewFragment extends Fragment {
     }
 
     //alertให้เลือกลบหรือแก้ไข
-    private void deleteorEditRegister(final String midString,
-                                      final String userString,
-                                      final String passwordString,
-                                      final String nameString,
-                                      final String idString,
-                                      final String addressString,
-                                      final String vidString,
-                                      final String sidString,
-                                      final String phonString,
-                                      final String emailString) {
+    private void deleteorEditRegister(final String midString, final String userString, final String passwordString, final String nameString, final String idString, final String addressString,final String pidString, final String didString,final String sidString, final String vidString,final String phonString, final String emailString) {
 
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(),R.style.AlertDialogTheme);
         builder.setCancelable(false);
         builder.setIcon(R.drawable.ic_action_draweruser);
         builder.setTitle("ข้อมูลสมาชิก");
@@ -160,7 +178,7 @@ public class RegisterViewFragment extends Fragment {
         builder.setPositiveButton("ดูข้อมูล", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                editRegister(midString,userString,passwordString,nameString,idString,addressString,vidString,sidString,phonString,emailString);
+                editRegister(midString,userString,passwordString,nameString,idString,addressString,pidString,didString,sidString,vidString,phonString,emailString);
                 dialog.dismiss();
             }
         });
@@ -169,7 +187,7 @@ public class RegisterViewFragment extends Fragment {
 
     //alertให้เลือกจะลบรายการหรือไม่
     private void deleteRegister(final String midString){
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(),R.style.AlertDialogTheme);
         builder.setCancelable(false);
         builder.setTitle("ต้องการลบรายการนี้หรือไม่?");
         builder.setNegativeButton("ไม่ใช่", new DialogInterface.OnClickListener() {
@@ -189,22 +207,23 @@ public class RegisterViewFragment extends Fragment {
     }
 
     //แก้ไขประเทพืชเพาะปลูก
-    private void editRegister(final String midString,
-                              final String userString,
-                              final String passwordString,
-                              final String nameString,
-                              final String idString,
-                              final String addressString,
-                              final String vidString,
-                              final String sidString,
-                              final String phonString,
-                              final String emailString){
+    private void editRegister(final String midString, final String userString, final String passwordString, final String nameString,final String idString, final String addressString,
+                              final String pidString, final String didString,
+                              final String sidString, final String vidString,
+                              final String phonString, final String emailString){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
         builder.setTitle("ข้อมูลส่วนตัว");
 
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
         final View view = layoutInflater.inflate(R.layout.edit_register, null);
+
+
+
+
+
+
+
 
         EditText EditEdtUsername = view.findViewById(R.id.EditEdtUsername);
         String newUsername = getActivity().getIntent().getExtras().getString("UserID",userString);
@@ -221,6 +240,7 @@ public class RegisterViewFragment extends Fragment {
         EditText EditEdtId = view.findViewById(R.id.EditEdtId);
         String newId = getActivity().getIntent().getExtras().getString("ID",idString);
         EditEdtId.setText(newId);
+
 
         EditText EditEdtAddress = view.findViewById(R.id.EditEdtAddress);
         String newAddress = getActivity().getIntent().getExtras().getString("Address",addressString);
@@ -253,7 +273,6 @@ public class RegisterViewFragment extends Fragment {
                 EditText EditEdtPassword = view.findViewById(R.id.EditEdtPassword);
                 String newPassword = EditEdtPassword.getText().toString();
 
-
                 EditText EditEdtName = view.findViewById(R.id.EditEdtName);
                 String newName = EditEdtName.getText().toString();
 
@@ -269,9 +288,7 @@ public class RegisterViewFragment extends Fragment {
                 EditText EditEdtEmail = view.findViewById(R.id.EditEdtEmail);
                 String newEmail = EditEdtEmail.getText().toString();
 
-                //if (newUsername.isEmpty() || newPassword.isEmpty() || newName.isEmpty() || newID.isEmpty() || newAddress.isEmpty() || newPhone.isEmpty() || newEmail.isEmpty()) {
 
-                //}
                 updateRegister(midString,newUsername,newPassword,newName,newID,newAddress,newPhone,newEmail);
                 dialog.dismiss();
             }
@@ -323,7 +340,6 @@ public class RegisterViewFragment extends Fragment {
             e.printStackTrace();
         }
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -98,18 +98,32 @@
             android:text="ที่อยู่"
             android:textSize="0dp" />
         <TextView
-            android:id="@+id/textVid"
+            android:id="@+id/textPid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:text="จังหวัด"
             android:textSize="0dp" />
         <TextView
-            android:id="@+id/textSid"
+            android:id="@+id/textDid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:text="อำเภอ"
+            android:textSize="0dp" />
+        <TextView
+            android:id="@+id/textSid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="ตำบล"
+            android:textSize="0dp" />
+        <TextView
+            android:id="@+id/textVid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="หมู่บ้าน"
             android:textSize="0dp" />
         <TextView
             android:id="@+id/textEmail"

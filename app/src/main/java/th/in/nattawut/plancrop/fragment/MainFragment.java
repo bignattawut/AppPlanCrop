@@ -1,12 +1,14 @@
 package th.in.nattawut.plancrop.fragment;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,7 +63,6 @@ public class MainFragment extends Fragment{
                 if (userString.isEmpty() || passwordString.isEmpty()) {
                     myAlert.onrmaIDialog("สวัสดี", "กรุณากรอกชื่อผู้ใช้หรือรหัสผ่าน");
                 }else {
-
                     try {
                         Myconstant myconstant = new Myconstant();
                         AddlLogin addlLogin = new AddlLogin(getActivity());
@@ -73,27 +74,36 @@ public class MainFragment extends Fragment{
                         if (jsonString.equals("null")) {
                             myAlert.onrmaIDialog("ชื่อผู้ใช้งานไม่ถูกต้อง", "ไม่มี " + userString + "ชื่อผู้ใช้นี้");
                         } else {
+
                             JSONArray jsonArray = new JSONArray(jsonString);
                             JSONObject jsonObject = jsonArray.getJSONObject(0);
 
                             if (passwordString.equals(jsonObject.getString("pwd"))) {
-                                Toast.makeText(getActivity(), "Welcome " + jsonObject.getString("Name"), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Welcome " + jsonObject.getString("name"), Toast.LENGTH_SHORT).show();
+
+                                String nameuser = null, miduser = null, vid = null;
+                                nameuser = jsonObject.getString("name");
+                                miduser = jsonObject.getString("mid");
+                                vid = jsonObject.getString("vid");
+
+                                //ฝัง MID ในแอพ
+                                SharedPreferences sharedPreferences = getActivity().getSharedPreferences(myconstant.getNameFileSharePreference(),Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString("mid",miduser);
+                                editor.putString("name",nameuser);
+                                editor.putString("vid",vid);
 
                                 Intent intent = new Intent(getActivity(), HomeActivity.class);
-                                String nameuser = null, miduser = null;
-                                nameuser = jsonObject.getString("Name");
-                                miduser = jsonObject.getString("MID");
-                                intent.putExtra("Name",nameuser);
-                                intent.putExtra("MID",miduser);
+                                intent.putExtra("name",nameuser);
+                                intent.putExtra("mid",miduser);
+                                intent.putExtra("vid",vid);
                                 startActivity(intent);
-                                getActivity().finish();
+                                getActivity().finish();//คำสั่งปิดแอป
                             }else {
                                 myAlert.onrmaIDialog("รหัสผ่าน", "รหัสผ่านไม่ถูกต้อง");
                             }
 
                         }
-
-
 
                 } catch (Exception e) {
                         e.printStackTrace();
@@ -101,6 +111,7 @@ public class MainFragment extends Fragment{
                 }
             }
         });
+
     }
 
     private void registerController() {

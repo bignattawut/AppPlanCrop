@@ -51,11 +51,11 @@ public class MainPlanFragment extends Fragment {
 
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    fragment = new PlanViewFragment();
+                    fragment = new TabPlanFragment();
                     loadFragment(fragment);
                     return true;
                 case R.id.navigation_dashboard:
-                    fragment = new PlantViewFragment();
+                    fragment = new PlanFarmerViewFragment();
                     loadFragment(fragment);
                     return true;
                 case R.id.navigation_notifications:
@@ -92,133 +92,6 @@ public class MainPlanFragment extends Fragment {
                     .commit();
         }
     }
-        ///////////
-        /*//PlanView Controller
-        planViewController();
-
-        imageView = getView().findViewById(R.id.imvplan_add);
-        Animation animation = AnimationUtils.loadAnimation(getActivity(),R.anim.anim);
-        imageView.startAnimation(animation);
-    }
-    private void planViewController() {
-        FloatingActionButton floatingActionButton = getView().findViewById(R.id.floatingActionButton5);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity()
-                        .getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new PlanFragment())
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });*/
-
-        // Create TabLayout
-        //createTabLayout();
-
-        // Create ViewPager
-        //createViewPager();
-
-
-        /*viewPager = getView().findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
-
-        tabLayout = getView().findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
-        setupTabIcons();
-    }
-
-
-    private void setupTabIcons() {
-        tabLayout.getTabAt(0).setIcon(tabIcons[0]);
-        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
-        tabLayout.getTabAt(2).setIcon(tabIcons[2]);
-    }
-
-    private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager());
-        adapter.addFrag(new TabPlanFragment(), "วางแผน");
-        adapter.addFrag(new PlantViewFragment(), "เพาะปลูก");
-        adapter.addFrag(new TabPlantPicFragment(), "บันทึกกิจกรรม");
-        viewPager.setAdapter(adapter);
-    }
-
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
-
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFrag(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
-        }
-    }*/
-
-
-
-    /*private void createViewPager() {
-        viewPager = getView().findViewById(R.id.viewPager);
-        MyPagerAdapter myPagerAdapter = new MyPagerAdapter(
-                getActivity().getSupportFragmentManager(), tabLayout.getTabCount());
-        viewPager.setAdapter(myPagerAdapter);
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-    }*/
-
-    /*private void createTabLayout() {
-        tabLayout = getView().findViewById(R.id.tabLayout);
-        tabLayout.setTabGravity(tabLayout.GRAVITY_FILL);
-
-    }*/
-
-
-    /*private void createTabLayout() {
-        tabLayout = getView().findViewById(R.id.tabLayout);
-        String[] strings = new String[]{"วางแผน", "เพาะปลูก", "กิจกรรม"};
-
-
-        for (int i=0; i<tabDrawable.length; i+=1) {
-            tabLayout.addTab(tabLayout.newTab().setText(strings[i]));
-
-
-        }
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-    }*/
-
 
 
     @Nullable

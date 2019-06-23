@@ -26,7 +26,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="10dp"
-                android:src="@drawable/ic_spa_black_24dp" />
+                android:src="@drawable/ic_action_tabplant" />
 
 
             <TextView

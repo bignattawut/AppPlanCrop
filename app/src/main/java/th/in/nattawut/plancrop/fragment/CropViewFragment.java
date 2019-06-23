@@ -244,15 +244,6 @@ public class CropViewFragment extends Fragment {
             sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_crop,
                     new String[] {"TID", "croptype"}, new int[] {R.id.textTID, R.id.textCropType});
             spin.setAdapter(sAdap);
-            spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-                public void onItemSelected(AdapterView<?> arg0, View selectedItemView, int position, long id) {
-
-                }
-                public void onNothingSelected(AdapterView<?> arg0) {
-
-                }
-            });
 
         } catch (Exception e) {
             e.printStackTrace();

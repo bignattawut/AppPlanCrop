@@ -37,6 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             app:fab_bg_color="#FF0BB1D3"
+            app:fab_text_size="24dp"
             app:fab_padding_text_icon="10dp"
             app:fab_content="เพาะปลูก"
             app:fab_icon="@drawable/ic_spatab_black_24dp">

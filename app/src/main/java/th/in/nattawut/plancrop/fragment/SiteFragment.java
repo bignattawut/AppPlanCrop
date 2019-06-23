@@ -93,7 +93,7 @@ public class SiteFragment extends Fragment implements LocationListener {
         protected String doInBackground(String... strings) {
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder()
-                    .url(Myconstant.getUrlProvince)
+                    .url(Myconstant.getUrlVid)
                     .build();
 
             try {
@@ -113,7 +113,7 @@ public class SiteFragment extends Fragment implements LocationListener {
                 for (int i = 0; i < jsonArray.length(); i++) {
                     jsonObject = jsonArray.getJSONObject(i);
                     listprovice.add(jsonObject.getString("thai"));
-                    listprovinceid.add(jsonObject.getString("pid"));
+                    listprovinceid.add(jsonObject.getString("vid"));
                 }
 
             } catch (JSONException e) {

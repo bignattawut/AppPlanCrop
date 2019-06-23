@@ -214,15 +214,6 @@ public class PlantFragment extends Fragment {
             sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_plancrop,
                     new String[] {"cid", "crop"}, new int[] {R.id.textPlanCidSpinner, R.id.textPlanCropSpinner});
             spin.setAdapter(sAdap);
-            spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-                public void onItemSelected(AdapterView<?> arg0, View selectedItemView, int position, long id) {
-
-                }
-                public void onNothingSelected(AdapterView<?> arg0) {
-
-                }
-            });
 
         } catch (Exception e) {
             e.printStackTrace();

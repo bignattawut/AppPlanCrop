@@ -1,6 +1,7 @@
 package th.in.nattawut.plancrop.fragment;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -8,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
@@ -92,10 +94,10 @@ public class PlanFragment extends Fragment {
         TextView texPlanLogin = getView().findViewById(R.id.texPlanLogin);
         TextView texPlanMid = getView().findViewById(R.id.texPlanMid);
 
-        String strTextShow = getActivity().getIntent().getExtras().getString("Name");
+        String strTextShow = getActivity().getIntent().getExtras().getString("name");
         texPlanLogin.setText(strTextShow);
 
-        String strTextShowmid = getActivity().getIntent().getExtras().getString("MID");
+        String strTextShowmid = getActivity().getIntent().getExtras().getString("mid");
         texPlanMid.setText(strTextShowmid);
 
     }
@@ -230,7 +232,7 @@ public class PlanFragment extends Fragment {
                     getActivity()
                             .getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.contentHomeFragment, new PlanViewFragment())
+                            .replace(R.id.contentHomeFragment, new PlanFarmerViewFragment())
                             .addToBackStack(null)
                             .commit();
                 }

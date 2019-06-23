@@ -29,9 +29,9 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:text="กรุณากรอกข้อมูล"
-                android:textColor="@color/colorblack"
-                android:textSize="20dp" />
+                android:text="กรุณากรอกข้อมูลเกษตรกร"
+                android:textSize="30dp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -59,8 +59,7 @@
                         android:background="@drawable/style1"
                         android:hint="ชื่อผู้ใช้งาน :"
                         android:inputType="text"
-                        android:padding="5dp"
-                        android:textSize="18dp" />
+                        android:padding="5dp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
@@ -90,8 +89,7 @@
                         android:background="@drawable/style1"
                         android:hint="รหัสผ่าน :"
                         android:inputType="textPassword"
-                        android:padding="5dp"
-                        android:textSize="18dp" />
+                        android:padding="5dp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
@@ -121,8 +119,7 @@
                         android:background="@drawable/style1"
                         android:hint="ชื่อ-สกุล :"
                         android:inputType="text"
-                        android:padding="5dp"
-                        android:textSize="18dp" />
+                        android:padding="5dp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
@@ -153,8 +150,7 @@
                         android:hint="เลขประจำตัวประชาชน :"
                         android:inputType="number"
                         android:maxLength="13"
-                        android:padding="5dp"
-                        android:textSize="18dp" />
+                        android:padding="5dp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
@@ -184,8 +180,7 @@
                         android:background="@drawable/style1"
                         android:hint="ที่อยู่ :"
                         android:inputType="text"
-                        android:padding="5dp"
-                        android:textSize="18dp" />
+                        android:padding="5dp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
@@ -208,8 +203,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:text="จังหวัด :"
-                    android:textSize="18dp" />
+                    android:text="จังหวัด :" />
 
                 <Spinner
                     android:id="@+id/spProvinceFarmer"
@@ -217,7 +211,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="1dp"></Spinner>
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -237,8 +230,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:text="อำเภอ :"
-                    android:textSize="18dp" />
+                    android:text="อำเภอ :" />
 
                 <Spinner
                     android:id="@+id/spAmphurFarmer"
@@ -265,11 +257,40 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:text="ตำบล/แขวง :"
-                    android:textSize="18dp" />
+                    android:text="ตำบล/แขวง :" />
 
                 <Spinner
                     android:id="@+id/spDistriceFarmer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"></Spinner>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/style1"
+                android:orientation="horizontal"
+                android:padding="12dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_action_home" />
+
+                <TextView
+                    style="@style/fonts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="หมู่บ้าน:" />
+
+                <Spinner
+                    android:id="@+id/spVillag"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="1dp"></Spinner>
@@ -302,8 +323,7 @@
                         android:hint="เบอร์โทร :"
                         android:inputType="phone"
                         android:maxLength="10"
-                        android:padding="5dp"
-                        android:textSize="18dp" />
+                        android:padding="5dp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
@@ -333,8 +353,7 @@
                         android:background="@drawable/style1"
                         android:hint="example@gmail.com :"
                         android:inputType="textEmailAddress"
-                        android:padding="5dp"
-                        android:textSize="18dp" />
+                        android:padding="5dp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
@@ -350,7 +369,7 @@
                     android:layout_height="wrap_content"
                     android:text="ขนาดพื้นที่เพาะปลูกได้ทั้งหมด"
                     android:textColor="@color/colorWhite"
-                    android:textSize="18dp"
+                    android:textSize="25dp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -378,8 +397,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="ไร่"
-                            android:textColor="@color/colorblack"
-                            android:textSize="16dp" />
+                            android:textColor="@color/colorblack" />
 
                         <EditText
                             android:id="@+id/add1"
@@ -387,8 +405,7 @@
                             android:layout_height="match_parent"
                             android:layout_margin="1dp"
                             android:hint="0"
-                            android:inputType="number"
-                            android:textSize="15dp" />
+                            android:inputType="number" />
                     </LinearLayout>
                 </GridLayout>
 
@@ -411,8 +428,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="งาน"
-                            android:textColor="@color/colorblack"
-                            android:textSize="16dp" />
+                            android:textColor="@color/colorblack" />
 
                         <EditText
                             android:id="@+id/add2"
@@ -420,8 +436,7 @@
                             android:layout_height="match_parent"
                             android:layout_margin="1dp"
                             android:hint="0"
-                            android:inputType="number"
-                            android:textSize="15dp" />
+                            android:inputType="number" />
                     </LinearLayout>
                 </GridLayout>
 
@@ -444,8 +459,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="ว่า"
-                            android:textColor="@color/colorblack"
-                            android:textSize="16dp" />
+                            android:textColor="@color/colorblack" />
 
                         <EditText
                             android:id="@+id/add3"
@@ -453,8 +467,7 @@
                             android:layout_height="match_parent"
                             android:layout_margin="1dp"
                             android:hint="0"
-                            android:inputType="number"
-                            android:textSize="15dp" />
+                            android:inputType="number" />
                     </LinearLayout>
                 </GridLayout>
             </LinearLayout>
@@ -464,9 +477,7 @@
                 android:id="@+id/btnFarmer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
                 android:layout_marginTop="12dp"
-                android:layout_marginRight="50dp"
                 android:layout_marginBottom="50dp"
                 android:background="@drawable/button"
                 android:text="ลงทะเบียนเกษตรกร"

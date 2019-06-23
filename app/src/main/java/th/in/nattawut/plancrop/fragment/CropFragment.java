@@ -1,10 +1,12 @@
 package th.in.nattawut.plancrop.fragment;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,16 +32,13 @@ import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.AddCrop;
 import th.in.nattawut.plancrop.utility.GetData;
 import th.in.nattawut.plancrop.utility.MyAlert;
+import th.in.nattawut.plancrop.utility.MyAlertCrop;
 import th.in.nattawut.plancrop.utility.Myconstant;
 
 public class CropFragment extends Fragment {
 
-    /*private ArrayList<String> arrCropType = new ArrayList<>();
-    private ArrayList<String> arrCropTypeID = new ArrayList<>();
-    private ArrayAdapter<String> adpCropType,adpCropTypeID;
-    private Spinner cropTypeSpinner;
-    private int rubIDprovince;*/
-
+    private String cropString,tidString, BeginHarvestString, HarvestPeriodString, YieldString,cropTypeString;
+    TextView textCropType;
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -53,22 +52,7 @@ public class CropFragment extends Fragment {
         //CropController
         cropController();
 
-        //CropViewController
-        cropViewController();
-    }
-    private void cropViewController() {
-        Button button = getView().findViewById(R.id.btnCropView);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity()
-                        .getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.contentHomeFragment,new CropViewFragment())
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });
+
     }
 
     private void cropTypeSpinner(){
@@ -100,75 +84,12 @@ public class CropFragment extends Fragment {
             sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_crop,
                     new String[] {"TID", "croptype"}, new int[] {R.id.textTID, R.id.textCropType});
             spin.setAdapter(sAdap);
-            spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-                public void onItemSelected(AdapterView<?> arg0, View selectedItemView, int position, long id) {
-                    //String sCustomerID = MyArrList.get(position).get("TID").toString();
-                    //String sName = MyArrList.get(position).get("croptype").toString();
-                }
-                public void onNothingSelected(AdapterView<?> arg0) {
-
-                }
-            });
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
-
-    /*
-    private void cropTypeSpinner() {
-        cropTypeSpinner = getView().findViewById(R.id.cropTypeSpinner);
-        final ArrayList<String>listCropType;
-        final ArrayList<String>listCropTypeID;
-        listCropType = new ArrayList<>();
-        listCropTypeID = new ArrayList<>();
-
-        try {
-            GetData getData = new GetData(getActivity());
-            getData.execute(Myconstant.getUrlCropType);
-
-            String jsonString = getData.get();
-            Log.d("1/Jan", "JSON ==>" + jsonString);
-
-            JSONArray jsonArray = new JSONArray(jsonString);
-            JSONObject jsonObject = null;
-
-            for (int i = 0; i < jsonArray.length(); i++){
-                jsonObject = jsonArray.getJSONObject(i);
-                listCropType.add(jsonObject.getString("croptype"));
-                listCropTypeID.add(jsonObject.getString("TID"));
-
-            }
-            adpCropType = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item,arrCropType);
-            //adpCropTypeID = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_dropdown_item,arrCropTypeID);
-            cropTypeSpinner.setAdapter(adpCropType);
-            arrCropType.addAll(listCropType);
-            arrCropTypeID.addAll(listCropTypeID);
-            adpCropType.notifyDataSetChanged();
-
-            cropTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    if (cropTypeSpinner.getSelectedItem() != null) {
-
-                        //Toast.makeText(getActivity(),"spinner" + listCropTypeID,Toast.LENGTH_SHORT).show();
-                        //rubIDprovince = Integer.parseInt(listCropTypeID.get(position));
-                    }
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
-            });
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
-
 
     private void cropController() {
         Button button = getView().findViewById(R.id.btnCrop);
@@ -188,38 +109,75 @@ public class CropFragment extends Fragment {
         EditText edtHarvestPeriod = getView().findViewById(R.id.edtHarvestPeriod);
         EditText edtYield = getView().findViewById(R.id.edtYield);
 
-        String cropString = edtCrop.getText().toString().trim();
-        String tidString = tid.getText().toString().trim();
-        String BeginHarvestString = edtBeginHarvest.getText().toString().trim();
-        String HarvestPeriodString = edtHarvestPeriod.getText().toString().trim();
-        String YieldString = edtYield.getText().toString().trim();
+        TextView textCropType = getView().findViewById(R.id.textCropType);
+        cropTypeString = textCropType.getText().toString().trim();
 
-        if (cropString.isEmpty() || tidString.isEmpty()|| BeginHarvestString.isEmpty() || HarvestPeriodString.isEmpty() || YieldString.isEmpty()) {
-            MyAlert myAlert = new MyAlert(getActivity());
-            myAlert.onrmaIDialog("สวัสดี", "กรุณากรอกข้อมูลให้ครบ");
+        cropString = edtCrop.getText().toString().trim();
+        tidString = tid.getText().toString().trim();
+        BeginHarvestString = edtBeginHarvest.getText().toString().trim();
+        HarvestPeriodString = edtHarvestPeriod.getText().toString().trim();
+        YieldString = edtYield.getText().toString().trim();
+
+        MyAlertCrop myAlertCrop = new MyAlertCrop(getActivity());
+        if (cropString.isEmpty()|| tidString.isEmpty()) {
+            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกชื่อพืช");
+        }else if (BeginHarvestString.isEmpty()) {
+            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกจำนวนวันเก็บเกี่ยว");
+        }else if (HarvestPeriodString.isEmpty()) {
+            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกระยะเวลาที่เก็บเกี่ยว");
+        }else if (YieldString.isEmpty()) {
+            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกผลผลิต");
         }else {
-            try {
-                Myconstant myconstant = new Myconstant();
-                AddCrop addCrop = new AddCrop(getActivity());
-                addCrop.execute(cropString,tidString, BeginHarvestString, HarvestPeriodString, YieldString,
-                        myconstant.getUrlAddCrop());
+            comfirmUpload();
+        }
+    }
 
-                String result = addCrop.get();
-                Log.d("crop", "result ==> " + result);
-                if (Boolean.parseBoolean(result)) {
-                    getActivity().getSupportFragmentManager().popBackStack();
-                } else {
-                    Toast.makeText(getActivity(), "เพิ่มข้อมูลเรียบร้อย", Toast.LENGTH_LONG).show();
-                    getActivity()
-                            .getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.contentHomeFragment, new CropViewFragment())
-                            .addToBackStack(null)
-                            .commit();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+    private void comfirmUpload() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("ข้อมูลพืชเพาะปลูก");
+        builder.setMessage("ชื่อพืช = " + cropString + "\n"
+                + "ชื่อประเภทพืช = " + cropTypeString + "\n"
+                + "จำนวนวันเก็บเกี่ยว = " + BeginHarvestString + "\n"
+                + "ระยะเพาะเก็บเกี่ยว = " + HarvestPeriodString + "\n"
+                + "ผลผลิต = " + YieldString);
+        builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {//ปุ่มที่1
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
             }
+        }); //
+        builder.setPositiveButton("เพิ่ม", new DialogInterface.OnClickListener() {//ปุ่มที่2
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                uploadToServer();
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+    }
+
+    private void uploadToServer(){
+        try {
+            Myconstant myconstant = new Myconstant();
+            AddCrop addCrop = new AddCrop(getActivity());
+            addCrop.execute(cropString,tidString, BeginHarvestString, HarvestPeriodString, YieldString,
+                    myconstant.getUrlAddCrop());
+
+            String result = addCrop.get();
+            Log.d("crop", "result ==> " + result);
+            if (Boolean.parseBoolean(result)) {
+                getActivity().getSupportFragmentManager().popBackStack();
+            } else {
+                Toast.makeText(getActivity(), "เพิ่มข้อมูลเรียบร้อย", Toast.LENGTH_LONG).show();
+                getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentHomeFragment, new CropViewFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

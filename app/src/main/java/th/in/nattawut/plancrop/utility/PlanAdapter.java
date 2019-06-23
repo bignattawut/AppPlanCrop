@@ -12,12 +12,12 @@ import com.squareup.picasso.Picasso;
 
 import th.in.nattawut.plancrop.R;
 
-public class PantAdapter extends BaseAdapter {
+public class PlanAdapter extends BaseAdapter {
 
     private Context context;
     private String[] planStrings,midString,typeStrings,cidString,areStrings, dateStrings;
 
-    public PantAdapter(Context context,
+    public PlanAdapter(Context context,
                        String[] planStrings,
                        String[] midString,
                        String[] typeStrings,

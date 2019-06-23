@@ -9,24 +9,24 @@ import android.widget.TextView;
 
 import th.in.nattawut.plancrop.R;
 
-public class PlatAdpter extends BaseAdapter {
+public class PlantAdpter extends BaseAdapter {
 
     private Context context;
     private String[] noStrings,pdataString,cidStrings,yieldStrings,cropStrings,areaStrings,
             midStrings,nameStrings,snoStrings,latStrings,lonStrings;
 
-    public PlatAdpter(Context context,
-                      String[] noStrings,
-                      String[] pdataString,
-                      String[] cidStrings,
-                      String[] yieldStrings,
-                      String[] cropStrings,
-                      String[] areaStrings,
-                      String[] midStrings,
-                      String[] nameStrings,
-                      String[] snoStrings,
-                      String[] latStrings,
-                      String[] lonStrings) {
+    public PlantAdpter(Context context,
+                       String[] noStrings,
+                       String[] pdataString,
+                       String[] cidStrings,
+                       String[] yieldStrings,
+                       String[] cropStrings,
+                       String[] areaStrings,
+                       String[] midStrings,
+                       String[] nameStrings,
+                       String[] snoStrings,
+                       String[] latStrings,
+                       String[] lonStrings) {
         this.context = context;
         this.noStrings = noStrings;
         this.pdataString = pdataString;

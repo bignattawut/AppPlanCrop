@@ -147,7 +147,6 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:textSize="24dp"
-                            android:fontFamily="@font/fonts1"
                             android:text="@string/station1"
                             android:textColor="@android:color/darker_gray" />
 
@@ -188,7 +187,6 @@
                             android:gravity="center"
                             android:textSize="24dp"
                             android:padding="5dp"
-                            android:fontFamily="@font/fonts1"
                             android:text="@string/station2"
                             android:textColor="@android:color/darker_gray" />
 

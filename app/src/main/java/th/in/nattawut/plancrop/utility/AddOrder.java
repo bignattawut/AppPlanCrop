@@ -9,11 +9,10 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
-public class Cccc extends AsyncTask<String, Void, String> {
-
+public class AddOrder extends AsyncTask<String, Void, String> {
     private Context context;
 
-    public Cccc(Context context) {
+    public AddOrder(Context context) {
         this.context = context;
     }
 
@@ -22,12 +21,15 @@ public class Cccc extends AsyncTask<String, Void, String> {
         try {
             OkHttpClient okHttpClient = new OkHttpClient();
             RequestBody requestBody = new FormEncodingBuilder()
+                    //.add("isAdd", "true")
                     .add("mid", strings[0])
+                    .add("sdate",strings[1])
+                    .add("edate", strings[2])
+                    .add("cid", strings[3])
+                    .add("qty", strings[4])
                     .build();
             Request.Builder builder = new Request.Builder();
-            Request request = builder.url(strings[1])
-            //Request request = builder.url("http://192.168.1.108/android/php/selectplanfarmerandroid.php")
-                    .post(requestBody).build();
+            Request request = builder.url(strings[5]).post(requestBody).build();
             Response response=okHttpClient.newCall(request).execute();
             return response.body().string();
 

@@ -17,12 +17,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import th.in.nattawut.plancrop.fragment.MainPlanFragment;
+import th.in.nattawut.plancrop.fragment.PlanFarmerViewFragment;
 import th.in.nattawut.plancrop.fragment.PlanFragment;
 import th.in.nattawut.plancrop.fragment.PlantFragment;
 //import th.in.nattawut.plancrop.fragment.PlantPicture;
 import th.in.nattawut.plancrop.fragment.AdminFrament;
 import th.in.nattawut.plancrop.fragment.PlantPictureFragment;
+import th.in.nattawut.plancrop.fragment.PlantPictureViewFragment;
 import th.in.nattawut.plancrop.fragment.RegisterViewFragment;
+import th.in.nattawut.plancrop.fragment.memberFragment;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -67,79 +70,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    /*private void createListView() {
-        ListView listView = findViewById(R.id.listViewDrawer);
-        Myconstant myconstant = new Myconstant();
-
-        DrawerAdapter drawerAdapter = new DrawerAdapter(HomeActivity.this,
-                myconstant.getIconInts(),myconstant.getTitleStrings());
-
-        listView.setAdapter(drawerAdapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                switch (position) {
-                    case 0:
-                        setTitle("ข้อมูลส่วนตัว");
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .replace(R.id.contentHomeFragment, new RegisterViewFragment())
-                                .addToBackStack(null)
-                                .commit();
-                        break;
-                    case 1:
-                        setTitle("วางแผนเพาะปลูก");
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .replace(R.id.contentHomeFragment, new PlanFragment())
-                                .addToBackStack(null)
-                                .commit();
-                        drawerLayout.closeDrawers();
-                        break;
-                    case 2:
-                        setTitle("ปฏิทินการเพาะปลูก");
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .replace(R.id.contentHomeFragment, new PlanViewFragment())
-                                .addToBackStack(null)
-                                .commit();
-                        break;
-                    case 3:
-                        setTitle("บันทึกการเพาะปลูก");
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .replace(R.id.contentHomeFragment, new PlantPictureFragment())
-                                .addToBackStack(null)
-                                .commit();
-                        break;
-                    case 4:
-                        setTitle("admin");
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .replace(R.id.contentHomeFragment, new AdminFrament())
-                                .addToBackStack(null)
-                                .commit();
-                        break;
-                    case 5:
-                        Intent intent = new Intent(getApplication(),MainActivity.class);
-                        startActivity(intent);
-                        finish();
-                        break;
-
-                }
-                drawerLayout.closeDrawers();
-            }
-        });
-    }*/
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_user:
                 setTitle("ข้อมูลส่วนตัว");
-                getSupportActionBar().setSubtitle(nameString);
+                //getSupportActionBar().setSubtitle(nameString);
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.contentHomeFragment, new RegisterViewFragment())
@@ -148,10 +85,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.menu_plan:
                 setTitle("วางแผนเพาะปลูก");
-
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new PlanFragment())
+                        .replace(R.id.contentHomeFragment, new PlanFarmerViewFragment())
                         .addToBackStack(null)
                         .commit();
                 break;
@@ -159,7 +95,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 setTitle("เพาะปลูก");
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new PlantFragment())
+                        .replace(R.id.contentHomeFragment, new PlantPictureViewFragment())
                         .addToBackStack(null)
                         .commit();
                 break;
@@ -195,6 +131,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         .addToBackStack(null)
                         .commit();
                 break;
+            case R.id.menu_member:
+                setTitle("สมาชิก");
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentHomeFragment, new memberFragment())
+                        .addToBackStack(null)
+                        .commit();
+                break;
             case R.id.menu_exit:
                 Intent intent = new Intent(getApplication(),MainActivity.class);
                 startActivity(intent);
@@ -219,7 +163,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
 
     private void receiveValueFromMain() {
-        nameString = getIntent().getStringExtra("Name");
+        nameString = getIntent().getStringExtra("name");
         Log.d("1Jan","nameString ==> " + nameString);
 
     }

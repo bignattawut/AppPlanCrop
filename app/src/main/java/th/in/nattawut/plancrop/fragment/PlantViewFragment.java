@@ -6,29 +6,29 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.tuann.floatingactionbuttonexpandable.FloatingActionButtonExpandable;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import th.in.nattawut.plancrop.HomeActivity;
 import th.in.nattawut.plancrop.R;
-import th.in.nattawut.plancrop.utility.DeletePlan;
 import th.in.nattawut.plancrop.utility.DeletePlant;
 import th.in.nattawut.plancrop.utility.GetData;
 import th.in.nattawut.plancrop.utility.Myconstant;
-import th.in.nattawut.plancrop.utility.PantAdapter;
-import th.in.nattawut.plancrop.utility.PlatAdpter;
+import th.in.nattawut.plancrop.utility.PlantAdpter;
 
 public class PlantViewFragment extends Fragment {
 
@@ -38,8 +38,11 @@ public class PlantViewFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        //planViewController
-        plantViewController();
+//        //planViewController
+//        plantViewController();
+
+        //Create Toolbal
+        CreateToolbal();
 
         //Create ListView
         createListView();
@@ -66,20 +69,20 @@ public class PlantViewFragment extends Fragment {
         });
     }
 
-    private void plantViewController() {
-        FloatingActionButtonExpandable floatingActionButtonViewPlant = getView().findViewById(R.id.floatingActionButtonViewPlant);
-        floatingActionButtonViewPlant.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity()
-                        .getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new PlantFragment())
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });
-    }
+//    private void plantViewController() {
+//        FloatingActionButtonExpandable floatingActionButtonViewPlant = getView().findViewById(R.id.floatingActionButtonViewPlant);
+//        floatingActionButtonViewPlant.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                getActivity()
+//                        .getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .replace(R.id.contentHomeFragment, new PlantFragment())
+//                        .addToBackStack(null)
+//                        .commit();
+//            }
+//        });
+//    }
 
     private void createListView() {
         final ListView listView = getView().findViewById(R.id.listViewPlant);
@@ -124,7 +127,7 @@ public class PlantViewFragment extends Fragment {
                 lonStrings[i] = jsonObject.getString(columnStrings[10]);
             }
 
-            PlatAdpter platAdpter = new PlatAdpter(getActivity(),
+            PlantAdpter platAdpter = new PlantAdpter(getActivity(),
                     noStrings,pdataString,cidStrings,yieldStrings,cropStrings,areaStrings,
                     midStrings,nameStrings,snoStrings,latStrings,lonStrings);
             listView.setAdapter(platAdpter);
@@ -216,6 +219,56 @@ public class PlantViewFragment extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.itemlinkUrl) {
+            item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    getActivity()
+                            .getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.contentHomeFragment, new PlantFragment())
+                            .addToBackStack(null)
+                            .commit();
+                    return false;
+                }
+            });
+
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+
+        inflater.inflate(R.menu.manu_register, menu);
+
+    }
+
+    private void CreateToolbal() {
+        Toolbar toolbar = getView().findViewById(R.id.toolbarPlant);
+        ((HomeActivity)getActivity()).setSupportActionBar(toolbar);
+
+        ((HomeActivity)getActivity()).getSupportActionBar().setTitle("ข้อมูลเพาะปลูก");
+        //((MainActivity)getActivity()).getSupportActionBar().setSubtitle("ddbdbvd");
+
+        ((HomeActivity)getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
+        ((HomeActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().popBackStack();
+            }
+        });
+        setHasOptionsMenu(true);
+
     }
 
 

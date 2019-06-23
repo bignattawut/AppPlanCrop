@@ -15,26 +15,30 @@ import th.in.nattawut.plancrop.R;
 public class RegisterViewAdpter extends BaseAdapter {
 
     private Context context;
-    private String[] userString,passwordString,nameString,idString,addressString,vidString,sidString,phonString,emailString;
+    private String[] userString,passwordString,idString,nameString,addressString,pidString,didString,sidString,vidString,phonString,emailString;
 
     public RegisterViewAdpter(Context context,
                               String[] userString,
                               String[] passwordString,
-                              String[] nameString,
                               String[] idString,
+                              String[] nameString,
                               String[] addressString,
-                              String[] vidString,
+                              String[] pidString,
+                              String[] didString,
                               String[] sidString,
+                              String[] vidString,
                               String[] phonString,
                               String[] emailString) {
         this.context = context;
         this.userString = userString;
         this.passwordString = passwordString;
-        this.nameString = nameString;
         this.idString = idString;
+        this.nameString = nameString;
         this.addressString = addressString;
-        this.vidString = vidString;
+        this.pidString = pidString;
+        this.didString = didString;
         this.sidString = sidString;
+        this.vidString = vidString;
         this.phonString = phonString;
         this.emailString = emailString;
     }
@@ -61,21 +65,25 @@ public class RegisterViewAdpter extends BaseAdapter {
 
         TextView username = view.findViewById(R.id.textUsername);
         TextView password = view.findViewById(R.id.textPassword);
-        TextView name = view.findViewById(R.id.textName);
         TextView id = view.findViewById(R.id.textID);
+        TextView name = view.findViewById(R.id.textName);
         TextView address = view.findViewById(R.id.textAddress);
-        TextView vid = view.findViewById(R.id.textVid);
+        TextView pid = view.findViewById(R.id.textPid);
+        TextView did = view.findViewById(R.id.textDid);
         TextView sid = view.findViewById(R.id.textSid);
+        TextView vid = view.findViewById(R.id.textVid);
         TextView phon = view.findViewById(R.id.textPhone);
         TextView email = view.findViewById(R.id.textEmail);
 
         username.setText(userString[position]);
         password.setText(passwordString[position]);
-        name.setText(nameString[position]);
         id.setText(idString[position]);
+        name.setText(nameString[position]);
         address.setText(addressString[position]);
-        vid.setText(vidString[position]);
+        pid.setText(pidString[position]);
+        did.setText(didString[position]);
         sid.setText(sidString[position]);
+        vid.setText(vidString[position]);
         phon.setText(phonString[position]);
         email.setText(emailString[position]);
 

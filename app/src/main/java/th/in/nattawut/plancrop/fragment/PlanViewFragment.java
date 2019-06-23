@@ -8,27 +8,25 @@ import android.os.Handler;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.CardView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.tuann.floatingactionbuttonexpandable.FloatingActionButtonExpandable;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -37,15 +35,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
+import th.in.nattawut.plancrop.HomeActivity;
 import th.in.nattawut.plancrop.R;
-import th.in.nattawut.plancrop.utility.Cccc;
-import th.in.nattawut.plancrop.utility.DeleteCropType;
 import th.in.nattawut.plancrop.utility.DeletePlan;
 import th.in.nattawut.plancrop.utility.EditPlan;
 import th.in.nattawut.plancrop.utility.GetData;
-import th.in.nattawut.plancrop.utility.MyAlert;
 import th.in.nattawut.plancrop.utility.Myconstant;
-import th.in.nattawut.plancrop.utility.PantAdapter;
+import th.in.nattawut.plancrop.utility.PlanAdapter;
 
 public class PlanViewFragment extends Fragment {
 
@@ -57,32 +53,21 @@ public class PlanViewFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        //Create Toolbal
+        CreateToolbal();
+
         //Create ListView
         createListView();
 
         //Swipe Refresh Layout
         swipeRefreshLayout();
 
-        //planViewController
-        planViewController();
+//        //planViewController
+//        planViewController();
 
 
     }
 
-    private void planViewController() {
-        FloatingActionButtonExpandable floatingActionButton = getView().findViewById(R.id.floatingActionButtonViewPlan);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity()
-                        .getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new PlanFragment())
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });
-    }
 
     private void swipeRefreshLayout() {
         mSwipeRefreshLayout = getView().findViewById(R.id.swiRefreshLayou);
@@ -112,7 +97,6 @@ public class PlanViewFragment extends Fragment {
             GetData getData = new GetData(getActivity());
             getData.execute(myconstant.getUrlselectPlan());
 
-
             String jsonString = getData.get();
             Log.d("22big","JSON plan ==> " + jsonString);
 
@@ -136,7 +120,7 @@ public class PlanViewFragment extends Fragment {
                 dateStrings[i] = jsonObject.getString(columnStrings[5]);
             }
 
-            PantAdapter pantAdapter = new PantAdapter(getActivity(),
+            PlanAdapter pantAdapter = new PlanAdapter(getActivity(),
                     planStrings,midString,typeStrings,cidString, areStrings,dateStrings);
             listView.setAdapter(pantAdapter);
 
@@ -220,12 +204,13 @@ public class PlanViewFragment extends Fragment {
 
 
         TextView texPlanMid = view.findViewById(R.id.EditTextMidPlan);
-        String strTextShowmid = getActivity().getIntent().getExtras().getString("MID");
+        String strTextShowmid = getActivity().getIntent().getExtras().getString("mid",planStrings);
         texPlanMid.setText(strTextShowmid);
 
         TextView texPlanName = view.findViewById(R.id.EditTexPlanLogin);
-        String strTextShowName = getActivity().getIntent().getExtras().getString("Name");
+        String strTextShowName = getActivity().getIntent().getExtras().getString("name",midString);
         texPlanName.setText(strTextShowName);
+
 
 
         if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -379,7 +364,55 @@ public class PlanViewFragment extends Fragment {
         }
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
+        if (item.getItemId() == R.id.itemlinkUrl) {
+            item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    getActivity()
+                            .getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.contentHomeFragment, new PlanFragment())
+                            .addToBackStack(null)
+                            .commit();
+                    return false;
+                }
+            });
+
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+
+        inflater.inflate(R.menu.manu_register, menu);
+
+    }
+
+    private void CreateToolbal() {
+        Toolbar toolbar = getView().findViewById(R.id.toolbarPlan);
+        ((HomeActivity)getActivity()).setSupportActionBar(toolbar);
+
+        ((HomeActivity)getActivity()).getSupportActionBar().setTitle("ข้อมูลวางแผน");
+        //((MainActivity)getActivity()).getSupportActionBar().setSubtitle("ddbdbvd");
+
+        ((HomeActivity)getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
+        ((HomeActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().popBackStack();
+            }
+        });
+        setHasOptionsMenu(true);
+
+    }
 
 
     @Nullable

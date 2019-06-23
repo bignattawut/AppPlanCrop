@@ -11,8 +11,8 @@
         android:text="cid" />
 
     <TextView
+        android:fontFamily="@font/fonts1"
         android:id="@+id/textPlanCropSpinner"
-        android:textSize="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="crop" />
