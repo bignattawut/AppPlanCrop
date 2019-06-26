@@ -27,18 +27,18 @@
             android:layout_margin="10dp"
             android:background="@color/colorBlue" />
 
-        <TextView
-            android:layout_marginLeft="5dp"
-            android:text="หน้าหลัก"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        <!--<TextView-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:text="หน้าหลัก"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent" />-->
 
 
         <LinearLayout
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="20dp"
+            android:padding="2dp"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -56,7 +56,7 @@
                     android:layout_height="140dp"
                     android:clickable="true"
                     android:foreground="?android:attr/selectableItemBackground"
-                    app:cardCornerRadius="1dp">
+                    app:cardCornerRadius="12dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -95,7 +95,7 @@
                     android:layout_margin="10dp"
                     android:clickable="true"
                     android:foreground="?android:attr/selectableItemBackground"
-                    app:cardCornerRadius="1dp">
+                    app:cardCornerRadius="12dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -143,7 +143,7 @@
                     android:layout_height="140dp"
                     android:clickable="true"
                     android:foreground="?android:attr/selectableItemBackground"
-                    app:cardCornerRadius="1dp">
+                    app:cardCornerRadius="12dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -177,13 +177,13 @@
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView
-                    android:id="@+id/CardViewStaticHome"
+                    android:id="@+id/CardViewOrderHome"
                     android:layout_width="135dp"
                     android:layout_height="140dp"
                     android:layout_margin="10dp"
                     android:clickable="true"
                     android:foreground="?android:attr/selectableItemBackground"
-                    app:cardCornerRadius="1dp">
+                    app:cardCornerRadius="12dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -194,7 +194,7 @@
                         <ImageView
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:background="@drawable/ic_harvest"
+                            android:background="@drawable/notepad"
                             android:padding="10dp" />
 
                         <View
@@ -209,14 +209,16 @@
                             android:fontFamily="@font/fonts1"
                             android:gravity="center"
                             android:padding="5dp"
-                            android:text="ผลผลิต"
-                            android:textSize="24dp" />
+                            android:text="การแจ้งความต้องการ"
+                            android:textSize="22dp" />
 
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
 
             </LinearLayout>
+
         </LinearLayout>
+
 
     </LinearLayout>
 

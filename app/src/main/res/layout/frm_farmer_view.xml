@@ -36,6 +36,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:fontFamily="@font/fonts1"/>
+            <!--<TextView-->
+                <!--android:id="@+id/textvid"-->
+                <!--android:textColor="#009688"-->
+                <!--android:textStyle="bold"-->
+                <!--android:textSize="25dp"-->
+                <!--android:text="Name"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--app:fontFamily="@font/fonts1"/>-->
+            <!--<TextView-->
+                <!--android:id="@+id/textEmail"-->
+                <!--android:textColor="#009688"-->
+                <!--android:textStyle="bold"-->
+                <!--android:textSize="25dp"-->
+                <!--android:text="Name"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--app:fontFamily="@font/fonts1"/>-->
 
         </LinearLayout>
 

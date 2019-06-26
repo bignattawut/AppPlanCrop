@@ -26,14 +26,16 @@ public class AddFarmer extends AsyncTask<String, Void, String> {
                     .add("id", strings[2])
                     .add("name", strings[3])
                     .add("address", strings[4])
-                    .add("vid", strings[5])
-                    .add("sid", strings[6])
-                    .add("tel", strings[7])
-                    .add("email", strings[8])
-                    .add("area", strings[9])
+                    .add("pid", strings[5])
+                    .add("did", strings[6])
+                    .add("sid", strings[7])
+                    .add("vid", strings[8])
+                    .add("tel", strings[9])
+                    .add("email", strings[10])
+                    .add("area", strings[11])
                     .build();
             Request.Builder builder = new Request.Builder();
-            Request request = builder.url(strings[10]).post(requestBody).build();
+            Request request = builder.url(strings[12]).post(requestBody).build();
             Response response=okHttpClient.newCall(request).execute();
             return response.body().string();
 

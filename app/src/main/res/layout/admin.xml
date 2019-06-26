@@ -192,34 +192,7 @@
 
             </RelativeLayout>
 
-            <!--Green Layout-->
-            <RelativeLayout
-                android:layout_width="@dimen/icon"
-                android:layout_height="@dimen/admin"
-                android:layout_margin="@dimen/margin">
 
-                <!--Station1-->
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/shovel" />
-
-                <!--Title-->
-                <TextView
-                    android:id="@+id/imageViewSite"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:background="#82000000"
-                    android:clickable="true"
-                    android:gravity="center_horizontal"
-                    android:padding="5dp"
-                    android:text="ข้อมูลแปลงเพาะปลูก"
-                    android:textColor="#ffffff"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-            </RelativeLayout>
 
         </LinearLayout>
 

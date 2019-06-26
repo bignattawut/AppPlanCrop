@@ -120,7 +120,7 @@ public class CropTypeViewFragment extends Fragment {
     //alertให้เลือกลบหรือแก้ไข
     private void deleteorEditCropType(final String tidString, final String cropTypeString ) {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(),AlertDialog.THEME_HOLO_LIGHT);
         builder.setCancelable(false);
         builder.setIcon(R.drawable.ic_action_drawerplan);
         builder.setTitle("ลบ หรือ แก้ไข");
@@ -165,7 +165,7 @@ public class CropTypeViewFragment extends Fragment {
 
     //alertให้เลือกจะลบรายการหรือไม่
     private void deleteCropType(final String tidString){
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(),AlertDialog.THEME_HOLO_LIGHT);
         builder.setCancelable(false);
         builder.setTitle("ต้องการลบรายการนี้หรือไม่?");
         builder.setNegativeButton("ไม่ใช่", new DialogInterface.OnClickListener() {

@@ -44,7 +44,7 @@ public class memberFragment extends Fragment {
                 getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new OrderViewFragment())
+                        .replace(R.id.contentHomeFragment, new OrderViewRePortFragment())
                         .addToBackStack(null)
                         .commit();
             }

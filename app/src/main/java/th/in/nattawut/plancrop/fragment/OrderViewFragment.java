@@ -214,6 +214,15 @@ public class OrderViewFragment extends Fragment {
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
         final View view = layoutInflater.inflate(R.layout.edit_order, null);
 
+
+        TextView texPlanMid = view.findViewById(R.id.EditTextMidPlan);
+        String strTextShowmid = getActivity().getIntent().getExtras().getString("mid");
+        texPlanMid.setText(strTextShowmid);
+
+        TextView texPlanName = view.findViewById(R.id.EditTexPlanLogin);
+        String strTextShowName = getActivity().getIntent().getExtras().getString("name");
+        texPlanName.setText(strTextShowName);
+
         TextView txtSData1 = view.findViewById(R.id.txtSData);
         String newSData = getActivity().getIntent().getExtras().getString("sdate", SData);
         txtSData1.setText(newSData);
@@ -360,7 +369,6 @@ public class OrderViewFragment extends Fragment {
             e.printStackTrace();
         }
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

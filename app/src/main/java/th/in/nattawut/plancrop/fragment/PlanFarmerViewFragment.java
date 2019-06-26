@@ -162,8 +162,30 @@ public class PlanFarmerViewFragment extends Fragment {
         builder.show();
     }
 
-    //ลบรายการประเภทพืชเพาะปลูก
-    private void editDeletePlanFarmer(String no) {
+    //alertให้เลือกจะลบรายการหรือไม่
+    private void editDeletePlanFarmer(final String no){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setCancelable(false);
+        builder.setTitle("ต้องการลบรายการนี้หรือไม่?");
+        builder.setNegativeButton("ไม่ใช่", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.setPositiveButton("ใช่", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                deleteCPlanFarmer(no);
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+
+    }
+
+    //ลบรายการวางแผนเพาะปลูก
+    private void deleteCPlanFarmer(String no) {
 
         Myconstant myconstant = new Myconstant();
         try {
@@ -183,7 +205,7 @@ public class PlanFarmerViewFragment extends Fragment {
 
     private void editPlanFarmer(final String no, String pdate, String crop, String area) {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(),AlertDialog.THEME_HOLO_LIGHT);
         builder.setCancelable(false);
         //กำหนดหัวเเรื้อง
         builder.setTitle("วางแผนเพาะปลูกใหม่");

@@ -47,6 +47,9 @@ public class AdminFrament extends Fragment {
         //Site Controller
         siteController();
 
+        //Order Controller
+        orderController();
+
 
     }
 
@@ -150,7 +153,21 @@ public class AdminFrament extends Fragment {
                 getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new OrderViewFragment())
+                        .replace(R.id.contentHomeFragment, new SiteFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+    }
+    private void orderController() {
+        Site = getView().findViewById(R.id.imageViewOrder);
+        Site.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentHomeFragment, new OrderViewRePortFragment())
                         .addToBackStack(null)
                         .commit();
             }

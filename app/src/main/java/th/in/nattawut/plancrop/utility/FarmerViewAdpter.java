@@ -52,9 +52,14 @@ public class FarmerViewAdpter extends BaseAdapter {
         TextView name = view.findViewById(R.id.textNamef);
         TextView phon = view.findViewById(R.id.textPhonef);
 
+//        TextView textvid = view.findViewById(R.id.textvid);
+//        TextView textEmail = view.findViewById(R.id.textEmail);
 
         name.setText(nameString[position]);
         phon.setText(phonString[position]);
+
+//        textvid.setText(vidString[position]);
+//        textEmail.setText(emailString[position]);
 
         return view;
     }

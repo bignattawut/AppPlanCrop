@@ -29,8 +29,13 @@ public class TabPlanFragment extends Fragment {
         //Add Plan
         addPlan();
 
-    }
+        addPlant();
 
+        addPlanPic();
+
+        addOrder();
+
+    }
     private void addPlan() {
         CardView cardViewPlanHome = getView().findViewById(R.id.CardViewPlanHome);
         cardViewPlanHome.setOnClickListener(new View.OnClickListener() {
@@ -40,6 +45,48 @@ public class TabPlanFragment extends Fragment {
                         .getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.contentHomeFragment, new PlanFarmerViewFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+    }
+    private void addPlant() {
+        CardView cardViewPlanHome = getView().findViewById(R.id.CardViewPlantHome);
+        cardViewPlanHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentHomeFragment, new PlantFarmerViewFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+    }
+    private void addPlanPic() {
+        CardView cardViewPlanHome = getView().findViewById(R.id.CardViewPicHome);
+        cardViewPlanHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentHomeFragment, new PlantPictureViewFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+    }
+    private void addOrder() {
+        CardView cardViewPlanHome = getView().findViewById(R.id.CardViewOrderHome);
+        cardViewPlanHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentHomeFragment, new OrderViewRePortFragment())
                         .addToBackStack(null)
                         .commit();
             }

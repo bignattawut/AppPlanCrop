@@ -14,4 +14,9 @@ public interface OrderService {
 
     @GET("selectplanfarmerandroid.php")
     Call<List<PlanFarmer>> getPlanFarmer(@Query("mid") String mid);
+
+    @GET("selectplantfarmer.php")
+    Call<List<PlantFarmer>> getPlantFarmer(@Query("mid") String mid);
+    Call<List<PlantFarmer>> getsdataFarmer(
+            @Query("sdate") String sdate);
 }

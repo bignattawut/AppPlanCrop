@@ -1,5 +1,7 @@
 package th.in.nattawut.plancrop.fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -14,13 +16,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import th.in.nattawut.plancrop.HomeActivity;
 import th.in.nattawut.plancrop.R;
+import th.in.nattawut.plancrop.utility.DeleteFammer;
 import th.in.nattawut.plancrop.utility.FarmerViewAdpter;
 import th.in.nattawut.plancrop.utility.GetData;
 import th.in.nattawut.plancrop.utility.Myconstant;
@@ -72,28 +77,105 @@ public class FarmerViewFragment extends Fragment {
             Log.d("19jan","JSon Farmer ==> "+ jsonString);
 
             JSONArray jsonArray = new JSONArray(jsonString);
+
+            final String[] midString = new String[jsonArray.length()];
             final String[] nameString = new String[jsonArray.length()];
-            //final String[] idString = new String[jsonArray.length()];
             final String[] vidString = new String[jsonArray.length()];
             final String[] phonString = new String[jsonArray.length()];
             final String[] emailString = new String[jsonArray.length()];
-            final String[] midString = new String[jsonArray.length()];
+
 
             for (int i=0; i<jsonArray.length(); i+=1) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
+                midString[i] = jsonObject.getString(columString[0]);
                 nameString[i] = jsonObject.getString(columString[1]);
-               // idString[i] = jsonObject.getString(columString[2]);
                 vidString[i] = jsonObject.getString(columString[2]);
                 phonString[i] = jsonObject.getString(columString[3]);
                 emailString[i] = jsonObject.getString(columString[4]);
-                midString[i] = jsonObject.getString(columString[0]);
 
             }
             final FarmerViewAdpter farmerViewAdpter = new FarmerViewAdpter(getActivity(),
                     nameString,vidString,phonString,emailString);
             listView.setAdapter(farmerViewAdpter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    deleteorEditFarmer(midString[position]);
+                }
+            });
 
             mSwipeRefreshLayout.setRefreshing(false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void deleteorEditFarmer(final String midString) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(),R.style.AlertDialogTheme);
+        builder.setCancelable(false);
+        builder.setIcon(R.drawable.ic_action_draweruser);
+        builder.setTitle("ข้อมูลเกษตรกร");
+        builder.setMessage("กรุณาเลือก ลบ หรือ ดูข้อมูล ?");
+        builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.setNeutralButton("ลบ" ,new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                deleteFarmer(midString);
+                dialog.dismiss();
+            }
+        });
+        builder.setPositiveButton("ดูข้อมูล", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+    }
+
+    //alertให้เลือกจะลบรายการหรือไม่
+    private void deleteFarmer(final String midString){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(),R.style.AlertDialogTheme);
+        builder.setCancelable(false);
+        builder.setTitle("ต้องการลบรายการนี้หรือไม่?");
+        builder.setNegativeButton("ไม่ใช่", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.setPositiveButton("ใช่", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                editDeleteFarmer(midString);
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+    }
+
+    //ลบรายการประเภทพืชเพาะปลูก
+    private void editDeleteFarmer(String midString){
+
+        Myconstant myconstant = new Myconstant();
+        try {
+            DeleteFammer deleteFammer = new DeleteFammer(getActivity());
+            deleteFammer.execute(midString, myconstant.getUrlDeleteFammer());
+
+            if (Boolean.parseBoolean(deleteFammer.get())) {
+                createLisView();
+            } else {
+                Toast.makeText(getActivity(),"ลบรายการพืชเพาะปลูก",Toast.LENGTH_SHORT).show();
+            }
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -34,7 +34,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/alert/ic_add_alert_black_24dp.xml" />
+                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/alert/ic_error_outline_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -55,9 +55,10 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="outputName" value="ic_action_myalertcrop" />
+                                      <entry key="imageAsset" value="C:\Users\BN'B13\Downloads\plant (1).png" />
+                                      <entry key="outputName" value="ic_action_about" />
                                       <entry key="theme" value="CUSTOM" />
-                                      <entry key="themeColor" value="ff2520" />
+                                      <entry key="themeColor" value="09040a" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -131,6 +132,29 @@
                         <option name="values">
                           <map>
                             <entry key="outputIconType" value="ACTIONBAR" />
+                          </map>
+                        </option>
+                      </PersistentState>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </PersistentState>
+          </value>
+        </entry>
+        <entry key="vectorWizard">
+          <value>
+            <PersistentState>
+              <option name="children">
+                <map>
+                  <entry key="vectorAssetStep">
+                    <value>
+                      <PersistentState>
+                        <option name="values">
+                          <map>
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="ic_marijuana_plantation" />
+                            <entry key="sourceFile" value="C:\Users\BN'B13\Downloads\marijuana-plantation.svg" />
                           </map>
                         </option>
                       </PersistentState>

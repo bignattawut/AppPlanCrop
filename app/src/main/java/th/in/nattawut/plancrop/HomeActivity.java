@@ -1,5 +1,7 @@
 package th.in.nattawut.plancrop;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,21 +12,30 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import th.in.nattawut.plancrop.fragment.MainPlanFragment;
+import th.in.nattawut.plancrop.fragment.OrderViewRePortFragment;
 import th.in.nattawut.plancrop.fragment.PlanFarmerViewFragment;
 import th.in.nattawut.plancrop.fragment.PlanFragment;
+import th.in.nattawut.plancrop.fragment.PlantFarmerViewFragment;
 import th.in.nattawut.plancrop.fragment.PlantFragment;
 //import th.in.nattawut.plancrop.fragment.PlantPicture;
 import th.in.nattawut.plancrop.fragment.AdminFrament;
 import th.in.nattawut.plancrop.fragment.PlantPictureFragment;
 import th.in.nattawut.plancrop.fragment.PlantPictureViewFragment;
+import th.in.nattawut.plancrop.fragment.PlantViewFragment;
 import th.in.nattawut.plancrop.fragment.RegisterViewFragment;
+import th.in.nattawut.plancrop.fragment.TabPlanFragment;
 import th.in.nattawut.plancrop.fragment.memberFragment;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -33,6 +44,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
 
+    TextView textView;
+    LinearLayout linearLayout;
+    CardView cardView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,25 +75,52 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         //nameString = getIntent().getStringExtra("Name");
         //getSupportActionBar().setSubtitle(nameString);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,
+        //get name nav_header_name
+        nameString = getIntent().getStringExtra("name");
+        View view = navigationView.getHeaderView(0);
+        textView = view.findViewById(R.id.nav_header_name);
+        textView.setText(nameString);
+        cardView = view.findViewById(R.id.nav_header_id);
+
+        //show name MenuItem
+//        MenuItem menuItem = navigationView.getMenu().findItem(R.id.menu_user);
+//        menuItem.setTitle(nameString);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
                 R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         ///////
 
+        plantController();
 
     }
+
+    private void plantController() {
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentHomeFragment, new RegisterViewFragment())
+                        .addToBackStack(null)
+                        .commit();
+                drawerLayout.closeDrawers();
+            }
+        });
+    }
+
 
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_user:
-                setTitle("ข้อมูลส่วนตัว");
+                setTitle("หน้าหลัก");
                 //getSupportActionBar().setSubtitle(nameString);
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new RegisterViewFragment())
+                        .replace(R.id.contentHomeFragment, new TabPlanFragment())
                         .addToBackStack(null)
                         .commit();
                 break;
@@ -92,21 +133,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         .commit();
                 break;
             case R.id.munu_Plant:
-                setTitle("เพาะปลูก");
+                setTitle("การเพาะปลูก");
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new PlantPictureViewFragment())
+                        .replace(R.id.contentHomeFragment, new PlantFarmerViewFragment())
                         .addToBackStack(null)
                         .commit();
                 break;
-//            case R.id.munu_PlanView:
-//                setTitle("ปฏิทินการวางแผนเพาะปลูก");
-//                getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .replace(R.id.contentHomeFragment, new PlanViewFragment())
-//                        .addToBackStack(null)
-//                        .commit();
-//                break;
             case R.id.munu_PlantPicture:
                 setTitle("บันทึกการเพาะปลูก");
                 getSupportFragmentManager()
@@ -120,6 +153,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.contentHomeFragment, new PlantFragment())
+                        .addToBackStack(null)
+                        .commit();
+                break;
+
+            case R.id.menu_want:
+                setTitle("แจ้งความต้องการ");
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentHomeFragment, new OrderViewRePortFragment())
                         .addToBackStack(null)
                         .commit();
                 break;
@@ -140,10 +182,28 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         .commit();
                 break;
             case R.id.menu_exit:
-                Intent intent = new Intent(getApplication(),MainActivity.class);
-                startActivity(intent);
-                finish();
+                final AlertDialog.Builder builder = new AlertDialog.Builder(this,AlertDialog.THEME_HOLO_LIGHT);
+                builder.setCancelable(false);
+                builder.setTitle("ต้องการออกจากระบบใช่หรือไม่?");
+                builder.setNegativeButton("ไม่ใช่", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.setPositiveButton("ใช่", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(getApplication(), MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                        dialog.dismiss();
+
+                    }
+                });
+                builder.show();
                 break;
+
         }
         //drawerLayout.closeDrawer(GravityCompat.START);
         drawerLayout.closeDrawers();
@@ -151,8 +211,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-    private void addFragment(Bundle savedInstanceState){
-        if (savedInstanceState == null){
+    private void addFragment(Bundle savedInstanceState) {
+        if (savedInstanceState == null) {
             getSupportFragmentManager()
                     .beginTransaction()
                     .add(R.id.contentHomeFragment, new MainPlanFragment())
@@ -164,15 +224,16 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     private void receiveValueFromMain() {
         nameString = getIntent().getStringExtra("name");
-        Log.d("1Jan","nameString ==> " + nameString);
+        Log.d("1Jan", "nameString ==> " + nameString);
 
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        //menuInflater.inflate(R.menu.menu_google,menu);
-        menuInflater.inflate(R.menu.manu_option,menu);
+//        menuInflater.inflate(R.menu.menu_select,menu);//Show layout
+        menuInflater.inflate(R.menu.manu_exit,menu);
+        menuInflater.inflate(R.menu.manu_option, menu);
         return true;
     }
 
@@ -184,8 +245,51 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 ////                intent.setData(Uri.parse("https://www.moc.go.th/index.php/rice-iframe-4.html"));
 ////                startActivity(intent);
 ////                finish();
-            case R.id.exit:
-                Intent intent = new Intent(getApplication(),MainActivity.class);
+
+            //Show layout
+//            case R.id.itemSelect:
+//                final AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+//                builder1.setCancelable(false);
+//                View view = getLayoutInflater().inflate(R.layout.member,null);
+//                CardView cardView = view.findViewById(R.id.CardViewRegister);
+//                cardView.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        getSupportFragmentManager()
+//                                .beginTransaction()
+//                                .replace(R.id.contentHomeFragment, new OrderViewRePortFragment())
+//                                .addToBackStack(null)
+//                                .commit();
+//                    }
+//                });
+//                builder1.setView(view);
+//                AlertDialog alertDialog = builder1.create();
+//                alertDialog.show();;
+//                break;
+            case R.id.itemSingOut:
+                final AlertDialog.Builder builder = new AlertDialog.Builder(this,AlertDialog.THEME_HOLO_LIGHT);
+                builder.setCancelable(false);
+                builder.setTitle("ต้องการออกจากระบบใช่หรือไม่?");
+                builder.setNegativeButton("ไม่ใช่", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.setPositiveButton("ใช่", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(getApplication(), MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                        dialog.dismiss();
+
+                    }
+                });
+                builder.show();
+                break;
+            case R.id.option:
+                Intent intent = new Intent(getApplication(), MainActivity.class);
                 startActivity(intent);
                 finish();
                 break;

@@ -43,6 +43,7 @@ public class OrderAdapter extends ArrayAdapter<Order> {
         textCrop.setText(orders.get(position).getCrop());
         textQty.setText(orders.get(position).getQty());
 
+
         return view;
     }
 

@@ -135,10 +135,10 @@ public class SiteFragment extends Fragment implements LocationListener {
         TextView siteMidName = getView().findViewById(R.id.siteMidName);
         TextView siteMid = getView().findViewById(R.id.siteMid);
 
-        String strTextShow = getActivity().getIntent().getExtras().getString("Name");
+        String strTextShow = getActivity().getIntent().getExtras().getString("name");
         siteMidName.setText(strTextShow);
 
-        String strTextShowmid = getActivity().getIntent().getExtras().getString("MID");
+        String strTextShowmid = getActivity().getIntent().getExtras().getString("mid");
         siteMid.setText(strTextShowmid);
 
     }
