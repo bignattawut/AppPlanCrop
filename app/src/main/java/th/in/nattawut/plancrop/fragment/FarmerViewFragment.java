@@ -23,91 +23,66 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import th.in.nattawut.plancrop.HomeActivity;
 import th.in.nattawut.plancrop.R;
+import th.in.nattawut.plancrop.utility.APIUtils;
 import th.in.nattawut.plancrop.utility.DeleteFammer;
+import th.in.nattawut.plancrop.utility.Farmer;
 import th.in.nattawut.plancrop.utility.FarmerViewAdpter;
 import th.in.nattawut.plancrop.utility.GetData;
+import th.in.nattawut.plancrop.utility.MyAlert;
 import th.in.nattawut.plancrop.utility.Myconstant;
+import th.in.nattawut.plancrop.utility.OrderService;
+import th.in.nattawut.plancrop.utility.PlanFarmer;
 
 
 public class FarmerViewFragment extends Fragment {
 
-    SwipeRefreshLayout mSwipeRefreshLayout;
     ListView listView;
+    OrderService orderService;
+    List<Farmer> list = new ArrayList<Farmer>();
+    SwipeRefreshLayout mSwipeRefreshLayout;
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        //Create Toolbal
-        CreateToolbal();
-
-        //CreateLisView
-        createLisView();
-
-        //Swipe Refresh Layout
-        swipeRefreshLayout();
+        showMid();
     }
-    private void swipeRefreshLayout() {
-        mSwipeRefreshLayout = getView().findViewById(R.id.swiRefreshLayouRegister);
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        createLisView();
 
-                    }
-                },2);
+    public void showMid() {
+        listView = getView().findViewById(R.id.listViewFarmer);
+        orderService = APIUtils.getService();
+        if (getActivity().getIntent().getExtras() != null) {
+            String mid = getActivity().getIntent().getExtras().getString("mid");
+            createLisView(mid);
+
+        }
+    }
+
+    private void createLisView(String mid) {
+        Call<List<Farmer>> call = orderService.getFarmer(mid);
+        call.enqueue(new Callback<List<Farmer>>() {
+            @Override
+            public void onResponse(Call<List<Farmer>> call, Response<List<Farmer>> response) {
+                if (response.isSuccessful()) {
+                    list = response.body();
+                    listView.setAdapter(new FarmerViewAdpter(getActivity(),R.layout.frm_farmerandroid_view,list));
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Farmer>> call, Throwable t) {
+
             }
         });
-    }
-
-    private void createLisView() {
-        ListView listView = getView().findViewById(R.id.listViewFarmer);
-        Myconstant myconstant = new Myconstant();
-        String[] columString = myconstant.getComlumFarmerString();
-
-        try {
-            GetData getData = new GetData(getActivity());
-            getData.execute(myconstant.getUrlselectFarmer());
-
-            String jsonString = getData.get();
-            Log.d("19jan","JSon Farmer ==> "+ jsonString);
-
-            JSONArray jsonArray = new JSONArray(jsonString);
-
-            final String[] midString = new String[jsonArray.length()];
-            final String[] nameString = new String[jsonArray.length()];
-            final String[] vidString = new String[jsonArray.length()];
-            final String[] phonString = new String[jsonArray.length()];
-            final String[] emailString = new String[jsonArray.length()];
-
-
-            for (int i=0; i<jsonArray.length(); i+=1) {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                midString[i] = jsonObject.getString(columString[0]);
-                nameString[i] = jsonObject.getString(columString[1]);
-                vidString[i] = jsonObject.getString(columString[2]);
-                phonString[i] = jsonObject.getString(columString[3]);
-                emailString[i] = jsonObject.getString(columString[4]);
-
-            }
-            final FarmerViewAdpter farmerViewAdpter = new FarmerViewAdpter(getActivity(),
-                    nameString,vidString,phonString,emailString);
-            listView.setAdapter(farmerViewAdpter);
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    deleteorEditFarmer(midString[position]);
-                }
-            });
-
-            mSwipeRefreshLayout.setRefreshing(false);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     private void deleteorEditFarmer(final String midString) {
@@ -170,7 +145,6 @@ public class FarmerViewFragment extends Fragment {
             deleteFammer.execute(midString, myconstant.getUrlDeleteFammer());
 
             if (Boolean.parseBoolean(deleteFammer.get())) {
-                createLisView();
             } else {
                 Toast.makeText(getActivity(),"ลบรายการพืชเพาะปลูก",Toast.LENGTH_SHORT).show();
             }
@@ -183,7 +157,6 @@ public class FarmerViewFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         if (item.getItemId() == R.id.itemlinkUrl) {
             item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
@@ -204,6 +177,7 @@ public class FarmerViewFragment extends Fragment {
 
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
@@ -212,30 +186,12 @@ public class FarmerViewFragment extends Fragment {
 
     }
 
-    private void CreateToolbal() {
-        Toolbar toolbar = getView().findViewById(R.id.toolbarFarmerView);
-        ((HomeActivity)getActivity()).setSupportActionBar(toolbar);
-
-        ((HomeActivity)getActivity()).getSupportActionBar().setTitle("ข้อมูลเกษตรกร");
-
-        ((HomeActivity)getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
-        ((HomeActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().getSupportFragmentManager().popBackStack();
-            }
-        });
-        setHasOptionsMenu(true);
-
-    }
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.frm_view_farmer,container, false);
+        View view = inflater.inflate(R.layout.frm_view_farmerandroid,container, false);
         return view;
     }
 }

@@ -60,16 +60,17 @@
             android:padding="10dp">
 
             <TextView
+                android:id="@+id/vidSiteThai"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:text="รหัสตั้งแปลงหมู่บ้าน :" />
 
-            <Spinner
+            <TextView
                 android:id="@+id/vidSiteSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="1dp"></Spinner>
+                android:layout_marginLeft="5dp"></TextView>
         </LinearLayout>
 
         <LinearLayout
@@ -111,16 +112,27 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
-        <Button
-            android:layout_marginTop="50dp"
-            android:layout_gravity="center_horizontal"
-            android:text="เพิ่มข้อมูลแปลงเพาะปลูก"
-            android:textSize="24dp"
-            android:textColor="@color/colorWhite"
-            android:background="@drawable/button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        <!--<Button-->
+            <!--android:id="@+id/btnSite"-->
+            <!--android:layout_marginTop="50dp"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:text="เพิ่มข้อมูลแปลงเพาะปลูก"-->
+            <!--android:textSize="24dp"-->
+            <!--android:textColor="@color/colorWhite"-->
+            <!--android:background="@drawable/button"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content" />-->
 
+        <Button
+            android:id="@+id/btnSite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/button"
+            android:fontFamily="@font/fonts1"
+            android:text="บันทึก"
+            android:textColor="@color/colorWhite"
+            android:textSize="24dp" />
 
     </LinearLayout>
 

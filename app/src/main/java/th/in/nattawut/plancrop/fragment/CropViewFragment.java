@@ -113,7 +113,6 @@ public class CropViewFragment extends Fragment {
                 harvestperiodString[i] = jsonObject.getString(columnStrings[5]);
                 yield[i] = jsonObject.getString(columnStrings[6]);
 
-
             }
 
             CropViewAdpter cropViewAdpter = new CropViewAdpter(getActivity(),

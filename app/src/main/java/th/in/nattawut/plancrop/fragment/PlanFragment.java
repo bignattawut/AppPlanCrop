@@ -90,6 +90,7 @@ public class PlanFragment extends Fragment {
 
     }
 
+
     private void setUpTexeShowMid() {
         TextView texPlanLogin = getView().findViewById(R.id.texPlanLogin);
         TextView texPlanMid = getView().findViewById(R.id.texPlanMid);

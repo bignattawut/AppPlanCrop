@@ -61,7 +61,7 @@ public class PlantPictureFragment extends Fragment {
     ////////
     private static final String[] Camara = {"เลือกรูปจากคลัง","ถ่ายรูป"};
 
-    public static final String UPLOAD_URL = "http://192.168.1.101/android/php/upload.php";
+    public static final String UPLOAD_URL = "http://10.200.0.81/android/php/upload.php";
     public static final String UPLOAD_KEY = "URL";
     private int PICK_IMAGE_REQUEST = 1;
 

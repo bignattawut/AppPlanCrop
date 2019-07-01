@@ -63,22 +63,25 @@ public class PlanFarmerViewFragment extends Fragment {
         //Swipe Refresh Layout
         //swipeRefreshLayout();
 
-        showMid();
+        //showMid();
 
         planViewController();
 
+        swiRefreshLayou();
+
     }
 
-//    private void swipeRefreshLayout() {
-//        mSwipeRefreshLayout = getView().findViewById(R.id.swiRefreshLayou);
-//        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//                showMid();
-//                mSwipeRefreshLayout.setRefreshing(false);
-//            }
-//        });
-//    }
+    private void swiRefreshLayou() {
+        mSwipeRefreshLayout = getView().findViewById(R.id.swiRefreshLayouPlanFarmer);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimaryDark);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                showMid();
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
+    }
 
     private void planViewController() {
         FloatingActionButtonExpandable floatingActionButton = getView().findViewById(R.id.floatingActionButtonViewPlan);
@@ -136,7 +139,7 @@ public class PlanFarmerViewFragment extends Fragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
-        builder.setIcon(R.drawable.ic_action_drawerplan);
+        builder.setIcon(R.drawable.planhome);
         builder.setTitle("ลบ หรือ แก้ไข");
         builder.setMessage("กรุณาเลือก ลบ หรือ แก้ไข ?");
         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {

@@ -138,7 +138,7 @@ public class OrderViewFragment extends Fragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
-        builder.setIcon(R.drawable.ic_action_drawerplan);
+        builder.setIcon(R.drawable.notepad);
         builder.setTitle("ลบ หรือ แก้ไข");
         builder.setMessage("กรุณาเลือก ลบ หรือ แก้ไข ?");
         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {

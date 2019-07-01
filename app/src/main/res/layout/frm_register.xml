@@ -208,12 +208,12 @@
                     android:src="@drawable/ic_action_home" />
 
                 <TextView
-                    android:id="@+id/province"
                     style="@style/fonts"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:text="จังหวัด :" />
+
 
                 <Spinner
                     android:id="@+id/spProvince"
@@ -222,6 +222,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="1dp"></Spinner>
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtProvince"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></TextView>
 
 
             <LinearLayout

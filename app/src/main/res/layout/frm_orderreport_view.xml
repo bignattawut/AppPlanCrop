@@ -92,7 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/fonts1"
-                    android:text="พืชเพาะปลูก"
+                    android:text="พืชต้องการ"
                     android:textSize="22dp"
                     android:textStyle="bold" />
 
@@ -195,6 +195,8 @@
                     android:textSize="22dp"
                     android:textStyle="bold" />
             </TableRow>
+
+
 
 
         </TableLayout>

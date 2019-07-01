@@ -39,10 +39,15 @@
                 android:icon="@drawable/ic_harvest"
                 android:title="ผลผลิต" />
             <item
-                android:id="@+id/munu_Seeding"
+                android:id="@+id/munu_PlantRepor"
                 android:icon="@drawable/tabplant"
                 android:iconTint="@color/yello"
                 android:title="การเพาะปลูก" />
+            <item
+                android:id="@+id/munu_PlantReportall"
+                android:icon="@drawable/tabplant"
+                android:iconTint="@color/yello"
+                android:title="การเพาะปลูกทั้งหมด" />
             <item
                 android:id="@+id/menu_want"
                 android:icon="@drawable/ic_action_tabplan"
@@ -57,8 +62,9 @@
     <group android:id="@+id/group_menu">
 
         <item
-            android:icon="@drawable/ic_action_about"
-            android:title="เกี่ยวกับ Plan Crop" />
+            android:id="@+id/menu_about"
+            android:icon="@drawable/ic_action_select"
+            android:title="เกี่ยวกับเรา" />
         <item
             android:id="@+id/menu_exit"
             android:icon="@drawable/ic_action_exit"

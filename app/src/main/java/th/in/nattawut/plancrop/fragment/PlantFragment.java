@@ -110,7 +110,7 @@ public class PlantFragment extends Fragment {
                     Toast.makeText(getActivity(),"เพิ่มข้อมูลเรียบร้อย",Toast.LENGTH_LONG).show();getActivity()
                             .getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.contentHomeFragment, new PlantViewFragment())
+                            .replace(R.id.contentHomeFragment, new PlantFarmerViewFragment())
                             .addToBackStack(null)
                             .commit();
                 }

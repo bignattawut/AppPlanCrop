@@ -14,7 +14,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SimpleAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.okhttp.FormEncodingBuilder;
@@ -54,6 +56,8 @@ public class RegisterFragment extends Fragment {
     private Spinner spProvince,spAmphur, spSubDistrice,spVillag;
     private int rubIDprovince;
 
+
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -84,6 +88,8 @@ public class RegisterFragment extends Fragment {
         adpVid = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, arrVid);
         spVillag.setAdapter(adpVid);
 
+
+
     }
     @Override
     public void onStart() {
@@ -113,20 +119,12 @@ public class RegisterFragment extends Fragment {
             Request request = new Request.Builder()
                     .url(Myconstant.getUrlProvince)
                     .build();
-
-
             try {
-                Response response = client.newCall(request)
-                        .execute();
-
+                Response response = client.newCall(request).execute();
                 result = response.body().string();
-
-
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
             try {
                 JSONArray jsonArray = new JSONArray(result);
                 JSONObject jsonObject = null;
@@ -359,7 +357,7 @@ public class RegisterFragment extends Fragment {
                     listVidId.add(jsonObject.getString("vid"));
                     listVid.add(jsonObject.getString("thai"));
 
-                    Log.d("5/Jan getUrlSid", "JSON ==>" + result);
+                    Log.d("5/Jan getUrlVid", "JSON ==>" + result);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -446,7 +444,7 @@ public class RegisterFragment extends Fragment {
                         myconstant.getUrlRegister());
 
                 String result = addFarmer.get();
-                Log.d("1jan", "result ==>" + result);
+                Log.d("1jan", "result ==>" + result + arrProvinceID);
 
                 if (Boolean.parseBoolean(result)) {
                     getActivity().getSupportFragmentManager().popBackStack();

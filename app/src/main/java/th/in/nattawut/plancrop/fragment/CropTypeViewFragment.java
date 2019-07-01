@@ -242,6 +242,9 @@ public class CropTypeViewFragment extends Fragment {
             editCropType.execute(tidString,newCropType,
                     myconstant.getUrlEditCropType());
 
+
+
+
             if (Boolean.parseBoolean(editCropType.get())) {
                 createListView();
             }else {

@@ -8,6 +8,7 @@ import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,14 +54,28 @@ public class PlantFarmerViewFragment extends Fragment {
     OrderService orderService;
     List<PlantFarmer> list = new ArrayList<PlantFarmer>();
     private String sdata;
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        showMid();
+        //showMid();
 
         plantViewController();
+        swiRefreshLayou();
+    }
+
+    private void swiRefreshLayou() {
+        mSwipeRefreshLayout = getView().findViewById(R.id.swiRefreshLayouPlantFarmer);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                showMid();
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
     }
 
     private void plantViewController() {
@@ -119,7 +134,7 @@ public class PlantFarmerViewFragment extends Fragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
-        builder.setIcon(R.drawable.ic_action_drawerplan);
+        builder.setIcon(R.drawable.shovel);
         builder.setTitle("ลบ หรือ แก้ไข");
         builder.setMessage("กรุณาเลือก ลบ หรือ แก้ไข ?");
         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {

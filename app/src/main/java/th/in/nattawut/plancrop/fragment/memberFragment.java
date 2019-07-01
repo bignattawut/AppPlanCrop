@@ -21,6 +21,24 @@ public class memberFragment extends Fragment {
 
         selectOrDerController();
 
+        plantReportallController();
+
+    }
+
+
+    private void plantReportallController() {
+        CardView Requirement = getView().findViewById(R.id.CardViewPlantReportall);
+        Requirement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentHomeFragment, new PlantReportallViewFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
     }
     private void ordertController() {
         CardView Requirement = getView().findViewById(R.id.CardViewAddOrder);
@@ -50,6 +68,8 @@ public class memberFragment extends Fragment {
             }
         });
     }
+
+
 
 
 

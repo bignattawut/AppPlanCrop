@@ -46,7 +46,6 @@ public class CropTypeFragment extends Fragment {
 
     private void addcroptype() {
         EditText edtCroptype = getView().findViewById(R.id.edtCroptype);
-
         String croptypeString = edtCroptype.getText().toString().trim();
 
         if (croptypeString.isEmpty()){

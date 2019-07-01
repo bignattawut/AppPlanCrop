@@ -51,6 +51,9 @@ public class AdminFrament extends Fragment {
         orderController();
 
 
+        //PlantReprotallControlle
+        PlantReprotallController();
+
     }
 
 
@@ -62,7 +65,7 @@ public class AdminFrament extends Fragment {
                 getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new FarmerViewFragment())
+                        .replace(R.id.contentHomeFragment, new FarmerViewAdminFragment())
                         .addToBackStack(null)
                         .commit();
             }
@@ -153,7 +156,7 @@ public class AdminFrament extends Fragment {
                 getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new SiteFragment())
+                        .replace(R.id.contentHomeFragment, new SiteViewFrament())
                         .addToBackStack(null)
                         .commit();
             }
@@ -173,6 +176,23 @@ public class AdminFrament extends Fragment {
             }
         });
     }
+
+    private void PlantReprotallController() {
+        Site = getView().findViewById(R.id.imageViewPlantReprotall);
+        Site.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentHomeFragment, new PlantReportallViewFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+    }
+
+
 
 
     @Nullable

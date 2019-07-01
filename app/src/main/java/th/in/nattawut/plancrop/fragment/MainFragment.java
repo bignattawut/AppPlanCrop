@@ -1,38 +1,33 @@
 package th.in.nattawut.plancrop.fragment;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-
-import th.in.nattawut.plancrop.AdminActivity;
 import th.in.nattawut.plancrop.HomeActivity;
 import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.AddlLogin;
-import th.in.nattawut.plancrop.utility.GetData;
 import th.in.nattawut.plancrop.utility.MyAlert;
 import th.in.nattawut.plancrop.utility.Myconstant;
 
 public class MainFragment extends Fragment{
 
+
+    private String typeUser;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -43,6 +38,7 @@ public class MainFragment extends Fragment{
 
        //Login Controkker
         loginControkker();
+
 
 
     }// onActivityCreat
@@ -85,6 +81,7 @@ public class MainFragment extends Fragment{
                                 nameuser = jsonObject.getString("name");
                                 miduser = jsonObject.getString("mid");
                                 vid = jsonObject.getString("vid");
+                                typeUser = jsonObject.getString("type");
 
                                 //ฝัง MID ในแอพ
                                 SharedPreferences sharedPreferences = getActivity().getSharedPreferences(myconstant.getNameFileSharePreference(),Context.MODE_PRIVATE);
@@ -92,6 +89,8 @@ public class MainFragment extends Fragment{
                                 editor.putString("mid",miduser);
                                 editor.putString("name",nameuser);
                                 editor.putString("vid",vid);
+                                editor.putString("type", typeUser);
+                                editor.commit();
 
                                 Intent intent = new Intent(getActivity(), HomeActivity.class);
                                 intent.putExtra("name",nameuser);

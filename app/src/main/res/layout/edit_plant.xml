@@ -68,7 +68,7 @@
             <Spinner
                 android:id="@+id/EditPlantCropSpinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="1dp"></Spinner>
 
         </LinearLayout>
@@ -88,7 +88,7 @@
 
             <TextView
                 android:id="@+id/EditMyDate"
-                android:layout_width="160dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <ImageView
@@ -124,7 +124,7 @@
             <GridLayout
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="1dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/red_button"
                 android:backgroundTint="@color/colorlightGreen"
@@ -156,7 +156,7 @@
             <GridLayout
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="1dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/red_button"
                 android:backgroundTint="@color/colorlightGreen"
@@ -187,7 +187,7 @@
             <GridLayout
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="1dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/red_button"
                 android:backgroundTint="@color/colorlightGreen"
