@@ -68,33 +68,22 @@ public class OrderViewFragment extends Fragment {
 
         CreateToolbal();
 
+        showMid();
+
+        swiRefreshLayou();
+
+    }
+
+    private void swiRefreshLayou() {
         mSwipeRefreshLayout = getView().findViewById(R.id.swiRefreshLayoutOrder);
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-//                new Handler().postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        //Create ListView
-//                        showMid();
-//                        mSwipeRefreshLayout.setRefreshing(false);
-//                    }
-//                },2);
                 showMid();
                 mSwipeRefreshLayout.setRefreshing(false);
-//
             }
         });
-
-
-//        listView = getView().findViewById(R.id.listViewOrder);
-//        orderService = APIUtils.getService();
-//        if (getActivity().getIntent().getExtras() != null) {
-//            String mid = getActivity().getIntent().getExtras().getString("mid");
-//            selectOrder(mid);
-//
-//        }
     }
 
     public void showMid() {

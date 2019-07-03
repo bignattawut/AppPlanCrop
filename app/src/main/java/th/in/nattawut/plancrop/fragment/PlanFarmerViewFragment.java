@@ -69,6 +69,8 @@ public class PlanFarmerViewFragment extends Fragment {
 
         swiRefreshLayou();
 
+        showMid();
+
     }
 
     private void swiRefreshLayou() {

@@ -17,7 +17,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -26,6 +28,7 @@ import org.json.JSONObject;
 import th.in.nattawut.plancrop.HomeActivity;
 import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.DeleteFammer;
+import th.in.nattawut.plancrop.utility.EditFarmer;
 import th.in.nattawut.plancrop.utility.FarmerViewAdminAdpter;
 import th.in.nattawut.plancrop.utility.GetDataWhereRegister;
 import th.in.nattawut.plancrop.utility.Myconstant;
@@ -111,7 +114,8 @@ public class FarmerViewAdminFragment extends Fragment {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    deleteorEditFarmer(midString[position]);
+                    deleteorEditFarmer(midString[position],useridString[position],pwdString[position],idString[position],nameString[position],addressString[position],
+                            vidString[position],sidString[position],telString[position],emailString[position],areaString[position]);
                 }
             });
 
@@ -121,7 +125,7 @@ public class FarmerViewAdminFragment extends Fragment {
         }
     }
 
-    private void deleteorEditFarmer(final String midString) {
+    private void deleteorEditFarmer(final String midString,final String useridString,final String pwdString,final String idString,final String nameString,final String addressString,final String vidString,final String sidString,final String telString,final String emailString,final String areaString) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(),R.style.AlertDialogTheme);
         builder.setCancelable(false);
@@ -144,11 +148,117 @@ public class FarmerViewAdminFragment extends Fragment {
         builder.setPositiveButton("ดูข้อมูล", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                editFarmer(midString,useridString,pwdString,idString,nameString,addressString,vidString,sidString,telString,emailString,areaString);
                 dialog.dismiss();
             }
         });
         builder.show();
+    }
+
+    private void editFarmer(final String midString, String useridString, String pwdString, String idString, String nameString,
+                            String addressString, String vidString, String sidString, String telString, String emailString, String areaString) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setCancelable(false);
+        builder.setTitle("ข้อมูลส่วนตัว");
+
+        LayoutInflater layoutInflater = getActivity().getLayoutInflater();
+        final View view = layoutInflater.inflate(R.layout.edit_farmer, null);
+
+
+        EditText EditEdtPassword = view.findViewById(R.id.Editedtpassword);
+        String newPassword = getActivity().getIntent().getExtras().getString("pwd",pwdString);
+        EditEdtPassword.setText(newPassword);
+
+        EditText EditEdtId = view.findViewById(R.id.Editedtid);
+        String newId = getActivity().getIntent().getExtras().getString("id",idString);
+        EditEdtId.setText(newId);
+
+        EditText EditEdtName = view.findViewById(R.id.Editedtname);
+        String newName = getActivity().getIntent().getExtras().getString("name",nameString);
+        EditEdtName.setText(newName);
+
+        EditText EditEdtAddress = view.findViewById(R.id.Editedtaddress);
+        String newAddress = getActivity().getIntent().getExtras().getString("address",addressString);
+        EditEdtAddress.setText(newAddress);
+
+        EditText EditEdtPhone = view.findViewById(R.id.Editedtphone);
+        String newPhone = getActivity().getIntent().getExtras().getString("tel",telString);
+        EditEdtPhone.setText(newPhone);
+
+        EditText EditEdtEmail = view.findViewById(R.id.Editedtemail);
+        String newEmail = getActivity().getIntent().getExtras().getString("email",emailString);
+        EditEdtEmail.setText(newEmail);
+
+        TextView DistriceFarmer = view.findViewById(R.id.EditspDistriceFarmer);
+        String newSid = getActivity().getIntent().getExtras().getString("sid",sidString);
+        DistriceFarmer.setText(newSid);
+
+        TextView EditTextVillag = view.findViewById(R.id.EditspVillag);
+        String newVillag = getActivity().getIntent().getExtras().getString("vid",vidString);
+        EditTextVillag.setText(newVillag);
+
+
+        builder.setView(view);
+
+        builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.setPositiveButton("แก้ไข", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                EditText EditEdtPassword = view.findViewById(R.id.Editedtpassword);
+                String newPassword = EditEdtPassword.getText().toString();
+
+                EditText EditEdtId = view.findViewById(R.id.Editedtid);
+                String newID = EditEdtId.getText().toString();
+
+                EditText EditEdtName = view.findViewById(R.id.Editedtname);
+                String newName = EditEdtName.getText().toString();
+
+                EditText EditEdtAddress = view.findViewById(R.id.Editedtaddress);
+                String newAddress = EditEdtAddress.getText().toString();
+
+                EditText EditEdtPhone = view.findViewById(R.id.Editedtphone);
+                String newPhone = EditEdtPhone.getText().toString();
+
+                EditText EditEdtEmail = view.findViewById(R.id.Editedtemail);
+                String newEmail = EditEdtEmail.getText().toString();
+
+                EditText plan1 = view.findViewById(R.id.Editadd1);
+                EditText plan2 = view.findViewById(R.id.Editadd2);
+                EditText plan3 = view.findViewById(R.id.Editadd3);
+
+                String newArea = Float.toString(Float.parseFloat(plan1.getText().toString().trim())
+                        +(Float.parseFloat(plan2.getText().toString().trim())*100+Float.parseFloat(plan3.getText().toString().trim()))/400);
+
+                updateFarmer(midString,newPassword,newID,newName,newAddress,newPhone,newEmail,newArea);
+                dialog.dismiss();
+
+            }
+        });
+        builder.show();
+    }
+
+    //updateเกษตรกร
+    private void updateFarmer(String midString, String newPassword, String newID, String newName, String newAddress, String newPhone, String newEmail,String newArea) {
+        Myconstant myconstant = new Myconstant();
+        try {
+            EditFarmer editFarmer = new EditFarmer(getActivity());
+            editFarmer.execute(midString,newPassword,newID,newName,newAddress,newPhone,newEmail,newArea,
+                    myconstant.getUrlEditFarmer());
+
+            if (Boolean.parseBoolean(editFarmer.get())) {
+            }else {
+                Toast.makeText(getActivity(),"แก้ไขข้อมูลสำเร็จ",
+                        Toast.LENGTH_SHORT).show();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     //alertให้เลือกจะลบรายการหรือไม่

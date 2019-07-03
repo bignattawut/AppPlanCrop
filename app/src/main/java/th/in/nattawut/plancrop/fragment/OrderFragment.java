@@ -1,11 +1,13 @@
 package th.in.nattawut.plancrop.fragment;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +33,7 @@ import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.AddOrder;
 import th.in.nattawut.plancrop.utility.GetData;
 import th.in.nattawut.plancrop.utility.MyAlert;
+import th.in.nattawut.plancrop.utility.MyAlertCrop;
 import th.in.nattawut.plancrop.utility.Myconstant;
 
 public class OrderFragment extends Fragment {
@@ -41,6 +44,8 @@ public class OrderFragment extends Fragment {
     DatePickerDialog dataPickerDialog;
     Calendar calendar;
     Button selctDate;
+
+    private String addMid,addCrop,addSData,addEData,addQty,strTextShow,addCropName;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -63,7 +68,7 @@ public class OrderFragment extends Fragment {
         TextView txtName = getView().findViewById(R.id.txtName);
         TextView txtMid = getView().findViewById(R.id.txtMid);
 
-        String strTextShow = getActivity().getIntent().getExtras().getString("name");
+        strTextShow = getActivity().getIntent().getExtras().getString("name");
         txtName.setText(strTextShow);
 
         String strTextShowmid = getActivity().getIntent().getExtras().getString("mid");
@@ -177,44 +182,82 @@ public class OrderFragment extends Fragment {
     private void order() {
         TextView txtMid = getView().findViewById(R.id.txtMid);
         TextView textCrop = getView().findViewById(R.id.textPlanCidSpinner);
+        TextView textCropName = getView().findViewById(R.id.textPlanCropSpinner);
         TextView txtSData = getView().findViewById(R.id.txtSData);
         TextView txtEData = getView().findViewById(R.id.txtEData);
         EditText edtQty = getView().findViewById(R.id.edtQty);
 
-        String addMid = txtMid.getText().toString().trim();
-        String addCrop = textCrop.getText().toString().trim();
-        String addSData = txtSData.getText().toString().trim();
-        String addEData = txtEData.getText().toString().trim();
-        String addQty = edtQty.getText().toString().trim();
+        addMid = txtMid.getText().toString().trim();
+        addCrop = textCrop.getText().toString().trim();
+        addCropName = textCropName.getText().toString().trim();
+        addSData = txtSData.getText().toString().trim();
+        addEData = txtEData.getText().toString().trim();
+        addQty = edtQty.getText().toString().trim();
 
-        if (addMid.isEmpty() ||  addSData.isEmpty() || addEData.isEmpty() || addCrop.isEmpty() || addQty.isEmpty()) {
-            MyAlert myAlert = new MyAlert(getActivity());
-            myAlert.onrmaIDialog("สวัสดี", "กรุณากรอกข้อมูลให้ครบ");
+
+        MyAlertCrop myAlertCrop = new MyAlertCrop(getActivity());
+        if (addMid.isEmpty()) {
+            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกชื่อสมาชิก");
+        } else if (addCrop.isEmpty()) {
+            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกพืชปลอดสารที่ต้องการ");
+        } else if (addSData.isEmpty()) {
+            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกวันที่เริ่มต้น");
+        } else if (addEData.isEmpty()) {
+            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกวันที่สินสุด");
+        } else if (addQty.isEmpty()) {
+            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกปริมาณความต้องการ");
         }else {
+            comfirmUpload();
+        }
 
-            try {
-                Myconstant myconstant = new Myconstant();
-                AddOrder addOrder = new AddOrder(getActivity());
-                addOrder.execute(addMid,addSData,addEData,addCrop,addQty,
-                        myconstant.getUrladdorder());
+    }
 
-                String result = addOrder.get();
-                Log.d("addOrder", "result ==> " + result);
-                if (Boolean.parseBoolean(result)) {
-                    getActivity().getSupportFragmentManager().popBackStack();
-                } else {
-                    Toast.makeText(getActivity(), "เพิ่มข้อมูลเรียบร้อย", Toast.LENGTH_LONG).show();
-                    getActivity()
-                            .getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.contentHomeFragment, new OrderViewFragment())
-                            .addToBackStack(null)
-                            .commit();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+    private void comfirmUpload() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("ข้อมูลการวางแผนเพาะปลูก");
+        builder.setMessage("ชื่อสมาชิก = " + strTextShow + "\n"
+                + "พืชที่ต้องการ = " + addCropName + "\n"
+                + "วันที่เริ่มต้น = " + addSData + "\n"
+                + "วันที่สินสุด = " + addEData + "\n"
+                + "ปริมาณความต้องการ = " + addQty + "กิโลกรัม");
+        builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {//ปุ่มที่1
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
             }
+        }); //
+        builder.setPositiveButton("เพิ่ม", new DialogInterface.OnClickListener() {//ปุ่มที่2
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                uploadToServer();
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+    }
 
+    private void uploadToServer() {
+        try {
+            Myconstant myconstant = new Myconstant();
+            AddOrder addOrder = new AddOrder(getActivity());
+            addOrder.execute(addMid,addSData,addEData,addCrop,addQty,
+                    myconstant.getUrladdorder());
+
+            String result = addOrder.get();
+            Log.d("addOrder", "result ==> " + result);
+            if (Boolean.parseBoolean(result)) {
+                getActivity().getSupportFragmentManager().popBackStack();
+            } else {
+                Toast.makeText(getActivity(), "เพิ่มข้อมูลเรียบร้อย", Toast.LENGTH_LONG).show();
+                getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentHomeFragment, new OrderViewFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

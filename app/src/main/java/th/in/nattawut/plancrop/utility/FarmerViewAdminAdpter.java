@@ -64,13 +64,13 @@ public class FarmerViewAdminAdpter extends BaseAdapter {
         TextView name = view.findViewById(R.id.textNamef);
         TextView phon = view.findViewById(R.id.textPhonef);
 
-//        TextView textvid = view.findViewById(R.id.textvid);
+        TextView Username = view.findViewById(R.id.textUsername);
 //        TextView textEmail = view.findViewById(R.id.textEmail);
 
         name.setText(nameString[position]);
         phon.setText(telString[position]);
 
-//        textvid.setText(vidString[position]);
+        Username.setText(useridString[position]);
 //        textEmail.setText(emailString[position]);
 
         return view;

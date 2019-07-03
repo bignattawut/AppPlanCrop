@@ -115,7 +115,7 @@
                 android:orientation="horizontal">
 
                 <android.support.v7.widget.CardView
-                    android:id="@+id/imageViewFarmer"
+                    android:id="@+id/imageViewPlantReprotall"
                     android:layout_width="135dp"
                     android:layout_height="140dp"
                     android:layout_margin="10dp"
@@ -145,9 +145,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:padding="5dp"
                             android:textSize="24dp"
-                            android:text="@string/station1"
+                            android:text="รายงาน
+                            พืชเพาะปลูก"
                             android:textColor="@android:color/darker_gray" />
 
                     </LinearLayout>
@@ -203,7 +203,7 @@
                 android:orientation="horizontal">
 
                 <android.support.v7.widget.CardView
-                    android:id="@+id/imageViewCrop"
+                    android:id="@+id/imageViewOrder"
                     android:layout_width="135dp"
                     android:layout_height="140dp"
                     android:layout_margin="10dp"
@@ -234,10 +234,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:padding="5dp"
                             android:textSize="24dp"
                             android:fontFamily="@font/fonts1"
-                            android:text="@string/station3"
+                            android:text="รายงาน             แจ้งความต้องการ"
                             android:textColor="@android:color/darker_gray" />
 
                     </LinearLayout>

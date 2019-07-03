@@ -404,7 +404,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_margin="1dp"
-                            android:hint="0"
+                            android:text="0"
                             android:inputType="number" />
                     </LinearLayout>
                 </GridLayout>
@@ -435,7 +435,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_margin="1dp"
-                            android:hint="0"
+                            android:text="0"
                             android:inputType="number" />
                     </LinearLayout>
                 </GridLayout>
@@ -466,7 +466,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_margin="1dp"
-                            android:hint="0"
+                            android:text="0"
                             android:inputType="number" />
                     </LinearLayout>
                 </GridLayout>

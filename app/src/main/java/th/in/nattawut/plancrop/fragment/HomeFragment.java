@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -46,10 +47,41 @@ public class HomeFragment extends Fragment {
         scrollingText = getView().findViewById(R.id.textLogin);
         scrollingText.setSelected(true);
 
+        orderController();
+
+        PlantReprotallController();
+
 
     }
+    private void PlantReprotallController() {
+        CardView PlantReprotall = getView().findViewById(R.id.imageViewPlantReprotall);
+        PlantReprotall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentMainFragment, new PlantReportallViewFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+    }
 
-
+    private void orderController() {
+        CardView Order = getView().findViewById(R.id.imageViewOrder);
+        Order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentMainFragment, new OrderViewRePortFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+    }
 
     private void registerController() {
         ImageButton imageView = getView().findViewById(R.id.ImageView);
@@ -60,7 +92,6 @@ public class HomeFragment extends Fragment {
             }
         });
     }
-
 
     private void checkStatus() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());

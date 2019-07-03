@@ -498,7 +498,7 @@ public class FarmerFragment extends Fragment {
                     getActivity()
                             .getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.contentHomeFragment, new FarmerViewFragment())
+                            .replace(R.id.contentHomeFragment, new FarmerViewAdminFragment())
                             .addToBackStack(null)
                             .commit();
                 }

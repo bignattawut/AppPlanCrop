@@ -50,6 +50,7 @@ import th.in.nattawut.plancrop.utility.CropAdapter;
 import th.in.nattawut.plancrop.utility.GetData;
 import th.in.nattawut.plancrop.utility.MidAdpter;
 import th.in.nattawut.plancrop.utility.MyAlert;
+import th.in.nattawut.plancrop.utility.MyAlertCrop;
 import th.in.nattawut.plancrop.utility.Myconstant;
 
 public class PlanFragment extends Fragment {
@@ -60,9 +61,9 @@ public class PlanFragment extends Fragment {
     Calendar calendar;
 
     EditText plan1, plan2, plan3;
-
-
     Button button;
+
+    private String cidmidString, cidNameString, myDataString, editTextString;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -193,77 +194,82 @@ public class PlanFragment extends Fragment {
         TextView textCidmid = getView().findViewById(R.id.texPlanMid);
         TextView textPlanCidSpinner = getView().findViewById(R.id.textPlanCidSpinner);
         TextView textmyDate = getView().findViewById(R.id.myDate);
+        EditText plan1 = getView().findViewById(R.id.addplan1);
+        EditText plan2 = getView().findViewById(R.id.addplan2);
+        EditText plan3 = getView().findViewById(R.id.addplan3);
 
-//        EditText plan1 = getView().findViewById(R.id.addplan1);
-//        EditText plan2 = getView().findViewById(R.id.addplan2);
-//        EditText plan3 = getView().findViewById(R.id.addplan3);
 
-        plan1 = getView().findViewById(R.id.addplan1);
-        plan2 = getView().findViewById(R.id.addplan2);
-        plan3 = getView().findViewById(R.id.addplan3);
-
-        String cidmidString = textCidmid.getText().toString().trim();//แปลงค่าText ให้เป็น String , trim ลบค่าที่เว้นวรรคอัตโนวัติ
-        String cidNameString = textPlanCidSpinner.getText().toString().trim();
-        String myDataString = textmyDate.getText().toString().trim();
+        cidmidString = textCidmid.getText().toString().trim();//แปลงค่าText ให้เป็น String , trim ลบค่าที่เว้นวรรคอัตโนวัติ
+        cidNameString = textPlanCidSpinner.getText().toString().trim();
+        myDataString = textmyDate.getText().toString().trim();
 
 //        String editTextString = Float.toString(Float.parseFloat(plan1.getText().toString().trim())
 //                +(Float.parseFloat(plan2.getText().toString().trim())*100+Float.parseFloat(plan3.getText().toString().trim()))/400);
-        String editTextString = Float.toString(Float.parseFloat(plan1.getText().toString().trim())
+        editTextString = Float.toString(Float.parseFloat(plan1.getText().toString().trim())
                 + (Float.parseFloat(plan2.getText().toString().trim()) * 100 + Float.parseFloat(plan3.getText().toString().trim())) / 400);
 
-        Log.d("are", "are ===>" + editTextString);
 
-        if (cidmidString.isEmpty() || myDataString.isEmpty() || cidNameString.isEmpty() || editTextString.isEmpty()) {
-            MyAlert myAlert = new MyAlert(getActivity());
-            myAlert.onrmaIDialog("สวัสดี", "กรุณากรอกข้อมูลให้ครบ");
-
+        MyAlertCrop myAlertCrop = new MyAlertCrop(getActivity());
+        if (cidmidString.isEmpty()) {
+            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกชื่อเกษตรกร");
+        } else if (cidNameString.isEmpty()) {
+            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกพืชปลอดสาร");
+        } else if (myDataString.isEmpty()) {
+            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกวันที่วางแผน");
+        } else if (editTextString.isEmpty()) {
+            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกพื้นที่เพาะปลูก");
         } else {
-            try {
-                Myconstant myconstant = new Myconstant();
-                AddPlan addPlan = new AddPlan(getActivity());
-                addPlan.execute(cidmidString, myDataString, cidNameString, editTextString,
-                        myconstant.getUrladdPlan());
-
-                String result = addPlan.get();
-                Log.d("plan", "result ==> " + result);
-                if (Boolean.parseBoolean(result)) {
-                    getActivity().getSupportFragmentManager().popBackStack();
-                } else {
-                    Toast.makeText(getActivity(), "เพิ่มข้อมูลเรียบร้อย", Toast.LENGTH_LONG).show();
-                    getActivity()
-                            .getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.contentHomeFragment, new PlanFarmerViewFragment())
-                            .addToBackStack(null)
-                            .commit();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            comfirmUpload();
         }
     }
 
-
-
-    /*
-    private void CreateToolbal() {
-        Toolbar toolbar = getView().findViewById(R.id.toolbarHone);
-        ((HomeActivity)getActivity()).setSupportActionBar(toolbar);
-
-        ((HomeActivity)getActivity()).getSupportActionBar().setTitle("วางแผนการเพาะปลูก");
-        //((MainActivity)getActivity()).getSupportActionBar().setSubtitle("ddbdbvd");
-
-        ((HomeActivity)getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
-        ((HomeActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+    private void comfirmUpload() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("ข้อมูลการวางแผนเพาะปลูก");
+        builder.setMessage("ชื่อเกษตรกร = " + cidmidString + "\n"
+                + "ชื่อพืช = " + cidNameString + "\n"
+                + "วันที่เพาะปลูก = " + myDataString + "\n"
+                + "ขนาดพื้นที่เพาะปลูก = " + editTextString);
+        builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {//ปุ่มที่1
             @Override
-            public void onClick(View v) {
-                getActivity().getSupportFragmentManager().popBackStack();
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        }); //
+        builder.setPositiveButton("เพิ่ม", new DialogInterface.OnClickListener() {//ปุ่มที่2
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                uploadToServer();
+                dialog.dismiss();
             }
         });
+        builder.show();
+    }
 
-    }*/
+    private void uploadToServer() {
+        try {
+            Myconstant myconstant = new Myconstant();
+            AddPlan addPlan = new AddPlan(getActivity());
+            addPlan.execute(cidmidString, myDataString, cidNameString, editTextString,
+                    myconstant.getUrladdPlan());
+
+            String result = addPlan.get();
+            Log.d("plan", "result ==> " + result);
+            if (Boolean.parseBoolean(result)) {
+                getActivity().getSupportFragmentManager().popBackStack();
+            } else {
+                Toast.makeText(getActivity(), "เพิ่มข้อมูลเรียบร้อย", Toast.LENGTH_LONG).show();
+                getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentHomeFragment, new PlanFarmerViewFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @Nullable
     @Override

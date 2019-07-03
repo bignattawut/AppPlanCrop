@@ -436,9 +436,6 @@ public class RegisterFragment extends Fragment {
 
             try {
                 Myconstant myconstant = new Myconstant();
-                /*AddNewUserUpload addNewUserUpload = new AddNewUserUpload(getActivity());
-                addNewUserUpload.execute(userString, passwordString,  idString,nameString, addressString, phonString, emailString, provinceString, amphurString,
-                        myconstant.getUrlRegister());*/
                 AddRegister addFarmer = new AddRegister(getActivity());
                 addFarmer.execute(userString, passwordString, idString, nameString, addressString, provinceString, amphurString, subDistriceString,villagString, phonString, emailString,
                         myconstant.getUrlRegister());

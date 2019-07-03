@@ -27,7 +27,6 @@ import th.in.nattawut.plancrop.fragment.MainPlanFragment;
 import th.in.nattawut.plancrop.fragment.OrderViewRePortFragment;
 import th.in.nattawut.plancrop.fragment.PlanFarmerViewFragment;
 import th.in.nattawut.plancrop.fragment.PlantFarmerViewFragment;
-import th.in.nattawut.plancrop.fragment.PlantFragment;
 //import th.in.nattawut.plancrop.fragment.PlantPicture;
 import th.in.nattawut.plancrop.fragment.AdminFrament;
 import th.in.nattawut.plancrop.fragment.PlantPictureFragment;

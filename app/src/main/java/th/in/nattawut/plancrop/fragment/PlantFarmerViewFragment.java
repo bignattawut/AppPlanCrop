@@ -63,7 +63,10 @@ public class PlantFarmerViewFragment extends Fragment {
         //showMid();
 
         plantViewController();
+
         swiRefreshLayou();
+
+        showMid();
     }
 
     private void swiRefreshLayou() {

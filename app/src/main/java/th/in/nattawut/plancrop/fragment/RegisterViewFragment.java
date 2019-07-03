@@ -219,12 +219,6 @@ public class RegisterViewFragment extends Fragment {
         final View view = layoutInflater.inflate(R.layout.edit_register, null);
 
 
-
-
-
-
-
-
         EditText EditEdtUsername = view.findViewById(R.id.EditEdtUsername);
         String newUsername = getActivity().getIntent().getExtras().getString("UserID",userString);
         EditEdtUsername.setText(newUsername);
