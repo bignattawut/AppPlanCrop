@@ -222,7 +222,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="1dp"></Spinner>
+
+                <!--<fr.ganfra.materialspinner.MaterialSpinner-->
+                    <!--android:id="@+id/spProvince"-->
+                    <!--app:ms_hint=""-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"></fr.ganfra.materialspinner.MaterialSpinner>-->
+
+
             </LinearLayout>
+
+            <Spinner
+                style="@style/fonts"
+                android:entries="@array/gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"></Spinner>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -251,6 +267,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="1dp"></Spinner>
+
+                <!--<fr.ganfra.materialspinner.MaterialSpinner-->
+                    <!--android:id="@+id/spAmphur"-->
+                    <!--app:ms_hint=""-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"></fr.ganfra.materialspinner.MaterialSpinner>-->
             </LinearLayout>
 
             <LinearLayout
@@ -279,6 +301,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="1dp"></Spinner>
+                <!--<fr.ganfra.materialspinner.MaterialSpinner-->
+                    <!--android:id="@+id/spSubDistrice"-->
+                    <!--app:ms_hint=""-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"></fr.ganfra.materialspinner.MaterialSpinner>-->
             </LinearLayout>
 
             <LinearLayout
@@ -307,6 +334,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="1dp"></Spinner>
+
+                <!--<fr.ganfra.materialspinner.MaterialSpinner-->
+                    <!--android:id="@+id/spVillag"-->
+                    <!--app:ms_hint=""-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"></fr.ganfra.materialspinner.MaterialSpinner>-->
             </LinearLayout>
 
             <LinearLayout

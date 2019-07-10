@@ -1,51 +1,31 @@
 package th.in.nattawut.plancrop.fragment;
 
 import android.app.DatePickerDialog;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.squareup.okhttp.FormEncodingBuilder;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.RequestBody;
-import com.squareup.okhttp.Response;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.APIUtils;
-import th.in.nattawut.plancrop.utility.GetData;
-import th.in.nattawut.plancrop.utility.Myconstant;
 import th.in.nattawut.plancrop.utility.OrderService;
-import th.in.nattawut.plancrop.utility.PlantReportall;
 import th.in.nattawut.plancrop.utility.PlantResult;
 import th.in.nattawut.plancrop.utility.PlantResultAdpter;
 
@@ -537,7 +517,7 @@ public class PlantResultViewFragment extends Fragment {
             public void onResponse(Call<List<PlantResult>> call, retrofit2.Response<List<PlantResult>> response) {
                 if (response.isSuccessful()) {
                     list = response.body();
-                    listView.setAdapter(new PlantResultAdpter(getActivity(),R.layout.frm_plantresult_view,list));
+                    listView.setAdapter(new PlantResultAdpter(getActivity(),R.layout.frm_planresult_view,list));
                 }
             }
 

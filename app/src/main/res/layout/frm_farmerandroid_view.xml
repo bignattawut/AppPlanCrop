@@ -3,21 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
 
 
     <!--Content-->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/editFarmer">
-
+        android:layout_above="@id/btnEditFarmer">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="20dp">
+
 
             <TextView
                 android:id="@+id/midtext"
@@ -54,7 +56,7 @@
                 android:text="รหัสผ่าน :"
                 android:textSize="24dp"
                 android:textStyle="bold"
-                app:fontFamily="@font/fonts1"/>
+                app:fontFamily="@font/fonts1" />
 
             <EditText
                 android:id="@+id/edtpassword"
@@ -98,10 +100,10 @@
                 android:layout_height="wrap_content"
                 android:gravity="top"
 
-                android:maxLength="13"
                 android:inputType="number"
+                android:maxLength="13"
                 android:textSize="30dp"
-                app:fontFamily="@font/fonts1"/>
+                app:fontFamily="@font/fonts1" />
 
             <!--ที่อยู่-->
             <TextView
@@ -119,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="phone"
                 android:textSize="30dp"
-                app:fontFamily="@font/fonts1"/>
+                app:fontFamily="@font/fonts1" />
 
             <!--จังหวัด-->
             <TextView
@@ -210,7 +212,7 @@
                 android:inputType="phone"
                 android:maxLength="10"
                 android:textSize="30dp"
-                app:fontFamily="@font/fonts1"/>
+                app:fontFamily="@font/fonts1" />
 
             <!--อีเมล์-->
             <TextView
@@ -226,10 +228,10 @@
                 android:id="@+id/edtemail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:inputType="text"
                 android:textSize="30dp"
-                app:fontFamily="@font/fonts1"
-                android:layout_marginBottom="10dp"/>
+                app:fontFamily="@font/fonts1" />
 
 
             <LinearLayout
@@ -242,10 +244,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ขนาดพื้นที่เพาะปลูกได้ทั้งหมด"
                     android:fontFamily="@font/fonts1"
-                    android:textSize="26dp"
+                    android:text="ขนาดพื้นที่เพาะปลูกได้ทั้งหมด"
                     android:textColor="@color/colorWhite"
+                    android:textSize="26dp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -270,12 +272,12 @@
 
                         <TextView
 
-                            android:textSize="24dp"
-                            android:textStyle="bold"
-                            app:fontFamily="@font/fonts1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="ไร่" />
+                            android:text="ไร่"
+                            android:textSize="24dp"
+                            android:textStyle="bold"
+                            app:fontFamily="@font/fonts1" />
 
                         <EditText
                             android:id="@+id/add1"
@@ -358,17 +360,18 @@
 
     </ScrollView>
 
+
     <!--Button Add-->
     <Button
-        android:background="@drawable/tabedit"
+        android:id="@+id/btnEditFarmer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:id="@+id/editFarmer"
+        android:background="@drawable/tabedit"
         android:text="แก้ไขข้อมูล"
         android:textSize="24dp"
         android:textStyle="bold"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:fontFamily="@font/fonts1"/>
+        app:fontFamily="@font/fonts1" />
 
 
 </RelativeLayout>

@@ -37,5 +37,10 @@
             android:label="@string/admin"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".MemberActivity"
+            android:label="@string/member"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
     </application>
 </manifest>

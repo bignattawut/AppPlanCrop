@@ -32,6 +32,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import fr.ganfra.materialspinner.MaterialSpinner;
 import th.in.nattawut.plancrop.MainActivity;
 import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.AddRegister;
@@ -55,6 +56,13 @@ public class RegisterFragment extends Fragment {
     private ArrayAdapter<String> adpProvince,adpAmphur,adpSid,adpVid;
     private Spinner spProvince,spAmphur, spSubDistrice,spVillag;
     private int rubIDprovince;
+
+    //private MaterialSpinner spProvince,spAmphur, spSubDistrice,spVillag;;
+
+    private String provinceString,amphurString,subDistriceString,villagString;
+
+
+
 
 
 
@@ -420,16 +428,16 @@ public class RegisterFragment extends Fragment {
         String nameString = name.getText().toString().trim();
         String idString = id.getText().toString().trim();
         String addressString = address.getText().toString().trim();
-        String provinceString = province.getSelectedItem().toString().trim();
-        String amphurString = amphur.getSelectedItem().toString().trim();
-        String subDistriceString = subDistrice.getSelectedItem().toString().trim();
-        String villagString = villag.getSelectedItem().toString().trim();
+        provinceString = province.getSelectedItem().toString().trim();
+        amphurString = amphur.getSelectedItem().toString().trim();
+        subDistriceString = subDistrice.getSelectedItem().toString().trim();
+        villagString = villag.getSelectedItem().toString().trim();
         String phonString = phon.getText().toString().trim();
         String emailString = email.getText().toString().trim();
 
 
 
-        if (userString.isEmpty() || passwordString.isEmpty() || idString.isEmpty() || nameString.isEmpty()  || addressString.isEmpty()  || provinceString.isEmpty() || amphurString.isEmpty() || subDistriceString.isEmpty() || villagString.isEmpty() || phonString.isEmpty() || emailString.isEmpty()) {
+        if (userString.isEmpty() || passwordString.isEmpty() || idString.isEmpty() || nameString.isEmpty()  || addressString.isEmpty()  /*|| provinceString.isEmpty() || amphurString.isEmpty() || subDistriceString.isEmpty() || villagString.isEmpty()*/ || phonString.isEmpty() || emailString.isEmpty()) {
             MyAlert myAlert = new MyAlert(getActivity());
             myAlert.onrmaIDialog("สวัสดี", "*กรุณากรอกข้อมูลให้ครบ");
         } else {

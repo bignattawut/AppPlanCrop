@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
+import th.in.nattawut.plancrop.AdminActivity;
 import th.in.nattawut.plancrop.HomeActivity;
 import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.DeletePlan;
@@ -374,7 +375,7 @@ public class PlanViewFragment extends Fragment {
                     getActivity()
                             .getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.contentHomeFragment, new PlanFragment())
+                            .replace(R.id.contentAdminFragment, new PlanFragment())
                             .addToBackStack(null)
                             .commit();
                     return false;
@@ -396,13 +397,13 @@ public class PlanViewFragment extends Fragment {
 
     private void CreateToolbal() {
         Toolbar toolbar = getView().findViewById(R.id.toolbarPlan);
-        ((HomeActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AdminActivity)getActivity()).setSupportActionBar(toolbar);
 
-        ((HomeActivity)getActivity()).getSupportActionBar().setTitle("ข้อมูลวางแผน");
+        ((AdminActivity)getActivity()).getSupportActionBar().setTitle("ข้อมูลวางแผน");
         //((MainActivity)getActivity()).getSupportActionBar().setSubtitle("ddbdbvd");
 
-        ((HomeActivity)getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
-        ((HomeActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((AdminActivity)getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
+        ((AdminActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

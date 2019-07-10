@@ -25,6 +25,7 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import th.in.nattawut.plancrop.AdminActivity;
 import th.in.nattawut.plancrop.HomeActivity;
 import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.DeleteFammer;
@@ -86,8 +87,10 @@ public class FarmerViewAdminFragment extends Fragment {
             final String[] idString = new String[jsonArray.length()];
             final String[] nameString = new String[jsonArray.length()];
             final String[] addressString = new String[jsonArray.length()];
-            final String[] vidString = new String[jsonArray.length()];
+            final String[] pidString = new String[jsonArray.length()];
+            final String[] didString = new String[jsonArray.length()];
             final String[] sidString = new String[jsonArray.length()];
+            final String[] vidString = new String[jsonArray.length()];
             final String[] telString = new String[jsonArray.length()];
             final String[] emailString = new String[jsonArray.length()];
             final String[] areaString = new String[jsonArray.length()];
@@ -101,21 +104,23 @@ public class FarmerViewAdminFragment extends Fragment {
                 idString[i] = jsonObject.getString(columString[3]);
                 nameString[i] = jsonObject.getString(columString[4]);
                 addressString[i] = jsonObject.getString(columString[5]);
-                vidString[i] = jsonObject.getString(columString[6]);
-                sidString[i] = jsonObject.getString(columString[7]);
-                telString[i] = jsonObject.getString(columString[8]);
-                emailString[i] = jsonObject.getString(columString[9]);
-                areaString[i] = jsonObject.getString(columString[10]);
+                pidString[i] = jsonObject.getString(columString[6]);
+                didString[i] = jsonObject.getString(columString[7]);
+                vidString[i] = jsonObject.getString(columString[8]);
+                sidString[i] = jsonObject.getString(columString[9]);
+                telString[i] = jsonObject.getString(columString[10]);
+                emailString[i] = jsonObject.getString(columString[11]);
+                areaString[i] = jsonObject.getString(columString[12]);
 
             }
             final FarmerViewAdminAdpter farmerViewTestAdpter = new FarmerViewAdminAdpter(getActivity(),
-                    midString,useridString,pwdString,idString,nameString,addressString,vidString,sidString,telString,emailString,areaString);
+                    midString,useridString,pwdString,idString,nameString,addressString,pidString,didString,vidString,sidString,telString,emailString,areaString);
             listView.setAdapter(farmerViewTestAdpter);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     deleteorEditFarmer(midString[position],useridString[position],pwdString[position],idString[position],nameString[position],addressString[position],
-                            vidString[position],sidString[position],telString[position],emailString[position],areaString[position]);
+                            pidString[position],didString[position],vidString[position],sidString[position],telString[position],emailString[position],areaString[position]);
                 }
             });
 
@@ -125,7 +130,8 @@ public class FarmerViewAdminFragment extends Fragment {
         }
     }
 
-    private void deleteorEditFarmer(final String midString,final String useridString,final String pwdString,final String idString,final String nameString,final String addressString,final String vidString,final String sidString,final String telString,final String emailString,final String areaString) {
+    private void deleteorEditFarmer(final String midString,final String useridString,final String pwdString,final String idString,final String nameString,final String addressString,
+                                    final String pidString,final String didString,final String vidString,final String sidString,final String telString,final String emailString,final String areaString) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(),R.style.AlertDialogTheme);
         builder.setCancelable(false);
@@ -148,7 +154,7 @@ public class FarmerViewAdminFragment extends Fragment {
         builder.setPositiveButton("ดูข้อมูล", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                editFarmer(midString,useridString,pwdString,idString,nameString,addressString,vidString,sidString,telString,emailString,areaString);
+                editFarmer(midString,useridString,pwdString,idString,nameString,addressString,pidString,didString,vidString,sidString,telString,emailString,areaString);
                 dialog.dismiss();
             }
         });
@@ -156,7 +162,7 @@ public class FarmerViewAdminFragment extends Fragment {
     }
 
     private void editFarmer(final String midString, String useridString, String pwdString, String idString, String nameString,
-                            String addressString, String vidString, String sidString, String telString, String emailString, String areaString) {
+                            String addressString, final String pidString,final String didString, String vidString, String sidString, String telString, String emailString, String areaString) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
         builder.setTitle("ข้อมูลส่วนตัว");
@@ -174,7 +180,7 @@ public class FarmerViewAdminFragment extends Fragment {
         EditEdtId.setText(newId);
 
         EditText EditEdtName = view.findViewById(R.id.Editedtname);
-        String newName = getActivity().getIntent().getExtras().getString("name",nameString);
+        String newName = getActivity().getIntent().getExtras().getString("Name",nameString);
         EditEdtName.setText(newName);
 
         EditText EditEdtAddress = view.findViewById(R.id.Editedtaddress);
@@ -189,12 +195,20 @@ public class FarmerViewAdminFragment extends Fragment {
         String newEmail = getActivity().getIntent().getExtras().getString("email",emailString);
         EditEdtEmail.setText(newEmail);
 
+        TextView EditspProvinceFarmer = view.findViewById(R.id.EditspProvinceFarmer);
+        String newPid = getActivity().getIntent().getExtras().getString("pid",pidString);
+        EditspProvinceFarmer.setText(newPid);
+
+        TextView EditspAmphurFarmer = view.findViewById(R.id.EditspAmphurFarmer);
+        String newDid = getActivity().getIntent().getExtras().getString("thai",didString);
+        EditspAmphurFarmer.setText(newDid);
+
         TextView DistriceFarmer = view.findViewById(R.id.EditspDistriceFarmer);
-        String newSid = getActivity().getIntent().getExtras().getString("sid",sidString);
+        String newSid = getActivity().getIntent().getExtras().getString("thai",sidString);
         DistriceFarmer.setText(newSid);
 
         TextView EditTextVillag = view.findViewById(R.id.EditspVillag);
-        String newVillag = getActivity().getIntent().getExtras().getString("vid",vidString);
+        String newVillag = getActivity().getIntent().getExtras().getString("thai",vidString);
         EditTextVillag.setText(newVillag);
 
 
@@ -305,14 +319,14 @@ public class FarmerViewAdminFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if (item.getItemId() == R.id.itemlinkUrl) {
+        if (item.getItemId() == R.id.itemAddUser) {
             item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
                     getActivity()
                             .getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.contentHomeFragment, new FarmerFragment())
+                            .replace(R.id.contentAdminFragment, new FarmerFragment())
                             .addToBackStack(null)
                             .commit();
                     return false;
@@ -329,18 +343,18 @@ public class FarmerViewAdminFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
 
-        inflater.inflate(R.menu.manu_register, menu);
+        inflater.inflate(R.menu.manu_uploaduser, menu);
 
     }
 
     private void CreateToolbal() {
         Toolbar toolbar = getView().findViewById(R.id.toolbarFarmerView);
-        ((HomeActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AdminActivity)getActivity()).setSupportActionBar(toolbar);
 
-        ((HomeActivity)getActivity()).getSupportActionBar().setTitle("ข้อมูลเกษตรกร");
+        ((AdminActivity)getActivity()).getSupportActionBar().setTitle("ข้อมูลเกษตรกร");
 
-        ((HomeActivity)getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
-        ((HomeActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((AdminActivity)getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
+        ((AdminActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -351,6 +365,8 @@ public class FarmerViewAdminFragment extends Fragment {
         setHasOptionsMenu(true);
 
     }
+
+
 
 
     @Nullable

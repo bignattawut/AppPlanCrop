@@ -4,7 +4,12 @@
     <string name="font_fontFamily_plan">fonts1</string>
 
     <string-array name="big">
-        <item name="android:textSize">16dp</item>
+        <item name="">16dp</item>
+    </string-array>
+
+    <string-array name="gender">
+        <!--<item>aa</item>-->
+        <item>Female</item>
     </string-array>
 
     <style name="fonts"

@@ -5,10 +5,16 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import th.in.nattawut.plancrop.AdminActivity;
 import th.in.nattawut.plancrop.R;
 
 public class AdminFrament extends Fragment {
@@ -22,9 +28,13 @@ public class AdminFrament extends Fragment {
     CardView plant;
     CardView Site;
 
+    private String nameString;
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        receiveValueFromMain();
 
         //CropType Controller
         cropTypeController();
@@ -50,9 +60,57 @@ public class AdminFrament extends Fragment {
         //Order Controller
         orderController();
 
-
         //PlantReprotallControlle
         PlantReprotallController();
+
+        CreateToolbal();
+
+    }
+
+    private void receiveValueFromMain() {
+        nameString = getActivity().getIntent().getStringExtra("name");
+        Log.d("1Jan", "nameString ==> " + nameString);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.itemSingOut) {
+            getActivity().finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.manu_exit,menu);
+
+    }
+
+    private void CreateToolbal() {
+        Toolbar toolbar = getView().findViewById(R.id.toolbarHomeActivity);
+        ((AdminActivity)getActivity()).setSupportActionBar(toolbar);
+
+        ((AdminActivity)getActivity()).getSupportActionBar().setTitle("Admin : " + nameString);
+        //((AdminActivity)getActivity()).getSupportActionBar().setSubtitle("jojoj");
+
+        ((AdminActivity)getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
+        ((AdminActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        toolbar.setNavigationIcon(R.drawable.ic_action_homebottom);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentAdminFragment,new HomeFragment())
+                        .addToBackStack(null)
+                        .commit();
+
+            }
+        });
+        setHasOptionsMenu(true);
 
     }
 
@@ -65,7 +123,7 @@ public class AdminFrament extends Fragment {
                 getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new FarmerViewAdminFragment())
+                        .replace(R.id.contentAdminFragment, new FarmerViewAdminFragment())
                         .addToBackStack(null)
                         .commit();
             }
@@ -80,7 +138,7 @@ public class AdminFrament extends Fragment {
                 getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new RegisterViewFragment())
+                        .replace(R.id.contentAdminFragment, new RegisterViewAdminFragment())
                         .addToBackStack(null)
                         .commit();
             }
@@ -96,7 +154,7 @@ public class AdminFrament extends Fragment {
                 getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new CropViewFragment())
+                        .replace(R.id.contentAdminFragment, new CropViewFragment())
                         .addToBackStack(null)
                         .commit();
             }
@@ -111,7 +169,7 @@ public class AdminFrament extends Fragment {
                 getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new CropTypeViewFragment())
+                        .replace(R.id.contentAdminFragment, new CropTypeViewFragment())
                         .addToBackStack(null)
                         .commit();
             }
@@ -126,7 +184,7 @@ public class AdminFrament extends Fragment {
                 getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new PlanViewFragment())
+                        .replace(R.id.contentAdminFragment, new PlanViewFragment())
                         .addToBackStack(null)
                         .commit();
             }
@@ -141,7 +199,7 @@ public class AdminFrament extends Fragment {
                 getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new PlantViewFragment())
+                        .replace(R.id.contentAdminFragment, new PlantViewFragment())
                         .addToBackStack(null)
                         .commit();
             }
@@ -156,7 +214,7 @@ public class AdminFrament extends Fragment {
                 getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new SiteViewFrament())
+                        .replace(R.id.contentAdminFragment, new SiteViewFrament())
                         .addToBackStack(null)
                         .commit();
             }
@@ -170,7 +228,7 @@ public class AdminFrament extends Fragment {
                 getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new OrderViewRePortFragment())
+                        .replace(R.id.contentAdminFragment, new OrderViewRePortFragment())
                         .addToBackStack(null)
                         .commit();
             }
@@ -185,7 +243,7 @@ public class AdminFrament extends Fragment {
                 getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new PlantReportallViewFragment())
+                        .replace(R.id.contentAdminFragment, new PlantReportallViewFragment())
                         .addToBackStack(null)
                         .commit();
             }

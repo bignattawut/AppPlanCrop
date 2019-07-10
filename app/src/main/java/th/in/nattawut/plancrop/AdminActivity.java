@@ -18,7 +18,7 @@ public class AdminActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    //.add(R.id.contentAdminFragment, new AdminFrament())
+                    .add(R.id.contentAdminFragment, new AdminFrament())
                     .commit();
         }
     }

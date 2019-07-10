@@ -8,7 +8,6 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
-import th.in.nattawut.plancrop.utility.Order;
 
 public interface OrderService {
 
@@ -19,7 +18,7 @@ public interface OrderService {
     Call<List<PlanFarmer>> getPlanFarmer(@Query("mid") String mid);
 
     @GET("selectplantfarmer.php")
-    Call<List<PlantFarmer>> getPlantFarmer(@Query("mid") String mid);
+    Call<List<PlantFarmer>> getPlantFarmer(@Query("mid") String mid,@Query("sdate") String sdate);
 
     Call<List<PlantFarmer>> getsdataFarmer(
             @Query("sdate") String sdate);
@@ -30,6 +29,7 @@ public interface OrderService {
 //    @GET("selectsite.php")
 //    Call<List<Site>> getSite(@Query("mid") String mid);
 
+
     @POST("selectsite.php")
     @FormUrlEncoded
     Call<List<Site>> getSite(@Field("mid") String mid);
@@ -37,6 +37,9 @@ public interface OrderService {
 
     @GET("plantreportall.php")
     Call<List<PlantReportall>> getPlantReportall(@Query("sdate") String sdate, @Query("edate") String edate);
+
+    @GET("planresult.php")
+    Call<List<PlanResult>> getPlanReport(@Query("pdate") String pdate);
 
     @GET("plantreport.php")
     Call<List<PlantReport>> getPlantReport(@Query("mid") String mid);
@@ -50,4 +53,12 @@ public interface OrderService {
                                            @Query("mid") String mid,
                                            @Query("tid") String tid,
                                            @Query("cid") String cid*/);
+
+    @POST("memberlogin.php")
+    @FormUrlEncoded
+    Call<LoginResponse> getuserLogin(
+            @Field("username") String username,
+            @Field("passwd") String passwd
+    );
+
 }

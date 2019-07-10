@@ -378,7 +378,7 @@ public class FarmerViewFragment extends Fragment {
     }
 
     private void editController() {
-        Button button = getView().findViewById(R.id.editFarmer);
+        Button button = getView().findViewById(R.id.btnEditFarmer);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -418,17 +418,18 @@ public class FarmerViewFragment extends Fragment {
             TextView edtaddress = getView().findViewById(R.id.edtaddress);
             edtaddress.setText(jsonObject.getString("address"));
 
-//            TextView spProvinceFarmer = getView().findViewById(R.id.spProvinceFarmer);
-//            spProvinceFarmer.setText(jsonObject.getString("pid"));
+
+//            TextView spProvinceFarmer = getView().findViewById(R.id.spProvince);
+//            spProvinceFarmer.setText(jsonObject.getString("thai"));
 //
-//            TextView spAmphurFarmer = getView().findViewById(R.id.spAmphurFarmer);
-//            spAmphurFarmer.setText(jsonObject.getString("did"));
+//            TextView spAmphurFarmer = getView().findViewById(R.id.spAmphur);
+//            spAmphurFarmer.setText(jsonObject.getString("thai"));
 //
-//            TextView spDistriceFarmer = getView().findViewById(R.id.spDistriceFarmer);
-//            spDistriceFarmer.setText(jsonObject.getString("sid"));
+//            TextView spDistriceFarmer = getView().findViewById(R.id.spDistrice);
+//            spDistriceFarmer.setText(jsonObject.getString("thai"));
 //
 //            TextView spVillag = getView().findViewById(R.id.spVillag);
-//            spVillag.setText(jsonObject.getString("vid"));
+//            spVillag.setText(jsonObject.getString("thai"));
 
             TextView edtphone = getView().findViewById(R.id.edtphone);
             edtphone.setText(jsonObject.getString("tel"));

@@ -41,6 +41,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import th.in.nattawut.plancrop.HomeActivity;
+import th.in.nattawut.plancrop.MemberActivity;
 import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.APIUtils;
 import th.in.nattawut.plancrop.utility.DeleteOrder;
@@ -369,7 +370,7 @@ public class OrderViewFragment extends Fragment {
                     getActivity()
                             .getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.contentHomeFragment, new OrderFragment())
+                            .replace(R.id.contentMemberFragment, new OrderFragment())
                             .addToBackStack(null)
                             .commit();
                     return false;
@@ -393,13 +394,13 @@ public class OrderViewFragment extends Fragment {
 
     private void CreateToolbal() {
         Toolbar toolbar = getView().findViewById(R.id.toolbarOrder);
-        ((HomeActivity) getActivity()).setSupportActionBar(toolbar);
-
-        ((HomeActivity) getActivity()).getSupportActionBar().setTitle("ข้อมูลการแจ้งความต้องการ");
+        ((MemberActivity) getActivity()).setSupportActionBar(toolbar);
+        ((MemberActivity) getActivity()).getSupportActionBar().setTitle("ข้อมูลการแจ้งความต้องการ");
         //((MainActivity)getActivity()).getSupportActionBar().setSubtitle("ddbdbvd");
 
-        ((HomeActivity) getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
-        ((HomeActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((MemberActivity) getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
+        ((MemberActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

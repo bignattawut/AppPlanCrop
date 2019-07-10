@@ -27,6 +27,11 @@
         <item name="android:textSize">26dp</item>
     </style>
 
+    <!--textsize toolbar-->
+    <style name="Toolbar.SubTitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">18dp</item>
+    </style>
+
     <!--myAlert-->
     <style name="AlertDialogTheme"
         parent="Theme.Design.BottomSheetDialog">

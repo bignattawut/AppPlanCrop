@@ -8,40 +8,36 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.squareup.okhttp.FormEncodingBuilder;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.RequestBody;
-import com.squareup.okhttp.Response;
-
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import th.in.nattawut.plancrop.AdminActivity;
 import th.in.nattawut.plancrop.R;
-import th.in.nattawut.plancrop.utility.AddCrop;
 import th.in.nattawut.plancrop.utility.AddSite;
+import th.in.nattawut.plancrop.utility.GetData;
 import th.in.nattawut.plancrop.utility.MyAlertCrop;
 import th.in.nattawut.plancrop.utility.Myconstant;
 
@@ -50,13 +46,13 @@ public class SiteFragment extends Fragment implements LocationListener {
 
     protected LocationManager locationManager;
     protected LocationListener locationListener;
-    TextView txtLat;
-    TextView txtLong;
+    //    TextView txtLat;
+//    TextView txtLong;
+    EditText txtLat, txtLong;
 
-    private String midString,nameString,vidString,latString,longString;
+    private String midString, nameString, vidString,vidNameString, latString, longString;
 
-    TextView siteMidName,siteMid;
-
+    TextView siteMidName, siteMid;
 
     @SuppressLint("MissingPermission")
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -66,14 +62,17 @@ public class SiteFragment extends Fragment implements LocationListener {
         //setUpTexeShowMid
         setUpTexeShowMid();
 
-        setUpTexeShowVid();
-
         gpsSetUp();
 
         siteController();
 
+        createToolbal();
+
+        selectSiteVillageFarmer();
+
 
     }
+
     private void siteController() {
         Button button = getView().findViewById(R.id.btnSite);
         button.setOnClickListener(new View.OnClickListener() {
@@ -85,27 +84,35 @@ public class SiteFragment extends Fragment implements LocationListener {
     }
 
     private void addSite() {
-        TextView txtMid = getView().findViewById(R.id.siteMid);
-        TextView txtVid = getView().findViewById(R.id.vidSiteSpinner);
-        TextView txtLat = getView().findViewById(R.id.txtLat);
-        TextView txtLong = getView().findViewById(R.id.txtLong);
+        TextView txtMid = getView().findViewById(R.id.textMId);
+        TextView textName = getView().findViewById(R.id.textName);
+        TextView txtVid = getView().findViewById(R.id.textvid);
+        TextView textVidName = getView().findViewById(R.id.textVillageName);
+
+//        TextView txtLat = getView().findViewById(R.id.txtLat);
+//        TextView txtLong = getView().findViewById(R.id.txtLong);
+
+        EditText txtLat = getView().findViewById(R.id.txtLat);
+        EditText txtLong = getView().findViewById(R.id.txtLong);
 
 
         midString = txtMid.getText().toString().trim();
+        nameString = textName.getText().toString().trim();
+        vidNameString = textVidName.getText().toString().trim();
         vidString = txtVid.getText().toString().trim();
         latString = txtLat.getText().toString().trim();
         longString = txtLong.getText().toString().trim();
 
         MyAlertCrop myAlertCrop = new MyAlertCrop(getActivity());
-        if (nameString.isEmpty()) {
+        if (midString.isEmpty()) {
             myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกชื่อเกษตร");
-        }else if (vidString.isEmpty()) {
+        } else if (vidString.isEmpty()) {
             myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกที่ตั้งแปลง");
-        }else if (latString.isEmpty()) {
+        } else if (latString.isEmpty()) {
             myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกละติจูล");
-        }else if (longString.isEmpty()) {
+        } else if (longString.isEmpty()) {
             myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกลองจิจูล");
-        }else {
+        } else {
             comfirmUpload();
         }
     }
@@ -114,7 +121,7 @@ public class SiteFragment extends Fragment implements LocationListener {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("ข้อมูลแปลงเพาะปลูก");
         builder.setMessage("ชื่อเกษตรกร = " + nameString + "\n"
-                + "ที่ตั้งแปลงเพาะปลูก = " + vidString + "\n"
+                + "ที่ตั้งแปลงเพาะปลูก = " + vidNameString + "\n"
                 + "ละติจูด = " + latString + "\n"
                 + "ลองจิจูด = " + longString);
         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {//ปุ่มที่1
@@ -133,11 +140,11 @@ public class SiteFragment extends Fragment implements LocationListener {
         builder.show();
     }
 
-    private void uploadToServer(){
+    private void uploadToServer() {
         try {
             Myconstant myconstant = new Myconstant();
             AddSite addSite = new AddSite(getActivity());
-            addSite.execute(midString,vidString, latString, longString,
+            addSite.execute(midString, vidString, latString, longString,
                     myconstant.getUrladdSite());
 
             String result = addSite.get();
@@ -146,12 +153,12 @@ public class SiteFragment extends Fragment implements LocationListener {
                 getActivity().getSupportFragmentManager().popBackStack();
             } else {
                 Toast.makeText(getActivity(), "เพิ่มข้อมูลเรียบร้อย", Toast.LENGTH_LONG).show();
-//                getActivity()
-//                        .getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .replace(R.id.contentHomeFragment, new CropViewFragment())
-//                        .addToBackStack(null)
-//                        .commit();
+                getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentAdminFragment, new SiteViewFrament())
+                        .addToBackStack(null)
+                        .commit();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -159,21 +166,80 @@ public class SiteFragment extends Fragment implements LocationListener {
     }
 
     private void setUpTexeShowMid() {
-        TextView siteMidName = getView().findViewById(R.id.siteMidName);
-        TextView siteMid = getView().findViewById(R.id.siteMid);
+        if (android.os.Build.VERSION.SDK_INT > 9) { //setup policy เเพื่อมือถือที่มีประปฏิบัติการสูงกว่านีจะไม่สามารถconnectกับโปรโตรคอลได้
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+        final Spinner spin = getView().findViewById(R.id.SiteFarmerSpinner);
+        try {
 
-        nameString = getActivity().getIntent().getExtras().getString("name");
-        siteMidName.setText(nameString);
+            Myconstant myconstant = new Myconstant();
 
-        midString = getActivity().getIntent().getExtras().getString("mid");
-        siteMid.setText(midString);
 
+            GetData getData = new GetData(getActivity());
+            getData.execute(myconstant.getUrlSiteFarmer());
+
+            String jsonString = getData.get();
+            Log.d("5/Jan PlanCropSpinner", "JSON ==>" + jsonString);
+            JSONArray data = new JSONArray(jsonString);
+
+            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
+            HashMap<String, String> map;
+
+            for (int i = 0; i < data.length(); i++) {
+                JSONObject c = data.getJSONObject(i);
+
+                map = new HashMap<String, String>();
+                map.put("mid", c.getString("mid"));
+                map.put("name", c.getString("name"));
+                MyArrList.add(map);
+            }
+            SimpleAdapter sAdap;
+            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_sitename,
+                    new String[]{"mid", "name"}, new int[]{R.id.textMId, R.id.textName});
+            spin.setAdapter(sAdap);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    private void setUpTexeShowVid() {
-        TextView siteVid = getView().findViewById(R.id.vidSiteSpinner);
-        String strTextShowVid = getActivity().getIntent().getExtras().getString("vid");
-        siteVid.setText(strTextShowVid);
+    private void selectSiteVillageFarmer() {
+        if (android.os.Build.VERSION.SDK_INT > 9) { //setup policy เเพื่อมือถือที่มีประปฏิบัติการสูงกว่านีจะไม่สามารถconnectกับโปรโตรคอลได้
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+        final Spinner spin = getView().findViewById(R.id.vidSiteSpinner);
+        try {
+
+            Myconstant myconstant = new Myconstant();
+            GetData getData = new GetData(getActivity());
+            getData.execute(myconstant.getUrlSelectSiteVillageFarmer());
+
+            String jsonString = getData.get();
+            Log.d("5/Jan SelectSiteVillage", "JSON ==>" + jsonString);
+            JSONArray data = new JSONArray(jsonString);
+
+            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
+            HashMap<String, String> map;
+
+            for(int i = 0; i < data.length(); i++){
+                JSONObject c = data.getJSONObject(i);
+
+                map = new HashMap<String, String>();
+                map.put("name", c.getString("name"));
+                map.put("vid", c.getString("vid"));
+                map.put("thai", c.getString("thai"));
+                MyArrList.add(map);
+            }
+            SimpleAdapter sAdap;
+            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_sitetextvillage,
+                    new String[] {"name","vid","thai"}, new int[] {R.id.textname, R.id.textvid, R.id.textVillageName});
+            spin.setAdapter(sAdap);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void gpsSetUp() {
@@ -194,6 +260,21 @@ public class SiteFragment extends Fragment implements LocationListener {
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
     }
 
+    private void createToolbal() {
+        Toolbar toolbar = getView().findViewById(R.id.toolbarSite);
+        ((AdminActivity) getActivity()).setSupportActionBar(toolbar);
+
+        ((AdminActivity) getActivity()).getSupportActionBar().setTitle("แปลงเพาะปลูก");
+        ((AdminActivity) getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
+        ((AdminActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().popBackStack();
+            }
+        });
+    }
 
     @Nullable
     @Override

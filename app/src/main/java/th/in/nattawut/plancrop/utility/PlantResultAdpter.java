@@ -27,7 +27,7 @@ public class PlantResultAdpter extends ArrayAdapter<PlantResult> {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View view = inflater.inflate(R.layout.frm_plantresult_view,parent,false);
+        final View view = inflater.inflate(R.layout.frm_planresult_view,parent,false);
 
 
 

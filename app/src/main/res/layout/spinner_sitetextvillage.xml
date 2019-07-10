@@ -4,15 +4,22 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textVidSite"
+        android:id="@+id/textname"
         android:textSize="0dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="mid" />
 
     <TextView
-        android:id="@+id/textVidSiteName"
-        android:textSize="20dp"
+        android:id="@+id/textvid"
+        android:textSize="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="name" />
+
+    <TextView
+        android:id="@+id/textVillageName"
+        android:textSize="26dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="name" />

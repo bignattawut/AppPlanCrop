@@ -13,7 +13,7 @@ public class FarmerViewAdminAdpter extends BaseAdapter {
 
 
     private Context context;
-    private String[] midString,useridString,pwdString,idString,nameString,addressString,vidString,sidString,telString,emailString,areaString;
+    private String[] midString,useridString,pwdString,idString,nameString,addressString,pidString,didString,vidString,sidString,telString,emailString,areaString;
 
     public FarmerViewAdminAdpter(Context context,
                                  String[] midString,
@@ -22,6 +22,8 @@ public class FarmerViewAdminAdpter extends BaseAdapter {
                                  String[] idString,
                                  String[] nameString,
                                  String[] addressString,
+                                 String[] pidString,
+                                 String[] didString,
                                  String[] vidString,
                                  String[] sidString,
                                  String[] telString,
@@ -34,6 +36,8 @@ public class FarmerViewAdminAdpter extends BaseAdapter {
         this.idString = idString;
         this.nameString = nameString;
         this.addressString = addressString;
+        this.pidString = pidString;
+        this.didString = didString;
         this.vidString = vidString;
         this.sidString = sidString;
         this.telString = telString;
@@ -63,15 +67,24 @@ public class FarmerViewAdminAdpter extends BaseAdapter {
 
         TextView name = view.findViewById(R.id.textNamef);
         TextView phon = view.findViewById(R.id.textPhonef);
-
         TextView Username = view.findViewById(R.id.textUsername);
-//        TextView textEmail = view.findViewById(R.id.textEmail);
+
+
+
+//        TextView textpid = view.findViewById(R.id.textpid);
+//        TextView textdid = view.findViewById(R.id.textdid);
+//        TextView textsid = view.findViewById(R.id.textsid);
+//        TextView textvid = view.findViewById(R.id.textvid);
 
         name.setText(nameString[position]);
         phon.setText(telString[position]);
-
         Username.setText(useridString[position]);
-//        textEmail.setText(emailString[position]);
+
+//        textpid.setText(pidString[position]);
+//        textdid.setText(didString[position]);
+//        textsid.setText(sidString[position]);
+//        textvid.setText(vidString[position]);
+
 
         return view;
     }

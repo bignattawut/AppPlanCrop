@@ -1,22 +1,21 @@
 package th.in.nattawut.plancrop.fragment;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -29,11 +28,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
-import th.in.nattawut.plancrop.HomeActivity;
 import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.AddPlant;
-import th.in.nattawut.plancrop.utility.CropTypeViewAapter;
 import th.in.nattawut.plancrop.utility.GetData;
+import th.in.nattawut.plancrop.utility.GetDataWhereOneColumn;
 import th.in.nattawut.plancrop.utility.MyAlert;
 import th.in.nattawut.plancrop.utility.Myconstant;
 
@@ -45,6 +43,7 @@ public class PlantFragment extends Fragment {
     TextView date;
     DatePickerDialog dataPickerDialog;
     Calendar calendar;
+    private String idRecord;
 
 
     @Override
@@ -60,14 +59,15 @@ public class PlantFragment extends Fragment {
         //Pdate Controller
         pdateController();
 
-        //SiteController
+        plantController();
+
         siteController();
 
-        plantController();
+        setUpTexeShowMid();
 
     }
 
-    private void plantController(){
+    private void plantController() {
         Button button = getView().findViewById(R.id.btnPlant);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,8 +76,9 @@ public class PlantFragment extends Fragment {
             }
         });
     }
-    private void plantAdd(){
-        TextView textSite = getView().findViewById(R.id.textPlantSiteSpinner);
+
+    private void plantAdd() {
+        TextView textSite = getView().findViewById(R.id.textPlantSiteSnoSpinner);
         TextView textPlantCidSpinner = getView().findViewById(R.id.textPlanCidSpinner);
         TextView textMyDate = getView().findViewById(R.id.myDatePlant);
         EditText plan1 = getView().findViewById(R.id.addplan1);
@@ -89,7 +90,7 @@ public class PlantFragment extends Fragment {
         String myDataString = textMyDate.getText().toString().trim();
 
         String addPlantTextString = Float.toString(Float.parseFloat(plan1.getText().toString().trim())
-                +(Float.parseFloat(plan2.getText().toString().trim())*100+Float.parseFloat(plan3.getText().toString().trim()))/400);
+                + (Float.parseFloat(plan2.getText().toString().trim()) * 100 + Float.parseFloat(plan3.getText().toString().trim())) / 400);
 
         if (siteString.isEmpty() || cidString.isEmpty() || myDataString.isEmpty() || addPlantTextString.isEmpty()) {
             MyAlert myAlert = new MyAlert(getActivity());
@@ -98,16 +99,17 @@ public class PlantFragment extends Fragment {
             try {
                 Myconstant myconstant = new Myconstant();
                 AddPlant addPlant = new AddPlant(getActivity());
-                addPlant.execute(myDataString,cidString,addPlantTextString,siteString,
+                addPlant.execute(myDataString, cidString, addPlantTextString, siteString,
                         myconstant.getUrladdPlant());
 
                 String result = addPlant.get();
-                Log.d("plant","result ==> " + result);
+                Log.d("plant", "result ==> " + result);
 
                 if (Boolean.parseBoolean(result)) {
                     getActivity().getSupportFragmentManager().popBackStack();
                 } else {
-                    Toast.makeText(getActivity(),"เพิ่มข้อมูลเรียบร้อย",Toast.LENGTH_LONG).show();getActivity()
+                    Toast.makeText(getActivity(), "เพิ่มข้อมูลเรียบร้อย", Toast.LENGTH_LONG).show();
+                    getActivity()
                             .getSupportFragmentManager()
                             .beginTransaction()
                             .replace(R.id.contentHomeFragment, new PlantFarmerViewFragment())
@@ -120,6 +122,14 @@ public class PlantFragment extends Fragment {
             }
         }
     }
+
+    private void setUpTexeShowMid() {
+        TextView textNameFarmer = getView().findViewById(R.id.textNameFarmer);
+
+        String strTextShow = getActivity().getIntent().getExtras().getString("name");
+        textNameFarmer.setText(strTextShow);
+    }
+
     private void siteController() {
         if (android.os.Build.VERSION.SDK_INT > 9) { //setup policy เเพื่อมือถือที่มีประปฏิบัติการสูงกว่านีจะไม่สามารถconnectกับโปรโตรคอลได้
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -127,10 +137,15 @@ public class PlantFragment extends Fragment {
         }
         final Spinner spin = getView().findViewById(R.id.Siteid);
         try {
-            GetData getData = new GetData(getActivity());
-            getData.execute(Myconstant.getUrlSite);
 
-            String jsonString = getData.get();
+            Myconstant myconstant = new Myconstant();
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences(myconstant.getNameFileSharePreference(), Context.MODE_PRIVATE);
+            idRecord = sharedPreferences.getString("mid", "");
+
+            GetDataWhereOneColumn getDataWhereOneColumn = new GetDataWhereOneColumn(getActivity());
+            getDataWhereOneColumn.execute("mid", idRecord, myconstant.getSelectsitefarmer());
+
+            String jsonString = getDataWhereOneColumn.get();
             Log.d("5/Jan PlanCropSpinner", "JSON ==>" + jsonString);
             JSONArray data = new JSONArray(jsonString);
 
@@ -142,13 +157,12 @@ public class PlantFragment extends Fragment {
 
                 map = new HashMap<String, String>();
                 map.put("sno", c.getString("sno"));
-                map.put("mid", c.getString("mid"));
-                map.put("name", c.getString("name"));
+                map.put("thai", c.getString("thai"));
                 MyArrList.add(map);
             }
             SimpleAdapter sAdap;
             sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_site,
-                    new String[] {"sno", "mid","name"}, new int[] {R.id.textPlantSiteSpinner, R.id.textPlantMidSpinner,R.id.textSiteSpinner});
+                    new String[] {"sno", "thai"}, new int[] {R.id.textPlantSiteSnoSpinner, R.id.textPlantThaiSpinner});
             spin.setAdapter(sAdap);
 
         } catch (Exception e) {
@@ -162,7 +176,7 @@ public class PlantFragment extends Fragment {
         selctDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                calendar  = Calendar.getInstance();
+                calendar = Calendar.getInstance();
                 int year = calendar.get(Calendar.YEAR);
                 int month = calendar.get(Calendar.MONTH);
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
@@ -178,7 +192,7 @@ public class PlantFragment extends Fragment {
                                 //DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM,Locale.UK);
 
                             }
-                        },day,month,year);
+                        }, day, month, year);
                 dataPickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
                 dataPickerDialog.show();
             }
@@ -202,7 +216,7 @@ public class PlantFragment extends Fragment {
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
 
-            for(int i = 0; i < data.length(); i++){
+            for (int i = 0; i < data.length(); i++) {
                 JSONObject c = data.getJSONObject(i);
 
                 map = new HashMap<String, String>();
@@ -212,7 +226,7 @@ public class PlantFragment extends Fragment {
             }
             SimpleAdapter sAdap;
             sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_plancrop,
-                    new String[] {"cid", "crop"}, new int[] {R.id.textPlanCidSpinner, R.id.textPlanCropSpinner});
+                    new String[]{"cid", "crop"}, new int[]{R.id.textPlanCidSpinner, R.id.textPlanCropSpinner});
             spin.setAdapter(sAdap);
 
         } catch (Exception e) {
@@ -235,7 +249,6 @@ public class PlantFragment extends Fragment {
 //            }
 //        });
 //    }
-
 
 
     @Nullable

@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import th.in.nattawut.plancrop.AdminActivity;
 import th.in.nattawut.plancrop.HomeActivity;
 import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.AddCropType;
@@ -67,7 +68,7 @@ public class CropTypeFragment extends Fragment {
                     getActivity()
                             .getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.contentHomeFragment, new CropTypeViewFragment())
+                            .replace(R.id.contentAdminFragment, new CropTypeViewFragment())
                             .addToBackStack(null)
                             .commit();
                 }
@@ -82,11 +83,11 @@ public class CropTypeFragment extends Fragment {
     //toolbal
     private void createToolbal() {
         Toolbar toolbar = getView().findViewById(R.id.toolbarCropType);
-        ((HomeActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AdminActivity)getActivity()).setSupportActionBar(toolbar);
 
-        ((HomeActivity)getActivity()).getSupportActionBar().setTitle("ประเภทพืชเพาะปลูก");
-        ((HomeActivity)getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
-        ((HomeActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((AdminActivity)getActivity()).getSupportActionBar().setTitle("ประเภทพืชเพาะปลูก");
+        ((AdminActivity)getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
+        ((AdminActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

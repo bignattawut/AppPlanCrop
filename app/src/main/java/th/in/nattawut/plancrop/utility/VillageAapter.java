@@ -40,10 +40,10 @@ public class VillageAapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = layoutInflater.inflate(R.layout.spinner_vidsite, parent, false);
+        View view = layoutInflater.inflate(R.layout.spinner_sitename, parent, false);
 
-        TextView textVidSite = view.findViewById(R.id.textVidSite);
-        TextView textVidSiteName = view.findViewById(R.id.textVidSiteName);
+        TextView textVidSite = view.findViewById(R.id.textMId);
+        TextView textVidSiteName = view.findViewById(R.id.textName);
 
         textVidSite.setText(vidString[position]);
         textVidSiteName.setText(thaiString[position]);

@@ -8,6 +8,7 @@
         android:id="@+id/toolbarRegister"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        app:titleTextAppearance="@style/Toolbar.TitleText"
         android:background="@color/colorPrimary"
         android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
         app:titleTextColor="@color/colorWhite" />

@@ -7,6 +7,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
@@ -31,6 +33,7 @@ public class HomeFragment extends Fragment {
 
     TextView scrollingText;
 
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -50,6 +53,7 @@ public class HomeFragment extends Fragment {
         orderController();
 
         PlantReprotallController();
+
 
 
     }
@@ -117,6 +121,13 @@ public class HomeFragment extends Fragment {
         });
         builder.show();
     }
+
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//                             Bundle savedInstanceState) {
+//        // Inflate the layout for this fragment
+//        return inflater.inflate(R.layout.frm_main1, container, false);
+//    }
 
     @Nullable
     @Override

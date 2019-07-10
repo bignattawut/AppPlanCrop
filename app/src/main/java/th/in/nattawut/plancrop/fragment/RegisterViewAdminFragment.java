@@ -36,6 +36,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import th.in.nattawut.plancrop.AdminActivity;
 import th.in.nattawut.plancrop.HomeActivity;
 import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.DeleteFammer;
@@ -44,7 +45,7 @@ import th.in.nattawut.plancrop.utility.GetDataWhereRegister;
 import th.in.nattawut.plancrop.utility.Myconstant;
 import th.in.nattawut.plancrop.utility.RegisterViewAdpter;
 
-public class RegisterViewFragment extends Fragment {
+public class RegisterViewAdminFragment extends Fragment {
 
     SwipeRefreshLayout mSwipeRefreshLayout;
     ListView listView;
@@ -159,7 +160,7 @@ public class RegisterViewFragment extends Fragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(),R.style.AlertDialogTheme);
         builder.setCancelable(false);
-        builder.setIcon(R.drawable.ic_action_draweruser);
+        builder.setIcon(R.drawable.iconregister);
         builder.setTitle("ข้อมูลสมาชิก");
         builder.setMessage("กรุณาเลือก ลบ หรือ ดูข้อมูล ?");
         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
@@ -338,16 +339,16 @@ public class RegisterViewFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if (item.getItemId() == R.id.itemlinkUrl) {
+        if (item.getItemId() == R.id.itemAddUser) {
             item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
-                    /*getActivity()
+                    getActivity()
                             .getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.contentHomeFragment, new RegisterFragment())
+                            .replace(R.id.contentAdminFragment, new MemberAddFragment())
                             .addToBackStack(null)
-                            .commit();*/
+                            .commit();
                     return false;
                 }
             });
@@ -362,18 +363,19 @@ public class RegisterViewFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
 
-        inflater.inflate(R.menu.manu_register, menu);
+        inflater.inflate(R.menu.manu_uploaduser, menu);
 
     }
 
+
     private void CreateToolbal() {
         Toolbar toolbar = getView().findViewById(R.id.toolbarRegister);
-        ((HomeActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AdminActivity)getActivity()).setSupportActionBar(toolbar);
 
-        ((HomeActivity)getActivity()).getSupportActionBar().setTitle("ข้อมูลสมาชิก");
+        ((AdminActivity)getActivity()).getSupportActionBar().setTitle("ข้อมูลสมาชิก");
 
-        ((HomeActivity)getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
-        ((HomeActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((AdminActivity)getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
+        ((AdminActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -56,6 +57,11 @@ public class PlantFarmerViewFragment extends Fragment {
     private String sdata;
     SwipeRefreshLayout mSwipeRefreshLayout;
 
+    ImageView selctDate;
+    TextView date;
+    DatePickerDialog dataPickerDialog;
+    Calendar calendar;
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -67,6 +73,10 @@ public class PlantFarmerViewFragment extends Fragment {
         swiRefreshLayou();
 
         showMid();
+
+        cropController();
+
+        edateController();
     }
 
     private void swiRefreshLayou() {
@@ -96,18 +106,64 @@ public class PlantFarmerViewFragment extends Fragment {
         });
     }
 
+    private void cropController() {
+        Button button = getView().findViewById(R.id.selete1);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showMid();
+
+            }
+        });
+    }
+
+    private void edateController() {
+        final TextView sdate = getActivity().findViewById(R.id.sdate);
+        ImageView selctDate = getActivity().findViewById(R.id.imageViewDatesdate);
+        selctDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+                //final Date cha = calendar.getTime();
+
+                dataPickerDialog = new DatePickerDialog(getActivity(),
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int y, int m, int d) {
+                                //date.setText(y + "/" + (m + 1) + "/" + d);
+                                sdate.setText(y + "/" + (m + 1) + "/" + d);
+                                //DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM,Locale.UK);
+
+                            }
+                        }, day, month, year);
+                dataPickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
+                dataPickerDialog.show();
+            }
+        });
+    }
+
+
     public void showMid() {
+
+        TextView sdate = getView().findViewById(R.id.sdate);
+        String sdateString = sdate.getText().toString().trim();
+
+
         listView = getView().findViewById(R.id.listViewPlantFarmer);
         orderService = APIUtils.getService();
         if (getActivity().getIntent().getExtras() != null) {
             String mid = getActivity().getIntent().getExtras().getString("mid");
-            createListView(mid);
+            createListView(mid,sdateString);
 
         }
     }
 
-    private void createListView(String mid) {
-        Call<List<PlantFarmer>> call = orderService.getPlantFarmer(mid);
+    private void createListView(String mid,String sdateString) {
+        Call<List<PlantFarmer>> call = orderService.getPlantFarmer(mid,sdateString);
         call.enqueue(new Callback<List<PlantFarmer>>() {
             @Override
             public void onResponse(Call<List<PlantFarmer>> call, Response<List<PlantFarmer>> response) {

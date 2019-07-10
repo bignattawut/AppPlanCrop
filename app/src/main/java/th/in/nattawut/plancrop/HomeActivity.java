@@ -26,6 +26,7 @@ import th.in.nattawut.plancrop.fragment.FarmerViewFragment;
 import th.in.nattawut.plancrop.fragment.MainPlanFragment;
 import th.in.nattawut.plancrop.fragment.OrderViewRePortFragment;
 import th.in.nattawut.plancrop.fragment.PlanFarmerViewFragment;
+import th.in.nattawut.plancrop.fragment.PlanResultViewFragment;
 import th.in.nattawut.plancrop.fragment.PlantFarmerViewFragment;
 //import th.in.nattawut.plancrop.fragment.PlantPicture;
 import th.in.nattawut.plancrop.fragment.AdminFrament;
@@ -33,8 +34,10 @@ import th.in.nattawut.plancrop.fragment.PlantPictureFragment;
 import th.in.nattawut.plancrop.fragment.PlantReportViewFragment;
 import th.in.nattawut.plancrop.fragment.PlantReportallViewFragment;
 import th.in.nattawut.plancrop.fragment.PlantResultViewFragment;
+import th.in.nattawut.plancrop.fragment.SiteFragment;
+import th.in.nattawut.plancrop.fragment.SiteViewFrament;
 import th.in.nattawut.plancrop.fragment.TabPlanFragment;
-import th.in.nattawut.plancrop.fragment.memberFragment;
+import th.in.nattawut.plancrop.fragment.MemberFragment;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -135,10 +138,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         .commit();
                 break;
             case R.id.munu_PlantPicture:
-                setTitle("บันทึกการเพาะปลูก");
+                setTitle("แปลงเพาะปลูก");
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new PlantPictureFragment())
+                        .replace(R.id.contentHomeFragment, new SiteViewFrament())
                         .addToBackStack(null)
                         .commit();
                 break;
@@ -146,7 +149,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 setTitle("ผลผลิต");
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new PlantResultViewFragment())
+                        .replace(R.id.contentHomeFragment, new PlanResultViewFragment())
                         .addToBackStack(null)
                         .commit();
                 break;
@@ -186,7 +189,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 setTitle("สมาชิก");
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new memberFragment())
+                        .replace(R.id.contentHomeFragment, new MemberFragment())
                         .addToBackStack(null)
                         .commit();
                 break;

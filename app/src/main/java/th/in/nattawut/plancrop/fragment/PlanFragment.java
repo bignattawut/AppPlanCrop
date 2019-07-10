@@ -63,7 +63,7 @@ public class PlanFragment extends Fragment {
     EditText plan1, plan2, plan3;
     Button button;
 
-    private String cidmidString, cidNameString, myDataString, editTextString;
+    private String cidmidString, cidNameString, myDataString, editTextString,cropNameString,strTextShow;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -96,7 +96,7 @@ public class PlanFragment extends Fragment {
         TextView texPlanLogin = getView().findViewById(R.id.texPlanLogin);
         TextView texPlanMid = getView().findViewById(R.id.texPlanMid);
 
-        String strTextShow = getActivity().getIntent().getExtras().getString("name");
+        strTextShow = getActivity().getIntent().getExtras().getString("name");
         texPlanLogin.setText(strTextShow);
 
         String strTextShowmid = getActivity().getIntent().getExtras().getString("mid");
@@ -193,14 +193,18 @@ public class PlanFragment extends Fragment {
 
         TextView textCidmid = getView().findViewById(R.id.texPlanMid);
         TextView textPlanCidSpinner = getView().findViewById(R.id.textPlanCidSpinner);
+        TextView textPlanCropSpinner = getView().findViewById(R.id.textPlanCropSpinner);
         TextView textmyDate = getView().findViewById(R.id.myDate);
         EditText plan1 = getView().findViewById(R.id.addplan1);
         EditText plan2 = getView().findViewById(R.id.addplan2);
         EditText plan3 = getView().findViewById(R.id.addplan3);
 
 
+
+
         cidmidString = textCidmid.getText().toString().trim();//แปลงค่าText ให้เป็น String , trim ลบค่าที่เว้นวรรคอัตโนวัติ
         cidNameString = textPlanCidSpinner.getText().toString().trim();
+        cropNameString = textPlanCropSpinner.getText().toString().trim();
         myDataString = textmyDate.getText().toString().trim();
 
 //        String editTextString = Float.toString(Float.parseFloat(plan1.getText().toString().trim())
@@ -226,10 +230,10 @@ public class PlanFragment extends Fragment {
     private void comfirmUpload() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("ข้อมูลการวางแผนเพาะปลูก");
-        builder.setMessage("ชื่อเกษตรกร = " + cidmidString + "\n"
-                + "ชื่อพืช = " + cidNameString + "\n"
+        builder.setMessage("ชื่อเกษตรกร = " + strTextShow + "\n"
+                + "ชื่อพืช = " + cropNameString + "\n"
                 + "วันที่เพาะปลูก = " + myDataString + "\n"
-                + "ขนาดพื้นที่เพาะปลูก = " + editTextString);
+                + "ขนาดพื้นที่เพาะปลูก = " + editTextString + "ไร่");
         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {//ปุ่มที่1
             @Override
             public void onClick(DialogInterface dialog, int which) {

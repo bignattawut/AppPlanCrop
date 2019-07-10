@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import th.in.nattawut.plancrop.AdminActivity;
 import th.in.nattawut.plancrop.HomeActivity;
 import th.in.nattawut.plancrop.MainActivity;
 import th.in.nattawut.plancrop.R;
@@ -438,13 +440,36 @@ public class FarmerFragment extends Fragment {
             myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกชื่อผู้ใช้งาน");
         } else if (passwordString.isEmpty()) {
             myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกรหัสผ่าน");
+        } else if (passwordString.length() < 8) {
+            password.setError("รหัสผ่านควรมีความยาวอย่างน้อย 8 ตัว");
+            password.requestFocus();
         }else if (nameString.isEmpty()){
             myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกชื่อ-นามสกุล");
+        }else if (idString.isEmpty()){
+            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณารหัสบัตรประชาชน");
+        } else if (idString.length() < 13) {
+            id.setError("ต้องมีความยาวอย่างน้อย 13 ตัว");
+            id.requestFocus();
         } else if (phonString.isEmpty()) {
             myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกเบอร์โทรศํพท์");
+        } else if (phonString.length() < 10) {
+            phon.setError("เบอร์โทรควรมีความยาวอย่างน้อย 10 ตัว");
+            phon.requestFocus();
+        } else if (emailString.isEmpty()) {
+            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกเอีเมล์");
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailString).matches()) {
+            email.setError("ป้อนอีเมลที่ถูกต้อง");
+            email.requestFocus();
         }else if (editTextString.isEmpty()){
             myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกพื้นที่เพาะปลูก");
-        //}if (idString.isEmpty()|| addressString.isEmpty() || provinceString.isEmpty() || amphurString.isEmpty() || subDistriceString.isEmpty() || villagString.isEmpty() || emailString.isEmpty() ) {
+//        } else if (editTextString.length() < 0) {
+//            plan1.setError("เบอรืโทรควรมีความยาวอย่างน้อย 10 ตัว");
+//            plan2.setError("เบอรืโทรควรมีความยาวอย่างน้อย 10 ตัว");
+//            plan3.setError("เบอรืโทรควรมีความยาวอย่างน้อย 10 ตัว");
+//            plan1.requestFocus();
+//            plan2.requestFocus();
+//            plan3.requestFocus();
+            //}if (idString.isEmpty()|| addressString.isEmpty() || provinceString.isEmpty() || amphurString.isEmpty() || subDistriceString.isEmpty() || villagString.isEmpty() || emailString.isEmpty() ) {
 
         }else {
             uploadFarmer();
@@ -457,6 +482,7 @@ public class FarmerFragment extends Fragment {
         builder.setMessage("ชื่อผู้ใช้งาน = " + userString + "\n"
                 + "รหัสผ่าน = " + passwordString + "\n"
                 + "ชื่อ-นามสกุล = " + nameString + "\n"
+                + "รหัสปชช = " + idString + "\n"
                 + "ที่อยู่ = " + addressString + "\n"
                 + "จังหวัด = " + provinceString + "\n"
                 + "อำเภอ = " + amphurString + "\n"
@@ -498,7 +524,7 @@ public class FarmerFragment extends Fragment {
                     getActivity()
                             .getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.contentHomeFragment, new FarmerViewAdminFragment())
+                            .replace(R.id.contentAdminFragment, new FarmerViewAdminFragment())
                             .addToBackStack(null)
                             .commit();
                 }
@@ -510,13 +536,13 @@ public class FarmerFragment extends Fragment {
 
     private void CreateToolbal() {
         Toolbar toolbar = getView().findViewById(R.id.toolbarFarmer);
-        ((HomeActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AdminActivity)getActivity()).setSupportActionBar(toolbar);
 
-        ((HomeActivity)getActivity()).getSupportActionBar().setTitle("เพิ่มข้อมูลเกษตรกร");
+        ((AdminActivity)getActivity()).getSupportActionBar().setTitle("เพิ่มข้อมูลเกษตรกร");
         //((MainActivity)getActivity()).getSupportActionBar().setSubtitle("ddbdbvd");
 
-        ((HomeActivity)getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
-        ((HomeActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((AdminActivity)getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
+        ((AdminActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

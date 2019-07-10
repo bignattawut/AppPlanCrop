@@ -43,11 +43,16 @@
                 android:layout_height="wrap_content"
                 android:textSize="0dp" />
 
-            <TextView
-                android:id="@+id/editsiteMidName"
+            <Spinner
+                android:id="@+id/spName"
+                android:layout_marginLeft="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp" />
+                android:layout_height="match_parent"></Spinner>
+            <!--<TextView-->
+                <!--android:id="@+id/editsiteMidName"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="5dp" />-->
         </LinearLayout>
 
         <LinearLayout
@@ -72,11 +77,17 @@
                 android:inputType="text"
                 android:text="รหัสตั้งแปลงหมู่บ้าน :" />
 
-            <TextView
+            <Spinner
+                android:layout_marginLeft="5dp"
                 android:id="@+id/editvidSiteSpinner"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"></TextView>
+                android:layout_height="match_parent"></Spinner>
+
+            <!--<TextView-->
+                <!--android:id="@+id/editvidSiteSpinner"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_marginLeft="5dp"></TextView>-->
         </LinearLayout>
 
         <LinearLayout
@@ -92,11 +103,17 @@
                 android:layout_height="wrap_content"
                 android:text="ละติจูด :" />
 
-            <TextView
+            <!--<TextView-->
+                <!--android:id="@+id/edittxtLat"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="5dp" />-->
+            <EditText
                 android:id="@+id/edittxtLat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp" />
+                android:background="@drawable/style1"
+                android:layout_marginLeft="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
         </LinearLayout>
 
         <LinearLayout
@@ -112,10 +129,17 @@
                 android:padding="8dp"
                 android:text="ลองจิจูด :" />
 
-            <TextView
+            <!--<TextView-->
+                <!--android:id="@+id/edittxtLong"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+
+            <EditText
                 android:id="@+id/edittxtLong"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:background="@drawable/style1"
+                android:layout_marginLeft="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
         </LinearLayout>
 
 

@@ -252,7 +252,7 @@ public class OrderFragment extends Fragment {
                 getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new OrderViewFragment())
+                        .replace(R.id.contentMemberFragment, new OrderViewFragment())
                         .addToBackStack(null)
                         .commit();
             }

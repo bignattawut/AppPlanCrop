@@ -1,5 +1,6 @@
 package th.in.nattawut.plancrop.fragment;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,30 +16,43 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import javax.xml.transform.stream.StreamResult;
+
+import th.in.nattawut.plancrop.AdminActivity;
 import th.in.nattawut.plancrop.HomeActivity;
+import th.in.nattawut.plancrop.MemberActivity;
 import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.AddlLogin;
+import th.in.nattawut.plancrop.utility.GetData;
+import th.in.nattawut.plancrop.utility.GetDataWherePlanFarmer;
+import th.in.nattawut.plancrop.utility.GetDataWhereRegister;
 import th.in.nattawut.plancrop.utility.MyAlert;
 import th.in.nattawut.plancrop.utility.Myconstant;
 
-public class MainFragment extends Fragment{
+public class MainFragment extends Fragment {
 
 
     private String typeUser;
+    private int typeDataInt;
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-       // Register Controller
+        // Register Controller
         registerController();
 
-       //Login Controkker
+        //Login Controkker
         loginControkker();
-
 
 
     }// onActivityCreat
@@ -56,15 +70,32 @@ public class MainFragment extends Fragment{
                 MyAlert myAlert = new MyAlert(getActivity());
 
 
-                if (userString.isEmpty() || passwordString.isEmpty()) {
-                    myAlert.onrmaIDialog("สวัสดี", "กรุณากรอกชื่อผู้ใช้หรือรหัสผ่าน");
-                }else {
+//                if (userString.isEmpty() || passwordString.isEmpty()) {
+//                    myAlert.onrmaIDialog("สวัสดี", "กรุณากรอกชื่อผู้ใช้หรือรหัสผ่าน");
+                    if (userString.isEmpty()) {
+                        username.setError("ชื้อผู้ใช้งานไม่ถูกต้อง");
+                        username.requestFocus();
+                        return;
+                    }
+                    if (passwordString.isEmpty()) {
+                        password.setError("รหัสผ่านไม่ถูกต้อง");
+                        password.requestFocus();
+                        return;
+                    }
+                    if (passwordString.length() < 2) {
+                        password.setError("รหัสผ่านควรมีความยาวอย่างน้อย 2 ตัว");
+                        password.requestFocus();
+                        return;
+
+                } else {
                     try {
                         Myconstant myconstant = new Myconstant();
                         AddlLogin addlLogin = new AddlLogin(getActivity());
                         addlLogin.execute(userString, myconstant.getUrlGetUser());
                         String jsonString = addlLogin.get();
                         Log.d("1/may", "JSON ==>" + jsonString);
+
+
 
 
                         if (jsonString.equals("null")) {
@@ -83,35 +114,58 @@ public class MainFragment extends Fragment{
                                 vid = jsonObject.getString("vid");
                                 typeUser = jsonObject.getString("type");
 
+                                String typeDataString = jsonObject.getString("type").trim();
+                                typeDataInt = Integer.parseInt(typeDataString);
+
                                 //ฝัง MID ในแอพ
-                                SharedPreferences sharedPreferences = getActivity().getSharedPreferences(myconstant.getNameFileSharePreference(),Context.MODE_PRIVATE);
+                                SharedPreferences sharedPreferences = getActivity().getSharedPreferences(myconstant.getNameFileSharePreference(), Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putString("mid",miduser);
-                                editor.putString("name",nameuser);
-                                editor.putString("vid",vid);
+                                editor.putString("mid", miduser);
+                                editor.putString("name", nameuser);
+                                editor.putString("vid", vid);
                                 editor.putString("type", typeUser);
                                 editor.commit();
 
-                                Intent intent = new Intent(getActivity(), HomeActivity.class);
-                                intent.putExtra("name",nameuser);
-                                intent.putExtra("mid",miduser);
-                                intent.putExtra("vid",vid);
-                                startActivity(intent);
-                                getActivity().finish();//คำสั่งปิดแอป
-                            }else {
+                                switch (typeDataInt) {
+                                    case 1:
+                                        Intent admin = new Intent(getActivity(), AdminActivity.class);
+                                        admin.putExtra("name", nameuser);
+                                        admin.putExtra("mid", miduser);
+                                        admin.putExtra("vid", vid);
+                                        startActivity(admin);
+                                        getActivity().finish();//คำสั่งปิดแอป
+                                        break;
+                                    case 2:
+                                        Intent home = new Intent(getActivity(), HomeActivity.class);
+                                        home.putExtra("name", nameuser);
+                                        home.putExtra("mid", miduser);
+                                        home.putExtra("vid", vid);
+                                        startActivity(home);
+                                        getActivity().finish();//คำสั่งปิดแอป
+                                        break;
+                                    case 3:
+                                        Intent member = new Intent(getActivity(), MemberActivity.class);
+                                        member.putExtra("name", nameuser);
+                                        member.putExtra("mid", miduser);
+                                        member.putExtra("vid", vid);
+                                        startActivity(member);
+                                        break;
+                                }
+
+                            } else {
                                 myAlert.onrmaIDialog("รหัสผ่าน", "รหัสผ่านไม่ถูกต้อง");
                             }
-
                         }
 
-                } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                } catch(Exception e){
+                    e.printStackTrace();
                 }
             }
-        });
+        }
+    });
 
-    }
+}
+
 
     private void registerController() {
         Button button = getView().findViewById(R.id.btnregister);
