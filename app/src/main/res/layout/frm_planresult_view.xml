@@ -49,63 +49,63 @@
             </TableRow>
 
 
-            <!--<TableRow>-->
+            <TableRow>
 
-                <!--<ImageView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:layout_marginRight="5dp"-->
-                    <!--android:padding="2dp"-->
-                    <!--android:src="@drawable/ic_selection" />-->
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:padding="2dp"
+                    android:src="@drawable/ic_deadline" />
 
-                <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:fontFamily="@font/fonts1"-->
-                    <!--android:text="ปริมาณ(ก.ก)"-->
-                    <!--android:textSize="22dp"-->
-                    <!--android:textStyle="bold" />-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/fonts1"
+                    android:text="วันที่เริ่มเก็บเกี่ยวได้"
+                    android:textSize="22dp"
+                    android:textStyle="bold" />
 
-                <!--<TextView-->
-                    <!--android:id="@+id/textQty"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_gravity="right"-->
-                    <!--android:fontFamily="@font/fonts1"-->
-                    <!--android:text="ปริมาณ"-->
-                    <!--android:textColor="@color/colorPri"-->
-                    <!--android:textSize="22dp"-->
-                    <!--android:textStyle="bold" />-->
-            <!--</TableRow>-->
+                <TextView
+                    android:id="@+id/textQty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:fontFamily="@font/fonts1"
+                    android:text="วัน"
+                    android:textColor="@color/colorPri"
+                    android:textSize="22dp"
+                    android:textStyle="bold" />
+            </TableRow>
 
-            <!--<TableRow>-->
+            <TableRow>
 
-                <!--<ImageView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:layout_marginRight="5dp"-->
-                    <!--android:padding="2dp"-->
-                    <!--android:src="@drawable/ic_selection" />-->
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:padding="2dp"
+                    android:src="@drawable/ic_deadline" />
 
-                <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:fontFamily="@font/fonts1"-->
-                    <!--android:text="พื้นที่เพาะปลูก"-->
-                    <!--android:textSize="22dp"-->
-                    <!--android:textStyle="bold" />-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/fonts1"
+                    android:text="วันสุดท้ายที่เก็บเกี่ยวได้"
+                    android:textSize="22dp"
+                    android:textStyle="bold" />
 
-                <!--<TextView-->
-                    <!--android:id="@+id/textArea"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_gravity="right"-->
-                    <!--android:fontFamily="@font/fonts1"-->
-                    <!--android:text="ปริมาณ"-->
-                    <!--android:textColor="@color/colorPri"-->
-                    <!--android:textSize="22dp"-->
-                    <!--android:textStyle="bold" />-->
-            <!--</TableRow>-->
+                <TextView
+                    android:id="@+id/textArea"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:fontFamily="@font/fonts1"
+                    android:text="วัน"
+                    android:textColor="@color/colorPri"
+                    android:textSize="22dp"
+                    android:textStyle="bold" />
+            </TableRow>
 
             <TableRow>
 
@@ -120,7 +120,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/fonts1"
-                    android:text="ปริมาณ(ก.ก)"
+                    android:text="ปริมาณผลผลิต (ก.ก)"
                     android:textSize="22dp"
                     android:textStyle="bold" />
 

@@ -5,6 +5,7 @@ public class LoginResponse {
     private boolean error;
     private String message;
     private User user;
+    public String isLogin;
 
     public LoginResponse(boolean error, String message, User user) {
         this.error = error;

@@ -223,6 +223,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="1dp"></Spinner>
 
+
                 <!--<fr.ganfra.materialspinner.MaterialSpinner-->
                     <!--android:id="@+id/spProvince"-->
                     <!--app:ms_hint=""-->
@@ -231,6 +232,14 @@
 
 
             </LinearLayout>
+
+            <!--<com.jaredrummler.materialspinner.MaterialSpinner-->
+                <!--android:id="@+id/spProvince"-->
+                <!--app:ms_text_color="@color/colorAccent"-->
+                <!--app:ms_background_color="@color/colorWhite"-->
+                <!--app:ms_arrow_tint="@color/yello"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content" />-->
 
             <Spinner
                 style="@style/fonts"
@@ -268,6 +277,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="1dp"></Spinner>
 
+                <!--<com.jaredrummler.materialspinner.MaterialSpinner-->
+                    <!--android:id="@+id/spAmphur"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content" />-->
+
                 <!--<fr.ganfra.materialspinner.MaterialSpinner-->
                     <!--android:id="@+id/spAmphur"-->
                     <!--app:ms_hint=""-->
@@ -301,6 +315,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="1dp"></Spinner>
+                <!--<com.jaredrummler.materialspinner.MaterialSpinner-->
+                    <!--android:id="@+id/spSubDistrice"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content" />-->
                 <!--<fr.ganfra.materialspinner.MaterialSpinner-->
                     <!--android:id="@+id/spSubDistrice"-->
                     <!--app:ms_hint=""-->
@@ -334,6 +352,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="1dp"></Spinner>
+
+                <!--<com.jaredrummler.materialspinner.MaterialSpinner-->
+                    <!--android:id="@+id/spVillag"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content" />-->
 
                 <!--<fr.ganfra.materialspinner.MaterialSpinner-->
                     <!--android:id="@+id/spVillag"-->

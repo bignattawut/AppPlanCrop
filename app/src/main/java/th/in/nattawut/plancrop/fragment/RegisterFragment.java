@@ -19,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.squareup.okhttp.FormEncodingBuilder;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -31,8 +32,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
-import fr.ganfra.materialspinner.MaterialSpinner;
 import th.in.nattawut.plancrop.MainActivity;
 import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.AddRegister;
@@ -57,6 +58,7 @@ public class RegisterFragment extends Fragment {
     private Spinner spProvince,spAmphur, spSubDistrice,spVillag;
     private int rubIDprovince;
 
+    //private MaterialSpinner spProvince,spAmphur, spSubDistrice,spVillag;
     //private MaterialSpinner spProvince,spAmphur, spSubDistrice,spVillag;;
 
     private String provinceString,amphurString,subDistriceString,villagString;
@@ -80,6 +82,7 @@ public class RegisterFragment extends Fragment {
         spProvince = getView().findViewById(R.id.spProvince);
         adpProvince = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, arrProvince);
         spProvince.setAdapter(adpProvince);
+
 
         //อำเภอ
         spAmphur = getView().findViewById(R.id.spAmphur);
@@ -157,7 +160,6 @@ public class RegisterFragment extends Fragment {
             arrProvince.addAll(listprovice);
             arrProvinceID.addAll(listprovinceid);
             adpProvince.notifyDataSetChanged();
-
             spProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -380,6 +382,18 @@ public class RegisterFragment extends Fragment {
             arrVidID.addAll(listVidId);
             adpVid.notifyDataSetChanged();
 
+//            spVillag.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener() {
+//                @Override
+//                public void onItemSelected(MaterialSpinner view, int position, long id, Object item) {
+//                    if (spVillag.getItems() != null){
+//                        new DataVillag().execute(listVid.get(position));
+//                        rubIDprovince = Integer.parseInt(listVidId.get(position));
+//                        arrVid.clear();
+//                    }
+//
+//                }
+//            });
+
         }
     }
 
@@ -419,6 +433,10 @@ public class RegisterFragment extends Fragment {
         Spinner amphur = getView().findViewById(R.id.spAmphur);
         Spinner subDistrice = getView().findViewById(R.id.spSubDistrice);
         Spinner villag = getView().findViewById(R.id.spVillag);
+//        MaterialSpinner province = getView().findViewById(R.id.spProvince);
+//        MaterialSpinner amphur = getView().findViewById(R.id.spAmphur);
+//        MaterialSpinner subDistrice = getView().findViewById(R.id.spSubDistrice);
+//        MaterialSpinner villag = getView().findViewById(R.id.spVillag);
         EditText phon = getView().findViewById(R.id.edtphone);
         EditText email = getView().findViewById(R.id.edtemail);
 
@@ -428,6 +446,10 @@ public class RegisterFragment extends Fragment {
         String nameString = name.getText().toString().trim();
         String idString = id.getText().toString().trim();
         String addressString = address.getText().toString().trim();
+//        provinceString = province.getItems().toString().trim();
+//        amphurString = amphur.getItems().toString().trim();
+//        subDistriceString = subDistrice.getItems().toString().trim();
+//        villagString = villag.getItems().toString().trim();
         provinceString = province.getSelectedItem().toString().trim();
         amphurString = amphur.getSelectedItem().toString().trim();
         subDistriceString = subDistrice.getSelectedItem().toString().trim();

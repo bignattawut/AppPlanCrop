@@ -8,7 +8,7 @@ public class PlantReportall {
     private String crop;
     @SerializedName("pdate")
     private String pdate;
-    @SerializedName("beginharvest")
+    @SerializedName("hdate")
     private String beginharvest;
     @SerializedName("area")
     private String area;

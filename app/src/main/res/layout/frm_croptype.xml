@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbarCropType"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:titleTextAppearance="@style/Toolbar.TitleText"
         android:background="@color/colorPrimary"
         android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:titleTextAppearance="@style/Toolbar.TitleText"
         app:titleTextColor="@color/colorWhite" />
 
     <LinearLayout
@@ -39,37 +39,21 @@
                 android:inputType="text"
                 android:padding="10dp" />
         </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-
-            <Button
-                android:id="@+id/btnCropType"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/button"
-                android:layout_marginBottom="35dp"
-                android:text="เพิ่ม"
-                android:textColor="@color/colorWhite" />
-        </LinearLayout>
-       <!-- <Button
+        <Button
             android:id="@+id/btnCropType"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="50dp"
-            android:background="@color/colorlightGreen"
-            android:text="เพิ่ม"
+            android:background="@drawable/button"
+            android:fontFamily="@font/fonts1"
+            android:text="เพิ่มข้อมูล"
             android:textColor="@color/colorWhite"
-            android:textSize="20dp" />-->
+            android:textSize="24dp"></Button>
 
     </LinearLayout>
-
 
 
 </LinearLayout>

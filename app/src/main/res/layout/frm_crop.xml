@@ -34,12 +34,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="text"
+                app:fontFamily="@font/fonts1"
                 android:text="พืชเพาะปลูก :" />
 
             <EditText
+                app:fontFamily="@font/fonts1"
+                android:layout_marginLeft="5dp"
                 android:id="@+id/edtCropName"
+                android:textSize="26dp"
+                android:fontFamily="@font/fonts1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@drawable/style1"
                 android:inputType="text"
                 android:padding="1dp" />
@@ -63,12 +68,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="text"
+                app:fontFamily="@font/fonts1"
                 android:text="ประเภทพืชเพาะปลูก :" />
 
             <Spinner
                 android:id="@+id/cropTypeSpinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="1dp"></Spinner>
         </LinearLayout>
 
@@ -85,10 +91,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                app:fontFamily="@font/fonts1"
                 android:inputType="text"
-                android:text="จำนวนวันที่เก็บเกี่ยว :" />
+                android:text="จำนวนวันที่เก็บเกี่ยว (วัน) :" />
 
             <EditText
+                android:textSize="26dp"
+                app:fontFamily="@font/fonts1"
+                android:layout_marginLeft="5dp"
                 android:id="@+id/edtBeginHarvest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -111,11 +121,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:inputType="text"
-                android:text="ระยะเวลาที่เก็บเกี่ยว :" />
+                app:fontFamily="@font/fonts1"
+                android:text="ระยะเวลาที่เก็บเกี่ยว (วัน):" />
 
             <EditText
+                android:textSize="26dp"
                 android:id="@+id/edtHarvestPeriod"
                 android:layout_width="match_parent"
+                app:fontFamily="@font/fonts1"
+                android:layout_marginLeft="5dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/style1"
                 android:inputType="number"
@@ -132,14 +146,18 @@
             android:padding="1dp">
 
             <TextView
+                app:fontFamily="@font/fonts1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:inputType="text"
-                android:text="ผลผลิตต่อไร่ :" />
+                android:text="ผลผลิตต่อไร่ (ก.ก):" />
 
             <EditText
+                android:textSize="26dp"
                 android:id="@+id/edtYield"
+                app:fontFamily="@font/fonts1"
+                android:layout_marginLeft="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/style1"
@@ -148,7 +166,7 @@
         </LinearLayout>
 
         <LinearLayout
-           android:gravity="bottom"
+            android:gravity="bottom"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -163,13 +181,5 @@
                 android:textSize="24dp"  />
 
         </LinearLayout>
-
-
     </LinearLayout>
-
-
-
-
-
-
 </LinearLayout>

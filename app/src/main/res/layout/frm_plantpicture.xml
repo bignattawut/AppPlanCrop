@@ -29,57 +29,67 @@
                 android:id="@+id/imagePhoto"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
+                android:scaleType="fitCenter"
                 android:layout_marginBottom="30dp"
                 android:src="@drawable/picture" />
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/red_button"
+                android:backgroundTint="@color/colorlightGreen"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+
+                <ImageView
+                android:id="@+id/imvCamera"
+                android:layout_width="0dp"
                 android:layout_height="50dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/style3"
-                android:padding="3dp">
+                android:layout_weight="1"
+                android:src="@drawable/ic_action_camera" />
 
 
                 <ImageView
-                    android:id="@+id/imvCamera"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:src="@drawable/ic_action_camera" />
 
-
-                <ImageView
-                    android:id="@+id/imvGallery"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:src="@drawable/ic_action_gallery" />
-
+                android:id="@+id/imvGallery"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_action_gallery" />
 
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/filename1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="FileName 1: " />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/style1"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="10dp">
 
                 <TextView
-                    android:fontFamily="@font/fonts1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="1dp"
+                    android:fontFamily="@font/fonts1"
                     android:text="การเพาะปลูก"
                     android:textSize="24dp" />
 
-                <EditText
-                    android:id="@+id/edtNo"
+                <Spinner
+                    android:id="@+id/spPlantNo"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/style1"
-                    android:inputType="text"
-                    android:padding="10dp" />
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp">
+
+                </Spinner>
 
             </LinearLayout>
 
@@ -92,9 +102,9 @@
                 android:padding="10dp">
 
                 <TextView
-                    android:fontFamily="@font/fonts1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/fonts1"
                     android:inputType="date"
                     android:text="วันที่ลงรูป :"
                     android:textSize="24dp" />
@@ -121,66 +131,63 @@
                 android:orientation="horizontal">
 
                 <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_gravity="start"-->
-                    <!--android:layout_marginLeft="10dp"-->
-                    <!--android:text="รายละเอียดรูป :"-->
-                    <!--android:textSize="20dp" />-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="start"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:text="รายละเอียดรูป :"-->
+                <!--android:textSize="20dp" />-->
 
                 <EditText
-                    android:background="@drawable/style1"
                     android:id="@+id/edtDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:layout_marginLeft="5dp"
+                    android:background="@drawable/style1"
                     android:hint="รายละเอียดของกิจกรรมเพาะปลูก"
-                    android:textSize="24dp"
                     android:lines="3"
-                    app:fontFamily="@font/fonts1"/>
+                    android:textSize="24dp"
+                    app:fontFamily="@font/fonts1" />
 
                 <!--<EditText-->
-                    <!--android:id="@+id/edtDescription"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:background="@drawable/style1"-->
-                    <!--android:inputType="textMultiLine"-->
-                    <!--android:lines="5"-->
-                    <!--android:padding="1dp" />-->
+                <!--android:id="@+id/edtDescription"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@drawable/style1"-->
+                <!--android:inputType="textMultiLine"-->
+                <!--android:lines="5"-->
+                <!--android:padding="1dp" />-->
             </LinearLayout>
-
 
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-            <Button
-                android:layout_marginRight="15dp"
-                android:layout_marginLeft="20dp"
-                android:padding="10dp"
-                android:background="@color/colorlightGreen"
-                android:text="อัพโหลดรูปภาพ"
-                android:textColor="@color/colorWhite"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:id="@+id/btnUpload"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
 
-            <Button
-                android:id="@+id/btnPlantPicture"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:background="@color/colorlightGreen"
-                android:text="บันทึก"
-                android:textColor="@color/colorWhite"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+                <Button
+                    android:id="@+id/btnUpload"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/button"
+                    android:padding="10dp"
+                    android:text="บันทึก"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <!--<Button-->
+                <!--android:id="@+id/btnPlantPicture"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:background="@color/colorlightGreen"-->
+                <!--android:text="บันทึก"-->
+                <!--android:textColor="@color/colorWhite"-->
+                <!--android:textSize="18dp"-->
+                <!--android:textStyle="bold" />-->
             </LinearLayout>
-
-
 
 
             <!-- <android.support.design.widget.TabLayout

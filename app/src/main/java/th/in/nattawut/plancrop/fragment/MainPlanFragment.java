@@ -83,7 +83,7 @@ public class MainPlanFragment extends Fragment {
                 getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new PlantPictureViewFragment())
+                        .replace(R.id.contentHomeFragment, new PlantPicreFragment3())
                         .addToBackStack(null)
                         .commit();
             }

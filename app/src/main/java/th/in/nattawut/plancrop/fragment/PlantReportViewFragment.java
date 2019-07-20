@@ -36,8 +36,14 @@ public class PlantReportViewFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
 
+        swiRefreshLayou();
+
+        showMid();
+
+    }
+    private void swiRefreshLayou() {
         mSwipeRefreshLayout = getView().findViewById(R.id.swiRefreshLayoutPlantReport);
-        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorlightGreen);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -45,7 +51,6 @@ public class PlantReportViewFragment extends Fragment {
                 mSwipeRefreshLayout.setRefreshing(false);
             }
         });
-
     }
 
     public void showMid() {

@@ -61,7 +61,7 @@ public class PlantPictureViewFragment extends Fragment {
 
         try{
             GetData getData = new GetData(getActivity());
-            getData.execute(myconstant.getUrlselectImagesPlantPic());
+            getData.execute(myconstant.getUrlselectPlantPic());
 
 
             String jsonString = getData.get();
@@ -69,17 +69,19 @@ public class PlantPictureViewFragment extends Fragment {
 
             JSONArray jsonArray = new JSONArray(jsonString);
 
+            String[] picno = new String[jsonArray.length()];
             final String[] SCodeString = new String[jsonArray.length()];
             String[] imageStrings = new String[jsonArray.length()];
 
             for (int i=0; i<jsonArray.length(); i+=1){
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                SCodeString[i] = jsonObject.getString(columnStrings[1]);
-                imageStrings[i] = jsonObject.getString(columnStrings[0]);
+                picno[i] = jsonObject.getString(columnStrings[0]);
+                imageStrings[i] = jsonObject.getString(columnStrings[1]);
+                SCodeString[i] = jsonObject.getString(columnStrings[2]);
 
             }
 
-            PlantPictureViewAapter plantPictureViewAapter = new PlantPictureViewAapter(getActivity(),SCodeString,imageStrings);
+            PlantPictureViewAapter plantPictureViewAapter = new PlantPictureViewAapter(getActivity(),picno,imageStrings,SCodeString);
             listView.setAdapter(plantPictureViewAapter);
 
         }catch (Exception e){

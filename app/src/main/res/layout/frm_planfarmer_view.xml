@@ -76,33 +76,33 @@
                     android:textStyle="bold" />
             </TableRow>
 
-            <TableRow>
+            <!--<TableRow>-->
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="5dp"
-                    android:padding="2dp"
-                    android:src="@drawable/ic_leaf" />
+                <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_marginRight="5dp"-->
+                    <!--android:padding="2dp"-->
+                    <!--android:src="@drawable/ic_leaf" />-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/fonts1"
-                    android:text="ผลผลิตเฉลี่ยกิโลกรัมต่อไร่"
-                    android:textSize="22dp"
-                    android:textStyle="bold" />
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:fontFamily="@font/fonts1"-->
+                    <!--android:text="ผลผลิตเฉลี่ยกิโลกรัมต่อไร่"-->
+                    <!--android:textSize="22dp"-->
+                    <!--android:textStyle="bold" />-->
 
-                <TextView
-                    android:id="@+id/textPlanFarmerCid"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/fonts1"
-                    android:text="ผลผลิตเฉลี่ย"
-                    android:textColor="@color/colorPri"
-                    android:textSize="22dp"
-                    android:textStyle="bold" />
-            </TableRow>
+                <!--<TextView-->
+                    <!--android:id="@+id/textPlanFarmerCid"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:fontFamily="@font/fonts1"-->
+                    <!--android:text="ผลผลิตเฉลี่ย"-->
+                    <!--android:textColor="@color/colorPri"-->
+                    <!--android:textSize="22dp"-->
+                    <!--android:textStyle="bold" />-->
+            <!--</TableRow>-->
 
 
             <TableRow>
@@ -118,7 +118,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/fonts1"
-                    android:text="พื้นที่เพาะปลูก/ไร่"
+                    android:text="เนื้อที่เพาะปลูก (ไร่-งาน-ว่า)"
                     android:textSize="22dp"
                     android:textStyle="bold" />
 

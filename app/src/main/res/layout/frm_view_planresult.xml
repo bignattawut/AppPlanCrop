@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="จากวันที่"
+                android:text="ระบุวันที่ที่จะปลูก"
                 android:textSize="24dp"
                 app:fontFamily="@font/fonts1" />
 
@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="80dp"
+                android:layout_marginLeft="120dp"
                 android:text="xx/xx/xxxx"
                 android:textSize="24dp"
                 app:fontFamily="@font/fonts1" />

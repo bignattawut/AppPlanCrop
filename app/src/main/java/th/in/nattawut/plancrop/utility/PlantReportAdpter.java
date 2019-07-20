@@ -33,17 +33,17 @@ public class PlantReportAdpter extends ArrayAdapter<PlantReport> {
 
         TextView textNO = view.findViewById(R.id.textNO);
         TextView textCrop = view.findViewById(R.id.textCrop);
-        TextView pdate = view.findViewById(R.id.pdate);
+        //TextView pdate = view.findViewById(R.id.pdate);
         TextView textbeginharvest =  view.findViewById(R.id.textbeginharvest);
-        TextView textArea = view.findViewById(R.id.textArea);
+        //TextView textArea = view.findViewById(R.id.textArea);
         TextView textQty =  view.findViewById(R.id.textQty);
 
 
         textNO.setText(plantReports.get(position).getNo());
         textCrop.setText(plantReports.get(position).getCrop());
-        pdate.setText(plantReports.get(position).getPdate());
+        //pdate.setText(plantReports.get(position).getPdate());
         textbeginharvest.setText(plantReports.get(position).getBeginharvest());
-        textArea.setText(plantReports.get(position).getArea());
+        //textArea.setText(plantReports.get(position).getArea());
         textQty.setText(plantReports.get(position).getYield());
 
 

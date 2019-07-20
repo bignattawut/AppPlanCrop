@@ -173,7 +173,7 @@ public class CropFragment extends Fragment {
                 getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new CropViewFragment())
+                        .replace(R.id.contentAdminFragment, new CropViewFragment())
                         .addToBackStack(null)
                         .commit();
             }

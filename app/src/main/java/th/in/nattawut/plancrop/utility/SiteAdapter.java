@@ -24,7 +24,6 @@ public class SiteAdapter extends ArrayAdapter<Site> {
         this.sites = objects;
     }
 
-
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

@@ -2,14 +2,27 @@ package th.in.nattawut.plancrop.utility;
 
 public class User {
 
+
+
+    private Integer success;
+
+    public User(Integer success) {
+        this.success = success;
+    }
+
+    public Integer getSuccess() {
+        return success;
+    }
+    public String isLogin;
+
     private int id;
-    private String email, name, school;
+    private String email, name, type;
 
     public User(int id, String email, String name, String school) {
         this.id = id;
         this.email = email;
         this.name = name;
-        this.school = school;
+        this.type = type;
     }
 
     public int getId() {
@@ -24,7 +37,7 @@ public class User {
         return name;
     }
 
-    public String getSchool() {
-        return school;
+    public String getType() {
+        return type;
     }
 }

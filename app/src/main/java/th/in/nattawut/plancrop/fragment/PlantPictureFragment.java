@@ -61,7 +61,7 @@ public class PlantPictureFragment extends Fragment {
     ////////
     private static final String[] Camara = {"เลือกรูปจากคลัง","ถ่ายรูป"};
 
-    public static final String UPLOAD_URL = "http://10.200.0.81/android/php/upload.php";
+    public static final String UPLOAD_URL = "http://192.168.1.144/android/php/upload.php";
     public static final String UPLOAD_KEY = "URL";
     private int PICK_IMAGE_REQUEST = 1;
 
@@ -94,7 +94,7 @@ public class PlantPictureFragment extends Fragment {
         DataPickerDialog();
 
         //AddPlantPicture
-        addPlantPicture();
+//        addPlantPicture();
 
         //uploadimage
         uploadimage();
@@ -216,36 +216,36 @@ public class PlantPictureFragment extends Fragment {
         return result;
     }
 
-    private void addPlantPicture() {
-        Button button = getView().findViewById(R.id.btnPlantPicture);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                uploadValueToServer();
-               // uploadImage();
-            }
-        });
-    }
+//    private void addPlantPicture() {
+//        Button button = getView().findViewById(R.id.btnPlantPicture);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                uploadValueToServer();
+//               // uploadImage();
+//            }
+//        });
+//    }
 
 
     private void uploadValueToServer() {
-        EditText edtNo = getView().findViewById(R.id.edtNo);
+        //EditText edtNo = getView().findViewById(R.id.edtNo);
         TextView textmyDate = getView().findViewById(R.id.textViewDatePicture);
         EditText edtDescription = getView().findViewById(R.id.edtDescription);
 
-        String NoString = edtNo.getText().toString().trim();
+        //String NoString = edtNo.getText().toString().trim();
         String DatepictureString = textmyDate.getText().toString().trim();
         String DescriptionString = edtDescription.getText().toString().trim();
 
 
-        if (NoString.isEmpty() || DatepictureString.isEmpty() || DescriptionString.isEmpty()) {
+        if (/*NoString.isEmpty() ||*/ DatepictureString.isEmpty() || DescriptionString.isEmpty()) {
             MyAlert myAlert = new MyAlert(getActivity());
             myAlert.onrmaIDialog("สวัสดี", "กรุณากรอกข้อมูล");
         } else {
             try {
                 Myconstant myconstant = new Myconstant();
                 AddPlantPictuteUpload addPlantPictuteUpload = new AddPlantPictuteUpload(getActivity());
-                addPlantPictuteUpload.execute(NoString,DatepictureString,DescriptionString,
+                addPlantPictuteUpload.execute(/*NoString,*/DatepictureString,DescriptionString,
                         myconstant.getUrlAddPlantPicture());
 
                 String result = addPlantPictuteUpload.get();

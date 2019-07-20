@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -36,12 +37,15 @@ import th.in.nattawut.plancrop.utility.GetDataWherePlanFarmer;
 import th.in.nattawut.plancrop.utility.GetDataWhereRegister;
 import th.in.nattawut.plancrop.utility.MyAlert;
 import th.in.nattawut.plancrop.utility.Myconstant;
+import th.in.nattawut.plancrop.utility.SaveSharedPreference;
 
 public class MainFragment extends Fragment {
 
 
     private String typeUser;
     private int typeDataInt;
+    private EditText username, password;
+    LinearLayout loginForm;
 
 
     @Override
@@ -53,6 +57,14 @@ public class MainFragment extends Fragment {
 
         //Login Controkker
         loginControkker();
+
+//        loginForm = getView().findViewById(R.id.loginForm);
+//        if (SaveSharedPreference.getLoggedStatus(getActivity())) {
+//            Intent intent = new Intent(getActivity(), HomeActivity.class);
+//            startActivity(intent);
+//        } else {
+//            loginForm.setVisibility(View.VISIBLE);
+//        }
 
 
     }// onActivityCreat
@@ -70,38 +82,19 @@ public class MainFragment extends Fragment {
                 MyAlert myAlert = new MyAlert(getActivity());
 
 
-//                if (userString.isEmpty() || passwordString.isEmpty()) {
-//                    myAlert.onrmaIDialog("สวัสดี", "กรุณากรอกชื่อผู้ใช้หรือรหัสผ่าน");
-                    if (userString.isEmpty()) {
-                        username.setError("ชื้อผู้ใช้งานไม่ถูกต้อง");
-                        username.requestFocus();
-                        return;
-                    }
-                    if (passwordString.isEmpty()) {
-                        password.setError("รหัสผ่านไม่ถูกต้อง");
-                        password.requestFocus();
-                        return;
-                    }
-                    if (passwordString.length() < 2) {
-                        password.setError("รหัสผ่านควรมีความยาวอย่างน้อย 2 ตัว");
-                        password.requestFocus();
-                        return;
-
+                if (userString.isEmpty() || passwordString.isEmpty()) {
+                    myAlert.onrmaIDialog("สวัสดี", "กรุณากรอกชื่อผู้ใช้หรือรหัสผ่าน");
                 } else {
                     try {
                         Myconstant myconstant = new Myconstant();
                         AddlLogin addlLogin = new AddlLogin(getActivity());
-                        addlLogin.execute(userString, myconstant.getUrlGetUser());
+                        addlLogin.execute(userString,myconstant.getUrlGetUser());
                         String jsonString = addlLogin.get();
                         Log.d("1/may", "JSON ==>" + jsonString);
 
-
-
-
                         if (jsonString.equals("null")) {
-                            myAlert.onrmaIDialog("ชื่อผู้ใช้งานไม่ถูกต้อง", "ไม่มี " + userString + "ชื่อผู้ใช้นี้");
+                            myAlert.onrmaIDialog("รหัสผ่าน", "รหัสผ่านไม่ถูกต้อง");
                         } else {
-
                             JSONArray jsonArray = new JSONArray(jsonString);
                             JSONObject jsonObject = jsonArray.getJSONObject(0);
 
@@ -157,14 +150,14 @@ public class MainFragment extends Fragment {
                             }
                         }
 
-                } catch(Exception e){
-                    e.printStackTrace();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
-        }
-    });
+        });
 
-}
+    }
 
 
     private void registerController() {
@@ -186,7 +179,8 @@ public class MainFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup
+            container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frm_login1, container, false);
         return view;
     }
@@ -219,19 +213,7 @@ public class MainFragment extends Fragment {
 //        myAlert.onrmaIDialog("กรุณากรอกข้อมูล", "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
 //        } else if (passwordString.equals(truePass)) {
 //        Toast.makeText(getActivity(), "ยินดีต้อนรับ" + nameuser, Toast.LENGTH_LONG).show();
-//
-//        //Intent to HomeActivity
-//        Intent intent = new Intent(getActivity(),HomeActivity.class);
-//        intent.putExtra("Name",nameuser);
-//        intent.putExtra("MID",miduser);
-//        startActivity(intent);
-//        getActivity().finish();
-//
-//                        /*getActivity().getSupportFragmentManager()
-//                                .beginTransaction()
-//                                .replace(R.id.contentMainFragment, new HomeFragment())
-//                                .commit();*/
-//
+
 //        } else {
 //        myAlert.onrmaIDialog("รหัสไม่ถูกต้อง", "กรุณากรอกรหัสผ่านใหม่");
 //        }

@@ -6,9 +6,9 @@ public class PlanResult {
 
     @SerializedName("crop")
     private String crop;
-    @SerializedName("beginharvest")
+    @SerializedName("bdate")
     private String beginharvest;
-    @SerializedName("harvestperiod")
+    @SerializedName("edate")
     private String harvestperiod;
     @SerializedName("yield")
     private String yield;

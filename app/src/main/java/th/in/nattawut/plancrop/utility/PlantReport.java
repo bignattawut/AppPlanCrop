@@ -14,7 +14,7 @@ public class PlantReport {
     private String yield;
     @SerializedName("pdate")
     private String pdate;
-    @SerializedName("beginharvest")
+    @SerializedName("hdate")
     private String beginharvest;
 
     public String getNo() {

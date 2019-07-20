@@ -32,14 +32,14 @@ public class PlanResultAdpter extends ArrayAdapter<PlanResult> {
 
 
         TextView textCrop = view.findViewById(R.id.textCrop);
-//        TextView textQty = view.findViewById(R.id.textQty);
-//        TextView textArea = view.findViewById(R.id.textArea);
+        TextView textQty = view.findViewById(R.id.textQty);
+        TextView textArea = view.findViewById(R.id.textArea);
         TextView textyield = view.findViewById(R.id.textyield);
 
 
         textCrop.setText(planResults.get(position).getCrop());
-//        textQty.setText(planResults.get(position).getBeginharvest());
-//        textArea.setText(planResults.get(position).getHarvestperiod());
+        textQty.setText(planResults.get(position).getBeginharvest());
+        textArea.setText(planResults.get(position).getHarvestperiod());
         textyield.setText(planResults.get(position).getYield());
 
 

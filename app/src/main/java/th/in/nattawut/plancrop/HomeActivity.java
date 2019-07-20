@@ -3,6 +3,7 @@ package th.in.nattawut.plancrop;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -21,8 +22,13 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 import th.in.nattawut.plancrop.fragment.About;
 import th.in.nattawut.plancrop.fragment.FarmerViewFragment;
+import th.in.nattawut.plancrop.fragment.MainFragment1;
 import th.in.nattawut.plancrop.fragment.MainPlanFragment;
 import th.in.nattawut.plancrop.fragment.OrderViewRePortFragment;
 import th.in.nattawut.plancrop.fragment.PlanFarmerViewFragment;
@@ -31,6 +37,8 @@ import th.in.nattawut.plancrop.fragment.PlantFarmerViewFragment;
 //import th.in.nattawut.plancrop.fragment.PlantPicture;
 import th.in.nattawut.plancrop.fragment.AdminFrament;
 import th.in.nattawut.plancrop.fragment.PlantPictureFragment;
+import th.in.nattawut.plancrop.fragment.PlantPictureViewFragment;
+import th.in.nattawut.plancrop.fragment.PlantPictureViewFragment1;
 import th.in.nattawut.plancrop.fragment.PlantReportViewFragment;
 import th.in.nattawut.plancrop.fragment.PlantReportallViewFragment;
 import th.in.nattawut.plancrop.fragment.PlantResultViewFragment;
@@ -38,6 +46,10 @@ import th.in.nattawut.plancrop.fragment.SiteFragment;
 import th.in.nattawut.plancrop.fragment.SiteViewFrament;
 import th.in.nattawut.plancrop.fragment.TabPlanFragment;
 import th.in.nattawut.plancrop.fragment.MemberFragment;
+import th.in.nattawut.plancrop.utility.APIUtils;
+import th.in.nattawut.plancrop.utility.OrderService;
+import th.in.nattawut.plancrop.utility.RetrofitClient;
+import th.in.nattawut.plancrop.utility.SaveSharedPreference;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -51,6 +63,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     private int typeDataInt;
     private String idLogin;
+
+    OrderService orderService;
+    private SaveSharedPreference SaveSharedPreference;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -141,12 +156,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 setTitle("แปลงเพาะปลูก");
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new SiteViewFrament())
+                        .replace(R.id.contentHomeFragment, new PlantPictureViewFragment1())
                         .addToBackStack(null)
                         .commit();
                 break;
             case R.id.munu_produce:
-                setTitle("ผลผลิต");
+                setTitle("สรุปการวางแผนเพาะปลูก");
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.contentHomeFragment, new PlanResultViewFragment())
@@ -154,7 +169,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         .commit();
                 break;
             case R.id.munu_PlantRepor:
-                setTitle("การเพาะปลูก");
+                setTitle("สรุปการเพาะปลูก");
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.contentHomeFragment, new PlantReportViewFragment())
@@ -177,22 +192,22 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         .addToBackStack(null)
                         .commit();
                 break;
-            case R.id.menu_admin:
-                setTitle("ผู้ดูแลระบบ");
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new AdminFrament())
-                        .addToBackStack(null)
-                        .commit();
-                break;
-            case R.id.menu_member:
-                setTitle("สมาชิก");
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new MemberFragment())
-                        .addToBackStack(null)
-                        .commit();
-                break;
+//            case R.id.menu_admin:
+//                setTitle("ผู้ดูแลระบบ");
+//                getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .replace(R.id.contentHomeFragment, new AdminFrament())
+//                        .addToBackStack(null)
+//                        .commit();
+//                break;
+//            case R.id.menu_member:
+//                setTitle("สมาชิก");
+//                getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .replace(R.id.contentHomeFragment, new MemberFragment())
+//                        .addToBackStack(null)
+//                        .commit();
+//                break;
             case R.id.menu_about:
                 setTitle("เกี่ยวกับเรา");
                 getSupportFragmentManager()
@@ -261,7 +276,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == R.id.itemSingOut){
-            finish();
+//            finish();
+//            SaveSharedPreference.setLoggedIn(getApplicationContext(),false);
+//
+            SaveSharedPreference = new SaveSharedPreference();
+            logout();
+
+
         }
         if (item.getItemId() == R.id.option) {
             getSupportFragmentManager()
@@ -273,6 +294,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void logout() {
+        SaveSharedPreference.setLoggedIn(getApplicationContext(),false);
+        finish();
+        startActivity(new Intent(HomeActivity.this,MainActivity.class));
+
+    }
+
 
 
     @Override

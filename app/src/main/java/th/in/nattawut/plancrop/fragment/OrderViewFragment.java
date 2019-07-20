@@ -205,11 +205,11 @@ public class OrderViewFragment extends Fragment {
         final View view = layoutInflater.inflate(R.layout.edit_order, null);
 
 
-        TextView texPlanMid = view.findViewById(R.id.EditTextMidPlan);
+        TextView texPlanMid = view.findViewById(R.id.EditTexPlanLogin);
         String strTextShowmid = getActivity().getIntent().getExtras().getString("mid");
         texPlanMid.setText(strTextShowmid);
 
-        TextView texPlanName = view.findViewById(R.id.EditTexPlanLogin);
+        TextView texPlanName = view.findViewById(R.id.EditTextMidPlan);
         String strTextShowName = getActivity().getIntent().getExtras().getString("name");
         texPlanName.setText(strTextShowName);
 

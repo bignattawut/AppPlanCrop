@@ -20,29 +20,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="ชื่อ :"
-                android:textSize="22dp"
-                app:fontFamily="@font/fonts1" />
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="20dp"-->
+                <!--android:text="ชื่อ :"-->
+                <!--android:textSize="22dp"-->
+                <!--app:fontFamily="@font/fonts1" />-->
 
-            <TextView
-                android:id="@+id/textName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="55dp"
-                android:text="ชื่อ-นามสกุล"
-                android:textSize="22dp"
-                android:textStyle="bold"
-                app:fontFamily="@font/fonts1" />
+            <!--<TextView-->
+                <!--android:id="@+id/textName"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="55dp"-->
+                <!--android:text="ชื่อ-นามสกุล"-->
+                <!--android:textSize="22dp"-->
+                <!--android:textStyle="bold"-->
+                <!--app:fontFamily="@font/fonts1" />-->
 
             <TextView
                 android:id="@+id/textData"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
                 android:layout_marginRight="20dp"
                 android:text="วันที่บันทึกกิจกรรม"
                 android:textColor="#8BC34A"
@@ -87,9 +86,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:id="@+id/textDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="2dp"
                 android:lines="3"
                 android:text="รายละเอียดกิจกรรม"
                 android:textSize="22dp"

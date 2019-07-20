@@ -13,10 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,17 +32,25 @@ import th.in.nattawut.plancrop.MemberActivity;
 import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.APIUtils;
 import th.in.nattawut.plancrop.utility.LoginResponse;
+import th.in.nattawut.plancrop.utility.MyAlert;
 import th.in.nattawut.plancrop.utility.Myconstant;
 import th.in.nattawut.plancrop.utility.OrderService;
 import th.in.nattawut.plancrop.utility.RetrofitClient;
+import th.in.nattawut.plancrop.utility.SaveSharedPreference;
+import th.in.nattawut.plancrop.utility.Site;
+import th.in.nattawut.plancrop.utility.User;
 
 public class MainFragment1 extends Fragment {
 
-    private EditText editTextUserId;
-    private EditText editTextPassword;
+    EditText editTextUserId;
+    EditText editTextPassword;
     OrderService orderService;
     private String typeUser;
     private int typeDataInt;
+    Button button;
+    LinearLayout loginForm;
+
+    List<User> list = new ArrayList<User>();
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -46,17 +58,23 @@ public class MainFragment1 extends Fragment {
 
         editTextUserId = getView().findViewById(R.id.edtusername);
         editTextPassword = getView().findViewById(R.id.edtpassword);
+        loginForm = getView().findViewById(R.id.loginForm);
         orderService = APIUtils.getService();
+        button = getView().findViewById(R.id.btnlogin);
 
-        loginControkker();
+        if (SaveSharedPreference.getLoggedStatus(getActivity())) {
+            Intent intent = new Intent(getActivity(), HomeActivity.class);
+            startActivity(intent);
+        } else {
+            loginForm.setVisibility(View.VISIBLE);
+        }
 
-    }
-
-    private void loginControkker() {
-        Button button = getView().findViewById(R.id.btnlogin);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //loginControkker(editTextUserId.getText().toString(), editTextPassword.getText().toString());
+
+
                 String userString = editTextUserId.getText().toString().trim();
                 String passwordString = editTextPassword.getText().toString().trim();
 
@@ -75,104 +93,103 @@ public class MainFragment1 extends Fragment {
                     editTextPassword.requestFocus();
                     return;
                 }
-                Call<LoginResponse> call = orderService.getuserLogin(userString, passwordString);
-                call.enqueue(new Callback<LoginResponse>() {
-                    @Override
-                    public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                        LoginResponse loginResponse = response.body();
-                        if (!loginResponse.isError()) {
-                            Toast.makeText(getActivity(), loginResponse.getMessage(), Toast.LENGTH_LONG).show();
-                        } else {
-                            Toast.makeText(getActivity(), loginResponse.getMessage(), Toast.LENGTH_LONG).show();
+                loginControkker(userString, passwordString);
 
-                        }
-//                        if (response.isSuccessful()) {
-//                            if (response.body() != null) {
-//                                Log.i("onSucces",response.body().toString());
-//
-//                                String json = response.body().toString();
-//                                login(json);
-//                            }
-//                        }
-                    }
+            }
 
-                    @Override
-                    public void onFailure(Call<LoginResponse> call, Throwable t) {
-                        Log.i("onEmptyResponse", "Returned empty response");
-
-                    }
-                });
+        });
 
 
+    }
+
+    /**
+     * Login API call
+     * TODO: Please modify according to your need it is just an example
+     *
+     * @param username
+     * @param password
+     */
+
+    private void loginControkker(String username, String password) {
+
+        Call<List<LoginResponse>> call = orderService.getuserLogin(username, password);
+        call.enqueue(new Callback<List<LoginResponse>>() {
+            @Override
+            public void onResponse(Call<List<LoginResponse>> call, Response<List<LoginResponse>> response) {
+                if (response.isSuccessful()) {
+                    SaveSharedPreference.setLoggedIn(getActivity(), true);
+                    Intent intent = new Intent(getActivity(), HomeActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+
+                } else {
+                    Toast.makeText(getActivity(), "ยินดีต้อนรับ", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+
+            @Override
+            public void onFailure(Call<List<LoginResponse>> call, Throwable t) {
+                Log.e("TAG", "========ONfY " + t.toString());
+                t.printStackTrace();
             }
         });
     }
+    ////
 
-
-
-    public void login(String response){
-        try {
-
-            JSONArray jsonArray = new JSONArray(response);
-            JSONObject jsonObject = jsonArray.getJSONObject(0);
-
-            String nameuser = null, miduser = null, vid = null;
-            nameuser = jsonObject.getString("name");
-            miduser = jsonObject.getString("mid");
-            vid = jsonObject.getString("vid");
-            typeUser = jsonObject.getString("type");
-
-            String typeDataString = jsonObject.getString("type").trim();
-            typeDataInt = Integer.parseInt(typeDataString);
-
-            //ฝัง MID ในแอพ
-            Myconstant myconstant = new Myconstant();
-            SharedPreferences sharedPreferences = getActivity().getSharedPreferences(myconstant.getNameFileSharePreference(), Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("mid", miduser);
-            editor.putString("name", nameuser);
-            editor.putString("vid", vid);
-            editor.putString("type", typeUser);
-            editor.commit();
-
-            switch (typeDataInt) {
-                case 1:
-                    Intent admin = new Intent(getActivity(), AdminActivity.class);
-                    admin.putExtra("name", nameuser);
-                    admin.putExtra("mid", miduser);
-                    admin.putExtra("vid", vid);
-                    startActivity(admin);
-                    getActivity().finish();//คำสั่งปิดแอป
-                    break;
-                case 2:
-                    Intent home = new Intent(getActivity(), HomeActivity.class);
-                    home.putExtra("name", nameuser);
-                    home.putExtra("mid", miduser);
-                    home.putExtra("vid", vid);
-                    startActivity(home);
-                    getActivity().finish();//คำสั่งปิดแอป
-                    break;
-                case 3:
-                    Intent member = new Intent(getActivity(), MemberActivity.class);
-                    member.putExtra("name", nameuser);
-                    member.putExtra("mid", miduser);
-                    member.putExtra("vid", vid);
-                    startActivity(member);
-                    break;
-            }
-
-//            String nameuser = null, miduser = null, vid = null;
-//            Intent home = new Intent(getActivity(), HomeActivity.class);
-//            home.putExtra("name", nameuser);
-//            home.putExtra("mid", miduser);
-//            home.putExtra("vid", vid);
-//            startActivity(home);
-//            getActivity().finish();
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
+//        Button button = getView().findViewById(R.id.btnlogin);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String userString = editTextUserId.getText().toString().trim();
+//                String passwordString = editTextPassword.getText().toString().trim();
+//
+//                if (userString.isEmpty()) {
+//                    editTextUserId.setError("ชื้อผู้ใช้งานไม่ถูกต้อง");
+//                    editTextUserId.requestFocus();
+//                    return;
+//                }
+//                if (passwordString.isEmpty()) {
+//                    editTextPassword.setError("รหัสผ่านไม่ถูกต้อง");
+//                    editTextPassword.requestFocus();
+//                    return;
+//                }
+//                if (passwordString.length() < 2) {
+//                    editTextPassword.setError("รหัสผ่านควรมีความยาวอย่างน้อย 2 ตัว");
+//                    editTextPassword.requestFocus();
+//                    return;
+//                }
+//                Call<LoginResponse> call = orderService.getuserLogin(userString, passwordString);
+//                call.enqueue(new Callback<LoginResponse>() {
+//                    @Override
+//                    public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+//                        LoginResponse loginResponse = response.body();
+//                        if (!loginResponse.isError()) {
+//                            Toast.makeText(getActivity(), loginResponse.getMessage(), Toast.LENGTH_LONG).show();
+//                        } else {
+//                            Toast.makeText(getActivity(), loginResponse.getMessage(), Toast.LENGTH_LONG).show();
+//
+//                        }
+////                        if (response.isSuccessful()) {
+////                            if (response.body() != null) {
+////                                Log.i("onSucces",response.body().toString());
+////
+////                                String json = response.body().toString();
+////                                login(json);
+////                            }
+////                        }
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<LoginResponse> call, Throwable t) {
+//                        Log.i("onEmptyResponse", "Returned empty response");
+//
+//                    }
+//                });
+//
+//
+//            }
+//        });
 
 
     @Nullable

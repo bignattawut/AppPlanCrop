@@ -174,7 +174,7 @@
                          android:layout_width="match_parent"
                          android:layout_height="match_parent"
                          android:layout_margin="1dp"
-                         android:hint="0"
+                         android:text="0"
                          android:inputType="numberDecimal"
                          android:maxLength="5" />
                  </LinearLayout>
@@ -206,7 +206,7 @@
                          android:layout_width="match_parent"
                          android:layout_height="match_parent"
                          android:layout_margin="1dp"
-                         android:hint="0"
+                         android:text="0"
                          android:inputType="number"
                          android:maxLength="4" />
                  </LinearLayout>
@@ -238,7 +238,7 @@
                          android:layout_width="match_parent"
                          android:layout_height="match_parent"
                          android:layout_margin="1dp"
-                         android:hint="0"
+                         android:text="0"
                          android:inputType="number"
                          android:maxLength="4" />
                  </LinearLayout>

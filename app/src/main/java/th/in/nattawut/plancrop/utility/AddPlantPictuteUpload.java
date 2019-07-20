@@ -21,6 +21,7 @@ public class AddPlantPictuteUpload extends AsyncTask<String, Void, String> {
         try {
             OkHttpClient okHttpClient = new OkHttpClient();
             RequestBody requestBody = new FormEncodingBuilder()
+                    //.add("picno", strings[0])
                     .add("no", strings[0])
                     .add("pdate", strings[1])
                     .add("description", strings[2])

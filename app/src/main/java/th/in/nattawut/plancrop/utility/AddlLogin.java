@@ -26,7 +26,7 @@ public class AddlLogin extends AsyncTask<String, Void, String> {
             OkHttpClient okHttpClient = new OkHttpClient();
             RequestBody requestBody = new FormEncodingBuilder()
                     .add("username", strings[0])
-                    //.add(strings[0],strings[1])
+                    //.add("pwd",strings[1])
                     .build();
             Request.Builder builder = new Request.Builder();
             //Request request = builder.url(LOGIN_URL)

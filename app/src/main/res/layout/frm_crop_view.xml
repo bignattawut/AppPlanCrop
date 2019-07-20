@@ -28,7 +28,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="พืช :"
+                    android:text="พืชเพาะปลูก :"
                     android:textStyle="bold"
                     app:fontFamily="@font/fonts1" />
 
@@ -82,7 +82,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="วันเก็บเกี่ยว :"
+                    android:text="จำนวนวันที่เก็บเกี่ยวได้ (วัน) :"
                     android:textStyle="bold"
                     app:fontFamily="@font/fonts1" />
 
@@ -91,7 +91,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:text="วันเก็บเกี่ยว"
+                    android:text="จำนวนวันที่เก็บเกี่ยวได้"
                     app:fontFamily="@font/fonts1" />
             </LinearLayout>
 
@@ -103,7 +103,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ระยะเวลา :"
+                    android:text="ระยะเวลาที่เก็บเกี่ยวได้ (วัน) :"
                     android:textStyle="bold"
                     app:fontFamily="@font/fonts1" />
 
@@ -126,7 +126,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ผลผลิต :"
+                    android:text="ผลผลิตต่อไร (ก.ก) :"
                     android:textStyle="bold"
                     app:fontFamily="@font/fonts1" />
 
@@ -138,13 +138,6 @@
                     android:text="ผลผลิต"
                     app:fontFamily="@font/fonts1" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:text="ต่อ/ไร่"
-                    android:textStyle="bold"
-                    app:fontFamily="@font/fonts1" />
             </LinearLayout>
 
             <!--&lt;!&ndash;Content&ndash;&gt;-->

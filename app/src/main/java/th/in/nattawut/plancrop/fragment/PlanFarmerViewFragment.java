@@ -110,7 +110,6 @@ public class PlanFarmerViewFragment extends Fragment {
         }
     }
 
-
     private void createListView(String mid) {
         Call<List<PlanFarmer>> call = orderService.getPlanFarmer(mid);
         call.enqueue(new Callback<List<PlanFarmer>>() {

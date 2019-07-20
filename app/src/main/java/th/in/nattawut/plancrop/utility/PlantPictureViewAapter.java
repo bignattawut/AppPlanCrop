@@ -15,12 +15,14 @@ import th.in.nattawut.plancrop.R;
 public class PlantPictureViewAapter extends BaseAdapter {
 
     private Context context;
-    private String[] SCodeString, imageStrings;
+    private String[] picno,SCodeString, imageStrings;
 
     public PlantPictureViewAapter(Context context,
+                                  String[] picno,
                                   String[] imageStrings,
                                   String[] SCodeString) {
         this.context = context;
+        this.picno = picno;
         this.SCodeString = SCodeString;
         this.imageStrings = imageStrings;
     }
@@ -28,7 +30,7 @@ public class PlantPictureViewAapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return SCodeString.length;
+        return picno.length;
     }
 
     @Override
@@ -46,17 +48,25 @@ public class PlantPictureViewAapter extends BaseAdapter {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.frm_plantpicture_view, parent, false);
 
+        //TextView textPicNo = view.findViewById(R.id.textPicNo);
+        //ImageView imageView = view.findViewById(R.id.imvPlantPic);
         TextView textPicNo = view.findViewById(R.id.textPicNo);
-        ImageView imageView = view.findViewById(R.id.imvPlantPic);
+        TextView textData = view.findViewById(R.id.textData);
+        TextView textDescription = view.findViewById(R.id.textDescription);
 
 
-        textPicNo.setText(SCodeString[position]);
+        textPicNo.setText(picno[position]);
+        textData.setText(imageStrings[position]);
+        textDescription.setText(SCodeString[position]);
+
+
+        //textPicNo.setText(SCodeString[position]);
 //        Picasso.get().load(imageStrings[position]).into(imageView);
 //
-        Picasso.get()
-                .load(imageStrings[position])
-                .resize(1280,720) //ย่อขนาดรูป
-                .into(imageView);
+//        Picasso.get()
+//                .load(imageStrings[position])
+//                .resize(1280,720) //ย่อขนาดรูป
+//                .into(imageView);
 
 
 
