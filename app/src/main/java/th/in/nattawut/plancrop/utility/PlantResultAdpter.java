@@ -27,17 +27,17 @@ public class PlantResultAdpter extends ArrayAdapter<PlantResult> {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View view = inflater.inflate(R.layout.frm_planresult_view,parent,false);
+        final View view = inflater.inflate(R.layout.frm_plantresult_view,parent,false);
 
 
 
-        TextView textCrop = view.findViewById(R.id.textCrop);
-        TextView textQty = view.findViewById(R.id.textQty);
-        TextView textArea = view.findViewById(R.id.textArea);
+        TextView textCrop = view.findViewById(R.id.textPlantQty);
+        TextView textQty = view.findViewById(R.id.textPlantYield);
+        //TextView textArea = view.findViewById(R.id.textArea);
 
         textCrop.setText(plantResults.get(position).getCrop());
         textQty.setText(plantResults.get(position).getYield());
-        textArea.setText(plantResults.get(position).getArea());
+        //textArea.setText(plantResults.get(position).getArea());
 
 
 

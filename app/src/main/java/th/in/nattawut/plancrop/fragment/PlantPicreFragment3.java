@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -25,6 +26,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -42,6 +44,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 import okhttp3.MediaType;
@@ -56,9 +59,12 @@ import th.in.nattawut.plancrop.utility.APIUtils;
 import th.in.nattawut.plancrop.utility.AddPlantPictuteUpload;
 import th.in.nattawut.plancrop.utility.ApiClient;
 import th.in.nattawut.plancrop.utility.GetData;
+import th.in.nattawut.plancrop.utility.GetDataWhereOneColumn;
 import th.in.nattawut.plancrop.utility.MyAlert;
 import th.in.nattawut.plancrop.utility.Myconstant;
 import th.in.nattawut.plancrop.utility.OrderService;
+import th.in.nattawut.plancrop.utility.PlantFarmer;
+import th.in.nattawut.plancrop.utility.PlantFarmerAdapter;
 import th.in.nattawut.plancrop.utility.ServerResponse;
 
 import static android.app.Activity.RESULT_OK;
@@ -81,6 +87,10 @@ public class PlantPicreFragment3 extends Fragment {
     DatePickerDialog dataPickerDialog;
     Calendar calendar;
 
+
+
+    private String idRecord;
+
     private String NoString,DatepictureString,DescriptionString,result;
 
     private String[] galleryPermissions = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -91,6 +101,7 @@ public class PlantPicreFragment3 extends Fragment {
 
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("Uploading...");
+
 
         //เช็คPermission ถ้าสูงกว่า6
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
@@ -120,7 +131,10 @@ public class PlantPicreFragment3 extends Fragment {
             }
         });
 
+
+
     }
+
 
     private void uploadValueToServer() {
         TextView textPlantNo = getView().findViewById(R.id.textPlantNo);
@@ -164,11 +178,18 @@ public class PlantPicreFragment3 extends Fragment {
         final Spinner spin = getView().findViewById(R.id.spPlantNo);
         try {
 
-            Myconstant myconstant = new Myconstant();
-            GetData getData = new GetData(getActivity());
-            getData.execute(myconstant.getUrlPlant());
+//            Myconstant myconstant = new Myconstant();
+//            GetData getData = new GetData(getActivity());
+//            getData.execute(myconstant.getUrlPlant());
 
-            String jsonString = getData.get();
+            Myconstant myconstant = new Myconstant();
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences(myconstant.getNameFileSharePreference(), Context.MODE_PRIVATE);
+            idRecord = sharedPreferences.getString("mid", "");
+
+            GetDataWhereOneColumn getDataWhereOneColumn = new GetDataWhereOneColumn(getActivity());
+            getDataWhereOneColumn.execute("mid", idRecord, myconstant.getUrlPlant());
+
+            String jsonString = getDataWhereOneColumn.get();
             Log.d("5/Jan spPlantNo", "JSON ==>" + jsonString);
             JSONArray data = new JSONArray(jsonString);
 
@@ -181,10 +202,11 @@ public class PlantPicreFragment3 extends Fragment {
                 map = new HashMap<String, String>();
                 map.put("no", c.getString("no"));
                 map.put("crop", c.getString("crop"));
+                map.put("sno", c.getString("sno"));
                 MyArrList.add(map);
             }
             SimpleAdapter sAdap;sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_plant,
-                    new String[]{"no", "crop"}, new int[]{R.id.textPlantNo, R.id.textPlantCrop});
+                    new String[]{"no", "crop","sno"}, new int[]{R.id.textPlantNo, R.id.textPlantCrop,R.id.textPlantSno});
             spin.setAdapter(sAdap);
 
         } catch (Exception e) {
@@ -217,9 +239,16 @@ public class PlantPicreFragment3 extends Fragment {
         });
     }
 
+
+
     private void uploadFile() {
-        progressDialog.show();
+        if (mediaPath == null || mediaPath.equals("")) {
+            Toast.makeText(getActivity(),"กรุณาเลือกรูปภาพ",Toast.LENGTH_LONG).show();
+            return;
+        }
+        showDialog();
         File file = new File(mediaPath);
+
 
         RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
         MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
@@ -235,7 +264,7 @@ public class PlantPicreFragment3 extends Fragment {
                     if (serverResponse.isSuccess()) {
                         Toast.makeText(getActivity(), serverResponse.getMessage(), Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(getActivity(), serverResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "ภาพปัญหาการอัปโหลด", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     assert serverResponse != null;
@@ -249,6 +278,14 @@ public class PlantPicreFragment3 extends Fragment {
             }
         });
 
+    }
+
+    protected void showDialog() {
+        if (!progressDialog.isShowing()) progressDialog.show();
+    }
+
+    protected void hidepDialog() {
+        if (progressDialog.isShowing())progressDialog.dismiss();
     }
 
     @Override

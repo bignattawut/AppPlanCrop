@@ -146,7 +146,6 @@ public class PlantFarmerViewFragment extends Fragment {
         });
     }
 
-
     public void showMid() {
 
         TextView sdate = getView().findViewById(R.id.sdate);

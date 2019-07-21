@@ -3,12 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#304769"
-    android:id="@+id/loginForm"
-    android:gravity="center_vertical"
+
     android:orientation="vertical"
-    android:padding="50dp">
+    android:layout_height="match_parent"
+    android:id="@+id/loginForm"
+
+    >
+
     <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
     <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
     <!--xmlns:tools="http://schemas.android.com/tools"-->
@@ -21,7 +22,14 @@
     <!--android:orientation="vertical"-->
     <!--android:padding="50dp">-->
 
-
+    <LinearLayout
+        android:padding="50dp"
+        android:background="@drawable/drawer_header"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <ImageView
         android:id="@+id/imageView"
         android:padding="2dp"
@@ -29,16 +37,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:src="@drawable/plancrop" />
-
-    <!--<EditText-->
-    <!--android:id="@+id/etLoginUsername"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_margin="5dp"-->
-    <!--android:background="@android:color/white"-->
-    <!--android:hint="username"-->
-    <!--android:inputType="textPersonName"-->
-    <!--android:padding="10dp" />-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -146,5 +144,19 @@
         android:textColor="@android:color/white"
         android:textSize="22dp"
         android:textStyle="bold" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnBlack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/buttonblack"
+        android:fontFamily="@font/fonts1"
+        android:text="ย้อนกลับ"
+        android:textColor="@color/colorWhite"
+        android:textSize="24dp" />
+
 
 </LinearLayout>
+

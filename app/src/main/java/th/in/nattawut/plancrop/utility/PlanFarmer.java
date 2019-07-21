@@ -15,6 +15,8 @@ public class PlanFarmer {
     private String crop;
     @SerializedName("area")
     private String area;
+    @SerializedName("yield")
+    private String yield;
 
 
     public String getNo() {
@@ -35,5 +37,9 @@ public class PlanFarmer {
 
     public String getArea() {
         return area;
+    }
+
+    public String getYield() {
+        return yield;
     }
 }

@@ -55,8 +55,9 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="imageAsset" value="C:\Users\BN'B13\Desktop\ic_action_phon.png" />
-                                      <entry key="outputName" value="ic_action_phon" />
+                                      <entry key="assetType" value="IMAGE" />
+                                      <entry key="imageAsset" value="C:\Users\BN'B13\Desktop\ic_action_password.png" />
+                                      <entry key="outputName" value="ic_action_password" />
                                       <entry key="themeColor" value="ffffff" />
                                     </map>
                                   </option>

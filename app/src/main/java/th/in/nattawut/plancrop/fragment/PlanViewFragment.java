@@ -36,7 +36,6 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 import th.in.nattawut.plancrop.AdminActivity;
-import th.in.nattawut.plancrop.HomeActivity;
 import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.DeletePlan;
 import th.in.nattawut.plancrop.utility.EditPlan;
@@ -129,7 +128,7 @@ public class PlanViewFragment extends Fragment {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    deleteorEditCropPlan(planStrings[position],midString[position]);
+                    deleteorEditCropPlan(planStrings[position],midString[position],typeStrings[position]);
                     //mSwipeRefreshLayout.setRefreshing(false);
                 }
             });
@@ -141,7 +140,7 @@ public class PlanViewFragment extends Fragment {
     }
 
     //alertให้เลือกลบหรือแก้ไข
-    private void deleteorEditCropPlan(final String planStrings, final String midString) {
+    private void deleteorEditCropPlan(final String planStrings, final String midString,final String typeStrings) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
@@ -164,7 +163,7 @@ public class PlanViewFragment extends Fragment {
         builder.setPositiveButton("แก้ไข", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                editPlan(planStrings,midString);
+                editPlan(planStrings,midString,typeStrings);
                 dialog.dismiss();
             }
         });
@@ -193,7 +192,7 @@ public class PlanViewFragment extends Fragment {
 
     }
 
-    private void editPlan(final String planStrings,final String midString){
+    private void editPlan(final String planStrings,final String midString,final String typeStrings){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
@@ -204,13 +203,13 @@ public class PlanViewFragment extends Fragment {
         //builder = new AlertDialog.Builder(getActivity(),android.R.style.Theme_DeviceDefault_Dialog_Alert);//theme
 
 
-        TextView texPlanMid = view.findViewById(R.id.EditTextMidPlan);
-        String strTextShowmid = getActivity().getIntent().getExtras().getString("mid",planStrings);
+        TextView texPlanMid = view.findViewById(R.id.EditTextPlanMid);
+        String strTextShowmid = getActivity().getIntent().getExtras().getString("Mid",midString);
         texPlanMid.setText(strTextShowmid);
 
-        TextView texPlanName = view.findViewById(R.id.EditTexPlanLogin);
-        String strTextShowName = getActivity().getIntent().getExtras().getString("name",midString);
-        texPlanName.setText(strTextShowName);
+        TextView EditTexPlanName = view.findViewById(R.id.EditTexPlanName);
+        String strTextShowName = getActivity().getIntent().getExtras().getString("Name",typeStrings);
+        EditTexPlanName.setText(strTextShowName);
 
 
 
@@ -294,7 +293,7 @@ public class PlanViewFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                TextView EditTextMidPlan = view.findViewById(R.id.EditTextMidPlan);
+                TextView EditTextMidPlan = view.findViewById(R.id.EditTextPlanMid);
                 TextView EditPlanCropSpinner = view.findViewById(R.id.textPlanCidSpinner);
                 TextView EditMyDate = view.findViewById(R.id.EditMyDate);
                 EditText EditAddPlan1 = view.findViewById(R.id.EditAddPlan1);

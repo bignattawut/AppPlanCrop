@@ -41,6 +41,7 @@ public class CropTypeViewFragment extends Fragment {
     ListView listView;
     RecyclerView recyclerView;
 
+    private int[] imv;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {

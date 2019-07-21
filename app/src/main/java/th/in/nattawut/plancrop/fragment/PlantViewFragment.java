@@ -150,7 +150,7 @@ public class PlantViewFragment extends Fragment {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    deleteorEditPlant(noStrings[position],snoStrings[position],pdataString[position]);
+                    deleteorEditPlant(noStrings[position],snoStrings[position],pdataString[position],midStrings[position],nameStrings[position]);
                     //mSwipeRefreshLayout.setRefreshing(false);
                 }
             });
@@ -163,7 +163,7 @@ public class PlantViewFragment extends Fragment {
     }
 
     //alertให้เลือกลบหรือแก้ไข
-    private void deleteorEditPlant(final String noStrings,final String sno,final String pdataString) {
+    private void deleteorEditPlant(final String noStrings,final String sno,final String pdataString,final String midStrings,final String nameStrings) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
@@ -186,7 +186,7 @@ public class PlantViewFragment extends Fragment {
         builder.setPositiveButton("แก้ไข", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                editPlant(noStrings,sno,pdataString);
+                editPlant(noStrings,sno,pdataString,midStrings,nameStrings);
                 dialog.dismiss();
             }
         });
@@ -235,20 +235,20 @@ public class PlantViewFragment extends Fragment {
         }
     }
 
-    private void editPlant(final String no,final String sno,final String pdataString) {
+    private void editPlant(final String no,final String sno,final String pdataString,final String midStrings,final String nameStrings) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_LIGHT);
         builder.setCancelable(false);
         //กำหนดหัวเเรื้อง
-        builder.setTitle("วางแผนการเพาะปลูกใหม่");
+        builder.setTitle("วางการเพาะปลูกใหม่");
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
         final View view = layoutInflater.inflate(R.layout.edit_plant, null);
 
         TextView texPlantMid = view.findViewById(R.id.EditTexPlantMid);
-        String strTextShowmid = getActivity().getIntent().getExtras().getString("mid");
+        String strTextShowmid = getActivity().getIntent().getExtras().getString("Mid",midStrings);
         texPlantMid.setText(strTextShowmid);
 
         TextView texPlantName = view.findViewById(R.id.EditTexPlantName);
-        String strTextShowName = getActivity().getIntent().getExtras().getString("name");
+        String strTextShowName = getActivity().getIntent().getExtras().getString("Name",nameStrings);
         texPlantName.setText(strTextShowName);
 
 

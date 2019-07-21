@@ -52,6 +52,9 @@ public class MainFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+
+        //btnBlack
+        btnBlack();
         // Register Controller
         registerController();
 
@@ -176,6 +179,25 @@ public class MainFragment extends Fragment {
             }
         });
     }
+
+    private void btnBlack(){
+        Button button = getView().findViewById(R.id.btnBlack);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //Replace Fragment
+                getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentMainFragment, new HomeFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+    }
+
+
 
     @Nullable
     @Override

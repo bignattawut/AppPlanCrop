@@ -36,7 +36,9 @@ import th.in.nattawut.plancrop.fragment.PlanResultViewFragment;
 import th.in.nattawut.plancrop.fragment.PlantFarmerViewFragment;
 //import th.in.nattawut.plancrop.fragment.PlantPicture;
 import th.in.nattawut.plancrop.fragment.AdminFrament;
+import th.in.nattawut.plancrop.fragment.PlantPicreFragment3;
 import th.in.nattawut.plancrop.fragment.PlantPictureFragment;
+import th.in.nattawut.plancrop.fragment.PlantPictureFragment1;
 import th.in.nattawut.plancrop.fragment.PlantPictureViewFragment;
 import th.in.nattawut.plancrop.fragment.PlantPictureViewFragment1;
 import th.in.nattawut.plancrop.fragment.PlantReportViewFragment;
@@ -156,7 +158,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 setTitle("แปลงเพาะปลูก");
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new PlantPictureViewFragment1())
+                        .replace(R.id.contentHomeFragment, new PlantPictureFragment1())
                         .addToBackStack(null)
                         .commit();
                 break;
@@ -189,6 +191,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.contentHomeFragment, new OrderViewRePortFragment())
+                        .addToBackStack(null)
+                        .commit();
+                break;
+
+            case R.id.menu_chart:
+                setTitle("แจ้งความต้องการ");
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentHomeFragment, new PlantResultViewFragment())
                         .addToBackStack(null)
                         .commit();
                 break;

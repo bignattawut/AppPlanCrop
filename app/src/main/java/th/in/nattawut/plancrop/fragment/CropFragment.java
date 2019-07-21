@@ -40,6 +40,8 @@ public class CropFragment extends Fragment {
 
     private String cropString,tidString, BeginHarvestString, HarvestPeriodString, YieldString,cropTypeString;
     TextView textCropType;
+
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -57,7 +59,7 @@ public class CropFragment extends Fragment {
     }
 
     private void cropTypeSpinner(){
-        if (android.os.Build.VERSION.SDK_INT > 9) {
+        if (android.os.Build.VERSION.SDK_INT > 9) { //SDK มาก9 จะไม่สามารถconnextได้
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }

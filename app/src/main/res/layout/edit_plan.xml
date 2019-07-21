@@ -28,14 +28,15 @@
                  android:text="เกษตรกร :" />
 
              <TextView
-                 android:id="@+id/EditTextMidPlan"
+                 android:id="@+id/EditTextPlanMid"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
                  android:inputType="text"
                  android:textSize="0dp" />
 
              <TextView
-                 android:id="@+id/EditTexPlanLogin"
+                 android:textSize="26dp"
+                 android:id="@+id/EditTexPlanName"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
                  android:inputType="text"

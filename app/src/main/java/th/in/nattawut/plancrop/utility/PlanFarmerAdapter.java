@@ -36,14 +36,14 @@ public class PlanFarmerAdapter extends ArrayAdapter<PlanFarmer> {
 
         //TextView textPlanFarmerNo = view.findViewById(R.id.textPlanFarmerNo);
         TextView textPlanFarmer = view.findViewById(R.id.textPlanFarmer);
-        //TextView textPlanFarmerCid = view.findViewById(R.id.textPlanFarmerCid);
+        TextView textPlanFarmerCid = view.findViewById(R.id.textPlanFarmerCid);
         TextView textPlanFarmerCrop = view.findViewById(R.id.textPlanFarmerCrop);
         TextView textPlanArea = view.findViewById(R.id.textPlanArea);
 
 
         //textPlanFarmerNo.setText(planFarmers.get(position).getNo());
         textPlanFarmer.setText(planFarmers.get(position).getPdate());
-        //textPlanFarmerCid.setText(planFarmers.get(position).getCid());
+        textPlanFarmerCid.setText(planFarmers.get(position).getYield());
         textPlanFarmerCrop.setText(planFarmers.get(position).getCrop());
         textPlanArea.setText(planFarmers.get(position).getArea());
 

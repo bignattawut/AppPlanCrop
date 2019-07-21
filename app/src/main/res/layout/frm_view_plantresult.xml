@@ -12,89 +12,73 @@
         android:orientation="vertical"
         android:padding="1dp">
 
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginBottom="1dp"-->
-            <!--android:orientation="horizontal"-->
-            <!--android:padding="12dp">-->
-
-            <!--<ImageView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="center_vertical"-->
-                <!--android:src="@drawable/ic_action_home" />-->
-
-            <!--<TextView-->
-                <!--style="@style/fonts"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginLeft="5dp"-->
-                <!--android:text="จังหวัด :" />-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            android:orientation="horizontal"
+            android:padding="1dp">
 
 
-            <!--<Spinner-->
-                <!--android:id="@+id/spProvince"-->
-                <!--style="@style/fonts"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_marginLeft="1dp"></Spinner>-->
-        <!--</LinearLayout>-->
+            <TextView
+                style="@style/fonts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="จังหวัด :" />
 
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginBottom="1dp"-->
-            <!--android:orientation="horizontal"-->
-            <!--android:padding="12dp">-->
 
-            <!--<ImageView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="center_vertical"-->
-                <!--android:src="@drawable/ic_action_home" />-->
+            <Spinner
+                android:id="@+id/spProvince"
+                style="@style/fonts"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1dp"></Spinner>
+        </LinearLayout>
 
-            <!--<TextView-->
-                <!--style="@style/fonts"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginLeft="5dp"-->
-                <!--android:text="อำเภอ :" />-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            android:orientation="horizontal"
+            android:padding="1dp">
 
-            <!--<Spinner-->
-                <!--android:id="@+id/spAmphur"-->
-                <!--style="@style/fonts"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_marginLeft="1dp"></Spinner>-->
-        <!--</LinearLayout>-->
 
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginBottom="1dp"-->
-            <!--android:orientation="horizontal"-->
-            <!--android:padding="12dp">-->
+            <TextView
+                style="@style/fonts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="อำเภอ :" />
 
-            <!--<ImageView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="center_vertical"-->
-                <!--android:src="@drawable/ic_action_home" />-->
+            <Spinner
+                android:id="@+id/spAmphur"
+                style="@style/fonts"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1dp"></Spinner>
+        </LinearLayout>
 
-            <!--<TextView-->
-                <!--style="@style/fonts"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginLeft="5dp"-->
-                <!--android:text="ตำบล/แขวง :" />-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            android:orientation="horizontal"
+            android:padding="1dp">
 
-            <!--<Spinner-->
-                <!--android:id="@+id/spSubDistrice"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_marginLeft="1dp"></Spinner>-->
-        <!--</LinearLayout>-->
+            <TextView
+                style="@style/fonts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="ตำบล/แขวง :" />
+
+            <Spinner
+                android:id="@+id/spSubDistrice"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1dp"></Spinner>
+        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -163,66 +147,67 @@
 
         </RelativeLayout>
 
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginBottom="1dp"-->
-            <!--android:orientation="horizontal"-->
-            <!--android:padding="10dp">-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            android:orientation="horizontal"
+            android:padding="1dp">
 
-            <!--<TextView-->
-                <!--android:id="@+id/textMidPlan"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:inputType="text"-->
-                <!--android:text="เกษตรกร :" />-->
+            <TextView
+                android:id="@+id/textMidPlan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:text="เกษตรกร :" />
 
-            <!--<Spinner-->
-                <!--android:id="@+id/midSpinner"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_marginLeft="1dp"></Spinner>-->
-        <!--</LinearLayout>-->
+            <Spinner
+                android:id="@+id/midSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1dp"></Spinner>
 
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginBottom="1dp"-->
-            <!--android:orientation="horizontal"-->
-            <!--android:padding="10dp">-->
+        </LinearLayout>
 
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:inputType="text"-->
-                <!--android:text="ประเภทพืช :" />-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            android:orientation="horizontal"
+            android:padding="1dp">
 
-            <!--<Spinner-->
-                <!--android:id="@+id/croptypespinner"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_marginLeft="1dp"></Spinner>-->
-        <!--</LinearLayout>-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:text="ประเภทพืช :" />
 
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginBottom="1dp"-->
-            <!--android:orientation="horizontal"-->
-            <!--android:padding="10dp">-->
+            <Spinner
+                android:id="@+id/croptypespinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1dp"></Spinner>
+        </LinearLayout>
 
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:inputType="text"-->
-                <!--android:text="ชื่อพืช :" />-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            android:orientation="horizontal"
+            android:padding="1dp">
 
-            <!--<Spinner-->
-                <!--android:id="@+id/cropspinner"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_marginLeft="1dp"></Spinner>-->
-        <!--</LinearLayout>-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:text="ชื่อพืช :" />
+
+            <Spinner
+                android:id="@+id/crop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1dp"></Spinner>
+        </LinearLayout>
 
         <Button
             android:id="@+id/selete1"
@@ -248,6 +233,5 @@
         </android.support.v4.widget.SwipeRefreshLayout>
 
     </LinearLayout>
-
 
 </LinearLayout>

@@ -49,14 +49,14 @@ public interface OrderService {
     Call<List<PlantReport>> getPlantReport(@Query("mid") String mid);
 
     @GET("plantresult.php")
-    Call<List<PlantResult>> getPlantResult(@Query("sdate") String sdate,
-                                           @Query("edate") String edate/*,
-                                           @Query("sid") String sid,
+    Call<List<PlantResult>> getPlantResult(//@Query("sdate") String sdate,
+                                           //@Query("edate") String edate/,
+                                           /*@Query("sid") String sid,
                                            @Query("did") String did,
                                            @Query("pid") String pid,
                                            @Query("mid") String mid,
-                                           @Query("tid") String tid,
-                                           @Query("cid") String cid*/);
+                                           @Query("tid") String tid,*/
+                                           @Query("cid") String cid);
 
     @POST("memberlogin.php")
     @FormUrlEncoded
@@ -89,5 +89,7 @@ public interface OrderService {
     @POST("upload3.php")
     Call<ServerResponse> uploadFile(@Part MultipartBody.Part file,
                                     @Part("file")ResponseBody name);
+
+
 
 }

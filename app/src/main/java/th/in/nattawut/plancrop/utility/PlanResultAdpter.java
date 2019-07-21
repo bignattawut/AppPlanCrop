@@ -31,10 +31,10 @@ public class PlanResultAdpter extends ArrayAdapter<PlanResult> {
 
 
 
-        TextView textCrop = view.findViewById(R.id.textCrop);
-        TextView textQty = view.findViewById(R.id.textQty);
-        TextView textArea = view.findViewById(R.id.textArea);
-        TextView textyield = view.findViewById(R.id.textyield);
+        TextView textCrop = view.findViewById(R.id.textPlanCrop);
+        TextView textQty = view.findViewById(R.id.textPlanPdate);
+        TextView textArea = view.findViewById(R.id.textPlantEdate);
+        TextView textyield = view.findViewById(R.id.textPlanYield);
 
 
         textCrop.setText(planResults.get(position).getCrop());

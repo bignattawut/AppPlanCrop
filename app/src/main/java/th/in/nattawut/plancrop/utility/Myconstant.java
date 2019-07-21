@@ -119,7 +119,10 @@ public class Myconstant {
     private String[] columnPlantPicString = new String[]{"picno","pdate","description"};
     private String urlselectPlantPic = "http://192.168.1.107/android/php/plantactivity.php?no=44";
     private String urlselectImagesPlantPic = "http://192.168.1.107/android/php/selectimages.php";
+
     private String urlPlant = "http://192.168.1.107/android/php/plant.php";
+    //private String urlPlant = "http://192.168.1.107/android/php/selectplantfarmer.php";
+
 
 
     //แจ้งความต้องการ

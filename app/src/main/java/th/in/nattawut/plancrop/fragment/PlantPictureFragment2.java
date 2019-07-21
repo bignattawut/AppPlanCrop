@@ -90,7 +90,7 @@ public class PlantPictureFragment2 extends Fragment {
         galleryController();
 
         //Camera Controller
-        cameraController();
+        //cameraController();
 
         //DataPickerDialog
         DataPickerDialog();
@@ -258,30 +258,30 @@ public class PlantPictureFragment2 extends Fragment {
         });
     }
 
-    private void cameraController() {
-        ImageView imageView = getView().findViewById(R.id.imvCamera);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String pathFlieString = Environment.getExternalStorageDirectory() + "/" + "Camera";
-                Log.d("13Feb62","pathFlieString ==> " + pathFlieString);
-
-                File file = new File(pathFlieString);
-                if (!file.exists()) {
-                    file.mkdirs();
-                }
-                Random random = new Random();
-                int i = random.nextInt(1000);
-                File cameraFlie1 = new File(file, "master" +Integer.toString(i) + ".jpg");
-
-                uri = Uri.fromFile(cameraFlie1);
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-                startActivityForResult(intent,2);
-
-            }
-        });
-    }
+//    private void cameraController() {
+//        ImageView imageView = getView().findViewById(R.id.imvCamera);
+//        imageView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String pathFlieString = Environment.getExternalStorageDirectory() + "/" + "Camera";
+//                Log.d("13Feb62","pathFlieString ==> " + pathFlieString);
+//
+//                File file = new File(pathFlieString);
+//                if (!file.exists()) {
+//                    file.mkdirs();
+//                }
+//                Random random = new Random();
+//                int i = random.nextInt(1000);
+//                File cameraFlie1 = new File(file, "master" +Integer.toString(i) + ".jpg");
+//
+//                uri = Uri.fromFile(cameraFlie1);
+//                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//                intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+//                startActivityForResult(intent,2);
+//
+//            }
+//        });
+//    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

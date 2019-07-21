@@ -9,11 +9,12 @@ import th.in.nattawut.plancrop.R;
 public class MyAlert {
     private Context context;
 
-    public MyAlert(Context context){
+    public MyAlert(Context context) {
         this.context = context;
     }
-    public void onrmaIDialog(String titilString, String messageString){
-        AlertDialog.Builder builder = new AlertDialog.Builder(context,R.style.AlertDialogTheme);
+
+    public void onrmaIDialog(String titilString, String messageString) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.AlertDialogTheme);
         builder.setCancelable(false);
         builder.setIcon(R.drawable.ic_action_userregister);
         builder.setTitle(titilString);

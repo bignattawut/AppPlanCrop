@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -18,7 +17,6 @@ import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.GetData;
 import th.in.nattawut.plancrop.utility.Myconstant;
 import th.in.nattawut.plancrop.utility.OrderReportAdpter;
-import th.in.nattawut.plancrop.utility.PlanAdapter;
 
 public class OrderViewRePortFragment extends Fragment {
 
