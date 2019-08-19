@@ -29,10 +29,13 @@ public class SiteAdapter extends ArrayAdapter<Site> {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View view = inflater.inflate(R.layout.frm_site_view, parent, false);
 
+
+        TextView textUsername = view.findViewById(R.id.textUsername);
         TextView txtlang = view.findViewById(R.id.txtlang);
         TextView txtVid = view.findViewById(R.id.txtVid);
         TextView txtlat = view.findViewById(R.id.txtlat);
 
+        textUsername.setText(sites.get(position).getMid());
         txtlang.setText(sites.get(position).getLon());
         txtVid.setText(sites.get(position).getThai());
         txtlat.setText(sites.get(position).getLat());

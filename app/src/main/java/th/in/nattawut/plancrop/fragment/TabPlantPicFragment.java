@@ -20,24 +20,24 @@ public class TabPlantPicFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
 
-        //Add Plan
-        addPlantPic();
+//        //Add Plan
+//        addPlantPic();
     }
 
-    private void addPlantPic() {
-        FloatingActionButtonExpandable floatingActionButtonPlantPic = getView().findViewById(R.id.floatingActionButtonPlantPic);
-        floatingActionButtonPlantPic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity()
-                        .getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new PlantPictureFragment())
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });
-    }
+//    private void addPlantPic() {
+//        FloatingActionButtonExpandable floatingActionButtonPlantPic = getView().findViewById(R.id.floatingActionButtonPlantPic);
+//        floatingActionButtonPlantPic.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                getActivity()
+//                        .getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .replace(R.id.contentHomeFragment, new PlantPictureFragment())
+//                        .addToBackStack(null)
+//                        .commit();
+//            }
+//        });
+//    }
 
 //    private void addPlantPic() {
 //        FloatingActionButton floatingActionButton = getView().findViewById(R.id.floatingActionButton3);

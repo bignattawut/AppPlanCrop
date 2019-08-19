@@ -71,16 +71,16 @@ public class FarmerViewAdminAdpter extends BaseAdapter {
 
 
 
-//        TextView textpid = view.findViewById(R.id.textpid);
-//        TextView textdid = view.findViewById(R.id.textdid);
-//        TextView textsid = view.findViewById(R.id.textsid);
+        //TextView textpid = view.findViewById(R.id.textPid);
+//        TextView textdid = view.findViewById(R.id.textDid);
+//        TextView textsid = view.findViewById(R.id.textSid);
 //        TextView textvid = view.findViewById(R.id.textvid);
 
         name.setText(nameString[position]);
         phon.setText(telString[position]);
         Username.setText(useridString[position]);
 
-//        textpid.setText(pidString[position]);
+        //textpid.setText(pidString[position]);
 //        textdid.setText(didString[position]);
 //        textsid.setText(sidString[position]);
 //        textvid.setText(vidString[position]);

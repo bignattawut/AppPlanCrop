@@ -38,16 +38,16 @@
                 app:fontFamily="@font/fonts1"/>
 
             <!--<TextView-->
-                <!--android:id="@+id/textpid"-->
+                <!--android:id="@+id/textPid"-->
                 <!--android:textColor="#009688"-->
                 <!--android:textStyle="bold"-->
                 <!--android:textSize="25dp"-->
-                <!--android:text="Name"-->
+                <!--android:text="Name :"-->
                 <!--android:layout_width="wrap_content"-->
                 <!--android:layout_height="wrap_content"-->
                 <!--app:fontFamily="@font/fonts1"/>-->
             <!--<TextView-->
-                <!--android:id="@+id/textdid"-->
+                <!--android:id="@+id/textDid"-->
                 <!--android:textColor="#009688"-->
                 <!--android:textStyle="bold"-->
                 <!--android:textSize="25dp"-->
@@ -57,7 +57,8 @@
                 <!--app:fontFamily="@font/fonts1"/>-->
 
             <!--<TextView-->
-                <!--android:id="@+id/textsid"-->
+                <!--android:layout_margin="5dp"-->
+                <!--android:id="@+id/textSid"-->
                 <!--android:textColor="#009688"-->
                 <!--android:textStyle="bold"-->
                 <!--android:textSize="25dp"-->

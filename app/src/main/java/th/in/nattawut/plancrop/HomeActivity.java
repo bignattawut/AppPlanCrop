@@ -3,7 +3,6 @@ package th.in.nattawut.plancrop;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -22,35 +21,20 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
 import th.in.nattawut.plancrop.fragment.About;
 import th.in.nattawut.plancrop.fragment.FarmerViewFragment;
-import th.in.nattawut.plancrop.fragment.MainFragment1;
 import th.in.nattawut.plancrop.fragment.MainPlanFragment;
 import th.in.nattawut.plancrop.fragment.OrderViewRePortFragment;
 import th.in.nattawut.plancrop.fragment.PlanFarmerViewFragment;
 import th.in.nattawut.plancrop.fragment.PlanResultViewFragment;
 import th.in.nattawut.plancrop.fragment.PlantFarmerViewFragment;
 //import th.in.nattawut.plancrop.fragment.PlantPicture;
-import th.in.nattawut.plancrop.fragment.AdminFrament;
-import th.in.nattawut.plancrop.fragment.PlantPicreFragment3;
-import th.in.nattawut.plancrop.fragment.PlantPictureFragment;
-import th.in.nattawut.plancrop.fragment.PlantPictureFragment1;
-import th.in.nattawut.plancrop.fragment.PlantPictureViewFragment;
-import th.in.nattawut.plancrop.fragment.PlantPictureViewFragment1;
+import th.in.nattawut.plancrop.fragment.PlantPicViewFragment1;
 import th.in.nattawut.plancrop.fragment.PlantReportViewFragment;
 import th.in.nattawut.plancrop.fragment.PlantReportallViewFragment;
 import th.in.nattawut.plancrop.fragment.PlantResultViewFragment;
-import th.in.nattawut.plancrop.fragment.SiteFragment;
-import th.in.nattawut.plancrop.fragment.SiteViewFrament;
 import th.in.nattawut.plancrop.fragment.TabPlanFragment;
-import th.in.nattawut.plancrop.fragment.MemberFragment;
-import th.in.nattawut.plancrop.utility.APIUtils;
 import th.in.nattawut.plancrop.utility.OrderService;
-import th.in.nattawut.plancrop.utility.RetrofitClient;
 import th.in.nattawut.plancrop.utility.SaveSharedPreference;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -155,10 +139,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         .commit();
                 break;
             case R.id.munu_PlantPicture:
-                setTitle("แปลงเพาะปลูก");
+                setTitle("บันทึกกิจกรรมเพาะปลูก");
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new PlantPictureFragment1())
+                        .replace(R.id.contentHomeFragment, new PlantPicViewFragment1())
                         .addToBackStack(null)
                         .commit();
                 break;

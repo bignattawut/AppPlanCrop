@@ -134,8 +134,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void registerController() {
-        ImageButton imageView = getView().findViewById(R.id.ImageView);
-        imageView.setOnClickListener(new View.OnClickListener() {
+        CardView imageViewLogin = getView().findViewById(R.id.imageViewLogin);
+        imageViewLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                checkStatus();

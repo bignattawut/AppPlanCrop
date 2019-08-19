@@ -1,17 +1,23 @@
 package th.in.nattawut.plancrop.utility;
 
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
+import retrofit2.http.PartMap;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 
 public interface OrderService {
 
@@ -81,14 +87,23 @@ public interface OrderService {
 //                                @Field("URL") String url);
 
 
-    @GET("plantactivity.php?no=44")
-    Call<List<PlantActivity>> plantActivity();
+    @GET("plantactivity.php")
+    Call<List<PlantActivity>> getPlantActivity(@Query("no") String no);
 
     //อับโหลดรูป
     @Multipart
     @POST("upload3.php")
-    Call<ServerResponse> uploadFile(@Part MultipartBody.Part file,
-                                    @Part("file")ResponseBody name);
+    Call<ServerResponse> uploadFile22(@Part MultipartBody.Part file,
+                                     @Part("picno") RequestBody picno);
+
+
+
+    @Multipart
+    @POST("upload3.php")
+    Call<ServerResponse> uploadFile1(@Part MultipartBody.Part file,
+                                     @Part MultipartBody.Part picno);
+
+
 
 
 

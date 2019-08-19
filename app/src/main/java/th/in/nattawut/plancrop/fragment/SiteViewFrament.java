@@ -174,75 +174,87 @@ public class SiteViewFrament extends Fragment implements LocationListener {
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
         final View view = layoutInflater.inflate(R.layout.edit_site, null);
 
-        if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }
-        final Spinner spin = view.findViewById(R.id.spName);
-        try {
-            Myconstant myconstant = new Myconstant();
-            GetData getData = new GetData(getActivity());
-            getData.execute(myconstant.getUrlSiteFarmer());
+//        if (android.os.Build.VERSION.SDK_INT > 9) {
+//            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+//            StrictMode.setThreadPolicy(policy);
+//        }
+//        final Spinner spin = view.findViewById(R.id.spName);
+//        try {
+//            Myconstant myconstant = new Myconstant();
+//            GetData getData = new GetData(getActivity());
+//            getData.execute(myconstant.getUrlSiteFarmer());
+//
+//            String jsonString = getData.get();
+//            Log.d("5/Jan CropType", "JSON ==>" + jsonString);
+//            JSONArray data = new JSONArray(jsonString);
+//
+//            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
+//            HashMap<String, String> map;
+//
+//            for(int i = 0; i < data.length(); i++){
+//                JSONObject c = data.getJSONObject(i);
+//
+//                map = new HashMap<String, String>();
+//                map.put("mid", c.getString("mid"));
+//                map.put("name", c.getString("name"));
+//                MyArrList.add(map);
+//            }
+//            SimpleAdapter sAdap;
+//            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_sitename,
+//                    new String[]{"mid", "name"}, new int[]{R.id.textMId, R.id.textName});
+//            spin.setAdapter(sAdap);
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
-            String jsonString = getData.get();
-            Log.d("5/Jan CropType", "JSON ==>" + jsonString);
-            JSONArray data = new JSONArray(jsonString);
 
-            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
-            HashMap<String, String> map;
+//        if (android.os.Build.VERSION.SDK_INT > 9) {
+//            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+//            StrictMode.setThreadPolicy(policy);
+//        }
+//        final Spinner editvidSiteSpinner = view.findViewById(R.id.editvidSiteSpinner);
+//        try {
+//            Myconstant myconstant = new Myconstant();
+//            GetData getData = new GetData(getActivity());
+//            getData.execute(myconstant.getUrlSelectSiteVillageFarmer());
+//
+//            String jsonString = getData.get();
+//            Log.d("5/Jan CropType", "JSON ==>" + jsonString);
+//            JSONArray data = new JSONArray(jsonString);
+//
+//            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
+//            HashMap<String, String> map;
+//
+//            for(int i = 0; i < data.length(); i++){
+//                JSONObject c = data.getJSONObject(i);
+//
+//                map = new HashMap<String, String>();
+//                map.put("name", c.getString("name"));
+//                map.put("vid", c.getString("vid"));
+//                map.put("thai", c.getString("thai"));
+//                MyArrList.add(map);
+//            }
+//            SimpleAdapter sAdap;
+//            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_sitetextvillage,
+//                    new String[] {"name","vid","thai"}, new int[] {R.id.textname, R.id.textvid, R.id.textVillageName});
+//            editvidSiteSpinner.setAdapter(sAdap);
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
-            for(int i = 0; i < data.length(); i++){
-                JSONObject c = data.getJSONObject(i);
+        TextView texSiteMid = view.findViewById(R.id.editsiteMid);
+        String strTextShowmid = getActivity().getIntent().getExtras().getString("mid",mid);
+        texSiteMid.setText(strTextShowmid);
 
-                map = new HashMap<String, String>();
-                map.put("mid", c.getString("mid"));
-                map.put("name", c.getString("name"));
-                MyArrList.add(map);
-            }
-            SimpleAdapter sAdap;
-            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_sitename,
-                    new String[]{"mid", "name"}, new int[]{R.id.textMId, R.id.textName});
-            spin.setAdapter(sAdap);
+        TextView Name = view.findViewById(R.id.editsiteMidName);
+        String strTextShowName = getActivity().getIntent().getExtras().getString("Name");
+        Name.setText(strTextShowName);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-        if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }
-        final Spinner editvidSiteSpinner = view.findViewById(R.id.editvidSiteSpinner);
-        try {
-            Myconstant myconstant = new Myconstant();
-            GetData getData = new GetData(getActivity());
-            getData.execute(myconstant.getUrlSelectSiteVillageFarmer());
-
-            String jsonString = getData.get();
-            Log.d("5/Jan CropType", "JSON ==>" + jsonString);
-            JSONArray data = new JSONArray(jsonString);
-
-            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
-            HashMap<String, String> map;
-
-            for(int i = 0; i < data.length(); i++){
-                JSONObject c = data.getJSONObject(i);
-
-                map = new HashMap<String, String>();
-                map.put("name", c.getString("name"));
-                map.put("vid", c.getString("vid"));
-                map.put("thai", c.getString("thai"));
-                MyArrList.add(map);
-            }
-            SimpleAdapter sAdap;
-            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_sitetextvillage,
-                    new String[] {"name","vid","thai"}, new int[] {R.id.textname, R.id.textvid, R.id.textVillageName});
-            editvidSiteSpinner.setAdapter(sAdap);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        TextView editvidSiteSpinner = view.findViewById(R.id.editvidSiteSpinner);
+        String strTextvidSite = getActivity().getIntent().getExtras().getString("vid");
+        editvidSiteSpinner.setText(strTextvidSite);
 
 
         EditText edittxtLat = view.findViewById(R.id.edittxtLat);
@@ -267,8 +279,8 @@ public class SiteViewFrament extends Fragment implements LocationListener {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                TextView editsiteMid = view.findViewById(R.id.textMId);
-                TextView editvidSiteSpinner = view.findViewById(R.id.textvid);
+                TextView editsiteMid = view.findViewById(R.id.editsiteMid);
+                TextView editvidSiteSpinner = view.findViewById(R.id.editvidSiteSpinner);
                 EditText edittxtLat = view.findViewById(R.id.edittxtLat);
                 EditText edittxtLong = view.findViewById(R.id.edittxtLong);
 

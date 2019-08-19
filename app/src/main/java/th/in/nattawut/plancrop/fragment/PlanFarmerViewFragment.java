@@ -217,11 +217,11 @@ public class PlanFarmerViewFragment extends Fragment {
         final View view = layoutInflater.inflate(R.layout.edit_plan, null);
 
 
-        TextView texPlanMid = view.findViewById(R.id.EditTextMidPlan);
+        TextView texPlanMid = view.findViewById(R.id.EditTextPlanMid);
         String strTextShowmid = getActivity().getIntent().getExtras().getString("mid");
         texPlanMid.setText(strTextShowmid);
 
-        TextView texPlanName = view.findViewById(R.id.EditTexPlanLogin);
+        TextView texPlanName = view.findViewById(R.id.EditTexPlanName);
         String strTextShowName = getActivity().getIntent().getExtras().getString("name");
         texPlanName.setText(strTextShowName);
 
@@ -299,7 +299,7 @@ public class PlanFarmerViewFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                TextView EditTextMidPlan = view.findViewById(R.id.EditTextMidPlan);
+                TextView EditTextMidPlan = view.findViewById(R.id.EditTextPlanMid);
                 TextView EditPlanCropSpinner = view.findViewById(R.id.textPlanCidSpinner);
                 TextView EditMyDate = view.findViewById(R.id.EditMyDate);
                 EditText EditAddPlan1 = view.findViewById(R.id.EditAddPlan1);

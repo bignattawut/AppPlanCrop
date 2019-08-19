@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    private static final String Url = "http://192.168.1.107/android/php/";
+    private static final String Url = "http://192.168.1.122/android/php/";
     private static Retrofit retrofit;
 
     public static Retrofit getApiClient() {

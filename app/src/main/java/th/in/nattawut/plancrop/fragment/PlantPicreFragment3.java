@@ -1,7 +1,6 @@
 package th.in.nattawut.plancrop.fragment;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -13,7 +12,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -21,12 +19,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -39,13 +35,12 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
+import java.util.Map;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -55,16 +50,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import th.in.nattawut.plancrop.R;
-import th.in.nattawut.plancrop.utility.APIUtils;
 import th.in.nattawut.plancrop.utility.AddPlantPictuteUpload;
 import th.in.nattawut.plancrop.utility.ApiClient;
 import th.in.nattawut.plancrop.utility.GetData;
 import th.in.nattawut.plancrop.utility.GetDataWhereOneColumn;
 import th.in.nattawut.plancrop.utility.MyAlert;
+import th.in.nattawut.plancrop.utility.MyAlertCrop;
 import th.in.nattawut.plancrop.utility.Myconstant;
 import th.in.nattawut.plancrop.utility.OrderService;
-import th.in.nattawut.plancrop.utility.PlantFarmer;
-import th.in.nattawut.plancrop.utility.PlantFarmerAdapter;
 import th.in.nattawut.plancrop.utility.ServerResponse;
 
 import static android.app.Activity.RESULT_OK;
@@ -86,21 +79,23 @@ public class PlantPicreFragment3 extends Fragment {
     TextView date;
     DatePickerDialog dataPickerDialog;
     Calendar calendar;
+    int year;
+    int month;
+    int dayOfMonth;
+
+    EditText picno;
 
 
 
     private String idRecord;
 
-    private String NoString,DatepictureString,DescriptionString,result;
+    private String NoString,DatepictureString,DescriptionString,result,pinoString;
 
     private String[] galleryPermissions = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setMessage("Uploading...");
 
 
         //เช็คPermission ถ้าสูงกว่า6
@@ -122,19 +117,13 @@ public class PlantPicreFragment3 extends Fragment {
         photoImageView = getView().findViewById(R.id.imagePhoto);
         str1 = getView().findViewById(R.id.filename1);
         btnUpload = getView().findViewById(R.id.btnUpload);
-
         btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uploadFile();
                 uploadValueToServer();
             }
         });
-
-
-
     }
-
 
     private void uploadValueToServer() {
         TextView textPlantNo = getView().findViewById(R.id.textPlantNo);
@@ -145,10 +134,15 @@ public class PlantPicreFragment3 extends Fragment {
         DatepictureString = textmyDate.getText().toString().trim();
         DescriptionString = edtDescription.getText().toString().trim();
 
-
-        if (NoString.isEmpty() ||DatepictureString.isEmpty() || DescriptionString.isEmpty()) {
-            MyAlert myAlert = new MyAlert(getActivity());
-            myAlert.onrmaIDialog("สวัสดี", "กรุณากรอกข้อมูล");
+        MyAlertCrop myAlertCrop = new MyAlertCrop(getActivity());
+        if (NoString.isEmpty()) {
+            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกแปลงเพาะปลูก");
+        } else if (DatepictureString.isEmpty()) {
+            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกวันที่");
+        } else if (DescriptionString.isEmpty()) {
+            myAlertCrop.onrmaIDialog("โปรดกรอก", "รายละเอียด");
+        } else if (mediaPath == null || mediaPath.equals("")) {
+            myAlertCrop.onrmaIDialog("โปรดกรอก", "รูปภาพกิจกจรรม");
         } else {
             try {
                 Myconstant myconstant = new Myconstant();
@@ -156,13 +150,17 @@ public class PlantPicreFragment3 extends Fragment {
                 addPlantPictuteUpload.execute(NoString,DatepictureString,DescriptionString,
                         myconstant.getUrlAddPlantPicture());
 
-                result = addPlantPictuteUpload.get();
+                String result = addPlantPictuteUpload.get();
+
                 Log.d("PlantPicture", "result ==>" + result);
                 if (Boolean.parseBoolean(result)) {
                     getActivity().getSupportFragmentManager().popBackStack();
                 } else {
                     Toast.makeText(getActivity(), "เพิ่มข้อมูลเรียบร้อย",Toast.LENGTH_LONG).show();
                 }
+
+                //อัพโหลดรูป
+                uploadFile(result.substring(1,result.length()-1));
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -221,41 +219,37 @@ public class PlantPicreFragment3 extends Fragment {
             @Override
             public void onClick(View view) {
                 calendar  = Calendar.getInstance();
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH);
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
+               year = calendar.get(Calendar.YEAR);
+               month = calendar.get(Calendar.MONTH);
+               dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
+                final String da = DateFormat.getDateInstance().format(calendar.getTime());
                 dataPickerDialog = new DatePickerDialog(getActivity(),
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
-                            public void onDateSet(DatePicker view, int y, int m, int d) {
-                                //date.setText(d + "/" + (m + 1) + "/" + y);
-                                date.setText(y + "/" + (m + 1) + "/" + d);
+                            public void onDateSet(DatePicker view, int year, int month, int day) {
+//                                date.setText(y + "/" + (m + 1) + "/" + d);
+                                date.setText(year +"/" + month + "/" + day);
                             }
-                        },day,month,year);
-                dataPickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
+                        },year,month,dayOfMonth);
+
+                //dataPickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
+                //dataPickerDialog.setTitle("การูณาเลือกวันที่");
                 dataPickerDialog.show();
             }
         });
     }
 
-
-
-    private void uploadFile() {
-        if (mediaPath == null || mediaPath.equals("")) {
-            Toast.makeText(getActivity(),"กรุณาเลือกรูปภาพ",Toast.LENGTH_LONG).show();
-            return;
-        }
-        showDialog();
+    private void uploadFile(String pinoString) {
+        //showDialog();
         File file = new File(mediaPath);
-
-
-        RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
         MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
-        ResponseBody filename = ResponseBody.create(MediaType.parse("text/plain"),file.getName());
+        RequestBody filename = RequestBody.create(MediaType.parse("text/plain"),pinoString);
+
 
         OrderService orderService = ApiClient.getApiClient().create(OrderService.class);
-        Call<ServerResponse> call = orderService.uploadFile(fileToUpload,filename);
+        Call<ServerResponse> call = orderService.uploadFile22(fileToUpload,filename);
         call.enqueue(new Callback<ServerResponse>() {
             @Override
             public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
@@ -268,9 +262,9 @@ public class PlantPicreFragment3 extends Fragment {
                     }
                 } else {
                     assert serverResponse != null;
-                    Log.v("Response", serverResponse.toString());
+                   // Log.v("Response", serverResponse.toString());
                 }
-                progressDialog.dismiss();
+                //progressDialog.dismiss();
             }
             @Override
             public void onFailure(Call<ServerResponse> call, Throwable t) {
@@ -278,14 +272,6 @@ public class PlantPicreFragment3 extends Fragment {
             }
         });
 
-    }
-
-    protected void showDialog() {
-        if (!progressDialog.isShowing()) progressDialog.show();
-    }
-
-    protected void hidepDialog() {
-        if (progressDialog.isShowing())progressDialog.dismiss();
     }
 
     @Override

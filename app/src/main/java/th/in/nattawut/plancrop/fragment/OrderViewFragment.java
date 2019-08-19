@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -22,7 +21,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
@@ -40,12 +38,10 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import th.in.nattawut.plancrop.HomeActivity;
 import th.in.nattawut.plancrop.MemberActivity;
 import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.APIUtils;
 import th.in.nattawut.plancrop.utility.DeleteOrder;
-import th.in.nattawut.plancrop.utility.EditCrop;
 import th.in.nattawut.plancrop.utility.EditOrder;
 import th.in.nattawut.plancrop.utility.GetData;
 import th.in.nattawut.plancrop.utility.Myconstant;
@@ -209,7 +205,7 @@ public class OrderViewFragment extends Fragment {
         String strTextShowmid = getActivity().getIntent().getExtras().getString("mid");
         texPlanMid.setText(strTextShowmid);
 
-        TextView texPlanName = view.findViewById(R.id.EditTextMidPlan);
+        TextView texPlanName = view.findViewById(R.id.EditTextMidPlanFarmer);
         String strTextShowName = getActivity().getIntent().getExtras().getString("name");
         texPlanName.setText(strTextShowName);
 

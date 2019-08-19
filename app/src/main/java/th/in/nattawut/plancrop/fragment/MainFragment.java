@@ -61,6 +61,7 @@ public class MainFragment extends Fragment {
         //Login Controkker
         loginControkker();
 
+
 //        loginForm = getView().findViewById(R.id.loginForm);
 //        if (SaveSharedPreference.getLoggedStatus(getActivity())) {
 //            Intent intent = new Intent(getActivity(), HomeActivity.class);

@@ -160,17 +160,17 @@
                     android:layout_marginLeft="5dp"
                     android:text="จังหวัด :" />
 
-                <TextView
-                    android:id="@+id/EditspProvinceFarmer"
-                    android:layout_marginLeft="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <!--<Spinner-->
+                <!--<TextView-->
                     <!--android:id="@+id/EditspProvinceFarmer"-->
+                    <!--android:layout_marginLeft="5dp"-->
                     <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginLeft="1dp"></Spinner>-->
+                    <!--android:layout_height="wrap_content" />-->
+
+                <Spinner
+                    android:id="@+id/EditspProvinceFarmer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"></Spinner>
             </LinearLayout>
 
             <LinearLayout
@@ -193,16 +193,16 @@
                     android:layout_marginLeft="5dp"
                     android:text="อำเภอ :" />
 
-                <TextView
-                    android:id="@+id/EditspAmphurFarmer"
-                    android:layout_marginLeft="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-                <!--<Spinner-->
+                <!--<TextView-->
                     <!--android:id="@+id/EditspAmphurFarmer"-->
+                    <!--android:layout_marginLeft="5dp"-->
                     <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginLeft="1dp"></Spinner>-->
+                    <!--android:layout_height="wrap_content" />-->
+                <Spinner
+                    android:id="@+id/EditspAmphurFarmer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"></Spinner>
             </LinearLayout>
 
             <LinearLayout
@@ -225,16 +225,16 @@
                     android:layout_marginLeft="5dp"
                     android:text="ตำบล/แขวง :" />
 
-                <TextView
-                    android:id="@+id/EditspDistriceFarmer"
-                    android:layout_marginLeft="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-                <!--<Spinner-->
+                <!--<TextView-->
                     <!--android:id="@+id/EditspDistriceFarmer"-->
+                    <!--android:layout_marginLeft="5dp"-->
                     <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginLeft="1dp"></Spinner>-->
+                    <!--android:layout_height="wrap_content" />-->
+                <Spinner
+                    android:id="@+id/EditspDistriceFarmer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"></Spinner>
 
 
             </LinearLayout>
@@ -260,16 +260,16 @@
                     android:layout_marginLeft="5dp"
                     android:text="หมู่บ้าน:" />
 
-                <TextView
-                    android:id="@+id/EditspVillag"
-                    android:layout_marginLeft="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-                <!--<Spinner-->
+                <!--<TextView-->
                     <!--android:id="@+id/EditspVillag"-->
+                    <!--android:layout_marginLeft="5dp"-->
                     <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginLeft="1dp"></Spinner>-->
+                    <!--android:layout_height="wrap_content" />-->
+                <Spinner
+                    android:id="@+id/EditspVillag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"></Spinner>
             </LinearLayout>
 
             <LinearLayout
