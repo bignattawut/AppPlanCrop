@@ -68,6 +68,7 @@ public class SiteViewFrament extends Fragment implements LocationListener {
     TextView txtLat;
     TextView txtLong;
 
+    View view;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -80,6 +81,44 @@ public class SiteViewFrament extends Fragment implements LocationListener {
 
         swipeRefreshLayout();
 
+    }
+
+    private void selectSiteVillageFarmer() {
+        if (android.os.Build.VERSION.SDK_INT > 9) { //setup policy เเพื่อมือถือที่มีประปฏิบัติการสูงกว่านีจะไม่สามารถconnectกับโปรโตรคอลได้
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+        final Spinner spin = view.findViewById(R.id.editvidSiteSpinner);
+        try {
+
+            Myconstant myconstant = new Myconstant();
+            GetData getData = new GetData(getActivity());
+            getData.execute(myconstant.getUrlSelectSiteVillageFarmer());
+
+            String jsonString = getData.get();
+            Log.d("5/Jan SelectSiteVillage", "JSON ==>" + jsonString);
+            JSONArray data = new JSONArray(jsonString);
+
+            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
+            HashMap<String, String> map;
+
+            for(int i = 0; i < data.length(); i++){
+                JSONObject c = data.getJSONObject(i);
+
+                map = new HashMap<String, String>();
+                map.put("name", c.getString("name"));
+                map.put("vid", c.getString("vid"));
+                map.put("thai", c.getString("thai"));
+                MyArrList.add(map);
+            }
+            SimpleAdapter sAdap;
+            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_sitetextvillage,
+                    new String[] {"name","vid","thai"}, new int[] {R.id.textname, R.id.textvid, R.id.textVillageName});
+            spin.setAdapter(sAdap);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void swipeRefreshLayout() {
@@ -120,7 +159,7 @@ public class SiteViewFrament extends Fragment implements LocationListener {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             deleteorEditSite(list.get(position).getSno(), list.get(position).getMid(),
-                                    list.get(position).getLat(), list.get(position).getLon(), list.get(position).getThai());
+                                    list.get(position).getLat(), list.get(position).getLon(), list.get(position).getThai(),list.get(position).getName());
                         }
                     });
                 }
@@ -134,7 +173,7 @@ public class SiteViewFrament extends Fragment implements LocationListener {
     }
 
     //alertให้เลือกลบหรือแก้ไข
-    private void deleteorEditSite(final String sno, final String mid, final String lat, final String lon, final String thai) {
+    private void deleteorEditSite(final String sno, final String mid, final String lat, final String lon, final String thai,final String name) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
         builder.setIcon(R.drawable.map);
@@ -156,7 +195,7 @@ public class SiteViewFrament extends Fragment implements LocationListener {
         builder.setPositiveButton("แก้ไข", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                editSite(sno, mid, lat, lon, thai);
+                editSite(sno, mid, lat, lon, thai,name);
                 dialog.dismiss();
             }
         });
@@ -164,7 +203,7 @@ public class SiteViewFrament extends Fragment implements LocationListener {
     }
 
     //แก้ไขประเทพืชเพาะปลูก
-    private void editSite(final String sno, String mid, String lat, String lon, String thai) {
+    private void editSite(final String sno, String mid, String lat, String lon, String thai,String name) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
@@ -172,89 +211,18 @@ public class SiteViewFrament extends Fragment implements LocationListener {
         builder.setTitle("กำหนดแปลงเพาะปลูกใหม่");
         //กำหนดเนื้อหา
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
-        final View view = layoutInflater.inflate(R.layout.edit_site, null);
-
-//        if (android.os.Build.VERSION.SDK_INT > 9) {
-//            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-//            StrictMode.setThreadPolicy(policy);
-//        }
-//        final Spinner spin = view.findViewById(R.id.spName);
-//        try {
-//            Myconstant myconstant = new Myconstant();
-//            GetData getData = new GetData(getActivity());
-//            getData.execute(myconstant.getUrlSiteFarmer());
-//
-//            String jsonString = getData.get();
-//            Log.d("5/Jan CropType", "JSON ==>" + jsonString);
-//            JSONArray data = new JSONArray(jsonString);
-//
-//            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
-//            HashMap<String, String> map;
-//
-//            for(int i = 0; i < data.length(); i++){
-//                JSONObject c = data.getJSONObject(i);
-//
-//                map = new HashMap<String, String>();
-//                map.put("mid", c.getString("mid"));
-//                map.put("name", c.getString("name"));
-//                MyArrList.add(map);
-//            }
-//            SimpleAdapter sAdap;
-//            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_sitename,
-//                    new String[]{"mid", "name"}, new int[]{R.id.textMId, R.id.textName});
-//            spin.setAdapter(sAdap);
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        view = layoutInflater.inflate(R.layout.edit_site, null);
 
 
-//        if (android.os.Build.VERSION.SDK_INT > 9) {
-//            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-//            StrictMode.setThreadPolicy(policy);
-//        }
-//        final Spinner editvidSiteSpinner = view.findViewById(R.id.editvidSiteSpinner);
-//        try {
-//            Myconstant myconstant = new Myconstant();
-//            GetData getData = new GetData(getActivity());
-//            getData.execute(myconstant.getUrlSelectSiteVillageFarmer());
-//
-//            String jsonString = getData.get();
-//            Log.d("5/Jan CropType", "JSON ==>" + jsonString);
-//            JSONArray data = new JSONArray(jsonString);
-//
-//            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
-//            HashMap<String, String> map;
-//
-//            for(int i = 0; i < data.length(); i++){
-//                JSONObject c = data.getJSONObject(i);
-//
-//                map = new HashMap<String, String>();
-//                map.put("name", c.getString("name"));
-//                map.put("vid", c.getString("vid"));
-//                map.put("thai", c.getString("thai"));
-//                MyArrList.add(map);
-//            }
-//            SimpleAdapter sAdap;
-//            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_sitetextvillage,
-//                    new String[] {"name","vid","thai"}, new int[] {R.id.textname, R.id.textvid, R.id.textVillageName});
-//            editvidSiteSpinner.setAdapter(sAdap);
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        selectSiteVillageFarmer();
 
         TextView texSiteMid = view.findViewById(R.id.editsiteMid);
-        String strTextShowmid = getActivity().getIntent().getExtras().getString("mid",mid);
+        String strTextShowmid = getActivity().getIntent().getExtras().getString("Mid",mid);
         texSiteMid.setText(strTextShowmid);
 
         TextView Name = view.findViewById(R.id.editsiteMidName);
-        String strTextShowName = getActivity().getIntent().getExtras().getString("Name");
+        String strTextShowName = getActivity().getIntent().getExtras().getString("Name",name);
         Name.setText(strTextShowName);
-
-        TextView editvidSiteSpinner = view.findViewById(R.id.editvidSiteSpinner);
-        String strTextvidSite = getActivity().getIntent().getExtras().getString("vid");
-        editvidSiteSpinner.setText(strTextvidSite);
 
 
         EditText edittxtLat = view.findViewById(R.id.edittxtLat);
@@ -280,7 +248,7 @@ public class SiteViewFrament extends Fragment implements LocationListener {
             public void onClick(DialogInterface dialog, int which) {
 
                 TextView editsiteMid = view.findViewById(R.id.editsiteMid);
-                TextView editvidSiteSpinner = view.findViewById(R.id.editvidSiteSpinner);
+                TextView editvidSiteSpinner = view.findViewById(R.id.textvid);
                 EditText edittxtLat = view.findViewById(R.id.edittxtLat);
                 EditText edittxtLong = view.findViewById(R.id.edittxtLong);
 

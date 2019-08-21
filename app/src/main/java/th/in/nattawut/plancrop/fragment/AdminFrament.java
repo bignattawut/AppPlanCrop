@@ -199,7 +199,7 @@ public class AdminFrament extends Fragment {
                 getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentAdminFragment, new PlantViewFragment())
+                        .replace(R.id.contentAdminFragment, new PlantViewFragment1())
                         .addToBackStack(null)
                         .commit();
             }

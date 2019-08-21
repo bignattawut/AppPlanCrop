@@ -15,8 +15,118 @@
         android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
         app:titleTextColor="@color/colorWhite" />
 
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_centerVertical="true"
+            android:text="จากวันที่"
+            android:textSize="24dp"
+            app:fontFamily="@font/fonts1" />
+
+        <TextView
+            android:id="@+id/pdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="80dp"
+            android:text="xx/xx/xxxx"
+            android:textSize="24dp"
+            app:fontFamily="@font/fonts1" />
+
+        <ImageView
+            android:id="@+id/imageViewDatepdate"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/dateplan"
+            app:fontFamily="@font/fonts1" />
+    </RelativeLayout>
+
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_margin="1dp">-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:text="จังหวัด"-->
+            <!--android:textSize="24dp"-->
+            <!--app:fontFamily="@font/fonts1" />-->
+
+        <!--<Spinner-->
+            <!--android:id="@+id/spProvincePlant"-->
+            <!--android:layout_marginLeft="80dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"></Spinner>-->
+
+    <!--</RelativeLayout>-->
+
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_margin="1dp">-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:text="อำเภอ"-->
+            <!--android:textSize="24dp"-->
+            <!--app:fontFamily="@font/fonts1" />-->
+
+        <!--<Spinner-->
+            <!--android:id="@+id/spAmphurPlant"-->
+            <!--android:layout_marginLeft="80dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"></Spinner>-->
+    <!--</RelativeLayout>-->
+
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_margin="1dp">-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:text="ตำบล"-->
+            <!--android:textSize="24dp"-->
+            <!--app:fontFamily="@font/fonts1" />-->
+
+        <!--<Spinner-->
+            <!--android:id="@+id/spDistricePlant"-->
+            <!--android:layout_marginLeft="80dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"></Spinner>-->
+
+    <!--</RelativeLayout>-->
+
+    <Button
+        android:id="@+id/seletePlant"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/button"
+        android:fontFamily="@font/fonts1"
+        android:text="แสดงรายการ"
+        android:textColor="@color/colorWhite"
+        android:textSize="24dp" />
+
     <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swiRefreshLayou"
+        android:id="@+id/swiRefreshLayouPlant"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -27,23 +137,7 @@
             android:layout_height="match_parent"></ListView>
     </android.support.v4.widget.SwipeRefreshLayout>
 
-    <!--<LinearLayout-->
-    <!--android:gravity="end|bottom"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent">-->
 
-    <!--<com.tuann.floatingactionbuttonexpandable.FloatingActionButtonExpandable-->
-    <!--android:id="@+id/floatingActionButtonViewPlant"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginRight="10dp"-->
-    <!--android:layout_marginBottom="65dp"-->
-    <!--app:fab_bg_color="#FF0BB1D3"-->
-    <!--app:fab_content="เพาะปลูก"-->
-    <!--app:fab_icon="@drawable/ic_spatab_black_24dp"-->
-    <!--app:fab_padding_text_icon="10dp"-->
-    <!--app:fab_text_size="18dp" />-->
-    <!--</LinearLayout>-->
 
 
 </LinearLayout>

@@ -15,6 +15,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.FileUriExposedException;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -43,11 +44,15 @@ import com.tuann.floatingactionbuttonexpandable.FloatingActionButtonExpandable;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -69,14 +74,14 @@ public class PlantPicViewFragment2 extends Fragment {
     private ImageView photoImageView;
     Bitmap bitmap;
     ProgressDialog progressDialog;
-    String mediaPath, mediaPath1;
+    String mediaPath = "", mediaPath1;
     TextView str1;
 
 
     private String[] galleryPermissions = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
     View view;
-
+    Myconstant myconstant = new Myconstant();
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -98,6 +103,7 @@ public class PlantPicViewFragment2 extends Fragment {
         selectPlant();
 
         planPicViewController();
+
     }
 
     private void planPicViewController() {
@@ -251,15 +257,18 @@ public class PlantPicViewFragment2 extends Fragment {
 
         dateController();
 
+        uploadFile(picnoStringArrayList);
+
+//        Log.d("pic","result == > " + picnoStringArrayList);
+//        Log.d("str1","result == > " + str1);
+
         photoImageView = view.findViewById(R.id.edit_imagePhoto);
         str1 = view.findViewById(R.id.filename1);
         Picasso.get()
-                .load("http://192.168.1.122/android/php/picture/activity/"+picnoStringArrayList+".jpg")
+                .load("http://"+myconstant.ip+"/android/php/picture/activity/"+picnoStringArrayList+".jpg")
+                //.load("http://10.200.1.126/android/php/picture/activity/"+picnoStringArrayList+".jpg")
                 .resize(150, 150)
                 .into(photoImageView);
-
-
-
 
         TextView textdescription = view.findViewById(R.id.edit_edtDescription);
         String newdescription = getActivity().getIntent().getExtras().getString("description",descriptionStringArrayList);
@@ -268,7 +277,6 @@ public class PlantPicViewFragment2 extends Fragment {
         TextView textPDate = view.findViewById(R.id.edit_textViewDatePicture);
         String newPDate = getActivity().getIntent().getExtras().getString("pdate",pdateStringArrayList);
         textPDate.setText(newPDate);
-
 
         builder.setView(view);
         //กำหนดปุ่ม
@@ -340,7 +348,7 @@ public class PlantPicViewFragment2 extends Fragment {
         builder.show();
     }
 
-    //ลบรายการประเภทพืชเพาะปลูก
+    //ลบรายการ
     private void editDeletePlantPic(String tidString){
 
         Myconstant myconstant = new Myconstant();
@@ -360,6 +368,7 @@ public class PlantPicViewFragment2 extends Fragment {
         }
     }
 
+    //เลือกวันที่
     private void dateController() {
         final TextView data = view.findViewById(R.id.edit_textViewDatePicture);
         ImageView selctData = view.findViewById(R.id.edit_imageViewDatePicture);
@@ -384,6 +393,39 @@ public class PlantPicViewFragment2 extends Fragment {
             }
         });
 
+    }
+
+    //แก้ไขรูป
+    private void uploadFile(String picnoStringArrayList) {
+        File file = new File(mediaPath);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
+        RequestBody filename = RequestBody.create(MediaType.parse("text/plain"),picnoStringArrayList);
+
+
+        OrderService orderService = ApiClient.getApiClient().create(OrderService.class);
+        Call<ServerResponse> call = orderService.uploadFile22(fileToUpload,filename);
+        call.enqueue(new Callback<ServerResponse>() {
+            @Override
+            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
+                ServerResponse serverResponse = response.body();
+                if (serverResponse != null) {
+                    if (serverResponse.isSuccess()) {
+                        Toast.makeText(getActivity(), serverResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getActivity(), "ภาพปัญหาการอัปโหลด", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    assert serverResponse != null;
+                    // Log.v("Response", serverResponse.toString());
+                }
+                //progressDialog.dismiss();
+            }
+            @Override
+            public void onFailure(Call<ServerResponse> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override

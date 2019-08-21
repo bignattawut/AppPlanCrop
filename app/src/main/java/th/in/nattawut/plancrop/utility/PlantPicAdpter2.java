@@ -19,6 +19,7 @@ import th.in.nattawut.plancrop.R;
 public class PlantPicAdpter2 extends ArrayAdapter<PlantActivity> {
 
 
+    Myconstant myconstant = new Myconstant();
     private Context context;
     private List<PlantActivity> plantActivities;
 
@@ -40,7 +41,7 @@ public class PlantPicAdpter2 extends ArrayAdapter<PlantActivity> {
         pdateTextView.setText(plantActivities.get(position).getPdate());
         descriptionTextView.setText(plantActivities.get(position).getDescription());
         Picasso.get()
-                .load("http://192.168.1.122/android/php/picture/activity/"+plantActivities.get(position).getPicno()+".jpg")
+                .load("http://"+myconstant.ip+"/android/php/picture/activity/"+plantActivities.get(position).getPicno()+".jpg")
                 .resize(150, 150)
                 .into(imageView);
 

@@ -15,6 +15,12 @@ public class Site {
     @SerializedName("thai")
     private String thai;
 
+    @SerializedName("name")
+    private String name;
+
+    public String getName() {
+        return name;
+    }
 
     public String getSno() {
         return sno;

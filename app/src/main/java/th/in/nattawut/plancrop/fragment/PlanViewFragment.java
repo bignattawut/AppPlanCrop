@@ -128,7 +128,7 @@ public class PlanViewFragment extends Fragment {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    deleteorEditCropPlan(planStrings[position],midString[position],typeStrings[position]);
+                    deleteorEditCropPlan(planStrings[position],midString[position],typeStrings[position],areStrings[position]);
                     //mSwipeRefreshLayout.setRefreshing(false);
                 }
             });
@@ -140,7 +140,7 @@ public class PlanViewFragment extends Fragment {
     }
 
     //alertให้เลือกลบหรือแก้ไข
-    private void deleteorEditCropPlan(final String planStrings, final String midString,final String typeStrings) {
+    private void deleteorEditCropPlan(final String planStrings, final String midString,final String typeStrings,final String dateStrings) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
@@ -163,7 +163,7 @@ public class PlanViewFragment extends Fragment {
         builder.setPositiveButton("แก้ไข", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                editPlan(planStrings,midString,typeStrings);
+                editPlan(planStrings,midString,typeStrings,dateStrings);
                 dialog.dismiss();
             }
         });
@@ -192,7 +192,7 @@ public class PlanViewFragment extends Fragment {
 
     }
 
-    private void editPlan(final String planStrings,final String midString,final String typeStrings){
+    private void editPlan(final String planStrings,final String midString,final String typeStrings,final String dateStrings){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
@@ -210,6 +210,10 @@ public class PlanViewFragment extends Fragment {
         TextView EditTexPlanName = view.findViewById(R.id.EditTexPlanName);
         String strTextShowName = getActivity().getIntent().getExtras().getString("Name",typeStrings);
         EditTexPlanName.setText(strTextShowName);
+
+        TextView EditTexpdate = view.findViewById(R.id.EditMyDate);
+        String strTextShowpdate = getActivity().getIntent().getExtras().getString("pdate",dateStrings);
+        EditTexpdate.setText(strTextShowpdate);
 
 
 
@@ -374,7 +378,7 @@ public class PlanViewFragment extends Fragment {
                     getActivity()
                             .getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.contentAdminFragment, new PlanFragment())
+                            .replace(R.id.contentAdminFragment, new PlanFarmerFragment())
                             .addToBackStack(null)
                             .commit();
                     return false;

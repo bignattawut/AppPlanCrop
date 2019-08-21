@@ -241,7 +241,6 @@ public class PlantPicreFragment3 extends Fragment {
     }
 
     private void uploadFile(String pinoString) {
-        //showDialog();
         File file = new File(mediaPath);
         RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
         MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("file", file.getName(), requestBody);

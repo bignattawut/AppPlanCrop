@@ -8,6 +8,7 @@ import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,15 +29,15 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
+import th.in.nattawut.plancrop.AdminActivity;
 import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.AddPlant;
 import th.in.nattawut.plancrop.utility.GetData;
 import th.in.nattawut.plancrop.utility.GetDataWhereOneColumn;
-import th.in.nattawut.plancrop.utility.MyAlert;
 import th.in.nattawut.plancrop.utility.MyAlertCrop;
 import th.in.nattawut.plancrop.utility.Myconstant;
 
-public class PlantFragment extends Fragment {
+public class PlantFarmerFragment extends Fragment {
 
 
     //Button selctDate;
@@ -53,7 +54,7 @@ public class PlantFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
 //        //Create Toolbal
-//        createToolbal();
+        CreateToolbal();
 
         //PlanFarmerSpinner
         cropSpinner();
@@ -65,12 +66,12 @@ public class PlantFragment extends Fragment {
 
         siteController();
 
-        setUpTexeShowMid();
+        selectFarmer();
 
     }
 
     private void plantController() {
-        Button button = getView().findViewById(R.id.btnPlant);
+        Button button = getView().findViewById(R.id.btnPlantFarmer);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,10 +83,10 @@ public class PlantFragment extends Fragment {
     private void plantAdd() {
         TextView textSite = getView().findViewById(R.id.textPlantSiteSnoSpinner);
         TextView textPlantCidSpinner = getView().findViewById(R.id.textPlanCidSpinner);
-        TextView textMyDate = getView().findViewById(R.id.myDatePlant);
-        EditText plan1 = getView().findViewById(R.id.addplan1);
-        EditText plan2 = getView().findViewById(R.id.addplan2);
-        EditText plan3 = getView().findViewById(R.id.addplan3);
+        TextView textMyDate = getView().findViewById(R.id.myDatePlantFramer);
+        EditText plan1 = getView().findViewById(R.id.addplantFramer1);
+        EditText plan2 = getView().findViewById(R.id.addplantFramer2);
+        EditText plan3 = getView().findViewById(R.id.addplantFramer3);
 
         String siteString = textSite.getText().toString().trim();//แปลงค่าText ให้เป็น String , trim ลบค่าที่เว้นวรรคอัตโนวัติ
         String cidString = textPlantCidSpinner.getText().toString().trim();
@@ -94,13 +95,10 @@ public class PlantFragment extends Fragment {
         String addPlantTextString = Float.toString(Float.parseFloat(plan1.getText().toString().trim())
                 + (Float.parseFloat(plan2.getText().toString().trim()) * 100 + Float.parseFloat(plan3.getText().toString().trim())) / 400);
 
-        Spinner spin = getView().findViewById(R.id.Siteid);
-        siteSpinnerString = spin.getSelectedItem().toString().trim();
+//        Spinner spin = getView().findViewById(R.id.Siteid);
+//        siteSpinnerString = spin.getSelectedItem().toString().trim();
 
         MyAlertCrop myAlertCrop = new MyAlertCrop(getActivity());
-//        if (siteString.isEmpty() || cidString.isEmpty() || myDataString.isEmpty() || addPlantTextString.isEmpty()) {
-//            MyAlert myAlert = new MyAlert(getActivity());
-//            myAlert.onrmaIDialog("สวัสดี", "กรุณากรอกข้อมูลให้ครบ");
         if (siteString.isEmpty() || cidString.isEmpty() || myDataString.isEmpty() || addPlantTextString.isEmpty()) {
             myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกข้อมูลให้ครบ");
         } else {
@@ -120,7 +118,7 @@ public class PlantFragment extends Fragment {
                     getActivity()
                             .getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.contentHomeFragment, new PlantFarmerViewFragment())
+                            .replace(R.id.contentAdminFragment, new PlantViewFragment1())
                             .addToBackStack(null)
                             .commit();
                 }
@@ -131,11 +129,43 @@ public class PlantFragment extends Fragment {
         }
     }
 
-    private void setUpTexeShowMid() {
-        TextView textNameFarmer = getView().findViewById(R.id.textNameFarmer);
+    private void selectFarmer() {
+        if (android.os.Build.VERSION.SDK_INT > 9) { //setup policy เเพื่อมือถือที่มีประปฏิบัติการสูงกว่านีจะไม่สามารถconnectกับโปรโตรคอลได้
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+        final Spinner spin = getView().findViewById(R.id.spPlanNameFramer);
+        try {
 
-        String strTextShow = getActivity().getIntent().getExtras().getString("name");
-        textNameFarmer.setText(strTextShow);
+            Myconstant myconstant = new Myconstant();
+
+
+            GetData getData = new GetData(getActivity());
+            getData.execute(myconstant.getUrlSiteFarmer());
+
+            String jsonString = getData.get();
+            Log.d("5/Jan PlanCropSpinner", "JSON ==>" + jsonString);
+            JSONArray data = new JSONArray(jsonString);
+
+            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
+            HashMap<String, String> map;
+
+            for (int i = 0; i < data.length(); i++) {
+                JSONObject c = data.getJSONObject(i);
+
+                map = new HashMap<String, String>();
+                map.put("mid", c.getString("mid"));
+                map.put("name", c.getString("name"));
+                MyArrList.add(map);
+            }
+            SimpleAdapter sAdap;
+            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_sitename,
+                    new String[]{"mid", "name"}, new int[]{R.id.textMId, R.id.textName});
+            spin.setAdapter(sAdap);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void siteController() {
@@ -143,7 +173,7 @@ public class PlantFragment extends Fragment {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
-        final Spinner spin = getView().findViewById(R.id.Siteid);
+        final Spinner spin = getView().findViewById(R.id.SiteidPlantFramer);
         try {
 
             Myconstant myconstant = new Myconstant();
@@ -168,6 +198,7 @@ public class PlantFragment extends Fragment {
                 map.put("thai", c.getString("thai"));
                 MyArrList.add(map);
             }
+
             SimpleAdapter sAdap;
             sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_site,
                     new String[] {"sno", "thai"}, new int[] {R.id.textPlantSiteSnoSpinner, R.id.textPlantThaiSpinner});
@@ -179,8 +210,8 @@ public class PlantFragment extends Fragment {
     }
 
     private void pdateController() {
-        date = getActivity().findViewById(R.id.myDatePlant);
-        selctDate = getActivity().findViewById(R.id.imageViewDatePlant);
+        date = getActivity().findViewById(R.id.myDatePlantFramer);
+        selctDate = getActivity().findViewById(R.id.imageViewDatePlantFramer);
         selctDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -212,7 +243,7 @@ public class PlantFragment extends Fragment {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
-        final Spinner spin = getView().findViewById(R.id.PlantCropSpinner);
+        final Spinner spin = getView().findViewById(R.id.PlantCropSpinnerFramer);
         try {
             GetData getData = new GetData(getActivity());
             getData.execute(Myconstant.getUrlCrop);
@@ -242,27 +273,31 @@ public class PlantFragment extends Fragment {
         }
     }
 
-//    private void createToolbal() {
-//        Toolbar toolbar = getView().findViewById(R.id.toolbarPlant);
-//        ((HomeActivity)getActivity()).setSupportActionBar(toolbar);
-//
-//        ((HomeActivity)getActivity()).getSupportActionBar().setTitle("แปลงเพาะปลูก");
-//        ((HomeActivity)getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
-//        ((HomeActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//
-//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                getActivity().getSupportFragmentManager().popBackStack();
-//            }
-//        });
-//    }
+    private void CreateToolbal() {
+        Toolbar toolbar = getView().findViewById(R.id.toolbarPlantFarmer);
+        ((AdminActivity)getActivity()).setSupportActionBar(toolbar);
+
+        ((AdminActivity)getActivity()).getSupportActionBar().setTitle("เพิ่มข้อมูลการเพาะปลูก");
+        //((MainActivity)getActivity()).getSupportActionBar().setSubtitle("ddbdbvd");
+
+        ((AdminActivity)getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
+        ((AdminActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().popBackStack();
+            }
+        });
+        setHasOptionsMenu(true);
+
+    }
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.frm_plant, container, false);
+        View view = inflater.inflate(R.layout.frm_plantfarmer, container, false);
         return view;
     }
 }

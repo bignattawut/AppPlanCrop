@@ -440,8 +440,8 @@ public class FarmerFragment extends Fragment {
             myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกชื่อผู้ใช้งาน");
         } else if (passwordString.isEmpty()) {
             myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกรหัสผ่าน");
-        } else if (passwordString.length() < 8) {
-            password.setError("รหัสผ่านควรมีความยาวอย่างน้อย 8 ตัว");
+        } else if (passwordString.length() < 3) {
+            password.setError("รหัสผ่านควรมีความยาวอย่างน้อย 3 ตัว");
             password.requestFocus();
         }else if (nameString.isEmpty()){
             myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกชื่อ-นามสกุล");

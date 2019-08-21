@@ -93,12 +93,40 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginRight="5dp"
+                        android:src="@drawable/ic_selection" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="พื้นที่เพาะปลูก"
+                        android:textColor="@color/colorblack"
+                        android:textSize="22dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:paddingRight="5dp"
+                        android:id="@+id/areaStrings"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:text="พื้นที่"
+                        android:textColor="@color/yello"
+                        android:textSize="22dp"
+                        android:textStyle="bold" />
+                </TableRow>
+
+                <TableRow>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="5dp"
                         android:src="@drawable/ic_harvest" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="ผลผลิตเฉลี่ยกิโลกรัมต่อไร่"
+                        android:text="ปริมาณการผลิต (ก.ก)"
                         android:textColor="@color/colorblack"
                         android:textSize="22dp"
                         android:textStyle="bold" />
@@ -109,7 +137,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
-                        android:text="ผลผลิตเฉลี่ยกิโลกรัมต่อไร่"
+                        android:text="ปริมาณการผลิต"
                         android:textColor="@color/yello"
                         android:textSize="22dp"
                         android:textStyle="bold" />

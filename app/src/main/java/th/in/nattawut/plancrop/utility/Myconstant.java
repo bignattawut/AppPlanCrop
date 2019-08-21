@@ -5,7 +5,6 @@ public class Myconstant {
 
     String ip = "192.168.1.122";
 
-
     //ล็อคอิน
     private String urlGetUser = "http://"+ip+"/android/php/memberlogin.php";
     private String nameFileSharePreference = "Plan";

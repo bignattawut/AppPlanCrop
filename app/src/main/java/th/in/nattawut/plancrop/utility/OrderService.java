@@ -87,6 +87,13 @@ public interface OrderService {
 //                                @Field("URL") String url);
 
 
+    @GET("selectplant.php")
+    Call<List<Plant>> getPlant(@Query("sdate") String sdate/*,
+                               @Query("pid") String pid,
+                               @Query("did") String did,
+                               @Query("sid") String sid*/);
+
+
     @GET("plantactivity.php")
     Call<List<PlantActivity>> getPlantActivity(@Query("no") String no);
 
