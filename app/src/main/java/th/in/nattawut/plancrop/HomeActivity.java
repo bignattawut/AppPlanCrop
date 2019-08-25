@@ -35,6 +35,7 @@ import th.in.nattawut.plancrop.fragment.PlantReportallViewFragment;
 import th.in.nattawut.plancrop.fragment.PlantResultViewFragment;
 import th.in.nattawut.plancrop.fragment.TabPlanFragment;
 import th.in.nattawut.plancrop.utility.OrderService;
+import th.in.nattawut.plancrop.utility.PlantPicViewFragment2;
 import th.in.nattawut.plancrop.utility.SaveSharedPreference;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -142,7 +143,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 setTitle("บันทึกกิจกรรมเพาะปลูก");
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentHomeFragment, new PlantPicViewFragment1())
+                        .replace(R.id.contentHomeFragment, new PlantPicViewFragment2())
                         .addToBackStack(null)
                         .commit();
                 break;
@@ -155,7 +156,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         .commit();
                 break;
             case R.id.munu_PlantRepor:
-                setTitle("สรุปการเพาะปลูก");
+                setTitle("พืชที่ปลูก ณ ปัจจุบัน");
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.contentHomeFragment, new PlantReportViewFragment())
@@ -180,7 +181,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.menu_chart:
-                setTitle("แจ้งความต้องการ");
+                setTitle("ผลผลิต");
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.contentHomeFragment, new PlantResultViewFragment())

@@ -65,8 +65,9 @@ public class CropFragment extends Fragment {
         }
         final Spinner spin = getView().findViewById(R.id.cropTypeSpinner);
         try {
+            Myconstant myconstant = new Myconstant();
             GetData getData = new GetData(getActivity());
-            getData.execute(Myconstant.getUrlCropType);
+            getData.execute(myconstant.getUrlCropType());
 
             String jsonString = getData.get();
             Log.d("5/Jan CropType", "JSON ==>" + jsonString);

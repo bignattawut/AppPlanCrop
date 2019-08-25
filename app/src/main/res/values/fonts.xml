@@ -8,7 +8,7 @@
     </string-array>
 
     <string-array name="gender">
-        <!--<item>aa</item>-->
+        <item>a</item>
         <item>Female</item>
     </string-array>
 

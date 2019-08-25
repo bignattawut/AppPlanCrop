@@ -282,8 +282,9 @@ public class PlantFarmerViewFragment extends Fragment {
         }
         final Spinner spin = view.findViewById(R.id.EditPlantCropSpinner);
         try {
+            Myconstant myconstant = new Myconstant();
             GetData getData = new GetData(getActivity());
-            getData.execute(Myconstant.getUrlCrop);
+            getData.execute(myconstant.getUrlCrop());
 
             String jsonString = getData.get();
             Log.d("5/Jan CropType", "JSON ==>" + jsonString);

@@ -37,7 +37,7 @@
                 android:id="@+id/munu_PlantRepor"
                 android:icon="@drawable/ic_action_report"
                 android:iconTint="@color/yello"
-                android:title="สรุปการเพาะปลูก" />
+                android:title="พืชที่ปลูก ณ ปัจจุบัน" />
         </menu>
     </item>
 

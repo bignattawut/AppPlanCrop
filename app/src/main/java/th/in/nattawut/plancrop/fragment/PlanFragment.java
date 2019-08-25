@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -111,8 +112,9 @@ public class PlanFragment extends Fragment {
         }
         final Spinner spin = getView().findViewById(R.id.plancropspinner);
         try {
+            Myconstant myconstant = new Myconstant();
             GetData getData = new GetData(getActivity());
-            getData.execute(Myconstant.getUrlCrop);
+            getData.execute(myconstant.getUrlCrop());
 
             String jsonString = getData.get();
             Log.d("5/Jan PlanCropSpinner", "JSON ==>" + jsonString);
@@ -211,7 +213,6 @@ public class PlanFragment extends Fragment {
 //                +(Float.parseFloat(plan2.getText().toString().trim())*100+Float.parseFloat(plan3.getText().toString().trim()))/400);
         editTextString = Float.toString(Float.parseFloat(plan1.getText().toString().trim())
                 + (Float.parseFloat(plan2.getText().toString().trim()) * 100 + Float.parseFloat(plan3.getText().toString().trim())) / 400);
-
 
         MyAlertCrop myAlertCrop = new MyAlertCrop(getActivity());
         if (cidmidString.isEmpty()) {

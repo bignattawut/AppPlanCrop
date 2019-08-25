@@ -12,7 +12,8 @@ public class Myconstant {
 
     //วางแผนเพาะปลูก
     private String urladdPlan = "http://"+ip+"/android/php/insertplan.php";
-    public static String getUrlCrop ="http://192.168.1.122/android/php/selectspinnercrop.php";
+    //public static String getUrlCrop ="http://192.168.1.122/android/php/selectspinnercrop.php";
+    public  String urlCrop ="http://"+ip+"/android/php/selectspinnercrop.php";
     public static String getUrlmid = "http://192.168.1.122/android/php/selectmidspinner.php";
     private String urlDeletePlan = "http://"+ip+"/android/php/deleteplan.php";
     private String urlselectPlan = "http://"+ip+"/android/php/selectplanandroid.php";
@@ -72,7 +73,7 @@ public class Myconstant {
     private String urlEditCrop = "http://"+ip+"/android/php/editcrop.php";
 
     //ประเภทพืช
-    public static String getUrlCropType = "http://192.168.1.122/android/php/selectcroptype.php";
+    public  String urlCropType = "http://"+ip+"/android/php/selectcroptype.php";
     private String urlAddCropType = "http://"+ip+"/android/php/insertcroptype.php";
     private String urlselectcroptype = "http://"+ip+"/android/php/selectcroptype.php";
     private String urlEditCropType = "http://"+ip+"/android/php/editcroptype.php";
@@ -213,6 +214,10 @@ public class Myconstant {
     //เกษตรกร
 
     //พืช
+
+    public String getUrlCrop() {
+        return urlCrop;
+    }
     public String getUrlAddCrop() {
         return urlAddCrop;
     }
@@ -230,6 +235,10 @@ public class Myconstant {
     }
 
     //ประเภทพืช
+
+    public String getUrlCropType() {
+        return urlCropType;
+    }
     public String getUrlAddCropType() {
         return urlAddCropType;
     }

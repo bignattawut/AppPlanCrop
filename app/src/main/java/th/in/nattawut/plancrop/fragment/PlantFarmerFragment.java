@@ -245,8 +245,9 @@ public class PlantFarmerFragment extends Fragment {
         }
         final Spinner spin = getView().findViewById(R.id.PlantCropSpinnerFramer);
         try {
+            Myconstant myconstant = new Myconstant();
             GetData getData = new GetData(getActivity());
-            getData.execute(Myconstant.getUrlCrop);
+            getData.execute(myconstant.getUrlCrop());
 
             String jsonString = getData.get();
             Log.d("5/Jan PlanCropSpinner", "JSON ==>" + jsonString);

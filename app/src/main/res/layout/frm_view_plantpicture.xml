@@ -46,8 +46,8 @@
         android:textSize="24dp" />
 
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swiRefreshLayou"
+        <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swiRefreshLayouPlantPic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 

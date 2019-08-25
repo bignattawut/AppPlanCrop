@@ -1,6 +1,7 @@
 package th.in.nattawut.plancrop.utility;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
@@ -23,6 +24,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -73,9 +75,13 @@ public class PlantPicViewFragment2 extends Fragment {
     private Uri uri;
     private ImageView photoImageView;
     Bitmap bitmap;
-    ProgressDialog progressDialog;
-    String mediaPath = "", mediaPath1;
+    //private String mediaPath ;
     TextView str1;
+    //String mediaPath = new String("/storage/emulated/0/DCIM/");
+    String mediaPath = new String("/storage/emulated/0/Download/");
+    //String mediaPath = new String("/storage/emulated/0/");
+
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
 
     private String[] galleryPermissions = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -104,6 +110,20 @@ public class PlantPicViewFragment2 extends Fragment {
 
         planPicViewController();
 
+        swiRefreshLayou();
+
+    }
+
+    private void swiRefreshLayou() {
+        mSwipeRefreshLayout = getView().findViewById(R.id.swiRefreshLayouPlantPic);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                showMid();
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
     }
 
     private void planPicViewController() {
@@ -257,6 +277,7 @@ public class PlantPicViewFragment2 extends Fragment {
 
         dateController();
 
+
         uploadFile(picnoStringArrayList);
 
 //        Log.d("pic","result == > " + picnoStringArrayList);
@@ -269,6 +290,7 @@ public class PlantPicViewFragment2 extends Fragment {
                 //.load("http://10.200.1.126/android/php/picture/activity/"+picnoStringArrayList+".jpg")
                 .resize(150, 150)
                 .into(photoImageView);
+
 
         TextView textdescription = view.findViewById(R.id.edit_edtDescription);
         String newdescription = getActivity().getIntent().getExtras().getString("description",descriptionStringArrayList);
@@ -313,7 +335,7 @@ public class PlantPicViewFragment2 extends Fragment {
                     newDescription,
                     myconstant.getUrlEditPlantPic());
 
-            Log.d("are", "editPlantPic ===>" + newDescription);
+            Log.d("are", "editPlantPic ===>" + newDescription+picnoStringArrayList+neweDatePicture);
 
             if (Boolean.parseBoolean(editPlantPic.get())) {
 
@@ -396,11 +418,13 @@ public class PlantPicViewFragment2 extends Fragment {
     }
 
     //แก้ไขรูป
-    private void uploadFile(String picnoStringArrayList) {
+    public void uploadFile(String pinoString) {
+        Log.d("mediaPath","result == > " + mediaPath);
         File file = new File(mediaPath);
+        //File file = new File(android.os.Environment.getExternalStorageDirectory()+"/emulated/0/Pictures");
         RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
         MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
-        RequestBody filename = RequestBody.create(MediaType.parse("text/plain"),picnoStringArrayList);
+        RequestBody filename = RequestBody.create(MediaType.parse("text/plain"),pinoString);
 
 
         OrderService orderService = ApiClient.getApiClient().create(OrderService.class);
@@ -426,6 +450,7 @@ public class PlantPicViewFragment2 extends Fragment {
 
             }
         });
+
     }
 
     @Override
@@ -433,6 +458,7 @@ public class PlantPicViewFragment2 extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == 0 && resultCode == RESULT_OK && null != data) {
+
             // Get the Image from data
             Uri selectedImage = data.getData();
             String[] filePathColumn = {MediaStore.Images.Media.DATA};
@@ -447,9 +473,9 @@ public class PlantPicViewFragment2 extends Fragment {
             // Set the Image in ImageView for Previewing the Media
             photoImageView.setImageBitmap(BitmapFactory.decodeFile(mediaPath));
             cursor.close();
-
         }
     }
+
 
     private void galleryController() {
         ImageView imageView = view.findViewById(R.id.edit_imvGallery);

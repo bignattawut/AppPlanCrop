@@ -68,11 +68,14 @@ public class HomeFragment extends Fragment {
 
         PlantReprotallController();
 
+        PlantResultController();
+
 
 
         /////////
 //        MaterialSpinner spinner1 = getView().findViewById(R.id.spinner1);
 //        String[] item = {"Sumsung","Apple","Microsoft"};
+//        spinner1.setHint("lalallalala");
 //        spinner1.setItems(item);
 //        spinner1.setSelectedIndex(1);
 //        final MaterialSpinner spinner2 = getView().findViewById(R.id.spinner2);
@@ -143,6 +146,22 @@ public class HomeFragment extends Fragment {
                         .getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.contentMainFragment, new MainFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+    }
+
+    private void PlantResultController() {
+        CardView imageViewPlantResult = getView().findViewById(R.id.imageViewPlantResult);
+        imageViewPlantResult.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                checkStatus();
+                getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentMainFragment, new PlantResultViewFragment())
                         .addToBackStack(null)
                         .commit();
             }

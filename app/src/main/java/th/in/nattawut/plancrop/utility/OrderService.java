@@ -55,13 +55,13 @@ public interface OrderService {
     Call<List<PlantReport>> getPlantReport(@Query("mid") String mid);
 
     @GET("plantresult.php")
-    Call<List<PlantResult>> getPlantResult(//@Query("sdate") String sdate,
-                                           //@Query("edate") String edate/,
-                                           /*@Query("sid") String sid,
+    Call<List<PlantResult>> getPlantResult(@Query("pid") String pid,
                                            @Query("did") String did,
-                                           @Query("pid") String pid,
+                                           @Query("sid") String sid,
+                                           @Query("sdate") String sdate,
+                                           @Query("edate") String edate,
                                            @Query("mid") String mid,
-                                           @Query("tid") String tid,*/
+                                           @Query("tid") String tid,
                                            @Query("cid") String cid);
 
     @POST("memberlogin.php")

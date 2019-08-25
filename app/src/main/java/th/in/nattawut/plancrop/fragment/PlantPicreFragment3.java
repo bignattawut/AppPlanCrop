@@ -58,6 +58,7 @@ import th.in.nattawut.plancrop.utility.MyAlert;
 import th.in.nattawut.plancrop.utility.MyAlertCrop;
 import th.in.nattawut.plancrop.utility.Myconstant;
 import th.in.nattawut.plancrop.utility.OrderService;
+import th.in.nattawut.plancrop.utility.PlantPicViewFragment2;
 import th.in.nattawut.plancrop.utility.ServerResponse;
 
 import static android.app.Activity.RESULT_OK;
@@ -157,6 +158,12 @@ public class PlantPicreFragment3 extends Fragment {
                     getActivity().getSupportFragmentManager().popBackStack();
                 } else {
                     Toast.makeText(getActivity(), "เพิ่มข้อมูลเรียบร้อย",Toast.LENGTH_LONG).show();
+                    getActivity()
+                            .getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.contentHomeFragment, new PlantPicViewFragment2())
+                            .addToBackStack(null)
+                            .commit();
                 }
 
                 //อัพโหลดรูป
@@ -241,6 +248,7 @@ public class PlantPicreFragment3 extends Fragment {
     }
 
     private void uploadFile(String pinoString) {
+        Log.d("mediaPath","result == > " + mediaPath);
         File file = new File(mediaPath);
         RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
         MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
