@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -32,6 +33,7 @@ import java.util.HashMap;
 import th.in.nattawut.plancrop.AdminActivity;
 import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.AddPlant;
+import th.in.nattawut.plancrop.utility.AddSiteFarmer;
 import th.in.nattawut.plancrop.utility.GetData;
 import th.in.nattawut.plancrop.utility.GetDataWhereOneColumn;
 import th.in.nattawut.plancrop.utility.MyAlertCrop;
@@ -49,6 +51,9 @@ public class PlantFarmerFragment extends Fragment {
 
     String siteSpinnerString;
 
+    private ArrayList<String> arrmid = new ArrayList<>();
+    private ArrayList<String> arrname = new ArrayList<>();
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -64,7 +69,7 @@ public class PlantFarmerFragment extends Fragment {
 
         plantController();
 
-        siteController();
+
 
         selectFarmer();
 
@@ -156,6 +161,9 @@ public class PlantFarmerFragment extends Fragment {
                 map = new HashMap<String, String>();
                 map.put("mid", c.getString("mid"));
                 map.put("name", c.getString("name"));
+
+                arrmid.add(c.getString("mid"));
+                arrname.add(c.getString("name"));
                 MyArrList.add(map);
             }
             SimpleAdapter sAdap;
@@ -166,9 +174,23 @@ public class PlantFarmerFragment extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (spin.getSelectedItem() != null) {
+                    siteController(arrmid.get(position));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
-    private void siteController() {
+    public void siteController(String mid) {
         if (android.os.Build.VERSION.SDK_INT > 9) { //setup policy เเพื่อมือถือที่มีประปฏิบัติการสูงกว่านีจะไม่สามารถconnectกับโปรโตรคอลได้
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -177,13 +199,10 @@ public class PlantFarmerFragment extends Fragment {
         try {
 
             Myconstant myconstant = new Myconstant();
-            SharedPreferences sharedPreferences = getActivity().getSharedPreferences(myconstant.getNameFileSharePreference(), Context.MODE_PRIVATE);
-            idRecord = sharedPreferences.getString("mid", "");
+            AddSiteFarmer addSiteFarmer = new AddSiteFarmer(getActivity());
+            addSiteFarmer.execute(mid,myconstant.getSelectsitefarmer());
 
-            GetDataWhereOneColumn getDataWhereOneColumn = new GetDataWhereOneColumn(getActivity());
-            getDataWhereOneColumn.execute("mid", idRecord, myconstant.getSelectsitefarmer());
-
-            String jsonString = getDataWhereOneColumn.get();
+            String jsonString = addSiteFarmer.get();
             Log.d("5/Jan PlanCropSpinner", "JSON ==>" + jsonString);
             JSONArray data = new JSONArray(jsonString);
 
