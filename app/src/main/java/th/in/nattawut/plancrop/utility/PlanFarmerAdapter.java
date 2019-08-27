@@ -43,10 +43,11 @@ public class PlanFarmerAdapter extends ArrayAdapter<PlanFarmer> {
 
         //textPlanFarmerNo.setText(planFarmers.get(position).getNo());
         textPlanFarmer.setText(planFarmers.get(position).getPdate());
-        textPlanFarmerCid.setText(planFarmers.get(position).getYield());
+        //textPlanFarmerCid.setText(planFarmers.get(position).getYield());
         textPlanFarmerCrop.setText(planFarmers.get(position).getCrop());
         textPlanArea.setText(planFarmers.get(position).getArea());
 
+        textPlanFarmerCid.setText(String.valueOf(planFarmers.get(position).getYield()));
 
 
         return view;

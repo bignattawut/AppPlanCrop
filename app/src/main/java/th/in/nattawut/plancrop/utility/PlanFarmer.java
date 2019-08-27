@@ -16,7 +16,7 @@ public class PlanFarmer {
     @SerializedName("area")
     private String area;
     @SerializedName("yield")
-    private String yield;
+    private int yield;
 
 
     public String getNo() {
@@ -39,7 +39,7 @@ public class PlanFarmer {
         return area;
     }
 
-    public String getYield() {
+    public int getYield() {
         return yield;
     }
 }

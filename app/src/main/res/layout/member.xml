@@ -176,7 +176,7 @@
                     </android.support.v7.widget.CardView>
 
                     <android.support.v7.widget.CardView
-                        android:id="@+id/CardViewProduct"
+                        android:id="@+id/imageViewPlantResult"
                         android:layout_width="135dp"
                         android:layout_height="140dp"
                         android:layout_margin="10dp"

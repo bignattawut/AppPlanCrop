@@ -139,8 +139,8 @@ public class PlantFarmerViewFragment extends Fragment {
                                 //DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM,Locale.UK);
 
                             }
-                        }, day, month, year);
-                dataPickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
+                        }, year,month,day);
+                //dataPickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
                 dataPickerDialog.show();
             }
         });

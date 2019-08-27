@@ -5,80 +5,79 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="1dp">
 
-        <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginBottom="1dp"-->
-        <!--android:orientation="horizontal"-->
-        <!--android:padding="1dp">-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            android:orientation="horizontal"
+            android:padding="1dp">
 
 
-        <!--<TextView-->
-        <!--style="@style/fonts"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginLeft="5dp"-->
-        <!--android:text="จังหวัด :" />-->
+            <TextView
+                style="@style/fonts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="จังหวัด :" />
 
 
-        <!--<Spinner-->
-        <!--android:id="@+id/spProvince"-->
-        <!--style="@style/fonts"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_marginLeft="1dp"></Spinner>-->
-        <!--</LinearLayout>-->
+            <Spinner
+                android:id="@+id/spProvince"
+                style="@style/fonts"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1dp"></Spinner>
+        </LinearLayout>
 
-        <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginBottom="1dp"-->
-        <!--android:orientation="horizontal"-->
-        <!--android:padding="1dp">-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            android:orientation="horizontal"
+            android:padding="1dp">
 
 
-        <!--<TextView-->
-        <!--style="@style/fonts"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginLeft="5dp"-->
-        <!--android:text="อำเภอ :" />-->
+            <TextView
+                style="@style/fonts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="อำเภอ :" />
 
-        <!--<Spinner-->
-        <!--android:id="@+id/spAmphur"-->
-        <!--style="@style/fonts"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_marginLeft="1dp"></Spinner>-->
-        <!--</LinearLayout>-->
+            <Spinner
+                android:id="@+id/spAmphur"
+                style="@style/fonts"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1dp"></Spinner>
+        </LinearLayout>
 
-        <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginBottom="1dp"-->
-        <!--android:orientation="horizontal"-->
-        <!--android:padding="1dp">-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            android:orientation="horizontal"
+            android:padding="1dp">
 
-        <!--<TextView-->
-        <!--style="@style/fonts"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginLeft="5dp"-->
-        <!--android:text="ตำบล/แขวง :" />-->
+            <TextView
+                style="@style/fonts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="ตำบล/แขวง :" />
 
-        <!--<Spinner-->
-        <!--android:id="@+id/spSubDistrice"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_marginLeft="1dp"></Spinner>-->
-        <!--</LinearLayout>-->
+            <Spinner
+                android:id="@+id/spSubDistrice"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1dp"></Spinner>
+        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -203,11 +202,6 @@
                 android:inputType="text"
                 android:text="ชื่อพืช :" />
 
-            <!--<fr.ganfra.materialspinner.MaterialSpinner-->
-                <!--android:id="@+id/crop"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--app:ms_hint="ไม่เลือกรายการ"></fr.ganfra.materialspinner.MaterialSpinner>-->
 
             <Spinner
                 android:id="@+id/crop"

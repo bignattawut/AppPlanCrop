@@ -88,10 +88,10 @@ public interface OrderService {
 
 
     @GET("selectplant.php")
-    Call<List<Plant>> getPlant(@Query("sdate") String sdate/*,
-                               @Query("pid") String pid,
+    Call<List<Plant>> getPlant(@Query("pid") String pid,
                                @Query("did") String did,
-                               @Query("sid") String sid*/);
+                               @Query("sid") String sid,
+                               @Query("sdate") String sdate);
 
 
     @GET("plantactivity.php")

@@ -37,6 +37,8 @@ public class MemberFragment extends Fragment {
 
         CreateToolbal();
 
+        PlantResultController();
+
 
     }
 
@@ -153,6 +155,22 @@ public class MemberFragment extends Fragment {
                         .getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.contentMemberFragment, new OrderViewRePortFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+    }
+
+    private void PlantResultController() {
+        CardView imageViewPlantResult = getView().findViewById(R.id.imageViewPlantResult);
+        imageViewPlantResult.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                checkStatus();
+                getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentMemberFragment, new PlantResultViewFragment())
                         .addToBackStack(null)
                         .commit();
             }

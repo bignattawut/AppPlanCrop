@@ -14,7 +14,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SimpleAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.okhttp.FormEncodingBuilder;
@@ -28,12 +30,17 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import th.in.nattawut.plancrop.AdminActivity;
 import th.in.nattawut.plancrop.MainActivity;
 import th.in.nattawut.plancrop.MemberActivity;
 import th.in.nattawut.plancrop.R;
+import th.in.nattawut.plancrop.utility.AddAmpur;
+import th.in.nattawut.plancrop.utility.AddProvince;
 import th.in.nattawut.plancrop.utility.AddRegister;
+import th.in.nattawut.plancrop.utility.AddVillag;
+import th.in.nattawut.plancrop.utility.GetData;
 import th.in.nattawut.plancrop.utility.MyAlert;
 import th.in.nattawut.plancrop.utility.Myconstant;
 
@@ -51,9 +58,7 @@ public class MemberAddFragment extends Fragment {
     private ArrayList<String> arrVid = new ArrayList<>();
     private ArrayList<String> arrVidID = new ArrayList<>();
 
-    private ArrayAdapter<String> adpProvince,adpAmphur,adpSid,adpVid;
     private Spinner spProvince,spAmphur, spSubDistrice,spVillag;
-    private int rubIDprovince;
 
 
 
@@ -67,171 +72,103 @@ public class MemberAddFragment extends Fragment {
         //RegisterController
         registerController();
 
-        //จังหวัด
-        spProvince = getView().findViewById(R.id.spProvince);
-        adpProvince = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, arrProvince);
-        spProvince.setAdapter(adpProvince);
+        spProvince = getView().findViewById(R.id.spProvinceAdmin);
+        Province();
+        spAmphur = getView().findViewById(R.id.spAmphurAdmin);
 
-        //อำเภอ
-        spAmphur = getView().findViewById(R.id.spAmphur);
-        adpAmphur = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, arrAmphur);
-        spAmphur.setAdapter(adpAmphur);
+        spSubDistrice = getView().findViewById(R.id.spSubDistriceAdmin);
 
-        //ตำบล
-        spSubDistrice = getView().findViewById(R.id.spSubDistrice);
-        adpSid = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, arrSid);
-        spSubDistrice.setAdapter(adpSid);
-
-        //ตำบล
-        spVillag = getView().findViewById(R.id.spVillag);
-        adpVid = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, arrVid);
-        spVillag.setAdapter(adpVid);
+        spVillag = getView().findViewById(R.id.spVillagAdmin);
 
 
 
     }
-    @Override
-    public void onStart() {
-        super.onStart();
-        new DataProvince().execute();
-        new DataAmphur().execute("1");
-        new DataSubDistrict().execute("1","1");
-        new DataVillag().execute("1","1","1");
+    public void Province() {
+        try {
+            Myconstant myconstant = new Myconstant();
+            GetData getData = new GetData(getActivity());
+            getData.execute(myconstant.getUrlProvince());
+
+            String jsonString = getData.get();
+            JSONArray data = new JSONArray(jsonString);
+
+            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
+            HashMap<String, String> map;
+
+            for (int i = 0; i < data.length(); i++) {
+                JSONObject c = data.getJSONObject(i);
+
+                map = new HashMap<String, String>();
+                map.put("pid", c.getString("pid"));
+                map.put("thai", c.getString("thai"));
+
+                arrProvinceID.add(c.getString("pid"));
+                arrProvince.add(c.getString("thai"));
+                MyArrList.add(map);
+            }
+            SimpleAdapter sAdap;
+            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_province,
+                    new String[]{"pid", "thai"}, new int[]{R.id.pid, R.id.pidthai});
+            spProvince.setAdapter(sAdap);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        spProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (spProvince.getSelectedItem() != null) {
+                    Amphur(arrProvinceID.get(position));
+
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
-    public class DataProvince extends AsyncTask<String, Void, String> {
+    public void Amphur(String province) {
+        try {
+            Myconstant myconstant = new Myconstant();
+            AddProvince addProvince = new AddProvince(getActivity());
+            addProvince.execute(province,myconstant.getUrlAmphur());
 
-        String result;
-        ArrayList<String> listprovice;
-        ArrayList<String> listprovinceid;
+            String jsonString = addProvince.get();
+            JSONArray data = new JSONArray(jsonString);
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            Toast.makeText(getActivity(), "Connecting", Toast.LENGTH_LONG).show();
-            listprovice = new ArrayList<>();
-            listprovinceid = new ArrayList<>();
-        }
-        @Override
-        protected String doInBackground(String... params) {
-            OkHttpClient client = new OkHttpClient();
-            Request request = new Request.Builder()
-                    .url(Myconstant.getUrlProvince)
-                    .build();
-            try {
-                Response response = client.newCall(request).execute();
-                result = response.body().string();
-            } catch (Exception e) {
-                e.printStackTrace();
+            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
+            HashMap<String, String> map;
+
+            for (int i = 0; i < data.length(); i++) {
+                JSONObject c = data.getJSONObject(i);
+
+                map = new HashMap<String, String>();
+                map.put("did", c.getString("did"));
+                map.put("thai", c.getString("thai"));
+
+                arrAmphurID.add(c.getString("did"));
+                arrAmphur.add(c.getString("thai"));
+                MyArrList.add(map);
+
             }
-            try {
-                JSONArray jsonArray = new JSONArray(result);
-                JSONObject jsonObject = null;
-
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    jsonObject = jsonArray.getJSONObject(i);
-                    listprovice.add(jsonObject.getString("thai"));
-                    listprovinceid.add(jsonObject.getString("pid"));
-
-                    Log.d("5/Jan getUrlProvince", "JSON ==>" + result);
-                }
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            return result;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-            arrProvince.addAll(listprovice);
-            arrProvinceID.addAll(listprovinceid);
-            adpProvince.notifyDataSetChanged();
-
-            spProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    if (spProvince.getSelectedItem() != null) {
-                        new DataAmphur().execute(listprovinceid.get(position));
-                        rubIDprovince = Integer.parseInt(listprovinceid.get(position));
-                        arrAmphur.clear();
-                    }
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
-            });
-
-        }
-    }
-
-    public class DataAmphur extends AsyncTask<String, Void, String> {
-
-        String result;
-        private ArrayList<String> listamphur;
-        private ArrayList<String> listamphurid;
-
-        @Override
-        protected void onPreExecute() {
-            listamphur = new ArrayList<>();
-            listamphurid = new ArrayList<>();
-            super.onPreExecute();
-        }
-
-        @Override
-        protected String doInBackground(String... strings) {
-            RequestBody requestBody = new FormEncodingBuilder()
-                    .add("pid", strings[0])
-                    .build();
-            OkHttpClient okHttpClient = new OkHttpClient();
-            Request request = new Request.Builder()
-                    .url(Myconstant.getUrlAmphur)
-                    .post(requestBody)
-                    .build();
-            try {
-                Response response = okHttpClient.newCall(request).execute();
-                result = response.body().string();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            try {
-                JSONArray jsonArray = new JSONArray(result);
-                JSONObject jsonObject = null;
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    jsonObject = jsonArray.getJSONObject(i);
-                    listamphurid.add(jsonObject.getString("did"));
-                    listamphur.add(jsonObject.getString("thai"));
-
-                    Log.d("5/Jan getUrlAmphur", "JSON ==>" + result);
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            return result;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-            arrAmphur.addAll(listamphur);
-            arrAmphurID.addAll(listamphurid);
-            adpAmphur.notifyDataSetChanged();
-
+            SimpleAdapter sAdap;
+            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_amphur,
+                    new String[]{"did", "thai"}, new int[]{R.id.did, R.id.didthai});
+            spAmphur.setAdapter(sAdap);
 
             spAmphur.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     if (spAmphur.getSelectedItem() != null) {
-                        new DataSubDistrict().execute(listamphurid.get(position));//String.valueOf(rubIDprovince)
-                        rubIDprovince = Integer.parseInt(listamphurid.get(position));
+                        SubDistrice(arrAmphurID.get(position));
                         arrSid.clear();
-                        //MyAlert myAlert = new MyAlert(getActivity());
-                        // myAlert.onrmaIDialog("spAmphur","am");
                     }
+
                 }
 
                 @Override
@@ -239,72 +176,46 @@ public class MemberAddFragment extends Fragment {
 
                 }
             });
+
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 
-    private class DataSubDistrict extends AsyncTask<String, Void, String> {
+    public void SubDistrice(String amphur) {
+        try {
+            Myconstant myconstant = new Myconstant();
+            AddAmpur addAmpur = new AddAmpur(getActivity());
+            addAmpur.execute(amphur,myconstant.getUrlSid());
 
-        String result;
-        private ArrayList<String> listSid;
-        private ArrayList<String> listSidId;
+            String jsonString = addAmpur.get();
+            JSONArray data = new JSONArray(jsonString);
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            listSid = new ArrayList<>();
-            listSidId = new ArrayList<>();
+            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
+            HashMap<String, String> map;
 
-        }
+            for (int i = 0; i < data.length(); i++) {
+                JSONObject c = data.getJSONObject(i);
 
-        @Override
-        protected String doInBackground(String... strings) {
-            RequestBody requestBody = new FormEncodingBuilder()
-                    .add("did", strings[0])
-                    .build();
-            OkHttpClient okHttpClient = new OkHttpClient();
-            Request request = new Request.Builder()
-                    .url(Myconstant.getUrlSid)
-                    .post(requestBody)
-                    .build();
-            try {
-                Response response = okHttpClient.newCall(request).execute();
-                result = response.body().string();
+                map = new HashMap<String, String>();
+                map.put("sid", c.getString("sid"));
+                map.put("thai", c.getString("thai"));
 
-            } catch (Exception e) {
-                e.printStackTrace();
+                arrSidID.add(c.getString("sid"));
+                arrSid.add(c.getString("thai"));
+                MyArrList.add(map);
             }
-            try {
-                JSONArray jsonArray = new JSONArray(result);
-                JSONObject jsonObject = null;
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    jsonObject = jsonArray.getJSONObject(i);
-                    listSidId.add(jsonObject.getString("sid"));
-                    listSid.add(jsonObject.getString("thai"));
-
-                    Log.d("5/Jan getUrlSid", "JSON ==>" + result);
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            return result;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-            arrSid.addAll(listSid);
-            arrSidID.addAll(listSidId);
-            adpSid.notifyDataSetChanged();
+            SimpleAdapter sAdap;
+            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_subdistrice,
+                    new String[]{"sid", "thai"}, new int[]{R.id.sid, R.id.sidthai});
+            spSubDistrice.setAdapter(sAdap);
 
             spSubDistrice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     if (spSubDistrice.getSelectedItem() != null) {
-                        new DataVillag().execute(listSidId.get(position));
-                        rubIDprovince = Integer.parseInt(listSidId.get(position));
-                        arrVid.clear();
-                        //MyAlert myAlert = new MyAlert(getActivity());
-                        //myAlert.onrmaIDialog("spAmphur","am");
+                        Villag(arrSidID.get(position));
+
                     }
                 }
 
@@ -314,63 +225,38 @@ public class MemberAddFragment extends Fragment {
                 }
             });
 
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 
-    private class DataVillag extends AsyncTask<String, Void, String> {
+    public void Villag(String villag) {
+        try {
+            Myconstant myconstant = new Myconstant();
+            AddVillag addVillag = new AddVillag(getActivity());
+            addVillag.execute(villag,myconstant.getUrlVid());
 
-        String result;
-        private ArrayList<String> listVid;
-        private ArrayList<String> listVidId;
+            String jsonString = addVillag.get();
+            JSONArray data = new JSONArray(jsonString);
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            listVid = new ArrayList<>();
-            listVidId = new ArrayList<>();
+            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
+            HashMap<String, String> map;
 
-        }
+            for (int i = 0; i < data.length(); i++) {
+                JSONObject c = data.getJSONObject(i);
 
-        @Override
-        protected String doInBackground(String... strings) {
-            RequestBody requestBody = new FormEncodingBuilder()
-                    .add("sid", strings[0])
-                    .build();
-            OkHttpClient okHttpClient = new OkHttpClient();
-            Request request = new Request.Builder()
-                    .url(Myconstant.getUrlVid)
-                    .post(requestBody)
-                    .build();
-            try {
-                Response response = okHttpClient.newCall(request).execute();
-                result = response.body().string();
-
-            } catch (Exception e) {
-                e.printStackTrace();
+                map = new HashMap<String, String>();
+                map.put("vid", c.getString("vid"));
+                map.put("thai", c.getString("thai"));
+                MyArrList.add(map);
             }
-            try {
-                JSONArray jsonArray = new JSONArray(result);
-                JSONObject jsonObject = null;
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    jsonObject = jsonArray.getJSONObject(i);
-                    listVidId.add(jsonObject.getString("vid"));
-                    listVid.add(jsonObject.getString("thai"));
+            SimpleAdapter sAdap;
+            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_village,
+                    new String[]{"vid", "thai"}, new int[]{R.id.vid, R.id.vidthai});
+            spVillag.setAdapter(sAdap);
 
-                    Log.d("5/Jan getUrlVid", "JSON ==>" + result);
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            return result;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-            arrVid.addAll(listVid);
-            arrVidID.addAll(listVidId);
-            adpVid.notifyDataSetChanged();
-
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 
@@ -406,10 +292,10 @@ public class MemberAddFragment extends Fragment {
         EditText id = getView().findViewById(R.id.edtid);
         EditText name = getView().findViewById(R.id.edtname);
         EditText address = getView().findViewById(R.id.edtaddress);
-        Spinner province = getView().findViewById(R.id.spProvince);
-        Spinner amphur = getView().findViewById(R.id.spAmphur);
-        Spinner subDistrice = getView().findViewById(R.id.spSubDistrice);
-        Spinner villag = getView().findViewById(R.id.spVillag);
+        TextView province = getView().findViewById(R.id.pid);
+        TextView amphur = getView().findViewById(R.id.did);
+        TextView subDistrice = getView().findViewById(R.id.sid);
+        TextView villag = getView().findViewById(R.id.vid);
         EditText phon = getView().findViewById(R.id.edtphone);
         EditText email = getView().findViewById(R.id.edtemail);
 
@@ -419,10 +305,10 @@ public class MemberAddFragment extends Fragment {
         String nameString = name.getText().toString().trim();
         String idString = id.getText().toString().trim();
         String addressString = address.getText().toString().trim();
-        String provinceString = province.getSelectedItem().toString().trim();
-        String amphurString = amphur.getSelectedItem().toString().trim();
-        String subDistriceString = subDistrice.getSelectedItem().toString().trim();
-        String villagString = villag.getSelectedItem().toString().trim();
+        String provinceString = province.getText().toString().trim();
+        String amphurString = amphur.getText().toString().trim();
+        String subDistriceString = subDistrice.getText().toString().trim();
+        String villagString = villag.getText().toString().trim();
         String phonString = phon.getText().toString().trim();
         String emailString = email.getText().toString().trim();
 

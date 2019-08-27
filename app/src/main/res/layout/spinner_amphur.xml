@@ -6,14 +6,14 @@
     android:orientation="horizontal">
 
     <TextView
-        android:id="@+id/pid"
+        android:id="@+id/did"
         android:textSize="0dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CustomerID" />
 
     <TextView
-        android:id="@+id/pidthai"
+        android:id="@+id/didthai"
         app:fontFamily="@font/fonts1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

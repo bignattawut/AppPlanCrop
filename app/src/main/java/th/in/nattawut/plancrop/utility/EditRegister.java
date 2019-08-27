@@ -23,15 +23,19 @@ public class EditRegister extends AsyncTask<String, Void, String> {
             RequestBody requestBody = new FormEncodingBuilder()
                     .add("mid", strings[0])
                     .add("UserID", strings[1])
-                    .add("pwd", strings[2])
+                    .add("password", strings[2])
                     .add("name", strings[3])
                     .add("id", strings[4])
                     .add("address", strings[5])
-                    .add("tel", strings[6])
-                    .add("email", strings[7])
+                    .add("pid", strings[6])
+                    .add("did", strings[7])
+                    .add("sid", strings[8])
+                    .add("vid", strings[9])
+                    .add("tel", strings[10])
+                    .add("email", strings[11])
                     .build();
             Request.Builder builder = new Request.Builder();
-            Request request = builder.url(strings[8]).post(requestBody).build();
+            Request request = builder.url(strings[12]).post(requestBody).build();
             Response response = okHttpClient.newCall(request).execute();
             return response.body().string();
 

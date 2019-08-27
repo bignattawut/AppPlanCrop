@@ -199,7 +199,7 @@
                     android:text="จังหวัด :" />
 
                 <Spinner
-                    android:id="@+id/spProvince"
+                    android:id="@+id/EditspProvinceAdminMember"
                     style="@style/fonts"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -229,7 +229,7 @@
                     android:text="อำเภอ :" />
 
                 <Spinner
-                    android:id="@+id/spAmphur"
+                    android:id="@+id/EditspAmphurAdminMember"
                     style="@style/fonts"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -258,7 +258,7 @@
                     android:text="ตำบล/แขวง :" />
 
                 <Spinner
-                    android:id="@+id/spSubDistrice"
+                    android:id="@+id/EditspSubDistriceAdminMember"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="1dp"></Spinner>
@@ -286,7 +286,7 @@
                     android:text="หมู่บ้าน:" />
 
                 <Spinner
-                    android:id="@+id/spVillag"
+                    android:id="@+id/EditspVillagAdminMember"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="1dp"></Spinner>

@@ -229,6 +229,11 @@ public class PlanFarmerViewFragment extends Fragment {
         String newPDate = getActivity().getIntent().getExtras().getString("pdate", pdate);
         textPDate.setText(newPDate);
 
+//        Spinner EditPlanCropSpinner = view.findViewById(R.id.EditPlanCropSpinner);
+//        String newPlanCrop = getActivity().getIntent().getExtras().getString("crop", crop);
+
+
+
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);

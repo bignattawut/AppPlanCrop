@@ -3,7 +3,7 @@ package th.in.nattawut.plancrop.utility;
 public class Myconstant {
 
 
-    String ip = "192.168.1.122";
+    String ip = "192.168.1.135";
 
     //ล็อคอิน
     private String urlGetUser = "http://"+ip+"/android/php/memberlogin.php";
@@ -14,7 +14,7 @@ public class Myconstant {
     private String urladdPlan = "http://"+ip+"/android/php/insertplan.php";
     //public static String getUrlCrop ="http://192.168.1.122/android/php/selectspinnercrop.php";
     public  String urlCrop ="http://"+ip+"/android/php/selectspinnercrop.php";
-    public static String getUrlmid = "http://192.168.1.122/android/php/selectmidspinner.php";
+    public static String getUrlmid = "http://192.168.1.135/android/php/selectmidspinner.php";
     private String urlDeletePlan = "http://"+ip+"/android/php/deleteplan.php";
     private String urlselectPlan = "http://"+ip+"/android/php/selectplanandroid.php";
     private String[] columnPlanString = new String[]{"no","mid","name","crop","pdate","area"};
@@ -57,10 +57,15 @@ public class Myconstant {
     private String urlEditMemberAndroid = "http://"+ip+"/android/php/editmemberandroid.php";
 
     //spinner จังหวัด อำเภอ ตำบล
-    public static String getUrlProvince = "http://192.168.1.122/android/php/selectprovince.php";
-    public static String getUrlAmphur = "http://192.168.1.122/android/php/selectdistrict.php";
-    public static String getUrlSid = "http://192.168.1.122/android/php/selectsubdistrict.php";
-    public static String getUrlVid = "http://192.168.1.122/android/php/selectsitevillage.php";
+    public static String getUrlProvince = "http://192.168.1.135/android/php/selectprovince.php";
+    public static String getUrlAmphur = "http://192.168.1.135/android/php/selectdistrict.php";
+    public static String getUrlSid = "http://192.168.1.135/android/php/selectsubdistrict.php";
+    public static String getUrlVid = "http://192.168.1.135/android/php/selectsitevillage.php";
+
+    public String UrlProvince = "http://"+ip+"/android/php/selectprovince.php";
+    public String UrlAmphur = "http://"+ip+"/android/php/selectdistrict.php";
+    public String UrlSid = "http://"+ip+"/android/php/selectsubdistrict.php";
+    public String UrlVid = "http://"+ip+"/android/php/selectsitevillage.php";
 
 
 
@@ -82,7 +87,7 @@ public class Myconstant {
 
     //การเพาะปลูก
     private String urladdPlant = "http://"+ip+"/android/php/insertplant.php";
-    public static String getUrlSite ="http://192.168.1.122/android/php/selectspinnersite.php";
+    public static String getUrlSite ="http://192.168.1.135/android/php/selectspinnersite.php";
     private String urlselectPlant = "http://"+ip+"/android/php/selectplant.php";
     private String[] columnPlantString = new String[]{"no","pdate","cid","yield","crop","area","mid","name","sno","lat","lon"};
     private String urlDeletePlant = "http://"+ip+"/android/php/deleteplant.php";
@@ -321,6 +326,19 @@ public class Myconstant {
     }
     public String getUrlSelectSiteVillageFarmer() {
         return urlSelectSiteVillageFarmer;
+    }
+
+    public String getUrlProvince() {
+        return UrlProvince;
+    }
+    public String getUrlAmphur() {
+        return UrlAmphur;
+    }
+    public String getUrlSid() {
+        return UrlSid;
+    }
+    public String getUrlVid() {
+        return UrlVid;
     }
 }
 
