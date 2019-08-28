@@ -22,6 +22,28 @@
             app:fontFamily="@font/fonts1" />
 
         <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/style1"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="เกษตรกร  :" />
+
+
+        <Spinner
+            android:id="@+id/EditPlantName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></Spinner>
+
+    </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -35,21 +57,11 @@
                 android:layout_height="wrap_content"
                 android:text="แปลงเพาะปลูก :" />
 
-            <TextView
-                android:textSize="0dp"
-                android:id="@+id/EditTexPlantMid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:text="เกษตรกร :" />
+            <Spinner
+                android:id="@+id/EditSiteName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></Spinner>
 
-            <TextView
-                android:layout_marginLeft="5dp"
-                android:id="@+id/EditTexPlantName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:text="เกษตรกร :" />
         </LinearLayout>
 
         <LinearLayout
@@ -72,6 +84,8 @@
                 android:layout_marginLeft="1dp"></Spinner>
 
         </LinearLayout>
+
+
 
         <LinearLayout
             android:layout_width="match_parent"

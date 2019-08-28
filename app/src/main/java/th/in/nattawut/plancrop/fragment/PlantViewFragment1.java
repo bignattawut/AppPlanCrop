@@ -44,6 +44,7 @@ import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.APIUtils;
 import th.in.nattawut.plancrop.utility.AddAmpur;
 import th.in.nattawut.plancrop.utility.AddProvince;
+import th.in.nattawut.plancrop.utility.AddSiteFarmer;
 import th.in.nattawut.plancrop.utility.DeletePlant;
 import th.in.nattawut.plancrop.utility.EditPlant;
 import th.in.nattawut.plancrop.utility.GetData;
@@ -76,7 +77,8 @@ public class PlantViewFragment1 extends Fragment {
     private ArrayList<String> arrSid = new ArrayList<>();
     private ArrayList<String> arrSidID = new ArrayList<>();
 
-    //private Spinner spProvince,spAmphur, spSubDistrice;
+    private ArrayList<String> arrmid = new ArrayList<>();
+    private ArrayList<String> arrname = new ArrayList<>();
 
 
     @Override
@@ -349,6 +351,100 @@ public class PlantViewFragment1 extends Fragment {
         }
     }
 
+    private void selectFarmer() {
+        if (android.os.Build.VERSION.SDK_INT > 9) { //setup policy เเพื่อมือถือที่มีประปฏิบัติการสูงกว่านีจะไม่สามารถconnectกับโปรโตรคอลได้
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+        final Spinner spin = view.findViewById(R.id.EditPlantName);
+        try {
+
+            Myconstant myconstant = new Myconstant();
+
+
+            GetData getData = new GetData(getActivity());
+            getData.execute(myconstant.getUrlSiteFarmer());
+
+            String jsonString = getData.get();
+            Log.d("5/Jan PlanCropSpinner", "JSON ==>" + jsonString);
+            JSONArray data = new JSONArray(jsonString);
+
+            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
+            HashMap<String, String> map;
+
+            for (int i = 0; i < data.length(); i++) {
+                JSONObject c = data.getJSONObject(i);
+
+                map = new HashMap<String, String>();
+                map.put("mid", c.getString("mid"));
+                map.put("name", c.getString("name"));
+
+                arrmid.add(c.getString("mid"));
+                arrname.add(c.getString("name"));
+                MyArrList.add(map);
+            }
+            SimpleAdapter sAdap;
+            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_sitename,
+                    new String[]{"mid", "name"}, new int[]{R.id.textMId, R.id.textName});
+            spin.setAdapter(sAdap);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (spin.getSelectedItem() != null) {
+                    siteController(arrmid.get(position));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    public void siteController(String mid) {
+        if (android.os.Build.VERSION.SDK_INT > 9) { //setup policy เเพื่อมือถือที่มีประปฏิบัติการสูงกว่านีจะไม่สามารถconnectกับโปรโตรคอลได้
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+        final Spinner spin = view.findViewById(R.id.EditSiteName);
+        try {
+
+            Myconstant myconstant = new Myconstant();
+            AddSiteFarmer addSiteFarmer = new AddSiteFarmer(getActivity());
+            addSiteFarmer.execute(mid,myconstant.getSelectsitefarmer());
+
+            String jsonString = addSiteFarmer.get();
+            Log.d("5/Jan PlanCropSpinner", "JSON ==>" + jsonString);
+            JSONArray data = new JSONArray(jsonString);
+
+            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
+            HashMap<String, String> map;
+
+            for(int i = 0; i < data.length(); i++){
+                JSONObject c = data.getJSONObject(i);
+
+                map = new HashMap<String, String>();
+                map.put("sno", c.getString("sno"));
+                map.put("thai", c.getString("thai"));
+                MyArrList.add(map);
+            }
+
+            SimpleAdapter sAdap;
+            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_site,
+                    new String[] {"sno", "thai"}, new int[] {R.id.textPlantSiteSnoSpinner, R.id.textPlantThaiSpinner});
+            spin.setAdapter(sAdap);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private void PlantController() {
         Button button = getView().findViewById(R.id.seletePlant);
         button.setOnClickListener(new View.OnClickListener() {
@@ -486,13 +582,8 @@ public class PlantViewFragment1 extends Fragment {
         //selectcroptype
         selectcroptype();
 
-        TextView texPlantMid = view.findViewById(R.id.EditTexPlantMid);
-        String strTextShowmid = getActivity().getIntent().getExtras().getString("Mid",midStrings);
-        texPlantMid.setText(strTextShowmid);
+        selectFarmer();
 
-        TextView texPlantName = view.findViewById(R.id.EditTexPlantName);
-        String strTextShowName = getActivity().getIntent().getExtras().getString("Name",nameStrings);
-        texPlantName.setText(strTextShowName);
 
         TextView textPDate = view.findViewById(R.id.EditMyDate);
         String newPDate = getActivity().getIntent().getExtras().getString("pdate",pdataString);
@@ -510,30 +601,32 @@ public class PlantViewFragment1 extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
+                TextView EditName = view.findViewById(R.id.textPlantSiteSnoSpinner);
                 TextView EditPlanCropSpinner = view.findViewById(R.id.textPlanCidSpinner);
                 TextView EditMyDate = view.findViewById(R.id.EditMyDate);
                 EditText EditAddPlant1 = view.findViewById(R.id.EditAddPlant1);
                 EditText EditAddPlant2 = view.findViewById(R.id.EditAddPlant2);
                 EditText EditAddPlant3 = view.findViewById(R.id.EditAddPlant3);
 
+                String newEditName = EditName.getText().toString();
                 String newEditPlanCropSpinner = EditPlanCropSpinner.getText().toString();
                 String newEditMyDate = EditMyDate.getText().toString();
                 String newEditArea = Float.toString(Float.parseFloat(EditAddPlant1.getText().toString().trim())
                         + (Float.parseFloat(EditAddPlant2.getText().toString().trim()) * 100
                         + Float.parseFloat(EditAddPlant3.getText().toString().trim())) / 400);
 
-                updatePlant(no,sno,newEditMyDate, newEditPlanCropSpinner, newEditArea);
+                updatePlant(no,newEditName,newEditMyDate, newEditPlanCropSpinner, newEditArea);
             }
         });
         builder.show();
     }
 
-    private void updatePlant(String no, String sno, String newEditMyDate, String newEditPlanCropSpinner, String newEditArea) {
+    private void updatePlant(String no, String newEditName, String newEditMyDate, String newEditPlanCropSpinner, String newEditArea) {
         Myconstant myconstant = new Myconstant();
 
         try {
             EditPlant editPlant = new EditPlant(getActivity());
-            editPlant.execute(no, sno,
+            editPlant.execute(no, newEditName,
                     newEditMyDate,
                     newEditPlanCropSpinner,
                     newEditArea,

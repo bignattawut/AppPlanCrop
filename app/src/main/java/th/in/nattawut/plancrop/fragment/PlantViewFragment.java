@@ -38,6 +38,7 @@ import java.util.HashMap;
 import th.in.nattawut.plancrop.AdminActivity;
 import th.in.nattawut.plancrop.HomeActivity;
 import th.in.nattawut.plancrop.R;
+import th.in.nattawut.plancrop.utility.AddSiteFarmer;
 import th.in.nattawut.plancrop.utility.DeletePlant;
 import th.in.nattawut.plancrop.utility.EditPlant;
 import th.in.nattawut.plancrop.utility.GetData;
@@ -47,6 +48,15 @@ import th.in.nattawut.plancrop.utility.PlantAdpter;
 public class PlantViewFragment extends Fragment {
 
     SwipeRefreshLayout mSwipeRefreshLayout;
+
+    private ArrayList<String> arrmid = new ArrayList<>();
+    private ArrayList<String> arrname = new ArrayList<>();
+    View view;
+
+    ImageView selctDate;
+    TextView date;
+    DatePickerDialog dataPickerDialog;
+    Calendar calendar;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -83,20 +93,160 @@ public class PlantViewFragment extends Fragment {
         });
     }
 
-//    private void plantViewController() {
-//        FloatingActionButtonExpandable floatingActionButtonViewPlant = getView().findViewById(R.id.floatingActionButtonViewPlant);
-//        floatingActionButtonViewPlant.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                getActivity()
-//                        .getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .replace(R.id.contentHomeFragment, new PlantFragment())
-//                        .addToBackStack(null)
-//                        .commit();
-//            }
-//        });
-//    }
+
+    private void selectFarmer() {
+        if (android.os.Build.VERSION.SDK_INT > 9) { //setup policy เเพื่อมือถือที่มีประปฏิบัติการสูงกว่านีจะไม่สามารถconnectกับโปรโตรคอลได้
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+        final Spinner spin = view.findViewById(R.id.EditPlantName);
+        try {
+
+            Myconstant myconstant = new Myconstant();
+
+
+            GetData getData = new GetData(getActivity());
+            getData.execute(myconstant.getUrlSiteFarmer());
+
+            String jsonString = getData.get();
+            Log.d("5/Jan PlanCropSpinner", "JSON ==>" + jsonString);
+            JSONArray data = new JSONArray(jsonString);
+
+            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
+            HashMap<String, String> map;
+
+            for (int i = 0; i < data.length(); i++) {
+                JSONObject c = data.getJSONObject(i);
+
+                map = new HashMap<String, String>();
+                map.put("mid", c.getString("mid"));
+                map.put("name", c.getString("name"));
+
+                arrmid.add(c.getString("mid"));
+                arrname.add(c.getString("name"));
+                MyArrList.add(map);
+            }
+            SimpleAdapter sAdap;
+            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_sitename,
+                    new String[]{"mid", "name"}, new int[]{R.id.textMId, R.id.textName});
+            spin.setAdapter(sAdap);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (spin.getSelectedItem() != null) {
+                    siteController(arrmid.get(position));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    public void siteController(String mid) {
+        if (android.os.Build.VERSION.SDK_INT > 9) { //setup policy เเพื่อมือถือที่มีประปฏิบัติการสูงกว่านีจะไม่สามารถconnectกับโปรโตรคอลได้
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+        final Spinner spin = view.findViewById(R.id.EditSiteName);
+        try {
+
+            Myconstant myconstant = new Myconstant();
+            AddSiteFarmer addSiteFarmer = new AddSiteFarmer(getActivity());
+            addSiteFarmer.execute(mid,myconstant.getSelectsitefarmer());
+
+            String jsonString = addSiteFarmer.get();
+            Log.d("5/Jan PlanCropSpinner", "JSON ==>" + jsonString);
+            JSONArray data = new JSONArray(jsonString);
+
+            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
+            HashMap<String, String> map;
+
+            for(int i = 0; i < data.length(); i++){
+                JSONObject c = data.getJSONObject(i);
+
+                map = new HashMap<String, String>();
+                map.put("sno", c.getString("sno"));
+                map.put("thai", c.getString("thai"));
+                MyArrList.add(map);
+            }
+
+            SimpleAdapter sAdap;
+            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_site,
+                    new String[] {"sno", "thai"}, new int[] {R.id.textPlantSiteSnoSpinner, R.id.textPlantThaiSpinner});
+            spin.setAdapter(sAdap);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void editpdateController() {
+        date = view.findViewById(R.id.EditMyDate);
+        selctDate = view.findViewById(R.id.EditImageViewDate);
+        selctDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dataPickerDialog = new DatePickerDialog(getActivity(),/*AlertDialog.THEME_DEVICE_DEFAULT_DARK,*///Theme
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int y, int m, int d) {
+                                date.setText(y + "/" + (m + 1) + "/" + d);
+                            }
+                        }, day, month, year);
+                dataPickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());//วันที่ปัจจุบัน
+                dataPickerDialog.show();
+            }
+        });
+    }
+
+    private void selectcroptype() {
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+        final Spinner spin = view.findViewById(R.id.EditPlantCropSpinner);
+        try {
+            Myconstant myconstant = new Myconstant();
+            GetData getData = new GetData(getActivity());
+            getData.execute(myconstant.getUrlCrop());
+
+            String jsonString = getData.get();
+            Log.d("5/Jan CropType", "JSON ==>" + jsonString);
+            JSONArray data = new JSONArray(jsonString);
+
+            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
+            HashMap<String, String> map;
+
+            for (int i = 0; i < data.length(); i++) {
+                JSONObject c = data.getJSONObject(i);
+
+                map = new HashMap<String, String>();
+                map.put("cid", c.getString("cid"));
+                map.put("crop", c.getString("crop"));
+                MyArrList.add(map);
+            }
+            SimpleAdapter sAdap;
+            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_plancrop,
+                    new String[]{"cid", "crop"}, new int[]{R.id.textPlanCidSpinner, R.id.textPlanCropSpinner});
+            spin.setAdapter(sAdap);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     private void createListView() {
         final ListView listView = getView().findViewById(R.id.listViewPlant);
@@ -243,76 +393,20 @@ public class PlantViewFragment extends Fragment {
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
         final View view = layoutInflater.inflate(R.layout.edit_plant, null);
 
-        TextView texPlantMid = view.findViewById(R.id.EditTexPlantMid);
-        String strTextShowmid = getActivity().getIntent().getExtras().getString("Mid",midStrings);
-        texPlantMid.setText(strTextShowmid);
 
-        TextView texPlantName = view.findViewById(R.id.EditTexPlantName);
-        String strTextShowName = getActivity().getIntent().getExtras().getString("Name",nameStrings);
-        texPlantName.setText(strTextShowName);
+        selectFarmer();
 
+        //editpdate
+        editpdateController();
 
-
-        if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }
-        final Spinner spin = view.findViewById(R.id.EditPlantCropSpinner);
-        try {
-            Myconstant myconstant = new Myconstant();
-            GetData getData = new GetData(getActivity());
-            getData.execute(myconstant.getUrlCrop());
-
-            String jsonString = getData.get();
-            Log.d("5/Jan CropType", "JSON ==>" + jsonString);
-            JSONArray data = new JSONArray(jsonString);
-
-            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
-            HashMap<String, String> map;
-
-            for (int i = 0; i < data.length(); i++) {
-                JSONObject c = data.getJSONObject(i);
-
-                map = new HashMap<String, String>();
-                map.put("cid", c.getString("cid"));
-                map.put("crop", c.getString("crop"));
-                MyArrList.add(map);
-            }
-            SimpleAdapter sAdap;
-            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_plancrop,
-                    new String[]{"cid", "crop"}, new int[]{R.id.textPlanCidSpinner, R.id.textPlanCropSpinner});
-            spin.setAdapter(sAdap);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        //selectcroptype
+        selectcroptype();
 
         TextView textPDate = view.findViewById(R.id.EditMyDate);
         String newPDate = getActivity().getIntent().getExtras().getString("pdate",pdataString);
         textPDate.setText(newPDate);
 
-        final TextView data = view.findViewById(R.id.EditMyDate);
-        ImageView selctData = view.findViewById(R.id.EditImageViewDate);
-        selctData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Calendar calendar = Calendar.getInstance();
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH);
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog dataPickerDialog = new DatePickerDialog(getActivity(),/*AlertDialog.THEME_DEVICE_DEFAULT_DARK,*///Theme
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int y, int m, int d) {
-                                data.setText(y + "/" + (m + 1) + "/" + d);
-                            }
-                        }, day, month, year);
-                dataPickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());//วันที่ปัจจุบัน
-
-                dataPickerDialog.show();
-            }
-        });
 
         builder.setView(view);
         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
@@ -325,30 +419,32 @@ public class PlantViewFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
+                TextView EditName = view.findViewById(R.id.EditPlantName);
                 TextView EditPlanCropSpinner = view.findViewById(R.id.textPlanCidSpinner);
                 TextView EditMyDate = view.findViewById(R.id.EditMyDate);
                 EditText EditAddPlant1 = view.findViewById(R.id.EditAddPlant1);
                 EditText EditAddPlant2 = view.findViewById(R.id.EditAddPlant2);
                 EditText EditAddPlant3 = view.findViewById(R.id.EditAddPlant3);
 
+                String newEditName = EditName.getText().toString();
                 String newEditPlanCropSpinner = EditPlanCropSpinner.getText().toString();
                 String newEditMyDate = EditMyDate.getText().toString();
                 String newEditArea = Float.toString(Float.parseFloat(EditAddPlant1.getText().toString().trim())
                         + (Float.parseFloat(EditAddPlant2.getText().toString().trim()) * 100
                         + Float.parseFloat(EditAddPlant3.getText().toString().trim())) / 400);
 
-                updatePlant(no,sno,newEditMyDate, newEditPlanCropSpinner, newEditArea);
+                updatePlant(no,newEditName,newEditMyDate, newEditPlanCropSpinner, newEditArea);
             }
         });
         builder.show();
     }
 
-    private void updatePlant(String no, String sno, String newEditMyDate, String newEditPlanCropSpinner, String newEditArea) {
+    private void updatePlant(String no, String newEditName, String newEditMyDate, String newEditPlanCropSpinner, String newEditArea) {
         Myconstant myconstant = new Myconstant();
 
         try {
             EditPlant editPlant = new EditPlant(getActivity());
-            editPlant.execute(no, sno,
+            editPlant.execute(no, newEditName,
                     newEditMyDate,
                     newEditPlanCropSpinner,
                     newEditArea,
