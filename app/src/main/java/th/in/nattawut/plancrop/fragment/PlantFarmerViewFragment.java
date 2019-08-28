@@ -2,7 +2,9 @@ package th.in.nattawut.plancrop.fragment;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
@@ -45,6 +47,7 @@ import th.in.nattawut.plancrop.utility.DeletePlant;
 import th.in.nattawut.plancrop.utility.EditPlan;
 import th.in.nattawut.plancrop.utility.EditPlant;
 import th.in.nattawut.plancrop.utility.GetData;
+import th.in.nattawut.plancrop.utility.GetDataWhereOneColumn;
 import th.in.nattawut.plancrop.utility.Myconstant;
 import th.in.nattawut.plancrop.utility.OrderService;
 import th.in.nattawut.plancrop.utility.PlantFarmer;
@@ -65,8 +68,7 @@ public class PlantFarmerViewFragment extends Fragment {
 
     View view;
 
-    private ArrayList<String> arrmid = new ArrayList<>();
-    private ArrayList<String> arrname = new ArrayList<>();
+    private String idRecord;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -154,63 +156,14 @@ public class PlantFarmerViewFragment extends Fragment {
 
 
 
-    private void selectFarmer() {
-        if (android.os.Build.VERSION.SDK_INT > 9) { //setup policy เเพื่อมือถือที่มีประปฏิบัติการสูงกว่านีจะไม่สามารถconnectกับโปรโตรคอลได้
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }
-        final Spinner spin = view.findViewById(R.id.EditPlantName);
-        try {
+    private void setUpTexeShowMid() {
+        TextView textNameFarmer = view.findViewById(R.id.EdittextNameFarmer);
 
-            Myconstant myconstant = new Myconstant();
-
-
-            GetData getData = new GetData(getActivity());
-            getData.execute(myconstant.getUrlSiteFarmer());
-
-            String jsonString = getData.get();
-            Log.d("5/Jan PlanCropSpinner", "JSON ==>" + jsonString);
-            JSONArray data = new JSONArray(jsonString);
-
-            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
-            HashMap<String, String> map;
-
-            for (int i = 0; i < data.length(); i++) {
-                JSONObject c = data.getJSONObject(i);
-
-                map = new HashMap<String, String>();
-                map.put("mid", c.getString("mid"));
-                map.put("name", c.getString("name"));
-
-                arrmid.add(c.getString("mid"));
-                arrname.add(c.getString("name"));
-                MyArrList.add(map);
-            }
-            SimpleAdapter sAdap;
-            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_sitename,
-                    new String[]{"mid", "name"}, new int[]{R.id.textMId, R.id.textName});
-            spin.setAdapter(sAdap);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (spin.getSelectedItem() != null) {
-                    siteController(arrmid.get(position));
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+        String strTextShow = getActivity().getIntent().getExtras().getString("name");
+        textNameFarmer.setText(strTextShow);
     }
 
-    public void siteController(String mid) {
+    private void siteController() {
         if (android.os.Build.VERSION.SDK_INT > 9) { //setup policy เเพื่อมือถือที่มีประปฏิบัติการสูงกว่านีจะไม่สามารถconnectกับโปรโตรคอลได้
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -219,10 +172,13 @@ public class PlantFarmerViewFragment extends Fragment {
         try {
 
             Myconstant myconstant = new Myconstant();
-            AddSiteFarmer addSiteFarmer = new AddSiteFarmer(getActivity());
-            addSiteFarmer.execute(mid,myconstant.getSelectsitefarmer());
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences(myconstant.getNameFileSharePreference(), Context.MODE_PRIVATE);
+            idRecord = sharedPreferences.getString("mid", "");
 
-            String jsonString = addSiteFarmer.get();
+            GetDataWhereOneColumn getDataWhereOneColumn = new GetDataWhereOneColumn(getActivity());
+            getDataWhereOneColumn.execute("mid", idRecord, myconstant.getSelectsitefarmer());
+
+            String jsonString = getDataWhereOneColumn.get();
             Log.d("5/Jan PlanCropSpinner", "JSON ==>" + jsonString);
             JSONArray data = new JSONArray(jsonString);
 
@@ -237,7 +193,6 @@ public class PlantFarmerViewFragment extends Fragment {
                 map.put("thai", c.getString("thai"));
                 MyArrList.add(map);
             }
-
             SimpleAdapter sAdap;
             sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_site,
                     new String[] {"sno", "thai"}, new int[] {R.id.textPlantSiteSnoSpinner, R.id.textPlantThaiSpinner});
@@ -427,9 +382,11 @@ public class PlantFarmerViewFragment extends Fragment {
         //กำหนดหัวเเรื้อง
         builder.setTitle("วางแผนการเพาะปลูกใหม่");
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
-        view = layoutInflater.inflate(R.layout.edit_plant, null);
+        view = layoutInflater.inflate(R.layout.edit_plant_farmer, null);
 
-        selectFarmer();
+        setUpTexeShowMid();
+
+        siteController();
 
         //editpdate
         editpdateController();
