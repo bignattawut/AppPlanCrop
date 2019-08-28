@@ -27,6 +27,7 @@ public class AdminFrament extends Fragment {
     CardView plan;
     CardView plant;
     CardView Site;
+    CardView Result;
 
     private String nameString;
 
@@ -62,6 +63,8 @@ public class AdminFrament extends Fragment {
 
         //PlantReprotallControlle
         PlantReprotallController();
+
+        PlantResultController();
 
         CreateToolbal();
 
@@ -250,6 +253,20 @@ public class AdminFrament extends Fragment {
         });
     }
 
+    private void PlantResultController() {
+        Result = getView().findViewById(R.id.imageViewPlantResult);
+        Result.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentAdminFragment, new PlantResultViewFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+    }
 
 
 

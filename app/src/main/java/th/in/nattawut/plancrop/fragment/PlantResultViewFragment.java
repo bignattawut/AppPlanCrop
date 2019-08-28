@@ -69,8 +69,6 @@ public class PlantResultViewFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
 
-
-
         listView = getView().findViewById(R.id.listViewPlantResult);
         orderService = APIUtils.getService();
         spProvince = getView().findViewById(R.id.spProvince);
@@ -356,13 +354,13 @@ public class PlantResultViewFragment extends Fragment {
                 JSONObject c = data.getJSONObject(i);
 
                 map = new HashMap<String, String>();
-                map.put("TID", c.getString("TID"));
+                map.put("tid", c.getString("tid"));
                 map.put("croptype", c.getString("croptype"));
                 MyArrList.add(map);
             }
             SimpleAdapter sAdap;
             sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_crop,
-                    new String[] {"TID", "croptype"}, new int[] {R.id.textTID, R.id.textCropType});
+                    new String[] {"tid", "croptype"}, new int[] {R.id.textTID, R.id.textCropType});
             spin.setAdapter(sAdap);
 
         } catch (Exception e) {
