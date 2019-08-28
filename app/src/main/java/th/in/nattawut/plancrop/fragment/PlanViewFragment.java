@@ -47,7 +47,11 @@ public class PlanViewFragment extends Fragment {
 
     SwipeRefreshLayout mSwipeRefreshLayout;
     ListView listView;
+    View view;
 
+    Spinner spin,selectMap;
+    ArrayList<HashMap<String, String>> MyArrList,mapArrayList = new ArrayList<HashMap<String, String>>();
+    HashMap<String, String> map,m,selectsite;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -106,9 +110,11 @@ public class PlanViewFragment extends Fragment {
             final String[] midString = new String[jsonArray.length()];
             final String[] typeStrings = new String[jsonArray.length()];
             final String[] cidString = new String[jsonArray.length()];
+            final String[] cropStrings = new String[jsonArray.length()];
+            final String[] yieldStrings = new String[jsonArray.length()];
             final String[] areStrings = new String[jsonArray.length()];
             final String[] dateStrings = new String[jsonArray.length()];
-            final String[] NoStrings = new String[jsonArray.length()];
+
 
             for (int i=0; i<jsonArray.length(); i+=1){
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -116,19 +122,21 @@ public class PlanViewFragment extends Fragment {
                 midString[i] = jsonObject.getString(columnStrings[1]);
                 typeStrings[i] = jsonObject.getString(columnStrings[2]);
                 cidString[i] = jsonObject.getString(columnStrings[3]);
-                areStrings[i] = jsonObject.getString(columnStrings[4]);
-                dateStrings[i] = jsonObject.getString(columnStrings[5]);
+                cropStrings[i] = jsonObject.getString(columnStrings[4]);
+                yieldStrings[i] = jsonObject.getString(columnStrings[5]);
+                areStrings[i] = jsonObject.getString(columnStrings[6]);
+                dateStrings[i] = jsonObject.getString(columnStrings[7]);
             }
 
             PlanAdapter pantAdapter = new PlanAdapter(getActivity(),
-                    planStrings,midString,typeStrings,cidString, areStrings,dateStrings);
+                    planStrings,midString,typeStrings,cidString,cropStrings,yieldStrings,areStrings,dateStrings);
             listView.setAdapter(pantAdapter);
 
             //edit
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    deleteorEditCropPlan(planStrings[position],midString[position],typeStrings[position],areStrings[position]);
+                    deleteorEditCropPlan(planStrings[position],midString[position],typeStrings[position],cidString[position],cropStrings[position],areStrings[position]);
                     //mSwipeRefreshLayout.setRefreshing(false);
                 }
             });
@@ -140,7 +148,7 @@ public class PlanViewFragment extends Fragment {
     }
 
     //alertให้เลือกลบหรือแก้ไข
-    private void deleteorEditCropPlan(final String planStrings, final String midString,final String typeStrings,final String dateStrings) {
+    private void deleteorEditCropPlan(final String planStrings, final String midString,final String typeStrings,final String cidString,final String cropStrings,final String dateStrings) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
@@ -163,7 +171,7 @@ public class PlanViewFragment extends Fragment {
         builder.setPositiveButton("แก้ไข", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                editPlan(planStrings,midString,typeStrings,dateStrings);
+                editPlan(planStrings,midString,typeStrings,cidString,cropStrings,dateStrings);
                 dialog.dismiss();
             }
         });
@@ -192,16 +200,21 @@ public class PlanViewFragment extends Fragment {
 
     }
 
-    private void editPlan(final String planStrings,final String midString,final String typeStrings,final String dateStrings){
+    private void editPlan(final String planStrings,final String midString,final String typeStrings,final String cidString,final String cropStrings,final String dateStrings){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
         //กำหนดหัวเเรื้อง
         builder.setTitle("วางแผนเพาะปลูกใหม่");
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
-        final View view = layoutInflater.inflate(R.layout.edit_plan, null);
+        view = layoutInflater.inflate(R.layout.edit_plan, null);
         //builder = new AlertDialog.Builder(getActivity(),android.R.style.Theme_DeviceDefault_Dialog_Alert);//theme
 
+
+        map = new HashMap<String, String>();
+        map.put("crop",cropStrings);
+        map.put("cid",cidString);
+        selectcroptype1();
 
         TextView texPlanMid = view.findViewById(R.id.EditTextPlanMid);
         String strTextShowmid = getActivity().getIntent().getExtras().getString("Mid",midString);
@@ -215,50 +228,6 @@ public class PlanViewFragment extends Fragment {
         String strTextShowpdate = getActivity().getIntent().getExtras().getString("pdate",dateStrings);
         EditTexpdate.setText(strTextShowpdate);
 
-
-
-        if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }
-        final Spinner spin = view.findViewById(R.id.EditPlanCropSpinner);
-        try {
-            Myconstant myconstant = new Myconstant();
-            GetData getData = new GetData(getActivity());
-            getData.execute(myconstant.getUrlCrop());
-
-            String jsonString = getData.get();
-            Log.d("5/Jan CropType", "JSON ==>" + jsonString);
-            JSONArray data = new JSONArray(jsonString);
-
-            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
-            HashMap<String, String> map;
-
-            for(int i = 0; i < data.length(); i++){
-                JSONObject c = data.getJSONObject(i);
-
-                map = new HashMap<String, String>();
-                map.put("cid", c.getString("cid"));
-                map.put("crop", c.getString("crop"));
-                MyArrList.add(map);
-            }
-            SimpleAdapter sAdap;
-            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_plancrop,
-                    new String[] {"cid", "crop"}, new int[] {R.id.textPlanCidSpinner, R.id.textPlanCropSpinner});
-            spin.setAdapter(sAdap);
-            spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-                public void onItemSelected(AdapterView<?> arg0, View selectedItemView, int position, long id) {
-
-                }
-                public void onNothingSelected(AdapterView<?> arg0) {
-
-                }
-            });
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         final TextView data = view.findViewById(R.id.EditMyDate);
         ImageView selctData = view.findViewById(R.id.EditImageViewDate);
@@ -363,6 +332,41 @@ public class PlanViewFragment extends Fragment {
                 Toast.makeText(getActivity(),"ลบประเภทพืช",Toast.LENGTH_SHORT).show();
             }
 
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void selectcroptype1() {
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+        selectMap = view.findViewById(R.id.EditPlanCropSpinner);
+        try {
+            Myconstant myconstant = new Myconstant();
+            GetData getData = new GetData(getActivity());
+            getData.execute(myconstant.getUrlCrop());
+
+            String jsonString = getData.get();
+            Log.d("5/Jan CropType", "JSON ==>" + jsonString);
+            JSONArray data = new JSONArray(jsonString);
+
+            for (int i = 0; i < data.length(); i++) {
+                JSONObject c = data.getJSONObject(i);
+
+                m = new HashMap<String, String>();
+                m.put("cid", c.getString("cid"));
+                m.put("crop", c.getString("crop"));
+                mapArrayList.add(m);
+            }
+
+            final SimpleAdapter s;
+            s = new SimpleAdapter(getActivity(), mapArrayList, R.layout.spinner_plancrop,
+                    new String[]{"cid", "crop"}, new int[]{R.id.textPlanCidSpinner, R.id.textPlanCropSpinner});
+            selectMap.setAdapter(s);
+            selectMap.setSelection(mapArrayList.indexOf(map));
 
         } catch (Exception e) {
             e.printStackTrace();

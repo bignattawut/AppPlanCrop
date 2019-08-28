@@ -31,6 +31,7 @@
                     android:src="@drawable/ic_today_black_24dp" />
 
                 <TextView
+                    android:id="@+id/sno"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="วันที่เพาะปลูก"
@@ -59,6 +60,7 @@
                     android:src="@drawable/ic_spa_black_24dp" />
 
                 <TextView
+                    android:id="@+id/cid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="พืชเพาะปลูก"

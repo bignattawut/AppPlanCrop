@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -68,7 +69,17 @@ public class PlantFarmerViewFragment extends Fragment {
 
     View view;
 
+    private ArrayList<String> arrcid = new ArrayList<>();
+    private ArrayList<String> arrname = new ArrayList<>();
+
     private String idRecord;
+    Spinner spin,selectMap;
+    ArrayList<HashMap<String, String>> MyArrList,mapArrayList = new ArrayList<HashMap<String, String>>();
+    HashMap<String, String> map,m,selectsite;
+
+    private ArrayAdapter<String> adpProvince;
+
+    String newcid;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -154,8 +165,6 @@ public class PlantFarmerViewFragment extends Fragment {
         });
     }
 
-
-
     private void setUpTexeShowMid() {
         TextView textNameFarmer = view.findViewById(R.id.EdittextNameFarmer);
 
@@ -227,12 +236,13 @@ public class PlantFarmerViewFragment extends Fragment {
         });
     }
 
-    private void selectcroptype() {
+
+    private void selectcroptype1() {
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
-        final Spinner spin = view.findViewById(R.id.EditPlantCropSpinner);
+        selectMap = view.findViewById(R.id.EditPlantCropSpinner);
         try {
             Myconstant myconstant = new Myconstant();
             GetData getData = new GetData(getActivity());
@@ -242,21 +252,20 @@ public class PlantFarmerViewFragment extends Fragment {
             Log.d("5/Jan CropType", "JSON ==>" + jsonString);
             JSONArray data = new JSONArray(jsonString);
 
-            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
-            HashMap<String, String> map;
-
             for (int i = 0; i < data.length(); i++) {
                 JSONObject c = data.getJSONObject(i);
 
-                map = new HashMap<String, String>();
-                map.put("cid", c.getString("cid"));
-                map.put("crop", c.getString("crop"));
-                MyArrList.add(map);
+                m = new HashMap<String, String>();
+                m.put("cid", c.getString("cid"));
+                m.put("crop", c.getString("crop"));
+                mapArrayList.add(m);
             }
-            SimpleAdapter sAdap;
-            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_plancrop,
+
+            final SimpleAdapter s;
+            s = new SimpleAdapter(getActivity(), mapArrayList, R.layout.spinner_plancrop,
                     new String[]{"cid", "crop"}, new int[]{R.id.textPlanCidSpinner, R.id.textPlanCropSpinner});
-            spin.setAdapter(sAdap);
+            selectMap.setAdapter(s);
+            selectMap.setSelection(mapArrayList.indexOf(map));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -291,7 +300,7 @@ public class PlantFarmerViewFragment extends Fragment {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             deleteorEditPlantFarmer(list.get(position).getNo(), list.get(position).getPdate()
-                                    , list.get(position).getCrop(), list.get(position).getArea(),list.get(position).getSno());
+                                    , list.get(position).getCrop(), list.get(position).getArea(),list.get(position).getSno(),list.get(position).getCid());
 
                         }
                     });
@@ -306,7 +315,7 @@ public class PlantFarmerViewFragment extends Fragment {
     }
 
     //alertให้เลือกลบหรือแก้ไข
-    private void deleteorEditPlantFarmer(final String no, final String pdata, final String crop, final String area,final String sno) {
+    private void deleteorEditPlantFarmer(final String no, final String pdata, final String crop, final String area,final String sno, final String cid) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
@@ -329,7 +338,7 @@ public class PlantFarmerViewFragment extends Fragment {
         builder.setPositiveButton("แก้ไข", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                editPlantFarmer(no,sno,pdata, crop, area);
+                editPlantFarmer(no,sno,pdata, crop, area,cid);
                 dialog.dismiss();
             }
         });
@@ -376,7 +385,7 @@ public class PlantFarmerViewFragment extends Fragment {
         }
     }
 
-    private void editPlantFarmer(final String no,final String sno,String pdata, String crop, String area) {
+    private void editPlantFarmer(final String no,final String sno,String pdata, String crop, String area,final String cid) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_LIGHT);
         builder.setCancelable(false);
         //กำหนดหัวเเรื้อง
@@ -391,13 +400,24 @@ public class PlantFarmerViewFragment extends Fragment {
         //editpdate
         editpdateController();
 
+
         //selectcroptype
-        selectcroptype();
+        //selectcroptype(cid,crop);
+
+
+        map = new HashMap<String, String>();
+        map.put("crop",crop);
+        map.put("cid",cid);
+        selectcroptype1();
 
 
         TextView textPDate = view.findViewById(R.id.EditMyDate);
         String newPDate = getActivity().getIntent().getExtras().getString("pdate", pdata);
         textPDate.setText(newPDate);
+
+        TextView textPlant1 = view.findViewById(R.id.EditAddPlant1);
+        String newPlant1 = getActivity().getIntent().getExtras().getString("area", area);
+        textPlant1.setText(newPlant1);
 
 
         builder.setView(view);

@@ -17,7 +17,7 @@ public class Myconstant {
     public static String getUrlmid = "http://192.168.1.135/android/php/selectmidspinner.php";
     private String urlDeletePlan = "http://"+ip+"/android/php/deleteplan.php";
     private String urlselectPlan = "http://"+ip+"/android/php/selectplanandroid.php";
-    private String[] columnPlanString = new String[]{"no","mid","name","crop","pdate","area"};
+    private String[] columnPlanString = new String[]{"no","mid","name","cid","crop","yield","pdate","area"};
     private String urlEditPlan = "http://"+ip+"/android/php/editplan.php";
 
     private String urlselectfarmerandroid = "http://"+ip+"/android/php/selectplanfarmerandroid.php";

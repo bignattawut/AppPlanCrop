@@ -47,6 +47,10 @@ public class CropViewFragment extends Fragment {
     ListView listView;
 
     Spinner spinner;
+    Spinner spin,selectMap;
+    //ArrayList<HashMap<String, String>> MyArrList,mapArrayList = new ArrayList<HashMap<String, String>>();
+    HashMap<String, String> m;
+    View view;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -124,7 +128,7 @@ public class CropViewFragment extends Fragment {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     deleteorEditCropType(cidString[position],
-                            cropString[position],beginharvestString[position],
+                            cropString[position],tidString[position],croptypeString[position],beginharvestString[position],
                             harvestperiodString[position],yield[position]);
                 }
             });
@@ -137,7 +141,7 @@ public class CropViewFragment extends Fragment {
     }
 
     //alertให้เลือกลบหรือแก้ไข
-    private void deleteorEditCropType(final String cidString, final String cropString,
+    private void deleteorEditCropType(final String cidString, final String cropString,final String tidString, final String croptypeString,
                                       final String beginharvestString, final String harvestperiodString, final String yield) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -161,7 +165,7 @@ public class CropViewFragment extends Fragment {
         builder.setPositiveButton("แก้ไข", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                editCrop(cidString,cropString,beginharvestString,harvestperiodString,yield);
+                editCrop(cidString,cropString,tidString,croptypeString,beginharvestString,harvestperiodString,yield);
                 dialog.dismiss();
             }
         });
@@ -190,7 +194,7 @@ public class CropViewFragment extends Fragment {
     }
 
     //แก้ไขพืชเพาะปลูก
-    private void editCrop(final String cidString, final String cropString,
+    private void editCrop(final String cidString, final String cropString,final String tidString,final String croptypeString,
                           final String beginharvestString,final String harvestperiodString, final String yield){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -198,7 +202,7 @@ public class CropViewFragment extends Fragment {
         builder.setTitle("กำหนดชื่อใหม่");
 
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
-        final View view = layoutInflater.inflate(R.layout.edit_crop, null);
+        view = layoutInflater.inflate(R.layout.edit_crop, null);
 
         EditText edtEditCropName = view.findViewById(R.id.edtEditCropName);
         String newCropName = getActivity().getIntent().getExtras().getString("crop",cropString);
@@ -216,39 +220,10 @@ public class CropViewFragment extends Fragment {
         String newYield = getActivity().getIntent().getExtras().getString("yield",yield);
         edtEditYield.setText(newYield);
 
-        if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }
-        final Spinner spin = view.findViewById(R.id.EditcropTypeSpinner);
-        try {
-            Myconstant myconstant = new Myconstant();
-            GetData getData = new GetData(getActivity());
-            getData.execute(myconstant.getUrlCropType());
-
-            String jsonString = getData.get();
-            Log.d("5/Jan CropType", "JSON ==>" + jsonString);
-            JSONArray data = new JSONArray(jsonString);
-
-            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
-            HashMap<String, String> map;
-
-            for(int i = 0; i < data.length(); i++){
-                JSONObject c = data.getJSONObject(i);
-
-                map = new HashMap<String, String>();
-                map.put("TID", c.getString("TID"));
-                map.put("croptype", c.getString("croptype"));
-                MyArrList.add(map);
-            }
-            SimpleAdapter sAdap;
-            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_crop,
-                    new String[] {"TID", "croptype"}, new int[] {R.id.textTID, R.id.textCropType});
-            spin.setAdapter(sAdap);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        m = new HashMap<String, String>();
+        m.put("croptype",croptypeString);
+        m.put("tid",tidString);
+        selectCropType();
         /*
         spinner = view.findViewById(R.id.EditcropTypeSpinner);
         ArrayAdapter<String> adp = new ArrayAdapter<String>(this.getActivity(),
@@ -335,6 +310,42 @@ public class CropViewFragment extends Fragment {
         }
     }
 
+    private void selectCropType() {
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+        selectMap = view.findViewById(R.id.EditcropTypeSpinner);
+        try {
+            Myconstant myconstant = new Myconstant();
+            GetData getData = new GetData(getActivity());
+            getData.execute(myconstant.getUrlCropType());
+
+            String jsonString = getData.get();
+            Log.d("5/Jan CropType", "JSON ==>" + jsonString);
+            JSONArray data = new JSONArray(jsonString);
+
+            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
+            HashMap<String, String> map;
+
+            for(int i = 0; i < data.length(); i++){
+                JSONObject c = data.getJSONObject(i);
+
+                map = new HashMap<String, String>();
+                map.put("tid", c.getString("tid"));
+                map.put("croptype", c.getString("croptype"));
+                MyArrList.add(map);
+            }
+            SimpleAdapter sAdap;
+            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_crop,
+                    new String[] {"tid", "croptype"}, new int[] {R.id.textTID, R.id.textCropType});
+            selectMap.setAdapter(sAdap);
+            selectMap.setSelection(MyArrList.indexOf(m));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 

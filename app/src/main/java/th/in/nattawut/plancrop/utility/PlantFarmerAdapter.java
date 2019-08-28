@@ -30,17 +30,23 @@ public class PlantFarmerAdapter extends ArrayAdapter<PlantFarmer> {
         final View view = inflater.inflate(R.layout.frm_plantfarmer_view, parent, false);
 
 
-        //TextView textPlanFarmerNo = view.findViewById(R.id.textPlanFarmerNo);
+        //TextView textPlanFarmersno = view.findViewById(R.id.sno);
+
         TextView txtPDataPlantFarmer = view.findViewById(R.id.txtPDataPlantFarmer);
         TextView txtCropPlantFarmer = view.findViewById(R.id.txtCropPlantFarmer);
         TextView txtYieldPlantFarmer = view.findViewById(R.id.txtYieldPlantFarmer);
         TextView txtAreaPlantFarmer = view.findViewById(R.id.txtAreaPlantFarmer);
 
+        //textPlanFarmerNo.setText(plantFarmers.get(position).getCid());
 
         txtPDataPlantFarmer.setText(plantFarmers.get(position).getPdate());
         txtCropPlantFarmer.setText(plantFarmers.get(position).getCrop());
         txtYieldPlantFarmer.setText(plantFarmers.get(position).getYield());
         txtAreaPlantFarmer.setText(plantFarmers.get(position).getArea());
+
+
+        //textPlanFarmersno.setText((plantFarmers.get(position).getSno()));
+
 
         return view;
     }

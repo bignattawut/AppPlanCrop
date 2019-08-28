@@ -57,7 +57,11 @@ public class OrderViewFragment extends Fragment {
     List<Order> list = new ArrayList<Order>();
     SwipeRefreshLayout mSwipeRefreshLayout;
 
+    Spinner spin,selectMap;
+    ArrayList<HashMap<String, String>> MyArrList,mapArrayList = new ArrayList<HashMap<String, String>>();
+    HashMap<String, String> map,m,selectsite;
 
+    View view;
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -69,6 +73,41 @@ public class OrderViewFragment extends Fragment {
 
         swiRefreshLayou();
 
+    }
+
+    private void selectcroptype1() {
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+        selectMap = view.findViewById(R.id.EditOrder);
+        try {
+            Myconstant myconstant = new Myconstant();
+            GetData getData = new GetData(getActivity());
+            getData.execute(myconstant.getUrlCrop());
+
+            String jsonString = getData.get();
+            Log.d("5/Jan CropType", "JSON ==>" + jsonString);
+            JSONArray data = new JSONArray(jsonString);
+
+            for (int i = 0; i < data.length(); i++) {
+                JSONObject c = data.getJSONObject(i);
+
+                m = new HashMap<String, String>();
+                m.put("cid", c.getString("cid"));
+                m.put("crop", c.getString("crop"));
+                mapArrayList.add(m);
+            }
+
+            final SimpleAdapter s;
+            s = new SimpleAdapter(getActivity(), mapArrayList, R.layout.spinner_plancrop,
+                    new String[]{"cid", "crop"}, new int[]{R.id.textPlanCidSpinner, R.id.textPlanCropSpinner});
+            selectMap.setAdapter(s);
+            selectMap.setSelection(mapArrayList.indexOf(map));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void swiRefreshLayou() {
@@ -105,7 +144,7 @@ public class OrderViewFragment extends Fragment {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             deleteorEditOrder(list.get(position).getNo(), list.get(position).getSdate()
-                                    , list.get(position).getEdate(), list.get(position).getQty());
+                                    , list.get(position).getEdate(), list.get(position).getQty(),list.get(position).getCid(), list.get(position).getCrop());
                         }
                     });
                 }
@@ -120,7 +159,7 @@ public class OrderViewFragment extends Fragment {
     }
 
     //alertให้เลือกลบหรือแก้ไข
-    private void deleteorEditOrder(final String no, final String SData, final String EData, final String Qty) {
+    private void deleteorEditOrder(final String no, final String SData, final String EData, final String Qty, final String cid, final String crop) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
@@ -143,7 +182,7 @@ public class OrderViewFragment extends Fragment {
         builder.setPositiveButton("แก้ไข", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                editOrder(no, SData, EData, Qty);
+                editOrder(no, SData, EData, Qty,cid,crop);
                 dialog.dismiss();
             }
         });
@@ -192,13 +231,13 @@ public class OrderViewFragment extends Fragment {
         }
     }
 
-    private void editOrder(final String no, final String SData, final String EData, final String Qty) {
+    private void editOrder(final String no, final String SData, final String EData, final String Qty, final String cid, final String crop) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
         builder.setTitle("กำหนดชื่อใหม่");
 
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
-        final View view = layoutInflater.inflate(R.layout.edit_order, null);
+        view = layoutInflater.inflate(R.layout.edit_order, null);
 
 
         TextView texPlanMid = view.findViewById(R.id.EditTexPlanLogin);
@@ -221,40 +260,10 @@ public class OrderViewFragment extends Fragment {
         String newQty = getActivity().getIntent().getExtras().getString("qty", Qty);
         edtEditQty.setText(newQty);
 
-
-        if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }
-        final Spinner spin = view.findViewById(R.id.EditOrder);
-        try {
-            Myconstant myconstant = new Myconstant();
-            GetData getData = new GetData(getActivity());
-            getData.execute(myconstant.getUrlCrop());
-
-            String jsonString = getData.get();
-            Log.d("5/Jan CropType", "JSON ==>" + jsonString);
-            JSONArray data = new JSONArray(jsonString);
-
-            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
-            HashMap<String, String> map;
-
-            for (int i = 0; i < data.length(); i++) {
-                JSONObject c = data.getJSONObject(i);
-
-                map = new HashMap<String, String>();
-                map.put("cid", c.getString("cid"));
-                map.put("crop", c.getString("crop"));
-                MyArrList.add(map);
-            }
-            SimpleAdapter sAdap;
-            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_plancrop,
-                    new String[]{"cid", "crop"}, new int[]{R.id.textPlanCidSpinner, R.id.textPlanCropSpinner});
-            spin.setAdapter(sAdap);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        map = new HashMap<String, String>();
+        map.put("crop",crop);
+        map.put("cid",cid);
+        selectcroptype1();
 
         final TextView txtSData = view.findViewById(R.id.txtSData);
         Button selctDataSData = view.findViewById(R.id.btnSData);

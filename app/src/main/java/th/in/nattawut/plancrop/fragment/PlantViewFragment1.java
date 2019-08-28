@@ -80,6 +80,10 @@ public class PlantViewFragment1 extends Fragment {
     private ArrayList<String> arrmid = new ArrayList<>();
     private ArrayList<String> arrname = new ArrayList<>();
 
+    Spinner spin,selectMap;
+    ArrayList<HashMap<String, String>> MyArrList,mapArrayList = new ArrayList<HashMap<String, String>>();
+    HashMap<String, String> map,m,selectsite;
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -315,12 +319,12 @@ public class PlantViewFragment1 extends Fragment {
         });
     }
 
-    private void selectcroptype() {
+    private void selectcroptype1() {
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
-        final Spinner spin = view.findViewById(R.id.EditPlantCropSpinner);
+        selectMap = view.findViewById(R.id.EditPlantCropSpinner);
         try {
             Myconstant myconstant = new Myconstant();
             GetData getData = new GetData(getActivity());
@@ -330,21 +334,20 @@ public class PlantViewFragment1 extends Fragment {
             Log.d("5/Jan CropType", "JSON ==>" + jsonString);
             JSONArray data = new JSONArray(jsonString);
 
-            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
-            HashMap<String, String> map;
-
             for (int i = 0; i < data.length(); i++) {
                 JSONObject c = data.getJSONObject(i);
 
-                map = new HashMap<String, String>();
-                map.put("cid", c.getString("cid"));
-                map.put("crop", c.getString("crop"));
-                MyArrList.add(map);
+                m = new HashMap<String, String>();
+                m.put("cid", c.getString("cid"));
+                m.put("crop", c.getString("crop"));
+                mapArrayList.add(m);
             }
-            SimpleAdapter sAdap;
-            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_plancrop,
+
+            final SimpleAdapter s;
+            s = new SimpleAdapter(getActivity(), mapArrayList, R.layout.spinner_plancrop,
                     new String[]{"cid", "crop"}, new int[]{R.id.textPlanCidSpinner, R.id.textPlanCropSpinner});
-            spin.setAdapter(sAdap);
+            selectMap.setAdapter(s);
+            selectMap.setSelection(mapArrayList.indexOf(map));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -481,7 +484,7 @@ public class PlantViewFragment1 extends Fragment {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             deleteorEditPlant(list.get(position).getNo(),list.get(position).getSno(),
-                                    list.get(position).getPdate(),list.get(position).getMid(),list.get(position).getName());
+                                    list.get(position).getPdate(),list.get(position).getMid(),list.get(position).getName(),list.get(position).getCid(),list.get(position).getCrop());
                         }
                     });
 
@@ -497,7 +500,7 @@ public class PlantViewFragment1 extends Fragment {
     }
 
     //alertให้เลือกลบหรือแก้ไข
-    private void deleteorEditPlant(final String noStrings,final String sno,final String pdataString,final String midStrings,final String nameStrings) {
+    private void deleteorEditPlant(final String noStrings,final String sno,final String pdataString,final String midStrings,final String nameStrings,final String cidStrings,final String cropStrings) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
@@ -520,7 +523,7 @@ public class PlantViewFragment1 extends Fragment {
         builder.setPositiveButton("แก้ไข", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                editPlant(noStrings,sno,pdataString,midStrings,nameStrings);
+                editPlant(noStrings,sno,pdataString,midStrings,nameStrings,cidStrings,cropStrings);
                 dialog.dismiss();
             }
         });
@@ -568,7 +571,7 @@ public class PlantViewFragment1 extends Fragment {
         }
     }
 
-    private void editPlant(final String no,final String sno,final String pdataString,final String midStrings,final String nameStrings) {
+    private void editPlant(final String no,final String sno,final String pdataString,final String midStrings,final String nameStrings,final String cidStrings,final String cropStrings) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_LIGHT);
         builder.setCancelable(false);
         //กำหนดหัวเเรื้อง
@@ -579,8 +582,11 @@ public class PlantViewFragment1 extends Fragment {
         //editpdate
         editpdateController();
 
-        //selectcroptype
-        selectcroptype();
+
+        map = new HashMap<String, String>();
+        map.put("crop",cropStrings);
+        map.put("cid",cidStrings);
+        selectcroptype1();
 
         selectFarmer();
 

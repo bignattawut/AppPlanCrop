@@ -42,6 +42,8 @@ public class PlanResultAdpter extends ArrayAdapter<PlanResult> {
         textArea.setText(planResults.get(position).getHarvestperiod());
         textyield.setText(planResults.get(position).getYield());
 
+        //textyield.setText(String.valueOf(planResults.get(position).getYield()));
+
 
 
         return view;
