@@ -8,14 +8,14 @@ public class PlantResult {
     private String crop;
 
     @SerializedName("yield")
-    private String yield;
+    private int yield;
 
 
     public String getCrop() {
         return crop;
     }
 
-    public String getYield() {
+    public int getYield() {
         return yield;
     }
 }

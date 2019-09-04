@@ -136,7 +136,7 @@ public class PlanViewFragment extends Fragment {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    deleteorEditCropPlan(planStrings[position],midString[position],typeStrings[position],cidString[position],cropStrings[position],areStrings[position]);
+                    deleteorEditCropPlan(planStrings[position],midString[position],typeStrings[position],cidString[position],cropStrings[position],areStrings[position],Float.valueOf(dateStrings[position]));
                     //mSwipeRefreshLayout.setRefreshing(false);
                 }
             });
@@ -148,11 +148,11 @@ public class PlanViewFragment extends Fragment {
     }
 
     //alertให้เลือกลบหรือแก้ไข
-    private void deleteorEditCropPlan(final String planStrings, final String midString,final String typeStrings,final String cidString,final String cropStrings,final String dateStrings) {
+    private void deleteorEditCropPlan(final String planStrings, final String midString,final String typeStrings,final String cidString,final String cropStrings,final String dateStrings,final float area) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
-        builder.setIcon(R.drawable.ic_action_drawerplan);
+        builder.setIcon(R.drawable.planhome);
         builder.setTitle("ลบ หรือ แก้ไข");
         builder.setMessage("กรุณาเลือก ลบ หรือ แก้ไข ?");
         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
@@ -171,7 +171,7 @@ public class PlanViewFragment extends Fragment {
         builder.setPositiveButton("แก้ไข", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                editPlan(planStrings,midString,typeStrings,cidString,cropStrings,dateStrings);
+                editPlan(planStrings,midString,typeStrings,cidString,cropStrings,dateStrings,area);
                 dialog.dismiss();
             }
         });
@@ -200,7 +200,7 @@ public class PlanViewFragment extends Fragment {
 
     }
 
-    private void editPlan(final String planStrings,final String midString,final String typeStrings,final String cidString,final String cropStrings,final String dateStrings){
+    private void editPlan(final String planStrings,final String midString,final String typeStrings,final String cidString,final String cropStrings,final String dateStrings,final float area){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
@@ -227,6 +227,14 @@ public class PlanViewFragment extends Fragment {
         TextView EditTexpdate = view.findViewById(R.id.EditMyDate);
         String strTextShowpdate = getActivity().getIntent().getExtras().getString("pdate",dateStrings);
         EditTexpdate.setText(strTextShowpdate);
+
+        EditText EditAddPlan1 = view.findViewById(R.id.EditAddPlan1);
+        EditText EditAddPlan2 = view.findViewById(R.id.EditAddPlan2);
+        EditText EditAddPlan3 = view.findViewById(R.id.EditAddPlan3);
+
+        EditAddPlan1.setText(String.valueOf((int) Math.floor(area)));
+        EditAddPlan2.setText(String.valueOf((int) Math.floor((area*400%400)/100)));
+        EditAddPlan3.setText(String.valueOf((int) Math.floor((area*400)%100)));
 
 
         final TextView data = view.findViewById(R.id.EditMyDate);

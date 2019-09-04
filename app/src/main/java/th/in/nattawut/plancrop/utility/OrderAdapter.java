@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import th.in.nattawut.plancrop.R;
@@ -41,7 +42,10 @@ public class OrderAdapter extends ArrayAdapter<Order> {
         textSDate.setText(orders.get(position).getSdate());
         textEDate.setText(orders.get(position).getEdate());
         textCrop.setText(orders.get(position).getCrop());
-        textQty.setText(orders.get(position).getQty());
+        //textQty.setText(orders.get(position).getQty());
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+        String s1 = decimalFormat.format(orders.get(position).getQty());
+        textQty.setText(s1);
 
 
         return view;

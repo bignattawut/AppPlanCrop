@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import th.in.nattawut.plancrop.R;
@@ -41,7 +42,11 @@ public class PlantFarmerAdapter extends ArrayAdapter<PlantFarmer> {
 
         txtPDataPlantFarmer.setText(plantFarmers.get(position).getPdate());
         txtCropPlantFarmer.setText(plantFarmers.get(position).getCrop());
-        txtYieldPlantFarmer.setText(plantFarmers.get(position).getYield());
+        //txtYieldPlantFarmer.setText(plantFarmers.get(position).getYield());
+
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+        String s1 = decimalFormat.format(plantFarmers.get(position).getYield());
+        txtYieldPlantFarmer.setText(s1);
         txtAreaPlantFarmer.setText(plantFarmers.get(position).getArea());
 
 

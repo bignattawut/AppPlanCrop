@@ -300,7 +300,7 @@ public class PlantFarmerViewFragment extends Fragment {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             deleteorEditPlantFarmer(list.get(position).getNo(), list.get(position).getPdate()
-                                    , list.get(position).getCrop(), list.get(position).getArea(),list.get(position).getSno(),list.get(position).getCid());
+                                    , list.get(position).getCrop(), list.get(position).getArea1(),list.get(position).getSno(),list.get(position).getCid());
 
                         }
                     });
@@ -315,7 +315,7 @@ public class PlantFarmerViewFragment extends Fragment {
     }
 
     //alertให้เลือกลบหรือแก้ไข
-    private void deleteorEditPlantFarmer(final String no, final String pdata, final String crop, final String area,final String sno, final String cid) {
+    private void deleteorEditPlantFarmer(final String no, final String pdata, final String crop, final float area,final String sno, final String cid) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
@@ -385,7 +385,7 @@ public class PlantFarmerViewFragment extends Fragment {
         }
     }
 
-    private void editPlantFarmer(final String no,final String sno,String pdata, String crop, String area,final String cid) {
+    private void editPlantFarmer(final String no,final String sno,String pdata, String crop, float area,final String cid) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_LIGHT);
         builder.setCancelable(false);
         //กำหนดหัวเเรื้อง
@@ -415,9 +415,14 @@ public class PlantFarmerViewFragment extends Fragment {
         String newPDate = getActivity().getIntent().getExtras().getString("pdate", pdata);
         textPDate.setText(newPDate);
 
-        TextView textPlant1 = view.findViewById(R.id.EditAddPlant1);
-        String newPlant1 = getActivity().getIntent().getExtras().getString("area", area);
-        textPlant1.setText(newPlant1);
+        EditText EditAddPlan1 = view.findViewById(R.id.EditAddPlant1);
+        EditText EditAddPlan2 = view.findViewById(R.id.EditAddPlant2);
+        EditText EditAddPlan3 = view.findViewById(R.id.EditAddPlant3);
+
+        EditAddPlan1.setText(String.valueOf((int) Math.floor(area)));
+        EditAddPlan2.setText(String.valueOf((int) Math.floor((area*400%400)/100)));
+        EditAddPlan3.setText(String.valueOf((int) Math.floor((area*400)%100)));
+
 
 
         builder.setView(view);

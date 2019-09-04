@@ -64,7 +64,7 @@ public class FarmerViewFragment extends Fragment {
     private ArrayList<String> arrVid = new ArrayList<>();
     private ArrayList<String> arrVidID = new ArrayList<>();
 
-    private Spinner spProvince,spAmphur, spSubDistrice,spVillag;
+    private Spinner spProvince, spAmphur, spSubDistrice, spVillag;
 
 
     @Override
@@ -111,8 +111,9 @@ public class FarmerViewFragment extends Fragment {
             sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_province,
                     new String[]{"pid", "thai"}, new int[]{R.id.pid, R.id.pidthai});
             spProvince.setAdapter(sAdap);
+            spProvince.setSelection(25);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -137,7 +138,7 @@ public class FarmerViewFragment extends Fragment {
         try {
             Myconstant myconstant = new Myconstant();
             AddProvince addProvince = new AddProvince(getActivity());
-            addProvince.execute(province,myconstant.getUrlAmphur());
+            addProvince.execute(province, myconstant.getUrlAmphur());
 
             String jsonString = addProvince.get();
             JSONArray data = new JSONArray(jsonString);
@@ -178,7 +179,7 @@ public class FarmerViewFragment extends Fragment {
                 }
             });
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -187,7 +188,7 @@ public class FarmerViewFragment extends Fragment {
         try {
             Myconstant myconstant = new Myconstant();
             AddAmpur addAmpur = new AddAmpur(getActivity());
-            addAmpur.execute(amphur,myconstant.getUrlSid());
+            addAmpur.execute(amphur, myconstant.getUrlSid());
 
             String jsonString = addAmpur.get();
             JSONArray data = new JSONArray(jsonString);
@@ -226,7 +227,7 @@ public class FarmerViewFragment extends Fragment {
                 }
             });
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -235,7 +236,7 @@ public class FarmerViewFragment extends Fragment {
         try {
             Myconstant myconstant = new Myconstant();
             AddVillag addVillag = new AddVillag(getActivity());
-            addVillag.execute(villag,myconstant.getUrlVid());
+            addVillag.execute(villag, myconstant.getUrlVid());
 
             String jsonString = addVillag.get();
             JSONArray data = new JSONArray(jsonString);
@@ -256,7 +257,7 @@ public class FarmerViewFragment extends Fragment {
                     new String[]{"vid", "thai"}, new int[]{R.id.vid, R.id.vidthai});
             spVillag.setAdapter(sAdap);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -321,8 +322,13 @@ public class FarmerViewFragment extends Fragment {
             TextView edtemail = getView().findViewById(R.id.edtemail);
             edtemail.setText(jsonObject.getString("email"));
 
-//            TextView add1 = getView().findViewById(R.id.add1);
-//            add1.setText(jsonObject.getString("area"));
+            EditText EditAddPlan1 = getView().findViewById(R.id.add1);
+            EditText EditAddPlan2 = getView().findViewById(R.id.add2);
+            EditText EditAddPlan3 = getView().findViewById(R.id.add3);
+
+            EditAddPlan1.setText(String.valueOf((int) Math.floor(jsonObject.getDouble("area"))));
+            EditAddPlan2.setText(String.valueOf((int) Math.floor((jsonObject.getDouble("area") * 400 % 400) / 100)));
+            EditAddPlan3.setText(String.valueOf((int) Math.floor((jsonObject.getDouble("area") * 400) % 100)));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -381,7 +387,7 @@ public class FarmerViewFragment extends Fragment {
                 } else {
                     getActivity().getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.contentHomeFragment,new MainPlanFragment())
+                            .replace(R.id.contentHomeFragment, new MainPlanFragment())
                             .commit();
                     Toast.makeText(getActivity(), "แก้ไขข้อมูลสำเร็จ",
                             Toast.LENGTH_SHORT).show();

@@ -3,12 +3,11 @@ package th.in.nattawut.plancrop.utility;
 public class Myconstant {
 
 
-    String ip = "192.168.1.135";
+    String ip = "192.168.1.105";
 
     //ล็อคอิน
     private String urlGetUser = "http://"+ip+"/android/php/memberlogin.php";
     private String nameFileSharePreference = "Plan";
-
 
     //วางแผนเพาะปลูก
     private String urladdPlan = "http://"+ip+"/android/php/insertplan.php";
@@ -83,7 +82,7 @@ public class Myconstant {
     private String urlselectcroptype = "http://"+ip+"/android/php/selectcroptype.php";
     private String urlEditCropType = "http://"+ip+"/android/php/editcroptype.php";
     private String urlDeleteCropType = "http://"+ip+"/android/php/deletecroptype.php";
-    private String[] columnCropTypeString = new String[]{"TID","croptype"};
+    private String[] columnCropTypeString = new String[]{"tid","croptype"};
 
     //การเพาะปลูก
     private String urladdPlant = "http://"+ip+"/android/php/insertplant.php";

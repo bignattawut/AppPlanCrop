@@ -28,6 +28,8 @@ import com.tuann.floatingactionbuttonexpandable.FloatingActionButtonExpandable;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -162,7 +164,7 @@ public class PlanFarmerViewFragment extends Fragment {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             deleteorEditPlanFarmer(list.get(position).getNo(), list.get(position).getPdate()
-                                    , list.get(position).getCrop(), list.get(position).getArea(),list.get(position).getCid());
+                                    , list.get(position).getCrop(), list.get(position).getArea1(),list.get(position).getCid());
                         }
                     });
                 }
@@ -176,7 +178,7 @@ public class PlanFarmerViewFragment extends Fragment {
     }
 
     //alertให้เลือกลบหรือแก้ไข
-    private void deleteorEditPlanFarmer(final String no, final String pdate, final String crop, final String area,final String cid) {
+    private void deleteorEditPlanFarmer(final String no, final String pdate, final String crop, final float area,final String cid) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
@@ -247,7 +249,7 @@ public class PlanFarmerViewFragment extends Fragment {
         }
     }
 
-    private void editPlanFarmer(final String no, String pdate, String crop, String area,final String cid) {
+    private void editPlanFarmer(final String no, String pdate, String crop, float area,final String cid) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(),AlertDialog.THEME_HOLO_LIGHT);
         builder.setCancelable(false);
@@ -269,8 +271,16 @@ public class PlanFarmerViewFragment extends Fragment {
         String newPDate = getActivity().getIntent().getExtras().getString("pdate", pdate);
         textPDate.setText(newPDate);
 
-//        Spinner EditPlanCropSpinner = view.findViewById(R.id.EditPlanCropSpinner);
-//        String newPlanCrop = getActivity().getIntent().getExtras().getString("crop", crop);
+        //(int)Math.floor(area) + "-" + (int)Math.floor((area*400%400)/100) + "-" + (int)(area*400)%100;
+
+        EditText EditAddPlan1 = view.findViewById(R.id.EditAddPlan1);
+        EditText EditAddPlan2 = view.findViewById(R.id.EditAddPlan2);
+        EditText EditAddPlan3 = view.findViewById(R.id.EditAddPlan3);
+
+        EditAddPlan1.setText(String.valueOf((int) Math.floor(area)));
+        EditAddPlan2.setText(String.valueOf((int) Math.floor((area*400%400)/100)));
+        EditAddPlan3.setText(String.valueOf((int) Math.floor((area*400)%100)));
+
 
 
         map = new HashMap<String, String>();

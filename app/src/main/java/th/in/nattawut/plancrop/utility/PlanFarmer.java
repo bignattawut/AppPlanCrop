@@ -14,7 +14,7 @@ public class PlanFarmer {
     @SerializedName("crop")
     private String crop;
     @SerializedName("area")
-    private String area;
+    private float area;
     @SerializedName("yield")
     private int yield;
 
@@ -36,6 +36,10 @@ public class PlanFarmer {
     }
 
     public String getArea() {
+        return (int)Math.floor(area) + "-" + (int)Math.floor((area*400%400)/100) + "-" + (int)(area*400)%100;
+    }
+
+    public float getArea1(){
         return area;
     }
 

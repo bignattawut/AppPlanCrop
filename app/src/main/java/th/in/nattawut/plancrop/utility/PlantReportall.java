@@ -11,9 +11,9 @@ public class PlantReportall {
     @SerializedName("hdate")
     private String beginharvest;
     @SerializedName("area")
-    private String area;
+    private float area;
     @SerializedName("yield")
-    private String yield;
+    private int yield;
     @SerializedName("name")
     private String name;
     @SerializedName("tel")
@@ -33,10 +33,10 @@ public class PlantReportall {
     }
 
     public String getArea() {
-        return area;
+        return (int)Math.floor(area) + "-" + (int)Math.floor((area*400%400)/100) + "-" + (int)(area*400)%100;
     }
 
-    public String getYield() {
+    public int getYield() {
         return yield;
     }
 

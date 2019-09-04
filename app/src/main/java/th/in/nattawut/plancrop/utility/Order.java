@@ -15,44 +15,44 @@ public class Order {
     @SerializedName("crop")
     private String crop;
     @SerializedName("qty")
-    private String qty;
+    private int qty;
 
-    public Order() {
+//    public Order() {
+//
+//    }
+//
+//    public Order(String no, String sdate, String edate, String cid, String crop, String qty) {
+//        this.no = no;
+//        this.sdate = sdate;
+//        this.edate = edate;
+//        this.cid = cid;
+//        this.crop = crop;
+//        this.qty = qty;
+//    }
 
-    }
-
-    public Order(String no, String sdate, String edate, String cid, String crop, String qty) {
-        this.no = no;
-        this.sdate = sdate;
-        this.edate = edate;
-        this.cid = cid;
-        this.crop = crop;
-        this.qty = qty;
-    }
-
-    public void setNo(String no) {
-        this.no = no;
-    }
-
-    public void setSdate(String sdate) {
-        this.sdate = sdate;
-    }
-
-    public void setEdate(String edate) {
-        this.edate = edate;
-    }
-
-    public void setCid(String cid) {
-        this.cid = cid;
-    }
-
-    public void setCrop(String crop) {
-        this.crop = crop;
-    }
-
-    public void setQty(String qty) {
-        this.qty = qty;
-    }
+//    public void setNo(String no) {
+//        this.no = no;
+//    }
+//
+//    public void setSdate(String sdate) {
+//        this.sdate = sdate;
+//    }
+//
+//    public void setEdate(String edate) {
+//        this.edate = edate;
+//    }
+//
+//    public void setCid(String cid) {
+//        this.cid = cid;
+//    }
+//
+//    public void setCrop(String crop) {
+//        this.crop = crop;
+//    }
+//
+//    public void setQty(String qty) {
+//        this.qty = qty;
+//    }
 
     public String getNo() {
         return no;
@@ -74,7 +74,7 @@ public class Order {
         return crop;
     }
 
-    public String getQty() {
+    public int getQty() {
         return qty;
     }
 }

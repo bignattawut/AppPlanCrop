@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+
 import th.in.nattawut.plancrop.R;
 
 public class OrderReportAdpter extends BaseAdapter {
@@ -55,7 +57,10 @@ public class OrderReportAdpter extends BaseAdapter {
         textSDate.setText(sdateStrings[position]);
         textEDate.setText(edateString[position]);
         textCrop.setText(cropStrings[position]);
-        textQty.setText(qtyString[position]);
+        //textQty.setText(qtyString[position]);
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+        String s1 = decimalFormat.format(Float.valueOf(qtyString[position]));
+        textQty.setText(s1);
         textname.setText(nameStrings[position]);
         texttel.setText(telStrings[position]);
 

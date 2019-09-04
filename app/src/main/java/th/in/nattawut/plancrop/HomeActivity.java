@@ -164,7 +164,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         .commit();
                 break;
             case R.id.munu_PlantReportall:
-                setTitle("การเพาะปลูกทั้งหมด");
+                setTitle("พืชเพาะปลูก");
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.contentHomeFragment, new PlantReportallViewFragment())

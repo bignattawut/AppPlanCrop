@@ -101,7 +101,7 @@
                 <!--android:layout_height="wrap_content" />-->
 
             <EditText
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:layout_marginLeft="5dp"
                 android:id="@+id/txtLat"
                 android:background="@drawable/style1"
@@ -127,7 +127,7 @@
                 <!--android:layout_width="wrap_content"-->
                 <!--android:layout_height="wrap_content" />-->
             <EditText
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:layout_marginLeft="5dp"
                 android:id="@+id/txtLong"
                 android:background="@drawable/style1"

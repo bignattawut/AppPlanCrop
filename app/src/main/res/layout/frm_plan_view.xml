@@ -145,7 +145,7 @@
                     android:fontFamily="@font/fonts1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="วันที่เพาะปลูก"
+                    android:text="วันที่จะปลูก"
                     android:textSize="22dp"
                     android:textStyle="bold" />
 
@@ -204,7 +204,7 @@
                     android:fontFamily="@font/fonts1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ปริมาณผลผลิต"
+                    android:text="ปริมาณการผลผลิต"
                     android:textSize="22dp"
                     android:textStyle="bold" />
 
@@ -233,7 +233,7 @@
                     android:fontFamily="@font/fonts1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="พื้นที่เพาะปลูก"
+                    android:text="พื้นที่จะปลูก"
                     android:textSize="22dp"
                     android:textStyle="bold" />
 
@@ -263,7 +263,7 @@
                     android:fontFamily="@font/fonts1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="พื้นที่เพาะปลูก/ไร่"
+                    android:text="พื้นที่จะปลูก (ไร่-งาน-วา)"
                     android:textSize="22dp"
                     android:textStyle="bold" />
 

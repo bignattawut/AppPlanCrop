@@ -13,7 +13,7 @@ public class FarmerViewAdminAdpter extends BaseAdapter {
 
 
     private Context context;
-    private String[] midString,useridString,pwdString,idString,nameString,addressString,pidString,didString,vidString,sidString,telString,emailString,areaString;
+    private String[] midString,useridString,pwdString,idString,nameString,addressString,pidString,didString,sidString,vidString,telString,emailString,areaString;
 
     public FarmerViewAdminAdpter(Context context,
                                  String[] midString,
@@ -24,8 +24,8 @@ public class FarmerViewAdminAdpter extends BaseAdapter {
                                  String[] addressString,
                                  String[] pidString,
                                  String[] didString,
-                                 String[] vidString,
                                  String[] sidString,
+                                 String[] vidString,
                                  String[] telString,
                                  String[] emailString,
                                  String[] areaString) {
@@ -37,9 +37,10 @@ public class FarmerViewAdminAdpter extends BaseAdapter {
         this.nameString = nameString;
         this.addressString = addressString;
         this.pidString = pidString;
+
         this.didString = didString;
-        this.vidString = vidString;
         this.sidString = sidString;
+        this.vidString = vidString;
         this.telString = telString;
         this.emailString = emailString;
         this.areaString = areaString;
@@ -67,23 +68,19 @@ public class FarmerViewAdminAdpter extends BaseAdapter {
 
         TextView name = view.findViewById(R.id.textNamef);
         TextView phon = view.findViewById(R.id.textPhonef);
-        TextView Username = view.findViewById(R.id.textUsername);
-
-
-
-        //TextView textpid = view.findViewById(R.id.textPid);
+//        TextView Username = view.findViewById(R.id.textUsername);
+//        TextView textpid = view.findViewById(R.id.textPid);
 //        TextView textdid = view.findViewById(R.id.textDid);
 //        TextView textsid = view.findViewById(R.id.textSid);
-//        TextView textvid = view.findViewById(R.id.textvid);
+        TextView textvid = view.findViewById(R.id.textvid);
 
         name.setText(nameString[position]);
         phon.setText(telString[position]);
-        Username.setText(useridString[position]);
-
-        //textpid.setText(pidString[position]);
+//        Username.setText(useridString[position]);
+//        textpid.setText(pidString[position]);
 //        textdid.setText(didString[position]);
 //        textsid.setText(sidString[position]);
-//        textvid.setText(vidString[position]);
+        textvid.setText(vidString[position]);
 
 
         return view;

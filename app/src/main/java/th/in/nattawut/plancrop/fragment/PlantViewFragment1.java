@@ -82,7 +82,7 @@ public class PlantViewFragment1 extends Fragment {
 
     Spinner spin,selectMap;
     ArrayList<HashMap<String, String>> MyArrList,mapArrayList = new ArrayList<HashMap<String, String>>();
-    HashMap<String, String> map,m,selectsite;
+    HashMap<String, String> map,m,selectsite,mapname;
 
 
     @Override
@@ -151,6 +151,7 @@ public class PlantViewFragment1 extends Fragment {
             sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_province,
                     new String[]{"pid", "thai"}, new int[]{R.id.pid, R.id.pidthai});
             spProvince.setAdapter(sAdap);
+            spProvince.setSelection(25);
 
         }catch (Exception e){
             e.printStackTrace();
@@ -189,6 +190,10 @@ public class PlantViewFragment1 extends Fragment {
 
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
+            map = new HashMap<String, String>();
+            map.put("did", "");
+            map.put("thai", "");
+            MyArrList.add(map);
 
             for (int i = 0; i < data.length(); i++) {
                 JSONObject c = data.getJSONObject(i);
@@ -244,6 +249,10 @@ public class PlantViewFragment1 extends Fragment {
 
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
+            map = new HashMap<String, String>();
+            map.put("sid", "");
+            map.put("thai", "");
+            MyArrList.add(map);
 
             for (int i = 0; i < data.length(); i++) {
                 JSONObject c = data.getJSONObject(i);
@@ -390,6 +399,7 @@ public class PlantViewFragment1 extends Fragment {
             sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_sitename,
                     new String[]{"mid", "name"}, new int[]{R.id.textMId, R.id.textName});
             spin.setAdapter(sAdap);
+            spin.setSelection(MyArrList.indexOf(mapname));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -473,7 +483,7 @@ public class PlantViewFragment1 extends Fragment {
     }
 
     private void selectPlant(String provinceString,String amphurString,String subDistriceString,String sdateString){
-        Call<List<Plant>> call = orderService.getPlant(provinceString,"","",sdateString);
+        Call<List<Plant>> call = orderService.getPlant(provinceString,amphurString,"",sdateString);
         call.enqueue(new Callback<List<Plant>>() {
             @Override
             public void onResponse(Call<List<Plant>> call, Response<List<Plant>> response) {
@@ -484,7 +494,7 @@ public class PlantViewFragment1 extends Fragment {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             deleteorEditPlant(list.get(position).getNo(),list.get(position).getSno(),
-                                    list.get(position).getPdate(),list.get(position).getMid(),list.get(position).getName(),list.get(position).getCid(),list.get(position).getCrop());
+                                    list.get(position).getPdate(),list.get(position).getMid(),list.get(position).getName(),list.get(position).getCid(),list.get(position).getCrop(),list.get(position).getArea1());
                         }
                     });
 
@@ -500,11 +510,11 @@ public class PlantViewFragment1 extends Fragment {
     }
 
     //alertให้เลือกลบหรือแก้ไข
-    private void deleteorEditPlant(final String noStrings,final String sno,final String pdataString,final String midStrings,final String nameStrings,final String cidStrings,final String cropStrings) {
+    private void deleteorEditPlant(final String noStrings,final String sno,final String pdataString,final String midStrings,final String nameStrings,final String cidStrings,final String cropStrings,final float area) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
-        builder.setIcon(R.drawable.ic_action_drawerplan);
+        builder.setIcon(R.drawable.shovel);
         builder.setTitle("ลบ หรือ แก้ไข");
         builder.setMessage("กรุณาเลือก ลบ หรือ แก้ไข ?");
         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
@@ -523,7 +533,7 @@ public class PlantViewFragment1 extends Fragment {
         builder.setPositiveButton("แก้ไข", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                editPlant(noStrings,sno,pdataString,midStrings,nameStrings,cidStrings,cropStrings);
+                editPlant(noStrings,sno,pdataString,midStrings,nameStrings,cidStrings,cropStrings,area);
                 dialog.dismiss();
             }
         });
@@ -571,7 +581,7 @@ public class PlantViewFragment1 extends Fragment {
         }
     }
 
-    private void editPlant(final String no,final String sno,final String pdataString,final String midStrings,final String nameStrings,final String cidStrings,final String cropStrings) {
+    private void editPlant(final String no,final String sno,final String pdataString,final String midStrings,final String nameStrings,final String cidStrings,final String cropStrings,final float area) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_LIGHT);
         builder.setCancelable(false);
         //กำหนดหัวเเรื้อง
@@ -582,6 +592,9 @@ public class PlantViewFragment1 extends Fragment {
         //editpdate
         editpdateController();
 
+        mapname = new HashMap<String, String>();
+        mapname.put("name",nameStrings);
+        mapname.put("mid",midStrings);
 
         map = new HashMap<String, String>();
         map.put("crop",cropStrings);
@@ -589,6 +602,14 @@ public class PlantViewFragment1 extends Fragment {
         selectcroptype1();
 
         selectFarmer();
+
+        EditText EditAddPlan1 = view.findViewById(R.id.EditAddPlant1);
+        EditText EditAddPlan2 = view.findViewById(R.id.EditAddPlant2);
+        EditText EditAddPlan3 = view.findViewById(R.id.EditAddPlant3);
+
+        EditAddPlan1.setText(String.valueOf((int) Math.floor(area)));
+        EditAddPlan2.setText(String.valueOf((int) Math.floor((area*400%400)/100)));
+        EditAddPlan3.setText(String.valueOf((int) Math.floor((area*400)%100)));
 
 
         TextView textPDate = view.findViewById(R.id.EditMyDate);

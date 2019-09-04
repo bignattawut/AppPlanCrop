@@ -160,7 +160,7 @@
                     app:fontFamily="@font/fonts1" />
 
                 <EditText
-                    android:maxLength="3"
+                    android:maxLength="6"
                     android:id="@+id/edtEditQty"
                     android:hint="xxxxxxxxxxxxx"
                     android:width="100dp"

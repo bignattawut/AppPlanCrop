@@ -3,6 +3,7 @@ package th.in.nattawut.plancrop.utility;
 import android.content.Context;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,13 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.text.ChoiceFormat;
+import java.text.DecimalFormat;
+import java.text.FieldPosition;
+import java.text.Format;
+import java.text.NumberFormat;
+import java.text.ParsePosition;
+import java.util.Formattable;
 import java.util.List;
 
 import th.in.nattawut.plancrop.R;
@@ -36,20 +44,21 @@ public class PlanFarmerAdapter extends ArrayAdapter<PlanFarmer> {
 
         //TextView textPlanFarmerNo = view.findViewById(R.id.textPlanFarmerNo);
         TextView textPlanFarmer = view.findViewById(R.id.textPlanFarmer);
-        TextView textPlanFarmerCid = view.findViewById(R.id.textPlanFarmerCid);
+        //TextView textPlanFarmerCid = view.findViewById(R.id.textPlanFarmerYield);
         TextView textPlanFarmerCrop = view.findViewById(R.id.textPlanFarmerCrop);
         TextView textPlanArea = view.findViewById(R.id.textPlanArea);
 
-
         //textPlanFarmerNo.setText(planFarmers.get(position).getNo());
         textPlanFarmer.setText(planFarmers.get(position).getPdate());
-        //textPlanFarmerCid.setText(planFarmers.get(position).getYield());
+//        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+//        String s1 = decimalFormat.format(planFarmers.get(position).getYield());
+//        textPlanFarmerCid.setText(s1);
         textPlanFarmerCrop.setText(planFarmers.get(position).getCrop());
-        textPlanArea.setText(planFarmers.get(position).getArea());
+        textPlanArea.setText(String.valueOf(planFarmers.get(position).getArea()));
 
-        textPlanFarmerCid.setText(String.valueOf(planFarmers.get(position).getYield()));
-
+        Log.d("DecimalFormat","DecimalFormat" + planFarmers.get(position).getArea());
 
         return view;
     }
+
 }

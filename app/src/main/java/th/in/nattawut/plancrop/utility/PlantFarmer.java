@@ -11,11 +11,11 @@ public class PlantFarmer {
     @SerializedName("cid")
     private String cid;
     @SerializedName("yield")
-    private String yield;
+    private int yield;
     @SerializedName("crop")
     private String crop;
     @SerializedName("area")
-    private String area;
+    private float area;
     @SerializedName("sno")
     private String sno;
 
@@ -32,7 +32,7 @@ public class PlantFarmer {
         return cid;
     }
 
-    public String getYield() {
+    public int getYield() {
         return yield;
     }
 
@@ -41,6 +41,10 @@ public class PlantFarmer {
     }
 
     public String getArea() {
+        return (int)Math.floor(area) + "-" + (int)Math.floor((area*400%400)/100) + "-" + (int)(area*400)%100;
+    }
+
+    public float getArea1(){
         return area;
     }
 

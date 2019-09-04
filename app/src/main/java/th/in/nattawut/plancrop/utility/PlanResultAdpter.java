@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import th.in.nattawut.plancrop.R;
@@ -24,11 +25,11 @@ public class PlanResultAdpter extends ArrayAdapter<PlanResult> {
         this.context = context;
         this.planResults = objects;
     }
+
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View view = inflater.inflate(R.layout.frm_planresult_view,parent,false);
-
+        final View view = inflater.inflate(R.layout.frm_planresult_view, parent, false);
 
 
         TextView textCrop = view.findViewById(R.id.textPlanCrop);
@@ -40,10 +41,12 @@ public class PlanResultAdpter extends ArrayAdapter<PlanResult> {
         textCrop.setText(planResults.get(position).getCrop());
         textQty.setText(planResults.get(position).getBeginharvest());
         textArea.setText(planResults.get(position).getHarvestperiod());
-        textyield.setText(planResults.get(position).getYield());
+        //textyield.setText(planResults.get(position).getYield());
 
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+        String s1 = decimalFormat.format(planResults.get(position).getYield());
+        textyield.setText(s1);
         //textyield.setText(String.valueOf(planResults.get(position).getYield()));
-
 
 
         return view;

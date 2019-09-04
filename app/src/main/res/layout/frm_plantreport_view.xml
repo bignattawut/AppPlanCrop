@@ -119,7 +119,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/fonts1"
-                    android:text="วันที่เริ่มเก็บเกี่ยวได้ (วัน)"
+                    android:text="วันที่เริ่มเก็บเกี่ยวได้"
                     android:textSize="22dp"
                     android:textStyle="bold" />
 
@@ -177,7 +177,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/fonts1"
-                    android:text="ปริมาณผลิต (ก.ก)"
+                    android:text="ปริมาณการผลิต (ก.ก)"
                     android:textSize="22dp"
                     android:textStyle="bold" />
 
@@ -187,7 +187,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:fontFamily="@font/fonts1"
-                    android:text="ปริมาณ"
+                    android:text="ปริมาณการผลผลิต"
                     android:textColor="@color/colorPri"
                     android:textSize="22dp"
                     android:textStyle="bold" />

@@ -214,6 +214,20 @@ public class PlanFragment extends Fragment {
         editTextString = Float.toString(Float.parseFloat(plan1.getText().toString().trim())
                 + (Float.parseFloat(plan2.getText().toString().trim()) * 100 + Float.parseFloat(plan3.getText().toString().trim())) / 400);
 
+
+        ///
+//        function yield() {
+//            var area = (parseInt(document.getElementById("rai").value)||0) +
+//                    ((parseInt(document.getElementById("ngan").value)||0) * 100 +
+//                            (parseInt(document.getElementById("wa").value)||0)) / 400;
+//            document.getElementById("qty").value = Number(parseInt(parseFloat(document.getElementById("crop").
+//                    value.substr(document.getElementById("crop").value.indexOf(":")+1)) * area)).toLocaleString();
+//      }
+      TextView texPlanQty = getView().findViewById(R.id.texPlanQty);
+
+        ///
+
+
         MyAlertCrop myAlertCrop = new MyAlertCrop(getActivity());
         if (cidmidString.isEmpty()) {
             myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกชื่อเกษตรกร");
@@ -275,6 +289,8 @@ public class PlanFragment extends Fragment {
             e.printStackTrace();
         }
     }
+
+
 
     @Nullable
     @Override

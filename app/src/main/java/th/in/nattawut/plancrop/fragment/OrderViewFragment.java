@@ -144,7 +144,7 @@ public class OrderViewFragment extends Fragment {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             deleteorEditOrder(list.get(position).getNo(), list.get(position).getSdate()
-                                    , list.get(position).getEdate(), list.get(position).getQty(),list.get(position).getCid(), list.get(position).getCrop());
+                                    , list.get(position).getEdate(), String.valueOf(list.get(position).getQty()),list.get(position).getCid(), list.get(position).getCrop());
                         }
                     });
                 }

@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import th.in.nattawut.plancrop.R;
@@ -38,7 +39,10 @@ public class PlantAdpter1 extends ArrayAdapter<Plant> {
         TextView nameStrings1 = view.findViewById(R.id.nameStrings);
 
         pdataString1.setText(plants.get(position).getPdate());
-        yieldStrings1.setText(plants.get(position).getYield());
+        //yieldStrings1.setText(plants.get(position).getYield());
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+        String s1 = decimalFormat.format(plants.get(position).getYield());
+        yieldStrings1.setText(s1);
         areaStrings.setText(plants.get(position).getArea());
         cropStrings1.setText(plants.get(position).getCrop());
         nameStrings1.setText(plants.get(position).getName());

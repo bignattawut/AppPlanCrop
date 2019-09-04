@@ -110,6 +110,7 @@ public class MemberAddFragment extends Fragment {
             sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_province,
                     new String[]{"pid", "thai"}, new int[]{R.id.pid, R.id.pidthai});
             spProvince.setAdapter(sAdap);
+            spProvince.setSelection(25);
 
         }catch (Exception e){
             e.printStackTrace();

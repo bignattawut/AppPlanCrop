@@ -11,7 +11,7 @@ public class PlantReport {
     @SerializedName("area")
     private String area;
     @SerializedName("yield")
-    private String yield;
+    private int yield;
     @SerializedName("pdate")
     private String pdate;
     @SerializedName("hdate")
@@ -29,7 +29,7 @@ public class PlantReport {
         return area;
     }
 
-    public String getYield() {
+    public int getYield() {
         return yield;
     }
 

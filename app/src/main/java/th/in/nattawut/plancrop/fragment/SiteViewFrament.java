@@ -70,6 +70,9 @@ public class SiteViewFrament extends Fragment implements LocationListener {
 
     View view;
 
+    ArrayList<HashMap<String, String>> MyArrList,mapArrayList = new ArrayList<HashMap<String, String>>();
+    HashMap<String, String> map,m,selectsite,mapname;
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -213,6 +216,9 @@ public class SiteViewFrament extends Fragment implements LocationListener {
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
         view = layoutInflater.inflate(R.layout.edit_site, null);
 
+        mapname = new HashMap<String, String>();
+        mapname.put("name",name);
+        mapname.put("mid",mid);
 
         selectSiteVillageFarmer();
 

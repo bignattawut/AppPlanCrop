@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
@@ -35,6 +36,7 @@ import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.APIUtils;
 import th.in.nattawut.plancrop.utility.AddAmpur;
 import th.in.nattawut.plancrop.utility.AddProvince;
+import th.in.nattawut.plancrop.utility.AddVillag;
 import th.in.nattawut.plancrop.utility.GetData;
 import th.in.nattawut.plancrop.utility.Myconstant;
 import th.in.nattawut.plancrop.utility.OrderService;
@@ -53,6 +55,7 @@ public class PlantResultViewFragment extends Fragment {
     Calendar calendar;
     SwipeRefreshLayout mSwipeRefreshLayout;
 
+
     private ArrayList<String> arrProvince = new ArrayList<>();
     private ArrayList<String> arrProvinceID = new ArrayList<>();
 
@@ -62,7 +65,8 @@ public class PlantResultViewFragment extends Fragment {
     private ArrayList<String> arrSid = new ArrayList<>();
     private ArrayList<String> arrSidID = new ArrayList<>();
 
-    private Spinner spProvince,spAmphur, spSubDistrice;
+    private ArrayAdapter<String> adpProvince,adpAmphur,adpSid,adpVid;
+    private Spinner spProvince,spAmphur, spSubDistrice,spVillag;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -77,6 +81,7 @@ public class PlantResultViewFragment extends Fragment {
 
         spSubDistrice = getView().findViewById(R.id.spSubDistrice);
 
+
         edateController();
 
         pdateController();
@@ -88,6 +93,7 @@ public class PlantResultViewFragment extends Fragment {
         cropTypeSpinner();
 
         planFarmerSpinner();
+
     }
 
     private void SwipeRefreshLayout() {
@@ -129,6 +135,7 @@ public class PlantResultViewFragment extends Fragment {
             sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_province,
                     new String[]{"pid", "thai"}, new int[]{R.id.pid, R.id.pidthai});
             spProvince.setAdapter(sAdap);
+            spProvince.setSelection(25);
 
         }catch (Exception e){
             e.printStackTrace();
@@ -162,6 +169,10 @@ public class PlantResultViewFragment extends Fragment {
 
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
+            map = new HashMap<String, String>();
+            map.put("did", "");
+            map.put("thai", "");
+            MyArrList.add(map);
 
             for (int i = 0; i < data.length(); i++) {
                 JSONObject c = data.getJSONObject(i);
@@ -212,6 +223,10 @@ public class PlantResultViewFragment extends Fragment {
 
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
+            map = new HashMap<String, String>();
+            map.put("sid", "");
+            map.put("thai", "");
+            MyArrList.add(map);
 
             for (int i = 0; i < data.length(); i++) {
                 JSONObject c = data.getJSONObject(i);
@@ -313,6 +328,10 @@ public class PlantResultViewFragment extends Fragment {
 
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
+            map = new HashMap<String, String>();
+            map.put("mid", "");
+            map.put("name", "");
+            MyArrList.add(map);
 
             for (int i = 0; i < data.length(); i++) {
                 JSONObject c = data.getJSONObject(i);
@@ -349,6 +368,10 @@ public class PlantResultViewFragment extends Fragment {
 
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
+            map = new HashMap<String, String>();
+            map.put("tid", "");
+            map.put("croptype", "");
+            MyArrList.add(map);
 
             for(int i = 0; i < data.length(); i++){
                 JSONObject c = data.getJSONObject(i);
@@ -375,7 +398,6 @@ public class PlantResultViewFragment extends Fragment {
             StrictMode.setThreadPolicy(policy);
         }
         final Spinner spin = getView().findViewById(R.id.crop);
-        //final MaterialSpinner spin = getView().findViewById(R.id.crop);
         try {
             Myconstant myconstant = new Myconstant();
             GetData getData = new GetData(getActivity());
@@ -387,6 +409,10 @@ public class PlantResultViewFragment extends Fragment {
 
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
+            map = new HashMap<String, String>();
+            map.put("cid", "");
+            map.put("crop", "");
+            MyArrList.add(map);
 
             for (int i = 0; i < data.length(); i++) {
                 JSONObject c = data.getJSONObject(i);
@@ -395,11 +421,13 @@ public class PlantResultViewFragment extends Fragment {
                 map.put("cid", c.getString("cid"));
                 map.put("crop", c.getString("crop"));
                 MyArrList.add(map);
+
             }
             SimpleAdapter sAdap;
             sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_plancrop,
                     new String[]{"cid", "crop"}, new int[]{R.id.textPlanCidSpinner, R.id.textPlanCropSpinner});
             spin.setAdapter(sAdap);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -415,7 +443,6 @@ public class PlantResultViewFragment extends Fragment {
             }
         });
     }
-
 
     private void add() {
 
@@ -440,7 +467,7 @@ public class PlantResultViewFragment extends Fragment {
     }
 
     private void selectPlantReportall(String provinceString,String amphurString,String subDistriceString,String sdateString, String edateString,String nameString, String croptypeString, String cropString) {
-        Call<List<PlantResult>> call = orderService.getPlantResult(provinceString,"","",sdateString,edateString,nameString,croptypeString,cropString);
+        Call<List<PlantResult>> call = orderService.getPlantResult(provinceString,amphurString,"",sdateString,edateString,nameString,croptypeString,cropString);
         call.enqueue(new Callback<List<PlantResult>>() {
             @Override
             public void onResponse(Call<List<PlantResult>> call, Response<List<PlantResult>> response) {

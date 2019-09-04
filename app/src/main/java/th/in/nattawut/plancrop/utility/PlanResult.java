@@ -11,7 +11,7 @@ public class PlanResult {
     @SerializedName("edate")
     private String harvestperiod;
     @SerializedName("yield")
-    private String yield;
+    private float yield;
 
     public String getCrop() {
         return crop;
@@ -25,7 +25,7 @@ public class PlanResult {
         return harvestperiod;
     }
 
-    public String getYield() {
+    public float getYield() {
         return yield;
     }
 }

@@ -90,7 +90,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ผลผลิตเฉลี่ยกิโลกรัมต่อไร่"
+                    android:text="ประมาณการผลผลิต (ก.ก)"
                     android:textSize="22dp"
                     android:textStyle="bold" />
 
@@ -117,7 +117,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="พื้นที่เพาะปลูก/ไร่"
+                    android:text="พื้นที่ (ไร่-งาน-วา)"
                     android:textSize="22dp"
                     android:textStyle="bold" />
 

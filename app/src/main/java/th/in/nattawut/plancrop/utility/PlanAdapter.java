@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+
 import th.in.nattawut.plancrop.R;
 
 public class PlanAdapter extends BaseAdapter {
@@ -65,11 +67,18 @@ public class PlanAdapter extends BaseAdapter {
         planTextView.setText(planStrings[position]);
         midTextView.setText(midString[position]);
         typeTextView.setText(typeStrings[position]);
-        cidTextView.setText(yieldStrings[position]);
+        //cidTextView.setText(yieldStrings[position]);
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+        String s1 = decimalFormat.format(Float.valueOf(yieldStrings[position]));
+        cidTextView.setText(s1);
         cropTextView.setText(cropStrings[position]);
         areTextView.setText(areStrings[position]);
-        dataTextView.setText(dateStrings[position]);
 
+        //dataTextView.setText(dateStrings[position]);
+
+        dataTextView.setText(String.valueOf((int) Math.floor(Float.valueOf(dateStrings[position]))) +"-"+
+                (int) Math.floor(Float.valueOf(dateStrings[position])*400%400)/100+ "-" +
+                (int) Math.floor(Float.valueOf(dateStrings[position])*400)%100);
         return view;
     }
 }

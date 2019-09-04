@@ -62,6 +62,7 @@ public class FarmerViewAdminFragment extends Fragment {
 
     private ArrayAdapter<String> adpProvince,adpAmphur,adpSid,adpVid;
     private Spinner spProvince,spAmphur, spSubDistrice,spVillag;
+    HashMap<String, String> m;
 
     View view;
     @Override
@@ -143,7 +144,7 @@ public class FarmerViewAdminFragment extends Fragment {
 
             }
             final FarmerViewAdminAdpter farmerViewTestAdpter = new FarmerViewAdminAdpter(getActivity(),
-                    midString,useridString,pwdString,idString,nameString,addressString,pidString,didString,vidString,sidString,telString,emailString,areaString);
+                    midString,useridString,pwdString,idString,nameString,addressString,pidString,didString,sidString,vidString,telString,emailString,areaString);
             listView.setAdapter(farmerViewTestAdpter);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -200,6 +201,9 @@ public class FarmerViewAdminFragment extends Fragment {
         view = layoutInflater.inflate(R.layout.edit_farmer, null);
 
 
+//        m = new HashMap<String, String>();
+//        m.put("pid",pidString);
+//        m.put("thai",pidString);
         spProvince = view.findViewById(R.id.EditspProvinceFarmer);
         Province();
         spAmphur = view.findViewById(R.id.EditspAmphurFarmer);
@@ -340,7 +344,7 @@ public class FarmerViewAdminFragment extends Fragment {
             if (Boolean.parseBoolean(deleteFammer.get())) {
                 createLisView();
             } else {
-                Toast.makeText(getActivity(),"ลบรายการพืชเพาะปลูก",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"ลบรายสำเร็จ",Toast.LENGTH_SHORT).show();
             }
 
 
@@ -376,6 +380,7 @@ public class FarmerViewAdminFragment extends Fragment {
             sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_province,
                     new String[]{"pid", "thai"}, new int[]{R.id.pid, R.id.pidthai});
             spProvince.setAdapter(sAdap);
+            spProvince.setSelection(25);
 
         }catch (Exception e){
             e.printStackTrace();
