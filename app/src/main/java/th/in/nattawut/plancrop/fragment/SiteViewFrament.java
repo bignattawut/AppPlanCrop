@@ -180,8 +180,8 @@ public class SiteViewFrament extends Fragment implements LocationListener {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
         builder.setIcon(R.drawable.map);
-        builder.setTitle("ลบ หรือ แก้ไข");
-        builder.setMessage("กรุณาเลือก ลบ หรือ แก้ไข ?");
+        builder.setTitle("ข้อมูลแปลงเพาะปลูก");
+        builder.setMessage("กรุณาเลือก ลบ หรือ ดูข้อมูล ?");
         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

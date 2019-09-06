@@ -68,21 +68,13 @@ public class PlantViewFragment1 extends Fragment {
 
     View view;
 
-    private ArrayList<String> arrProvince = new ArrayList<>();
-    private ArrayList<String> arrProvinceID = new ArrayList<>();
-
-    private ArrayList<String> arrAmphur = new ArrayList<>();
-    private ArrayList<String> arrAmphurID = new ArrayList<>();
-
-    private ArrayList<String> arrSid = new ArrayList<>();
-    private ArrayList<String> arrSidID = new ArrayList<>();
-
     private ArrayList<String> arrmid = new ArrayList<>();
     private ArrayList<String> arrname = new ArrayList<>();
 
     Spinner spin,selectMap;
     ArrayList<HashMap<String, String>> MyArrList,mapArrayList = new ArrayList<HashMap<String, String>>();
     HashMap<String, String> map,m,selectsite,mapname;
+    private Spinner spProvince,spAmphur, spSubDistrice;
 
 
     @Override
@@ -101,8 +93,12 @@ public class PlantViewFragment1 extends Fragment {
 
         listView = getView().findViewById(R.id.listViewPlant);
         orderService = APIUtils.getService();
-
+        spProvince = getView().findViewById(R.id.spProvincePlant);
         Province();
+        spAmphur = getView().findViewById(R.id.spAmphurPlant);
+
+        spSubDistrice = getView().findViewById(R.id.spDistricePlant);
+
 
 
     }
@@ -120,11 +116,6 @@ public class PlantViewFragment1 extends Fragment {
 
 
     public void Province() {
-        if (android.os.Build.VERSION.SDK_INT > 9) { //setup policy เเพื่อมือถือที่มีประปฏิบัติการสูงกว่านีจะไม่สามารถconnectกับโปรโตรคอลได้
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }
-        final Spinner spProvince = getView().findViewById(R.id.spProvincePlant);
         try {
             Myconstant myconstant = new Myconstant();
             GetData getData = new GetData(getActivity());
@@ -142,10 +133,8 @@ public class PlantViewFragment1 extends Fragment {
                 map = new HashMap<String, String>();
                 map.put("pid", c.getString("pid"));
                 map.put("thai", c.getString("thai"));
-
-                arrProvinceID.add(c.getString("pid"));
-                arrProvince.add(c.getString("thai"));
                 MyArrList.add(map);
+
             }
             SimpleAdapter sAdap;
             sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_province,
@@ -153,33 +142,27 @@ public class PlantViewFragment1 extends Fragment {
             spProvince.setAdapter(sAdap);
             spProvince.setSelection(25);
 
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-        spProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (spProvince.getSelectedItem() != null) {
-                    Amphur(arrProvinceID.get(position));
+            spProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    if (spProvince.getSelectedItem() != null) {
+                        Amphur(MyArrList.get(position).get("pid"));
+                    }
 
                 }
 
-            }
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+                }
+            });
 
-            }
-        });
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void Amphur(String province) {
-        if (android.os.Build.VERSION.SDK_INT > 9) { //setup policy เเพื่อมือถือที่มีประปฏิบัติการสูงกว่านีจะไม่สามารถconnectกับโปรโตรคอลได้
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }
-        final Spinner spAmphur = getView().findViewById(R.id.spAmphurPlant);
         try {
             Myconstant myconstant = new Myconstant();
             AddProvince addProvince = new AddProvince(getActivity());
@@ -191,8 +174,8 @@ public class PlantViewFragment1 extends Fragment {
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
             map = new HashMap<String, String>();
-            map.put("did", "");
-            map.put("thai", "");
+            map.put("", "");
+            map.put("", "");
             MyArrList.add(map);
 
             for (int i = 0; i < data.length(); i++) {
@@ -201,9 +184,6 @@ public class PlantViewFragment1 extends Fragment {
                 map = new HashMap<String, String>();
                 map.put("did", c.getString("did"));
                 map.put("thai", c.getString("thai"));
-
-                arrAmphurID.add(c.getString("did"));
-                arrAmphur.add(c.getString("thai"));
                 MyArrList.add(map);
 
             }
@@ -211,13 +191,15 @@ public class PlantViewFragment1 extends Fragment {
             sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_amphur,
                     new String[]{"did", "thai"}, new int[]{R.id.did, R.id.didthai});
             spAmphur.setAdapter(sAdap);
+            //spAmphur.setSelection(1);
 
             spAmphur.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     if (spAmphur.getSelectedItem() != null) {
-                        SubDistrice(arrAmphurID.get(position));
-                        arrSid.clear();
+                        SubDistrice(MyArrList.get(position).get("did"));
+
+                        //arrSid.clear();
                     }
 
                 }
@@ -234,24 +216,20 @@ public class PlantViewFragment1 extends Fragment {
     }
 
     public void SubDistrice(String amphur) {
-        if (android.os.Build.VERSION.SDK_INT > 9) { //setup policy เเพื่อมือถือที่มีประปฏิบัติการสูงกว่านีจะไม่สามารถconnectกับโปรโตรคอลได้
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }
-        final Spinner spSubDistrice = getView().findViewById(R.id.spDistricePlant);
         try {
             Myconstant myconstant = new Myconstant();
             AddAmpur addAmpur = new AddAmpur(getActivity());
             addAmpur.execute(amphur,myconstant.getUrlSid());
 
+            Log.d("am","aa"+ amphur);
             String jsonString = addAmpur.get();
             JSONArray data = new JSONArray(jsonString);
 
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
             map = new HashMap<String, String>();
-            map.put("sid", "");
-            map.put("thai", "");
+            map.put("", "");
+            map.put("", "");
             MyArrList.add(map);
 
             for (int i = 0; i < data.length(); i++) {
@@ -260,9 +238,6 @@ public class PlantViewFragment1 extends Fragment {
                 map = new HashMap<String, String>();
                 map.put("sid", c.getString("sid"));
                 map.put("thai", c.getString("thai"));
-
-                arrSidID.add(c.getString("sid"));
-                arrSid.add(c.getString("thai"));
                 MyArrList.add(map);
             }
             SimpleAdapter sAdap;
@@ -483,7 +458,7 @@ public class PlantViewFragment1 extends Fragment {
     }
 
     private void selectPlant(String provinceString,String amphurString,String subDistriceString,String sdateString){
-        Call<List<Plant>> call = orderService.getPlant(provinceString,amphurString,"",sdateString);
+        Call<List<Plant>> call = orderService.getPlant(provinceString,amphurString,subDistriceString,sdateString);
         call.enqueue(new Callback<List<Plant>>() {
             @Override
             public void onResponse(Call<List<Plant>> call, Response<List<Plant>> response) {
@@ -515,8 +490,8 @@ public class PlantViewFragment1 extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
         builder.setIcon(R.drawable.shovel);
-        builder.setTitle("ลบข้อมูล หรือ ดูรายละเอียด");
-        builder.setMessage("ต้องการแก้ไขข้อมูลกดปุ่ม ดูรายละเอียด");
+        builder.setTitle("ข้อมูลการเพาะปลูก");
+        builder.setMessage("กรุณาเลือก ลบ หรือ ดูข้อมูล ?");
         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

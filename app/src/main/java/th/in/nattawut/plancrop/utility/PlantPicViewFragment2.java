@@ -236,8 +236,8 @@ public class PlantPicViewFragment2 extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(),AlertDialog.THEME_HOLO_LIGHT);
         builder.setCancelable(false);
         builder.setIcon(R.drawable.ic_action_camera);
-        builder.setTitle("ลบข้อมูล หรือ ดูรายละเอียด");
-        builder.setMessage("ถ้าต้องการแก้ไขข้อมูลให้กดปุ่ม ดูรายละเอียด");
+        builder.setTitle("ข้อมูลกิจกกรมเพาะปลูก");
+        builder.setMessage("กรุณาเลือก ลบ หรือ ดูข้อมูล ?");
         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

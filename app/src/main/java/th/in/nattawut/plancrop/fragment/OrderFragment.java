@@ -93,6 +93,10 @@ public class OrderFragment extends Fragment {
 
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
+            map = new HashMap<String, String>();
+            map.put("", "");
+            map.put("", "");
+            MyArrList.add(map);
 
             for (int i = 0; i < data.length(); i++) {
                 JSONObject c = data.getJSONObject(i);
@@ -200,13 +204,13 @@ public class OrderFragment extends Fragment {
         if (addMid.isEmpty()) {
             myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกชื่อสมาชิก");
         } else if (addCrop.isEmpty()) {
-            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกพืชปลอดสารที่ต้องการ");
+            myAlertCrop.onrmaIDialog("กรุณาเลือก", "พืชปลอดสารที่ต้องการ");
         } else if (addSData.isEmpty()) {
-            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกวันที่เริ่มต้น");
+            myAlertCrop.onrmaIDialog("กรุณา", "กรอกวันที่เริ่มต้น");
         } else if (addEData.isEmpty()) {
-            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกวันที่สินสุด");
+            myAlertCrop.onrmaIDialog("กรุณา", "กรอกวันที่สิ้นสุด");
         } else if (addQty.isEmpty()) {
-            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกปริมาณความต้องการ");
+            myAlertCrop.onrmaIDialog("กรุณา", "กรอกปริมาณความต้องการ");
         }else {
             comfirmUpload();
         }
@@ -215,7 +219,7 @@ public class OrderFragment extends Fragment {
 
     private void comfirmUpload() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("ข้อมูลการวางแผนเพาะปลูก");
+        builder.setTitle("ข้อมูลการแจ้งความต้องการพืชปลอดสาร");
         builder.setMessage("ชื่อสมาชิก = " + strTextShow + "\n"
                 + "พืชที่ต้องการ = " + addCropName + "\n"
                 + "วันที่เริ่มต้น = " + addSData + "\n"

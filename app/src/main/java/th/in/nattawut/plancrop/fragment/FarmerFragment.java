@@ -31,24 +31,13 @@ import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.AddAmpur;
 import th.in.nattawut.plancrop.utility.AddFarmer;
 import th.in.nattawut.plancrop.utility.AddProvince;
+import th.in.nattawut.plancrop.utility.AddSubDistrict;
 import th.in.nattawut.plancrop.utility.AddVillag;
 import th.in.nattawut.plancrop.utility.GetData;
 import th.in.nattawut.plancrop.utility.MyAlertCrop;
 import th.in.nattawut.plancrop.utility.Myconstant;
 
 public class FarmerFragment extends Fragment {
-
-    private ArrayList<String> arrProvince = new ArrayList<>();
-    private ArrayList<String> arrProvinceID = new ArrayList<>();
-
-    private ArrayList<String> arrAmphur = new ArrayList<>();
-    private ArrayList<String> arrAmphurID = new ArrayList<>();
-
-    private ArrayList<String> arrSid = new ArrayList<>();
-    private ArrayList<String> arrSidID = new ArrayList<>();
-
-    private ArrayList<String> arrVid = new ArrayList<>();
-    private ArrayList<String> arrVidID = new ArrayList<>();
 
     private Spinner spProvince,spAmphur, spSubDistrice,spVillag;
 
@@ -94,10 +83,8 @@ public class FarmerFragment extends Fragment {
                 map = new HashMap<String, String>();
                 map.put("pid", c.getString("pid"));
                 map.put("thai", c.getString("thai"));
-
-                arrProvinceID.add(c.getString("pid"));
-                arrProvince.add(c.getString("thai"));
                 MyArrList.add(map);
+
             }
             SimpleAdapter sAdap;
             sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_province,
@@ -105,25 +92,24 @@ public class FarmerFragment extends Fragment {
             spProvince.setAdapter(sAdap);
             spProvince.setSelection(25);
 
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-        spProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (spProvince.getSelectedItem() != null) {
-                    Amphur(arrProvinceID.get(position));
+            spProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    if (spProvince.getSelectedItem() != null) {
+                        Amphur(MyArrList.get(position).get("pid"));
+                    }
 
                 }
 
-            }
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+                }
+            });
 
-            }
-        });
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void Amphur(String province) {
@@ -137,6 +123,10 @@ public class FarmerFragment extends Fragment {
 
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
+//            map = new HashMap<String, String>();
+//            map.put("", "");
+//            map.put("", "");
+//            MyArrList.add(map);
 
             for (int i = 0; i < data.length(); i++) {
                 JSONObject c = data.getJSONObject(i);
@@ -144,9 +134,6 @@ public class FarmerFragment extends Fragment {
                 map = new HashMap<String, String>();
                 map.put("did", c.getString("did"));
                 map.put("thai", c.getString("thai"));
-
-                arrAmphurID.add(c.getString("did"));
-                arrAmphur.add(c.getString("thai"));
                 MyArrList.add(map);
 
             }
@@ -154,15 +141,14 @@ public class FarmerFragment extends Fragment {
             sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_amphur,
                     new String[]{"did", "thai"}, new int[]{R.id.did, R.id.didthai});
             spAmphur.setAdapter(sAdap);
+            //spAmphur.setSelection(1);
 
             spAmphur.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     if (spAmphur.getSelectedItem() != null) {
-                        SubDistrice(arrAmphurID.get(position));
-                        arrSid.clear();
+                        SubDistrice(MyArrList.get(position).get("did"));
                     }
-
                 }
 
                 @Override
@@ -182,21 +168,18 @@ public class FarmerFragment extends Fragment {
             AddAmpur addAmpur = new AddAmpur(getActivity());
             addAmpur.execute(amphur,myconstant.getUrlSid());
 
+            Log.d("am","aa"+ amphur);
             String jsonString = addAmpur.get();
             JSONArray data = new JSONArray(jsonString);
 
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
-
             for (int i = 0; i < data.length(); i++) {
                 JSONObject c = data.getJSONObject(i);
 
                 map = new HashMap<String, String>();
                 map.put("sid", c.getString("sid"));
                 map.put("thai", c.getString("thai"));
-
-                arrSidID.add(c.getString("sid"));
-                arrSid.add(c.getString("thai"));
                 MyArrList.add(map);
             }
             SimpleAdapter sAdap;
@@ -208,9 +191,9 @@ public class FarmerFragment extends Fragment {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     if (spSubDistrice.getSelectedItem() != null) {
-                        Villag(arrSidID.get(position));
-
+                        Villag(MyArrList.get(position).get("sid"));
                     }
+
                 }
 
                 @Override
@@ -224,13 +207,14 @@ public class FarmerFragment extends Fragment {
         }
     }
 
-    public void Villag(String villag) {
+    public void Villag(String SubDistrice) {
         try {
             Myconstant myconstant = new Myconstant();
-            AddVillag addVillag = new AddVillag(getActivity());
-            addVillag.execute(villag,myconstant.getUrlVid());
+            AddSubDistrict addSubDistrict = new AddSubDistrict(getActivity());
+            addSubDistrict.execute(SubDistrice,myconstant.getUrlVid());
 
-            String jsonString = addVillag.get();
+            Log.d("am","aa"+ addSubDistrict);
+            String jsonString = addSubDistrict.get();
             JSONArray data = new JSONArray(jsonString);
 
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
@@ -248,6 +232,7 @@ public class FarmerFragment extends Fragment {
             sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_village,
                     new String[]{"vid", "thai"}, new int[]{R.id.vid, R.id.vidthai});
             spVillag.setAdapter(sAdap);
+
 
         }catch (Exception e){
             e.printStackTrace();

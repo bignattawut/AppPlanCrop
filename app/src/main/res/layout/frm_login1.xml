@@ -20,7 +20,6 @@
     <!--android:padding="50dp">-->
 
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -30,14 +29,27 @@
         android:orientation="vertical"
         android:padding="50dp">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:padding="2dp"
-            android:src="@drawable/plancrop" />
+        <!--<ImageView-->
+        <!--android:id="@+id/imageView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginBottom="5dp"-->
+        <!--android:padding="2dp"-->
+        <!--android:src="@drawable/plancrop" />-->
 
+        <LinearLayout
+            android:layout_marginBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="wrap_content"
+                android:layout_height="137dp"
+                android:layout_weight="196"
+                android:src="@drawable/applogoplancrop"
+                app:civ_border_width="1dp"
+                tools:ignore="MissingConstraints" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -157,7 +169,6 @@
         android:text="ย้อนกลับ"
         android:textColor="@color/colorWhite"
         android:textSize="24dp" />
-
 
 
 </LinearLayout>

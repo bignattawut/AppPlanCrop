@@ -64,7 +64,7 @@ public class Myconstant {
     public String UrlProvince = "http://"+ip+"/android/php/selectprovince.php";
     public String UrlAmphur = "http://"+ip+"/android/php/selectdistrict.php";
     public String UrlSid = "http://"+ip+"/android/php/selectsubdistrict.php";
-    public String UrlVid = "http://"+ip+"/android/php/selectsitevillage.php";
+    public String UrlVid = "http://"+ip+"/android/php/selectvillage.php";
 
 
 

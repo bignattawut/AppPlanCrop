@@ -106,7 +106,7 @@ public class AdminFrament extends Fragment {
         ((AdminActivity)getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
         ((AdminActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        toolbar.setNavigationIcon(R.drawable.ic_action_homebottom);
+        toolbar.setNavigationIcon(R.mipmap.ic_appnattawut1);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -35,12 +35,15 @@ import th.in.nattawut.plancrop.AdminActivity;
 import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.AddAmpur;
 import th.in.nattawut.plancrop.utility.AddProvince;
+import th.in.nattawut.plancrop.utility.AddRegister;
+import th.in.nattawut.plancrop.utility.AddSubDistrict;
 import th.in.nattawut.plancrop.utility.AddVillag;
 import th.in.nattawut.plancrop.utility.DeleteFammer;
 import th.in.nattawut.plancrop.utility.EditFarmer;
 import th.in.nattawut.plancrop.utility.FarmerViewAdminAdpter;
 import th.in.nattawut.plancrop.utility.GetData;
 import th.in.nattawut.plancrop.utility.GetDataWhereRegister;
+import th.in.nattawut.plancrop.utility.MyAlert;
 import th.in.nattawut.plancrop.utility.Myconstant;
 
 public class FarmerViewAdminFragment extends Fragment {
@@ -150,7 +153,7 @@ public class FarmerViewAdminFragment extends Fragment {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     deleteorEditFarmer(midString[position],useridString[position],pwdString[position],idString[position],nameString[position],addressString[position],
-                            pidString[position],didString[position],vidString[position],sidString[position],telString[position],emailString[position],areaString[position]);
+                            pidString[position],didString[position],vidString[position],sidString[position],telString[position],emailString[position],Float.parseFloat(areaString[position]));
                 }
             });
 
@@ -161,7 +164,7 @@ public class FarmerViewAdminFragment extends Fragment {
     }
 
     private void deleteorEditFarmer(final String midString,final String useridString,final String pwdString,final String idString,final String nameString,final String addressString,
-                                    final String pidString,final String didString,final String vidString,final String sidString,final String telString,final String emailString,final String areaString) {
+                                    final String pidString,final String didString,final String vidString,final String sidString,final String telString,final String emailString,final float areaString) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(),R.style.AlertDialogTheme);
         builder.setCancelable(false);
@@ -192,7 +195,7 @@ public class FarmerViewAdminFragment extends Fragment {
     }
 
     private void editFarmer(final String midString, String useridString, String pwdString, String idString, String nameString,
-                            String addressString, final String pidString,final String didString, String vidString, String sidString, String telString, String emailString, String areaString) {
+                            String addressString, final String pidString,final String didString, String vidString, String sidString, String telString, String emailString, final float areaString) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
         builder.setTitle("ข้อมูลส่วนตัว");
@@ -236,6 +239,13 @@ public class FarmerViewAdminFragment extends Fragment {
         String newEmail = getActivity().getIntent().getExtras().getString("email",emailString);
         EditEdtEmail.setText(newEmail);
 
+        EditText EditAddPlan1 = view.findViewById(R.id.Editadd1);
+        EditText EditAddPlan2 = view.findViewById(R.id.Editadd2);
+        EditText EditAddPlan3 = view.findViewById(R.id.Editadd3);
+
+        EditAddPlan1.setText(String.valueOf((int) Math.floor(areaString)));
+        EditAddPlan2.setText(String.valueOf((int) Math.floor((areaString*400%400)/100)));
+        EditAddPlan3.setText(String.valueOf((int) Math.floor((areaString*400)%100)));
 
         builder.setView(view);
 
@@ -371,10 +381,8 @@ public class FarmerViewAdminFragment extends Fragment {
                 map = new HashMap<String, String>();
                 map.put("pid", c.getString("pid"));
                 map.put("thai", c.getString("thai"));
-
-                arrProvinceID.add(c.getString("pid"));
-                arrProvince.add(c.getString("thai"));
                 MyArrList.add(map);
+
             }
             SimpleAdapter sAdap;
             sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_province,
@@ -382,25 +390,24 @@ public class FarmerViewAdminFragment extends Fragment {
             spProvince.setAdapter(sAdap);
             spProvince.setSelection(25);
 
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-        spProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (spProvince.getSelectedItem() != null) {
-                    Amphur(arrProvinceID.get(position));
+            spProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    if (spProvince.getSelectedItem() != null) {
+                        Amphur(MyArrList.get(position).get("pid"));
+                    }
 
                 }
 
-            }
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+                }
+            });
 
-            }
-        });
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void Amphur(String province) {
@@ -414,6 +421,10 @@ public class FarmerViewAdminFragment extends Fragment {
 
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
+//            map = new HashMap<String, String>();
+//            map.put("", "");
+//            map.put("", "");
+//            MyArrList.add(map);
 
             for (int i = 0; i < data.length(); i++) {
                 JSONObject c = data.getJSONObject(i);
@@ -421,9 +432,6 @@ public class FarmerViewAdminFragment extends Fragment {
                 map = new HashMap<String, String>();
                 map.put("did", c.getString("did"));
                 map.put("thai", c.getString("thai"));
-
-                arrAmphurID.add(c.getString("did"));
-                arrAmphur.add(c.getString("thai"));
                 MyArrList.add(map);
 
             }
@@ -431,15 +439,14 @@ public class FarmerViewAdminFragment extends Fragment {
             sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_amphur,
                     new String[]{"did", "thai"}, new int[]{R.id.did, R.id.didthai});
             spAmphur.setAdapter(sAdap);
+            //spAmphur.setSelection(1);
 
             spAmphur.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     if (spAmphur.getSelectedItem() != null) {
-                        SubDistrice(arrAmphurID.get(position));
-                        arrSid.clear();
+                        SubDistrice(MyArrList.get(position).get("did"));
                     }
-
                 }
 
                 @Override
@@ -459,21 +466,18 @@ public class FarmerViewAdminFragment extends Fragment {
             AddAmpur addAmpur = new AddAmpur(getActivity());
             addAmpur.execute(amphur,myconstant.getUrlSid());
 
+            Log.d("am","aa"+ amphur);
             String jsonString = addAmpur.get();
             JSONArray data = new JSONArray(jsonString);
 
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
-
             for (int i = 0; i < data.length(); i++) {
                 JSONObject c = data.getJSONObject(i);
 
                 map = new HashMap<String, String>();
                 map.put("sid", c.getString("sid"));
                 map.put("thai", c.getString("thai"));
-
-                arrSidID.add(c.getString("sid"));
-                arrSid.add(c.getString("thai"));
                 MyArrList.add(map);
             }
             SimpleAdapter sAdap;
@@ -485,9 +489,9 @@ public class FarmerViewAdminFragment extends Fragment {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     if (spSubDistrice.getSelectedItem() != null) {
-                        Villag(arrSidID.get(position));
-
+                        Villag(MyArrList.get(position).get("sid"));
                     }
+
                 }
 
                 @Override
@@ -501,13 +505,14 @@ public class FarmerViewAdminFragment extends Fragment {
         }
     }
 
-    public void Villag(String villag) {
+    public void Villag(String SubDistrice) {
         try {
             Myconstant myconstant = new Myconstant();
-            AddVillag addVillag = new AddVillag(getActivity());
-            addVillag.execute(villag,myconstant.getUrlVid());
+            AddSubDistrict addSubDistrict = new AddSubDistrict(getActivity());
+            addSubDistrict.execute(SubDistrice,myconstant.getUrlVid());
 
-            String jsonString = addVillag.get();
+            Log.d("am","aa"+ addSubDistrict);
+            String jsonString = addSubDistrict.get();
             JSONArray data = new JSONArray(jsonString);
 
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
@@ -525,6 +530,7 @@ public class FarmerViewAdminFragment extends Fragment {
             sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_village,
                     new String[]{"vid", "thai"}, new int[]{R.id.vid, R.id.vidthai});
             spVillag.setAdapter(sAdap);
+
 
         }catch (Exception e){
             e.printStackTrace();

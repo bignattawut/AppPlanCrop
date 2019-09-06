@@ -195,10 +195,10 @@
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
-            <Spinner
-                android:id="@+id/mm"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"></Spinner>
+            <!--<Spinner-->
+                <!--android:id="@+id/mm"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"></Spinner>-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -360,7 +360,7 @@
                     android:text="หมู่บ้าน:" />
 
                 <Spinner
-                    android:id="@+id/spVillag"
+                    android:id="@+id/spVillagMember"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="1dp"></Spinner>

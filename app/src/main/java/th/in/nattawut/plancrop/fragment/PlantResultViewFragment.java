@@ -55,18 +55,9 @@ public class PlantResultViewFragment extends Fragment {
     Calendar calendar;
     SwipeRefreshLayout mSwipeRefreshLayout;
 
-
     private ArrayList<String> arrProvince = new ArrayList<>();
     private ArrayList<String> arrProvinceID = new ArrayList<>();
-
-    private ArrayList<String> arrAmphur = new ArrayList<>();
-    private ArrayList<String> arrAmphurID = new ArrayList<>();
-
-    private ArrayList<String> arrSid = new ArrayList<>();
-    private ArrayList<String> arrSidID = new ArrayList<>();
-
-    private ArrayAdapter<String> adpProvince,adpAmphur,adpSid,adpVid;
-    private Spinner spProvince,spAmphur, spSubDistrice,spVillag;
+    private Spinner spProvince,spAmphur, spSubDistrice;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -108,6 +99,7 @@ public class PlantResultViewFragment extends Fragment {
         });
     }
 
+
     public void Province() {
         try {
             Myconstant myconstant = new Myconstant();
@@ -119,10 +111,6 @@ public class PlantResultViewFragment extends Fragment {
 
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
-//            map = new HashMap<String, String>();
-//            map.put("pid", "");
-//            map.put("thai", "");
-//            MyArrList.add(map);
 
             for (int i = 0; i < data.length(); i++) {
                 JSONObject c = data.getJSONObject(i);
@@ -130,10 +118,8 @@ public class PlantResultViewFragment extends Fragment {
                 map = new HashMap<String, String>();
                 map.put("pid", c.getString("pid"));
                 map.put("thai", c.getString("thai"));
-
-                arrProvinceID.add(c.getString("pid"));
-                arrProvince.add(c.getString("thai"));
                 MyArrList.add(map);
+
             }
             SimpleAdapter sAdap;
             sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_province,
@@ -141,25 +127,24 @@ public class PlantResultViewFragment extends Fragment {
             spProvince.setAdapter(sAdap);
             spProvince.setSelection(25);
 
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-        spProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (spProvince.getSelectedItem() != null) {
-                    Amphur(arrProvinceID.get(position));
+            spProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    if (spProvince.getSelectedItem() != null) {
+                        Amphur(MyArrList.get(position).get("pid"));
+                    }
 
                 }
 
-            }
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+                }
+            });
 
-            }
-        });
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void Amphur(String province) {
@@ -174,8 +159,8 @@ public class PlantResultViewFragment extends Fragment {
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
             map = new HashMap<String, String>();
-            map.put("did", "");
-            map.put("thai", "");
+            map.put("", "");
+            map.put("", "");
             MyArrList.add(map);
 
             for (int i = 0; i < data.length(); i++) {
@@ -184,9 +169,6 @@ public class PlantResultViewFragment extends Fragment {
                 map = new HashMap<String, String>();
                 map.put("did", c.getString("did"));
                 map.put("thai", c.getString("thai"));
-
-                arrAmphurID.add(c.getString("did"));
-                arrAmphur.add(c.getString("thai"));
                 MyArrList.add(map);
 
             }
@@ -194,13 +176,15 @@ public class PlantResultViewFragment extends Fragment {
             sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_amphur,
                     new String[]{"did", "thai"}, new int[]{R.id.did, R.id.didthai});
             spAmphur.setAdapter(sAdap);
+            //spAmphur.setSelection(1);
 
             spAmphur.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     if (spAmphur.getSelectedItem() != null) {
-                        SubDistrice(arrAmphurID.get(position));
-                        arrSid.clear();
+                        SubDistrice(MyArrList.get(position).get("did"));
+
+                        //arrSid.clear();
                     }
 
                 }
@@ -222,14 +206,15 @@ public class PlantResultViewFragment extends Fragment {
             AddAmpur addAmpur = new AddAmpur(getActivity());
             addAmpur.execute(amphur,myconstant.getUrlSid());
 
+            Log.d("am","aa"+ amphur);
             String jsonString = addAmpur.get();
             JSONArray data = new JSONArray(jsonString);
 
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
             map = new HashMap<String, String>();
-            map.put("sid", "");
-            map.put("thai", "");
+            map.put("", "");
+            map.put("", "");
             MyArrList.add(map);
 
             for (int i = 0; i < data.length(); i++) {
@@ -238,9 +223,6 @@ public class PlantResultViewFragment extends Fragment {
                 map = new HashMap<String, String>();
                 map.put("sid", c.getString("sid"));
                 map.put("thai", c.getString("thai"));
-
-                arrSidID.add(c.getString("sid"));
-                arrSid.add(c.getString("thai"));
                 MyArrList.add(map);
             }
             SimpleAdapter sAdap;

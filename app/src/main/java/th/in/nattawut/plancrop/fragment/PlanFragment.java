@@ -206,8 +206,6 @@ public class PlanFragment extends Fragment {
         EditText plan3 = getView().findViewById(R.id.addplan3);
 
 
-
-
         cidmidString = textCidmid.getText().toString().trim();//แปลงค่าText ให้เป็น String , trim ลบค่าที่เว้นวรรคอัตโนวัติ
         cidNameString = textPlanCidSpinner.getText().toString().trim();
         cropNameString = textPlanCropSpinner.getText().toString().trim();
@@ -218,8 +216,6 @@ public class PlanFragment extends Fragment {
         editTextString = Float.toString(Float.parseFloat(plan1.getText().toString().trim())
                 + (Float.parseFloat(plan2.getText().toString().trim()) * 100 + Float.parseFloat(plan3.getText().toString().trim())) / 400);
 
-
-        ///
 //        function yield() {
 //            var area = (parseInt(document.getElementById("rai").value)||0) +
 //                    ((parseInt(document.getElementById("ngan").value)||0) * 100 +
@@ -227,9 +223,6 @@ public class PlanFragment extends Fragment {
 //            document.getElementById("qty").value = Number(parseInt(parseFloat(document.getElementById("crop").
 //                    value.substr(document.getElementById("crop").value.indexOf(":")+1)) * area)).toLocaleString();
 //      }
-      //TextView texPlanQty = getView().findViewById(R.id.texPlanQty);
-
-        ///
 
 
         MyAlertCrop myAlertCrop = new MyAlertCrop(getActivity());
