@@ -122,25 +122,25 @@ public class CropTypeViewFragment extends Fragment {
     //alertให้เลือกลบหรือแก้ไข
     private void deleteorEditCropType(final String tidString, final String cropTypeString ) {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(),AlertDialog.THEME_HOLO_LIGHT);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity()/*,AlertDialog.THEME_HOLO_LIGHT*/);
         builder.setCancelable(false);
-        builder.setIcon(R.drawable.ic_action_drawerplan);
-        builder.setTitle("ลบ หรือ แก้ไข");
-        builder.setMessage("กรุณาเลือก ลบ หรือ แก้ไข ?");
+        builder.setIcon(R.drawable.ic_spa_black_24dp);
+        builder.setTitle("ลบข้อมูล หรือ ดูรายละเอียด");
+        builder.setMessage("ต้องการแก้ไขข้อมูลกดปุ่ม ดูรายละเอียด");
         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
         });
-        builder.setNeutralButton("ลบ" ,new DialogInterface.OnClickListener() {
+        builder.setNeutralButton("ลบข้อมูล" ,new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 deleteCropType(tidString);
                 dialog.dismiss();
             }
         });
-        builder.setPositiveButton("แก้ไข", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("ดูรายละเอียด", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 editCropType(tidString,cropTypeString);
@@ -193,19 +193,19 @@ public class CropTypeViewFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
         //กำหนดหัวเเรื้อง
-        builder.setTitle("กำหนดชื่อประเภทใหม่");
+        builder.setTitle("ลงทะเบียนประเภทพืชเพาะปลูก");
         //กำหนดเนื้อหา
         ///builder.setMessage("ประเภทพืช ==> " + cropTypeString);
 
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
         final View view = layoutInflater.inflate(R.layout.edit_croptype, null);
 
-        TextView texPlanLogin = view.findViewById(R.id.edtEditCropType);
+        TextView edtEditCropType = view.findViewById(R.id.edtEditCropType);
         TextView texPlanMid = view.findViewById(R.id.editCropTypeId);
 
         String strTextShow = getActivity().getIntent().getExtras().getString("croptype",cropTypeString);
-        texPlanLogin.setText(strTextShow);
-        String strTextShowmid = getActivity().getIntent().getExtras().getString("TID",tidString);
+        edtEditCropType.setText(strTextShow);
+        String strTextShowmid = getActivity().getIntent().getExtras().getString("tid",tidString);
         texPlanMid.setText(strTextShowmid);
         builder.setView(view);
 

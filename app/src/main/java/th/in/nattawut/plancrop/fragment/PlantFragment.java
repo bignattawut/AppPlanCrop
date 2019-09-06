@@ -99,10 +99,16 @@ public class PlantFragment extends Fragment {
 
         MyAlertCrop myAlertCrop = new MyAlertCrop(getActivity());
 //        if (siteString.isEmpty() || cidString.isEmpty() || myDataString.isEmpty() || addPlantTextString.isEmpty()) {
-//            MyAlert myAlert = new MyAlert(getActivity());
-//            myAlert.onrmaIDialog("สวัสดี", "กรุณากรอกข้อมูลให้ครบ");
-        if (siteString.isEmpty() || cidString.isEmpty() || myDataString.isEmpty() || addPlantTextString.isEmpty()) {
-            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกข้อมูลให้ครบ");
+//            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกข้อมูลให้ครบ");
+//
+        if (siteString.isEmpty()) {
+            myAlertCrop.onrmaIDialog("กรุณาเลือก","หมู่บ้านที่ตั้งแปลงเพาะปลูก");
+        } else if (cidString.isEmpty()) {
+            myAlertCrop.onrmaIDialog("กรุณาเลือก", "พืชที่ปลูก");
+        } else if (myDataString.isEmpty()) {
+            myAlertCrop.onrmaIDialog("กรุณาเลือก", "วันที่เพาะปลูก");
+        } else if (addPlantTextString.isEmpty()) {
+            myAlertCrop.onrmaIDialog("กรุณาใส่", "ขนาดพื้นที่ที่จะเพาะปลูก");
         } else {
             try {
                 Myconstant myconstant = new Myconstant();
@@ -159,6 +165,10 @@ public class PlantFragment extends Fragment {
 
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
+            map = new HashMap<String, String>();
+            map.put("sno", "");
+            map.put("thai", "");
+            MyArrList.add(map);
 
             for(int i = 0; i < data.length(); i++){
                 JSONObject c = data.getJSONObject(i);
@@ -224,6 +234,10 @@ public class PlantFragment extends Fragment {
 
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
+            map = new HashMap<String, String>();
+            map.put("cid", "");
+            map.put("crop", "");
+            MyArrList.add(map);
 
             for (int i = 0; i < data.length(); i++) {
                 JSONObject c = data.getJSONObject(i);

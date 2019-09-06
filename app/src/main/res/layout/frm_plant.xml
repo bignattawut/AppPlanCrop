@@ -68,7 +68,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="แปลงเพาะปลูก :" />
+                android:text="หมู่บ้านที่ตั้งแปลงเพาะปลูก :" />
 
             <Spinner
                 android:id="@+id/Siteid"
@@ -112,6 +112,8 @@
                 android:text="วันที่เพาะปลูก :" />
 
             <TextView
+                android:layout_marginLeft="5dp"
+                android:hint="วว/ดด/ปปปป"
                 android:id="@+id/myDatePlant"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content" />
@@ -204,6 +206,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="1dp"
+                        android:maxLength="1"
                         android:text="0"
                         android:inputType="number" />
                 </LinearLayout>
@@ -237,7 +240,7 @@
                         android:layout_margin="1dp"
                         android:text="0"
                         android:inputType="number"
-                        android:maxLength="4" />
+                        android:maxLength="2" />
                 </LinearLayout>
             </GridLayout>
         </LinearLayout>

@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 app:fontFamily="@font/fonts1"
-                android:text="พืชเพาะปลูก :" />
+                android:text="ชื่อพืช :" />
 
             <EditText
                 app:fontFamily="@font/fonts1"
@@ -162,6 +162,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/style1"
                 android:inputType="number"
+                android:maxLength="9"
                 android:padding="10dp" />
         </LinearLayout>
 
@@ -176,7 +177,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/button"
                 android:fontFamily="@font/fonts1"
-                android:text="เพิ่มข้อมูล"
+                android:text="บันทึก"
                 android:textColor="@color/colorWhite"
                 android:textSize="24dp"  />
 

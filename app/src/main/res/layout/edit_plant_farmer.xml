@@ -13,13 +13,13 @@
         android:backgroundTint="@color/colorlightGreen"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="การเพาะปลูก"
-            android:textSize="30dp"
-            android:textStyle="bold"
-            app:fontFamily="@font/fonts1" />
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="การเพาะปลูก"-->
+            <!--android:textSize="30dp"-->
+            <!--android:textStyle="bold"-->
+            <!--app:fontFamily="@font/fonts1" />-->
 
         <LinearLayout
             android:layout_width="match_parent"

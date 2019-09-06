@@ -75,18 +75,22 @@ public class CropFragment extends Fragment {
 
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
+            map = new HashMap<String, String>();
+            map.put("tid", "");
+            map.put("croptype", "");
+            MyArrList.add(map);
 
             for(int i = 0; i < data.length(); i++){
                 JSONObject c = data.getJSONObject(i);
 
                 map = new HashMap<String, String>();
-                map.put("TID", c.getString("TID"));
+                map.put("tid", c.getString("tid"));
                 map.put("croptype", c.getString("croptype"));
                 MyArrList.add(map);
             }
             SimpleAdapter sAdap;
             sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_crop,
-                    new String[] {"TID", "croptype"}, new int[] {R.id.textTID, R.id.textCropType});
+                    new String[] {"tid", "croptype"}, new int[] {R.id.textTID, R.id.textCropType});
             spin.setAdapter(sAdap);
 
         } catch (Exception e) {
@@ -123,14 +127,16 @@ public class CropFragment extends Fragment {
         YieldString = edtYield.getText().toString().trim();
 
         MyAlertCrop myAlertCrop = new MyAlertCrop(getActivity());
-        if (cropString.isEmpty()|| tidString.isEmpty()) {
-            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกชื่อพืช");
+        if (cropString.isEmpty()) {
+            myAlertCrop.onrmaIDialog("กรุณาใส่", "ชื่อพืชเพาะปลูก");
+        } else if (tidString.isEmpty()) {
+            myAlertCrop.onrmaIDialog("กรุณาเลือก", "ประเภทพืชเพาะปลูก");
         }else if (BeginHarvestString.isEmpty()) {
-            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกจำนวนวันเก็บเกี่ยว");
+            myAlertCrop.onrmaIDialog("กรุณาใส่", "จำนวนวันเก็บเกี่ยวได้");
         }else if (HarvestPeriodString.isEmpty()) {
-            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกระยะเวลาที่เก็บเกี่ยว");
+            myAlertCrop.onrmaIDialog("กรุณาใส่", "ระยะเวลาที่เก็บเกี่ยวได้");
         }else if (YieldString.isEmpty()) {
-            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกผลผลิต");
+            myAlertCrop.onrmaIDialog("กรุณาใส่", "ผลผลิตเฉลียต่อ (กิโลกรัม)");
         }else {
             comfirmUpload();
         }
@@ -138,12 +144,12 @@ public class CropFragment extends Fragment {
 
     private void comfirmUpload() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("ข้อมูลพืชเพาะปลูก");
+        builder.setTitle("ข้อมูลการลงทะเบียนพืชเพาปลูก");
         builder.setMessage("ชื่อพืช = " + cropString + "\n"
                 + "ชื่อประเภทพืช = " + cropTypeString + "\n"
-                + "จำนวนวันเก็บเกี่ยว = " + BeginHarvestString + "\n"
-                + "ระยะเพาะเก็บเกี่ยว = " + HarvestPeriodString + "\n"
-                + "ผลผลิต = " + YieldString);
+                + "จำนวนวันที่เก็บเกี่ยวได้ (วัน) = " + BeginHarvestString + "\n"
+                + "ระยะเวลาที่เก็บเกี่ยวได้ (วัน) = " + HarvestPeriodString + "\n"
+                + "ผลผลิตเฉลียต่อ (กิโลกรัม) = " + YieldString);
         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {//ปุ่มที่1
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -190,7 +196,7 @@ public class CropFragment extends Fragment {
         Toolbar toolbar = getView().findViewById(R.id.toolbarCrop);
         ((AdminActivity)getActivity()).setSupportActionBar(toolbar);
 
-        ((AdminActivity)getActivity()).getSupportActionBar().setTitle("พืชเพาะปลูก");
+        ((AdminActivity)getActivity()).getSupportActionBar().setTitle("ลงทะเบียนพืชเพาะปลูก");
         ((AdminActivity)getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
         ((AdminActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

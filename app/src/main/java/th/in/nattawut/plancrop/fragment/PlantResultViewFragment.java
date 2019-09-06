@@ -119,6 +119,10 @@ public class PlantResultViewFragment extends Fragment {
 
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
+//            map = new HashMap<String, String>();
+//            map.put("pid", "");
+//            map.put("thai", "");
+//            MyArrList.add(map);
 
             for (int i = 0; i < data.length(); i++) {
                 JSONObject c = data.getJSONObject(i);
@@ -467,7 +471,7 @@ public class PlantResultViewFragment extends Fragment {
     }
 
     private void selectPlantReportall(String provinceString,String amphurString,String subDistriceString,String sdateString, String edateString,String nameString, String croptypeString, String cropString) {
-        Call<List<PlantResult>> call = orderService.getPlantResult(provinceString,amphurString,"",sdateString,edateString,nameString,croptypeString,cropString);
+        Call<List<PlantResult>> call = orderService.getPlantResult(provinceString,amphurString,subDistriceString,sdateString,edateString,nameString,croptypeString,cropString);
         call.enqueue(new Callback<List<PlantResult>>() {
             @Override
             public void onResponse(Call<List<PlantResult>> call, Response<List<PlantResult>> response) {

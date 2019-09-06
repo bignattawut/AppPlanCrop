@@ -21,7 +21,7 @@
 
       <TextView
           android:fontFamily="@font/fonts1"
-          android:text="พืชเพาะปลูก :"
+          android:text="ชื่อพืช :"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content" />
 

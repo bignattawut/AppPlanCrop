@@ -95,6 +95,10 @@ public class PlanFarmerFragment extends Fragment {
 
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
+            map = new HashMap<String, String>();
+            map.put("mid", "");
+            map.put("name", "");
+            MyArrList.add(map);
 
             for (int i = 0; i < data.length(); i++) {
                 JSONObject c = data.getJSONObject(i);
@@ -131,6 +135,10 @@ public class PlanFarmerFragment extends Fragment {
 
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
+            map = new HashMap<String, String>();
+            map.put("cid", "");
+            map.put("crop", "");
+            MyArrList.add(map);
 
             for (int i = 0; i < data.length(); i++) {
                 JSONObject c = data.getJSONObject(i);
@@ -225,13 +233,13 @@ public class PlanFarmerFragment extends Fragment {
 
         MyAlertCrop myAlertCrop = new MyAlertCrop(getActivity());
         if (midString.isEmpty()) {
-            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกชื่อเกษตรกร");
+            myAlertCrop.onrmaIDialog("กรุณาเลือก", "เกษตรกร");
         } else if (cidNameString.isEmpty()) {
-            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกพืชปลอดสาร");
+            myAlertCrop.onrmaIDialog("กรุณาเลืแก", "พืชที่จะเพาะปลูก");
         } else if (myDataString.isEmpty()) {
-            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกวันที่วางแผน");
+            myAlertCrop.onrmaIDialog("กรุณาเลือก", "วันที่ที่จะเพาะปลูก");
         } else if (areaString.isEmpty()) {
-            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกพื้นที่เพาะปลูก");
+            myAlertCrop.onrmaIDialog("กรุณาใส่", "ใส่ขนาดพื้นที่ที่จะเพาะปลูก");
         } else {
             comfirmUpload();
         }

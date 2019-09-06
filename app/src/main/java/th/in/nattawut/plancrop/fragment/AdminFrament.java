@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -69,6 +71,7 @@ public class AdminFrament extends Fragment {
         CreateToolbal();
 
 
+
     }
 
     private void receiveValueFromMain() {
@@ -82,6 +85,7 @@ public class AdminFrament extends Fragment {
 
         if (item.getItemId() == R.id.itemSingOut) {
             getActivity().finish();
+
         }
         return super.onOptionsItemSelected(item);
     }
@@ -106,9 +110,10 @@ public class AdminFrament extends Fragment {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager()
+                getActivity()
+                        .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentAdminFragment,new HomeFragment())
+                        .replace(R.id.contentAdminFragment, new HomeFragment())
                         .addToBackStack(null)
                         .commit();
 

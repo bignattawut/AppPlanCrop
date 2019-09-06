@@ -235,23 +235,23 @@ public class PlantPicViewFragment2 extends Fragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(),AlertDialog.THEME_HOLO_LIGHT);
         builder.setCancelable(false);
-        builder.setIcon(R.drawable.ic_action_drawerplan);
-        builder.setTitle("ลบ หรือ แก้ไข");
-        builder.setMessage("กรุณาเลือก ลบ หรือ แก้ไข ?");
+        builder.setIcon(R.drawable.ic_action_camera);
+        builder.setTitle("ลบข้อมูล หรือ ดูรายละเอียด");
+        builder.setMessage("ถ้าต้องการแก้ไขข้อมูลให้กดปุ่ม ดูรายละเอียด");
         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
         });
-        builder.setNeutralButton("ลบ" ,new DialogInterface.OnClickListener() {
+        builder.setNeutralButton("ลบข้อมูล" ,new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 deletePlanPic(picnoStringArrayList);
                 dialog.dismiss();
             }
         });
-        builder.setPositiveButton("แก้ไข", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("ดูรายละเอียด", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 editPlantPic(picnoStringArrayList,pdateStringArrayList,descriptionStringArrayList);

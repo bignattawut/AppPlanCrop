@@ -153,22 +153,22 @@ public class PlanViewFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
         builder.setIcon(R.drawable.planhome);
-        builder.setTitle("ลบ หรือ แก้ไข");
-        builder.setMessage("กรุณาเลือก ลบ หรือ แก้ไข ?");
+        builder.setTitle("ลบข้อมูล หรือ ดูรายละเอียด");
+        builder.setMessage("ต้องการแก้ไขข้อมูลกดปุ่ม ดูรายละเอียด");
         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
         });
-        builder.setNeutralButton("ลบ" ,new DialogInterface.OnClickListener() {
+        builder.setNeutralButton("ลบข้อมูล" ,new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 deleteCropType(planStrings);
                 dialog.dismiss();
             }
         });
-        builder.setPositiveButton("แก้ไข", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("ดูรายละเอียด", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 editPlan(planStrings,midString,typeStrings,cidString,cropStrings,dateStrings,area);

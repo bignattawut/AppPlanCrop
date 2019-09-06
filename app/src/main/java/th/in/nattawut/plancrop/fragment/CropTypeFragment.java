@@ -18,6 +18,7 @@ import th.in.nattawut.plancrop.HomeActivity;
 import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.AddCropType;
 import th.in.nattawut.plancrop.utility.MyAlert;
+import th.in.nattawut.plancrop.utility.MyAlertCrop;
 import th.in.nattawut.plancrop.utility.Myconstant;
 
 public class CropTypeFragment extends Fragment {
@@ -50,8 +51,8 @@ public class CropTypeFragment extends Fragment {
         String croptypeString = edtCroptype.getText().toString().trim();
 
         if (croptypeString.isEmpty()){
-            MyAlert myAlert = new MyAlert(getActivity());
-            myAlert.onrmaIDialog("สวัสดี", "กรุณากรอกข้อมูล");
+            MyAlertCrop myAlertCrop = new MyAlertCrop(getActivity());
+            myAlertCrop.onrmaIDialog("กรุณาใส่", "ประเภทพืชเพาะปลูก");
         }else {
             try {
                 Myconstant myconstant = new Myconstant();

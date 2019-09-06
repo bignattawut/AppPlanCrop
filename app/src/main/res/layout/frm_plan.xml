@@ -110,6 +110,7 @@
 
                 <TextView
                     android:id="@+id/myDate"
+                    android:hint="วว/ดด/ปปปป"
                     android:layout_width="160dp"
                     android:layout_height="wrap_content" />
 
@@ -241,30 +242,30 @@
                 </GridLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/style1"
-                android:orientation="horizontal"
-                android:padding="10dp">
+            <!--<LinearLayout-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginBottom="8dp"-->
+                <!--android:background="@drawable/style1"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:padding="10dp">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:text="ประมาณการผลผลิต :" />
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:inputType="text"-->
+                    <!--android:text="ประมาณการผลผลิต :" />-->
 
-                <TextView
-                    android:id="@+id/texPlanQty"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:inputType="text"
-                    android:text="ประมาณการผลผลิต :" />
+                <!--<TextView-->
+                    <!--android:id="@+id/texPlanQty"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="5dp"-->
+                    <!--android:inputType="text"-->
+                    <!--android:text="ประมาณการผลผลิต :" />-->
 
-            </LinearLayout>
+            <!--</LinearLayout>-->
 
             <!--<Button-->
             <!--android:id="@+id/btnPlan"-->

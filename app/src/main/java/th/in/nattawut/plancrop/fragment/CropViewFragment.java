@@ -146,23 +146,23 @@ public class CropViewFragment extends Fragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
-        builder.setIcon(R.drawable.ic_action_drawerplan);
-        builder.setTitle("ลบ หรือ แก้ไข");
-        builder.setMessage("กรุณาเลือก ลบ หรือ แก้ไข ?");
+        builder.setIcon(R.drawable.ic_spa_black_24dp);
+        builder.setTitle("ลบข้อมูล หรือ ดูรายละเอียด");
+        builder.setMessage("ถ้าต้องการแก้ไขข้อมูลกดปุ่ม ดูรายละเอียด");
         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
         });
-        builder.setNeutralButton("ลบ" ,new DialogInterface.OnClickListener() {
+        builder.setNeutralButton("ลบข้อมูล" ,new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 deleteCrop(cidString);
                 dialog.dismiss();
             }
         });
-        builder.setPositiveButton("แก้ไข", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("ดูรายละเอียด", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 editCrop(cidString,cropString,tidString,croptypeString,beginharvestString,harvestperiodString,yield);
@@ -199,7 +199,7 @@ public class CropViewFragment extends Fragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
-        builder.setTitle("กำหนดชื่อใหม่");
+        builder.setTitle("ลงทะเบียนพืชเพาะปลูก");
 
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
         view = layoutInflater.inflate(R.layout.edit_crop, null);

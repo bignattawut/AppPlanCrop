@@ -20,7 +20,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="จากวันที่"
+                android:text="ตั้งแต่วันที่"
                 android:textSize="24dp"
                 app:fontFamily="@font/fonts1" />
 
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/button"
             android:fontFamily="@font/fonts1"
-            android:text="แสดงรายการ"
+            android:text="แสดงข้อมูล"
             android:textColor="@color/colorWhite"
             android:textSize="24dp" />
 

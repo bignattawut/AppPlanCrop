@@ -137,11 +137,11 @@ public class PlantPicreFragment3 extends Fragment {
 
         MyAlertCrop myAlertCrop = new MyAlertCrop(getActivity());
         if (NoString.isEmpty()) {
-            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกแปลงเพาะปลูก");
+            myAlertCrop.onrmaIDialog("กรุณาเลือก", "การเพาะปลูกที่ต้องการเพิ่มกิจกรรม");
         } else if (DatepictureString.isEmpty()) {
-            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกวันที่");
+            myAlertCrop.onrmaIDialog("กรุณาใส่", "วันที่ที่ทำกิจกรรม");
         } else if (DescriptionString.isEmpty()) {
-            myAlertCrop.onrmaIDialog("โปรดกรอก", "รายละเอียด");
+            myAlertCrop.onrmaIDialog("กรุณาใส่", "รายละเอียดกิจกรรม");
         } else if (mediaPath == null || mediaPath.equals("")) {
             myAlertCrop.onrmaIDialog("โปรดกรอก", "รูปภาพกิจกจรรม");
         } else {
@@ -200,6 +200,11 @@ public class PlantPicreFragment3 extends Fragment {
 
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
+            map = new HashMap<String, String>();
+            map.put("no", "");
+            map.put("crop", "");
+            map.put("sno", "");
+            MyArrList.add(map);
 
             for (int i = 0; i < data.length(); i++) {
                 JSONObject c = data.getJSONObject(i);

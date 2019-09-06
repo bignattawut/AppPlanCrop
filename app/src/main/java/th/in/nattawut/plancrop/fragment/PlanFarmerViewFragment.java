@@ -183,22 +183,22 @@ public class PlanFarmerViewFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
         builder.setIcon(R.drawable.planhome);
-        builder.setTitle("ลบ หรือ แก้ไข");
-        builder.setMessage("กรุณาเลือก ลบ หรือ แก้ไข ?");
+        builder.setTitle("ลบข้อมูล หรือ ดูรายละเอียด");
+        builder.setMessage("ถ้าต้องการแก้ไขข้อมูลให้กดปุ่ม ดูรายละเอียด");
         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
         });
-        builder.setNeutralButton("ลบ", new DialogInterface.OnClickListener() {
+        builder.setNeutralButton("ลบข้อมูล", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 editDeletePlanFarmer(no);
                 dialog.dismiss();
             }
         });
-        builder.setPositiveButton("แก้ไข", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("ดูรายละเอียด", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 editPlanFarmer(no, pdate, crop, area,cid);
@@ -254,7 +254,7 @@ public class PlanFarmerViewFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(),AlertDialog.THEME_HOLO_LIGHT);
         builder.setCancelable(false);
         //กำหนดหัวเเรื้อง
-        builder.setTitle("วางแผนเพาะปลูกใหม่");
+        builder.setTitle("วางแผนเพาะปลูกพืช");
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
         view = layoutInflater.inflate(R.layout.edit_plan, null);
 

@@ -194,6 +194,7 @@ public class PlantFarmerViewFragment extends Fragment {
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
 
+
             for(int i = 0; i < data.length(); i++){
                 JSONObject c = data.getJSONObject(i);
 
@@ -320,22 +321,22 @@ public class PlantFarmerViewFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
         builder.setIcon(R.drawable.shovel);
-        builder.setTitle("ลบ หรือ แก้ไข");
-        builder.setMessage("กรุณาเลือก ลบ หรือ แก้ไข ?");
+        builder.setTitle("ลบข้อมูล หรือ ดูรายละเอียด");
+        builder.setMessage("ถ้าต้องการแก้ไขข้อมูลให้กดปุ่ม ดูรายละเอียด");
         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
         });
-        builder.setNeutralButton("ลบ", new DialogInterface.OnClickListener() {
+        builder.setNeutralButton("ลบข้อมูล", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 editDeletePlantFarmer(no);
                 dialog.dismiss();
             }
         });
-        builder.setPositiveButton("แก้ไข", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("ดูรายละเอียด", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 editPlantFarmer(no,sno,pdata, crop, area,cid);
@@ -389,7 +390,7 @@ public class PlantFarmerViewFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_LIGHT);
         builder.setCancelable(false);
         //กำหนดหัวเเรื้อง
-        builder.setTitle("วางแผนการเพาะปลูกใหม่");
+        builder.setTitle("การเพาะปลูกพืช");
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
         view = layoutInflater.inflate(R.layout.edit_plant_farmer, null);
 

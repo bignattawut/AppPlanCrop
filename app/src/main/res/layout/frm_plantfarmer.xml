@@ -60,7 +60,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="แปลงเพาะปลูก :" />
+                    android:text="หมู่บ้านที่ตั้งแปลงเพาะปลูก :" />
 
                 <Spinner
                     android:id="@+id/SiteidPlantFramer"
@@ -104,6 +104,7 @@
                     android:text="วันที่เพาะปลูก :" />
 
                 <TextView
+                    android:hint="วว/ดด/ปปปป"
                     android:id="@+id/myDatePlantFramer"
                     android:layout_width="160dp"
                     android:layout_height="wrap_content" />

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,7 +47,7 @@ public class MainFragment extends Fragment {
     private int typeDataInt;
     private EditText username, password;
     LinearLayout loginForm;
-
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -61,6 +62,8 @@ public class MainFragment extends Fragment {
         //Login Controkker
         loginControkker();
 
+       // swiRefreshLayou();
+
 
 //        loginForm = getView().findViewById(R.id.loginForm);
 //        if (SaveSharedPreference.getLoggedStatus(getActivity())) {
@@ -72,6 +75,18 @@ public class MainFragment extends Fragment {
 
 
     }// onActivityCreat
+
+//    private void swiRefreshLayou() {
+//        mSwipeRefreshLayout = getView().findViewById(R.id.swiRefreshLayoulogin);
+//        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
+//        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                loginControkker();
+//                mSwipeRefreshLayout.setRefreshing(false);
+//            }
+//        });
+//    }
 
     private void loginControkker() {
         Button button = getView().findViewById(R.id.btnlogin);

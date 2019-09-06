@@ -99,7 +99,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="1dp"
                     android:fontFamily="@font/fonts1"
-                    android:text="การเพาะปลูก"
+                    android:text="พืชที่เพาะปลูก"
                     android:textSize="24dp" />
 
                 <Spinner
@@ -129,8 +129,10 @@
                     android:textSize="24dp" />
 
                 <TextView
+                    android:layout_marginLeft="5dp"
                     android:id="@+id/textViewDatePicture"
                     android:layout_width="200dp"
+                    android:hint="วว/ดด/ปปปป"
                     android:layout_height="wrap_content" />
 
                 <ImageView

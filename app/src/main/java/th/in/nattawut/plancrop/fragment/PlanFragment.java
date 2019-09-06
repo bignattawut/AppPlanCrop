@@ -122,6 +122,10 @@ public class PlanFragment extends Fragment {
 
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
+            map = new HashMap<String, String>();
+            map.put("cid", "");
+            map.put("crop", "");
+            MyArrList.add(map);
 
             for (int i = 0; i < data.length(); i++) {
                 JSONObject c = data.getJSONObject(i);
@@ -223,7 +227,7 @@ public class PlanFragment extends Fragment {
 //            document.getElementById("qty").value = Number(parseInt(parseFloat(document.getElementById("crop").
 //                    value.substr(document.getElementById("crop").value.indexOf(":")+1)) * area)).toLocaleString();
 //      }
-      TextView texPlanQty = getView().findViewById(R.id.texPlanQty);
+      //TextView texPlanQty = getView().findViewById(R.id.texPlanQty);
 
         ///
 
@@ -232,11 +236,11 @@ public class PlanFragment extends Fragment {
         if (cidmidString.isEmpty()) {
             myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกชื่อเกษตรกร");
         } else if (cidNameString.isEmpty()) {
-            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกพืชปลอดสาร");
+            myAlertCrop.onrmaIDialog("กรุณาเลือก", "พืชที่จะเพาะปลูก");
         } else if (myDataString.isEmpty()) {
-            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกวันที่วางแผน");
+            myAlertCrop.onrmaIDialog("กรุณาเลือก", "วันที่ที่จะเพาะปลูก");
         } else if (editTextString.isEmpty()) {
-            myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกพื้นที่เพาะปลูก");
+            myAlertCrop.onrmaIDialog("กรุณาใส่", "ใส่ขนาดพื้นที่ที่จะเพาะปลูก");
         } else {
             comfirmUpload();
         }
