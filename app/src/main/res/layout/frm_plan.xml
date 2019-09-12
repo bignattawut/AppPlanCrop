@@ -85,7 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:text="ชื่อพืช :" />
+                    android:text="พืชที่จะเพาะปลูก : " />
 
                 <Spinner
                     android:id="@+id/plancropspinner"
@@ -106,7 +106,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:inputType="date"
-                    android:text="วันที่เพาะปลูก :" />
+                    android:text="วันที่จะเพาะปลูก : " />
 
                 <TextView
                     android:id="@+id/myDate"
@@ -242,30 +242,37 @@
                 </GridLayout>
             </LinearLayout>
 
-            <!--<LinearLayout-->
-                <!--android:layout_marginTop="10dp"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginBottom="8dp"-->
-                <!--android:background="@drawable/style1"-->
-                <!--android:orientation="horizontal"-->
-                <!--android:padding="10dp">-->
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/style1"
+                android:orientation="horizontal"
+                android:padding="10dp">
 
-                <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:inputType="text"-->
-                    <!--android:text="ประมาณการผลผลิต :" />-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:text="ประมาณการผลผลิต (ก.ก) : " />
 
-                <!--<TextView-->
-                    <!--android:id="@+id/texPlanQty"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginLeft="5dp"-->
-                    <!--android:inputType="text"-->
-                    <!--android:text="ประมาณการผลผลิต :" />-->
+                <TextView
+                    android:id="@+id/textQty"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:text="" />
 
-            <!--</LinearLayout>-->
+
+                <ImageView
+                    android:id="@+id/calculator"
+                    android:src="@drawable/calculator"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+
+            </LinearLayout>
 
             <!--<Button-->
             <!--android:id="@+id/btnPlan"-->
@@ -279,7 +286,6 @@
             <!--android:text="วางแผน"-->
             <!--android:textColor="@color/colorWhite"-->
             <!--android:textStyle="bold" />-->
-
 
             <Button
                 android:id="@+id/btnPlan"

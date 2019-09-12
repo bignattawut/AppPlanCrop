@@ -45,7 +45,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/style1"
             android:orientation="horizontal"
@@ -230,6 +229,38 @@
                         android:maxLength="4" />
                 </LinearLayout>
             </GridLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/style1"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:text="ประมาณการผลผลิต (ก.ก) : " />
+
+            <TextView
+                android:id="@+id/textQty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:text="" />
+
+
+            <ImageView
+                android:id="@+id/calculator"
+                android:src="@drawable/calculator"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

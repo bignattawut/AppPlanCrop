@@ -73,11 +73,11 @@ public class MemberFragment extends Fragment {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.contentMemberFragment,new HomeFragment())
-                        .addToBackStack(null)
-                        .commit();
+//                getActivity().getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .replace(R.id.contentMemberFragment,new MainFragment())
+//                        .addToBackStack(null)
+//                        .commit();
 
             }
         });
@@ -95,7 +95,7 @@ public class MemberFragment extends Fragment {
                 getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentMemberFragment, new HomeFragment())
+                        .replace(R.id.contentMemberFragment, new MainFragment())
                         .addToBackStack(null)
                         .commit();
             }

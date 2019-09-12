@@ -47,7 +47,7 @@
                 android:id="@+id/munu_PlantReportall"
                 android:icon="@drawable/tabplant"
                 android:iconTint="@color/yello"
-                android:title="การเพาะปลูกทั้งหมด" />
+                android:title="พืชเพาะปลูก" />
             <item
                 android:id="@+id/menu_want"
                 android:icon="@drawable/ic_action_tabplan"

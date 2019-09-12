@@ -5,7 +5,7 @@
 
     <item
         app:showAsAction="always"
-        android:icon="@drawable/ic_action_about"
+        android:icon="@mipmap/ic_appnattawut1"
         android:id="@+id/option"
         android:title="เกี่ยวกับ Plan Crop"/>
 

@@ -45,7 +45,7 @@ public class PlantFarmerAdapter extends ArrayAdapter<PlantFarmer> {
         //txtYieldPlantFarmer.setText(plantFarmers.get(position).getYield());
 
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-        String s1 = decimalFormat.format(plantFarmers.get(position).getYield());
+        String s1 = decimalFormat.format(Float.parseFloat(plantFarmers.get(position).getYieldq()));
         txtYieldPlantFarmer.setText(s1);
         txtAreaPlantFarmer.setText(plantFarmers.get(position).getArea());
 

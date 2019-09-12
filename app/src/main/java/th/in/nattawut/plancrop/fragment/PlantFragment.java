@@ -24,6 +24,7 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -47,6 +48,10 @@ public class PlantFragment extends Fragment {
     private String idRecord;
 
     String siteSpinnerString;
+    TextView qty,yield;
+    EditText rai, ngan, wa;
+    String sum;
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -67,6 +72,29 @@ public class PlantFragment extends Fragment {
 
         setUpTexeShowMid();
 
+        calculator();
+
+
+    }
+
+    private void calculator() {
+        ImageView calculator = getView().findViewById(R.id.calculator);
+        calculator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+                rai = getView().findViewById(R.id.addplan1);
+                ngan = getView().findViewById(R.id.addplan2);
+                wa = getView().findViewById(R.id.addplan3);
+                yield = getView().findViewById(R.id.textyield);
+                qty = getView().findViewById(R.id.textQty);
+                Float area = Float.valueOf(Float.toString(Float.parseFloat(rai.getText().toString().trim())
+                        + (Float.parseFloat(ngan.getText().toString().trim()) * 100 + Float.parseFloat(wa.getText().toString().trim())) / 400));
+                sum = decimalFormat.format((int) (Float.parseFloat(yield.getText().toString().trim())*area));
+                qty.setText(sum);
+
+            }
+        });
     }
 
     private void plantController() {
@@ -83,16 +111,16 @@ public class PlantFragment extends Fragment {
         TextView textSite = getView().findViewById(R.id.textPlantSiteSnoSpinner);
         TextView textPlantCidSpinner = getView().findViewById(R.id.textPlanCidSpinner);
         TextView textMyDate = getView().findViewById(R.id.myDatePlant);
-        EditText plan1 = getView().findViewById(R.id.addplan1);
-        EditText plan2 = getView().findViewById(R.id.addplan2);
-        EditText plan3 = getView().findViewById(R.id.addplan3);
+         rai = getView().findViewById(R.id.addplan1);
+         ngan = getView().findViewById(R.id.addplan2);
+         wa = getView().findViewById(R.id.addplan3);
 
         String siteString = textSite.getText().toString().trim();//แปลงค่าText ให้เป็น String , trim ลบค่าที่เว้นวรรคอัตโนวัติ
         String cidString = textPlantCidSpinner.getText().toString().trim();
         String myDataString = textMyDate.getText().toString().trim();
 
-        String addPlantTextString = Float.toString(Float.parseFloat(plan1.getText().toString().trim())
-                + (Float.parseFloat(plan2.getText().toString().trim()) * 100 + Float.parseFloat(plan3.getText().toString().trim())) / 400);
+        String addPlantTextString = Float.toString(Float.parseFloat(rai.getText().toString().trim())
+                + (Float.parseFloat(ngan.getText().toString().trim()) * 100 + Float.parseFloat(wa.getText().toString().trim())) / 400);
 
         Spinner spin = getView().findViewById(R.id.Siteid);
         siteSpinnerString = spin.getSelectedItem().toString().trim();
@@ -226,7 +254,7 @@ public class PlantFragment extends Fragment {
         try {
             Myconstant myconstant = new Myconstant();
             GetData getData = new GetData(getActivity());
-            getData.execute(myconstant.getUrlCrop());
+            getData.execute(myconstant.getUrlCrop1());
 
             String jsonString = getData.get();
             Log.d("5/Jan PlanCropSpinner", "JSON ==>" + jsonString);
@@ -245,11 +273,12 @@ public class PlantFragment extends Fragment {
                 map = new HashMap<String, String>();
                 map.put("cid", c.getString("cid"));
                 map.put("crop", c.getString("crop"));
+                map.put("yield", c.getString("yield"));
                 MyArrList.add(map);
             }
             SimpleAdapter sAdap;
-            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_plancrop,
-                    new String[]{"cid", "crop"}, new int[]{R.id.textPlanCidSpinner, R.id.textPlanCropSpinner});
+            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_yield,
+                    new String[]{"cid", "crop","yield"}, new int[]{R.id.textPlanCidSpinner, R.id.textPlanCropSpinner,R.id.textyield,});
             spin.setAdapter(sAdap);
 
         } catch (Exception e) {

@@ -11,8 +11,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +37,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -63,9 +66,13 @@ public class PlanFragment extends Fragment {
 
     EditText plan1, plan2, plan3;
     Button button;
+    float area;
 
-    private String cidmidString, cidNameString, myDataString, editTextString,cropNameString,strTextShow;
+    private String cidmidString, cidNameString, myDataString, areaString,cropNameString,strTextShow,sum;
 
+    TextView qty,yield;
+    //String areaString1,sum;
+    int y,a;
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -89,9 +96,28 @@ public class PlanFragment extends Fragment {
         setUpTexeShowMid();
 
         //AddCrop();
-
+        calculator();
     }
 
+    private void calculator() {
+        ImageView calculator = getView().findViewById(R.id.calculator);
+        calculator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+                plan1 = getView().findViewById(R.id.addplan1);
+                plan2 = getView().findViewById(R.id.addplan2);
+                plan3 = getView().findViewById(R.id.addplan3);
+                yield = getView().findViewById(R.id.textyield);
+                qty = getView().findViewById(R.id.textQty);
+                Float area = Float.valueOf(Float.toString(Float.parseFloat(plan1.getText().toString().trim())
+                        + (Float.parseFloat(plan2.getText().toString().trim()) * 100 + Float.parseFloat(plan3.getText().toString().trim())) / 400));
+                sum = decimalFormat.format((int) (Float.parseFloat(yield.getText().toString().trim())*area));
+                qty.setText(sum);
+
+            }
+        });
+    }
 
     private void setUpTexeShowMid() {
         TextView texPlanLogin = getView().findViewById(R.id.texPlanLogin);
@@ -114,7 +140,7 @@ public class PlanFragment extends Fragment {
         try {
             Myconstant myconstant = new Myconstant();
             GetData getData = new GetData(getActivity());
-            getData.execute(myconstant.getUrlCrop());
+            getData.execute(myconstant.getUrlCrop1());
 
             String jsonString = getData.get();
             Log.d("5/Jan PlanCropSpinner", "JSON ==>" + jsonString);
@@ -133,11 +159,12 @@ public class PlanFragment extends Fragment {
                 map = new HashMap<String, String>();
                 map.put("cid", c.getString("cid"));
                 map.put("crop", c.getString("crop"));
+                map.put("yield", c.getString("yield"));
                 MyArrList.add(map);
             }
             SimpleAdapter sAdap;
-            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_plancrop,
-                    new String[]{"cid", "crop"}, new int[]{R.id.textPlanCidSpinner, R.id.textPlanCropSpinner});
+            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_yield,
+                    new String[]{"cid", "crop","yield"}, new int[]{R.id.textPlanCidSpinner, R.id.textPlanCropSpinner,R.id.textyield,});
             spin.setAdapter(sAdap);
             spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -201,29 +228,45 @@ public class PlanFragment extends Fragment {
         TextView textPlanCidSpinner = getView().findViewById(R.id.textPlanCidSpinner);
         TextView textPlanCropSpinner = getView().findViewById(R.id.textPlanCropSpinner);
         TextView textmyDate = getView().findViewById(R.id.myDate);
-        EditText plan1 = getView().findViewById(R.id.addplan1);
-        EditText plan2 = getView().findViewById(R.id.addplan2);
-        EditText plan3 = getView().findViewById(R.id.addplan3);
+        plan1 = getView().findViewById(R.id.addplan1);
+        plan2 = getView().findViewById(R.id.addplan2);
+        plan3 = getView().findViewById(R.id.addplan3);
 
 
         cidmidString = textCidmid.getText().toString().trim();//แปลงค่าText ให้เป็น String , trim ลบค่าที่เว้นวรรคอัตโนวัติ
         cidNameString = textPlanCidSpinner.getText().toString().trim();
         cropNameString = textPlanCropSpinner.getText().toString().trim();
         myDataString = textmyDate.getText().toString().trim();
-
 //        String editTextString = Float.toString(Float.parseFloat(plan1.getText().toString().trim())
 //                +(Float.parseFloat(plan2.getText().toString().trim())*100+Float.parseFloat(plan3.getText().toString().trim()))/400);
-        editTextString = Float.toString(Float.parseFloat(plan1.getText().toString().trim())
+        areaString = Float.toString(Float.parseFloat(plan1.getText().toString().trim())
                 + (Float.parseFloat(plan2.getText().toString().trim()) * 100 + Float.parseFloat(plan3.getText().toString().trim())) / 400);
 
-//        function yield() {
-//            var area = (parseInt(document.getElementById("rai").value)||0) +
-//                    ((parseInt(document.getElementById("ngan").value)||0) * 100 +
-//                            (parseInt(document.getElementById("wa").value)||0)) / 400;
-//            document.getElementById("qty").value = Number(parseInt(parseFloat(document.getElementById("crop").
-//                    value.substr(document.getElementById("crop").value.indexOf(":")+1)) * area)).toLocaleString();
-//      }
 
+//        yield = getView().findViewById(R.id.textyield);
+//        qty = getView().findViewById(R.id.textQty);
+//        Float area = Float.valueOf(Float.toString(Float.parseFloat(plan1.getText().toString().trim())
+//                + (Float.parseFloat(plan2.getText().toString().trim()) * 100 + Float.parseFloat(plan3.getText().toString().trim())) / 400));
+//        sum = Integer.toString((int) (Float.parseFloat(yield.getText().toString().trim())*area));
+//        qty.setText(sum);
+
+//        qty.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//
+//            }
+//        });
 
         MyAlertCrop myAlertCrop = new MyAlertCrop(getActivity());
         if (cidmidString.isEmpty()) {
@@ -232,7 +275,7 @@ public class PlanFragment extends Fragment {
             myAlertCrop.onrmaIDialog("กรุณาเลือก", "พืชที่จะเพาะปลูก");
         } else if (myDataString.isEmpty()) {
             myAlertCrop.onrmaIDialog("กรุณาเลือก", "วันที่ที่จะเพาะปลูก");
-        } else if (editTextString.isEmpty()) {
+        } else if (areaString.isEmpty()) {
             myAlertCrop.onrmaIDialog("กรุณาใส่", "ใส่ขนาดพื้นที่ที่จะเพาะปลูก");
         } else {
             comfirmUpload();
@@ -242,10 +285,11 @@ public class PlanFragment extends Fragment {
     private void comfirmUpload() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("ข้อมูลการวางแผนเพาะปลูก");
-        builder.setMessage("ชื่อเกษตรกร = " + strTextShow + "\n"
-                + "ชื่อพืช = " + cropNameString + "\n"
-                + "วันที่เพาะปลูก = " + myDataString + "\n"
-                + "ขนาดพื้นที่เพาะปลูก = " + editTextString + "ไร่");
+        builder.setMessage("เกษตรกรที่จะปลูก = " + strTextShow + "\n"
+                + "พืชจะปลูก = " + cropNameString + "\n"
+                + "วันที่จะปลูฏ = " + myDataString + "\n"
+                + "พื้น (ไร่-งาน-วา) = " + (int)Math.floor(Float.valueOf(areaString)) + "-" + (int)Math.floor((Float.valueOf(areaString)*400%400)/100) + "-" + (int)(Float.parseFloat(areaString)*400)%100 + "\n"
+                + "ประมาณการผลผลิต (ก.ก) = " + sum );
         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {//ปุ่มที่1
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -266,7 +310,7 @@ public class PlanFragment extends Fragment {
         try {
             Myconstant myconstant = new Myconstant();
             AddPlan addPlan = new AddPlan(getActivity());
-            addPlan.execute(cidmidString, myDataString, cidNameString, editTextString,
+            addPlan.execute(cidmidString, myDataString, cidNameString, areaString,
                     myconstant.getUrladdPlan());
 
             String result = addPlan.get();

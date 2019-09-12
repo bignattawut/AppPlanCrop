@@ -159,8 +159,8 @@ public class PlantResultViewFragment extends Fragment {
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
             map = new HashMap<String, String>();
-            map.put("", "");
-            map.put("", "");
+            map.put("did", "");
+            map.put("thai", "");
             MyArrList.add(map);
 
             for (int i = 0; i < data.length(); i++) {
@@ -213,8 +213,8 @@ public class PlantResultViewFragment extends Fragment {
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
             map = new HashMap<String, String>();
-            map.put("", "");
-            map.put("", "");
+            map.put("sid", "");
+            map.put("thai", "");
             MyArrList.add(map);
 
             for (int i = 0; i < data.length(); i++) {

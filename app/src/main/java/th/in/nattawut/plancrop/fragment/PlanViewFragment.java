@@ -31,6 +31,7 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -53,6 +54,10 @@ public class PlanViewFragment extends Fragment {
     ArrayList<HashMap<String, String>> MyArrList,mapArrayList = new ArrayList<HashMap<String, String>>();
     HashMap<String, String> map,m,selectsite;
 
+    EditText EditAddPlan1,EditAddPlan2,EditAddPlan3;
+    TextView qty,yield,yieldedit;
+    private String sum;
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -72,6 +77,24 @@ public class PlanViewFragment extends Fragment {
 
     }
 
+//    private void calculator() {
+//        ImageView calculator = view.findViewById(R.id.calculator);
+//        calculator.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+//                EditAddPlan1 = view.findViewById(R.id.EditAddPlan1);
+//                EditAddPlan2 = view.findViewById(R.id.EditAddPlan2);
+//                EditAddPlan3 = view.findViewById(R.id.EditAddPlan3);
+//                yield = view.findViewById(R.id.textyield);
+//                qty = view.findViewById(R.id.textQty);
+//                Float area = Float.valueOf(Float.toString(Float.parseFloat(EditAddPlan1.getText().toString().trim())
+//                        + (Float.parseFloat(EditAddPlan2.getText().toString().trim()) * 100 + Float.parseFloat(EditAddPlan3.getText().toString().trim())) / 400));
+//                sum = decimalFormat.format((int) (Float.parseFloat(yield.getText().toString().trim())*area));
+//                qty.setText(sum);
+//            }
+//        });
+//    }
 
     private void swipeRefreshLayout() {
         mSwipeRefreshLayout = getView().findViewById(R.id.swiRefreshLayou);
@@ -136,7 +159,7 @@ public class PlanViewFragment extends Fragment {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    deleteorEditCropPlan(planStrings[position],midString[position],typeStrings[position],cidString[position],cropStrings[position],areStrings[position],Float.valueOf(dateStrings[position]));
+                    deleteorEditCropPlan(planStrings[position],midString[position],typeStrings[position],cidString[position],cropStrings[position],areStrings[position],Float.valueOf(dateStrings[position]),yieldStrings[position]);
                     //mSwipeRefreshLayout.setRefreshing(false);
                 }
             });
@@ -148,7 +171,7 @@ public class PlanViewFragment extends Fragment {
     }
 
     //alertให้เลือกลบหรือแก้ไข
-    private void deleteorEditCropPlan(final String planStrings, final String midString,final String typeStrings,final String cidString,final String cropStrings,final String dateStrings,final float area) {
+    private void deleteorEditCropPlan(final String planStrings, final String midString,final String typeStrings,final String cidString,final String cropStrings,final String dateStrings,final float area,final String yieldStrings) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
@@ -171,7 +194,7 @@ public class PlanViewFragment extends Fragment {
         builder.setPositiveButton("ดูรายละเอียด", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                editPlan(planStrings,midString,typeStrings,cidString,cropStrings,dateStrings,area);
+                editPlan(planStrings,midString,typeStrings,cidString,cropStrings,dateStrings,area,yieldStrings);
                 dialog.dismiss();
             }
         });
@@ -200,16 +223,17 @@ public class PlanViewFragment extends Fragment {
 
     }
 
-    private void editPlan(final String planStrings,final String midString,final String typeStrings,final String cidString,final String cropStrings,final String dateStrings,final float area){
+    private void editPlan(final String planStrings,final String midString,final String typeStrings,final String cidString,final String cropStrings,final String dateStrings,final float area,final String yieldStrings){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
         //กำหนดหัวเเรื้อง
         builder.setTitle("วางแผนเพาะปลูกใหม่");
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
-        view = layoutInflater.inflate(R.layout.edit_plan, null);
+        view = layoutInflater.inflate(R.layout.edit_plan_admin, null);
         //builder = new AlertDialog.Builder(getActivity(),android.R.style.Theme_DeviceDefault_Dialog_Alert);//theme
 
+        //calculator();
 
         map = new HashMap<String, String>();
         map.put("crop",cropStrings);
@@ -236,6 +260,10 @@ public class PlanViewFragment extends Fragment {
         EditAddPlan2.setText(String.valueOf((int) Math.floor((area*400%400)/100)));
         EditAddPlan3.setText(String.valueOf((int) Math.floor((area*400)%100)));
 
+//        qty = view.findViewById(R.id.textQty);
+//        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+//        String sum = decimalFormat.format(Float.parseFloat(yieldStrings));
+//        qty.setText(sum);
 
         final TextView data = view.findViewById(R.id.EditMyDate);
         ImageView selctData = view.findViewById(R.id.EditImageViewDate);

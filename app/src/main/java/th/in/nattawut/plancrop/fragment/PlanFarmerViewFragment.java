@@ -60,6 +60,10 @@ public class PlanFarmerViewFragment extends Fragment {
     HashMap<String, String> map,m,selectsite;
     View view;
 
+    EditText EditAddPlan1,EditAddPlan2,EditAddPlan3;
+    TextView qty,yield,yieldedit;
+    private String sum;
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -78,6 +82,28 @@ public class PlanFarmerViewFragment extends Fragment {
 
         showMid();
 
+
+
+
+    }
+
+    private void calculator() {
+        ImageView calculator = view.findViewById(R.id.calculator);
+        calculator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+                EditAddPlan1 = view.findViewById(R.id.EditAddPlan1);
+                EditAddPlan2 = view.findViewById(R.id.EditAddPlan2);
+                EditAddPlan3 = view.findViewById(R.id.EditAddPlan3);
+                yield = view.findViewById(R.id.textyield);
+                qty = view.findViewById(R.id.textQty);
+                Float area = Float.valueOf(Float.toString(Float.parseFloat(EditAddPlan1.getText().toString().trim())
+                        + (Float.parseFloat(EditAddPlan2.getText().toString().trim()) * 100 + Float.parseFloat(EditAddPlan3.getText().toString().trim())) / 400));
+                sum = decimalFormat.format((int) (Float.parseFloat(yield.getText().toString().trim())*area));
+                qty.setText(sum);
+            }
+        });
     }
 
     private void selectcroptype1() {
@@ -89,7 +115,7 @@ public class PlanFarmerViewFragment extends Fragment {
         try {
             Myconstant myconstant = new Myconstant();
             GetData getData = new GetData(getActivity());
-            getData.execute(myconstant.getUrlCrop());
+            getData.execute(myconstant.getUrlCrop1());
 
             String jsonString = getData.get();
             Log.d("5/Jan CropType", "JSON ==>" + jsonString);
@@ -101,12 +127,13 @@ public class PlanFarmerViewFragment extends Fragment {
                 m = new HashMap<String, String>();
                 m.put("cid", c.getString("cid"));
                 m.put("crop", c.getString("crop"));
+                m.put("yield", c.getString("yield"));
                 mapArrayList.add(m);
             }
 
             final SimpleAdapter s;
-            s = new SimpleAdapter(getActivity(), mapArrayList, R.layout.spinner_plancrop,
-                    new String[]{"cid", "crop"}, new int[]{R.id.textPlanCidSpinner, R.id.textPlanCropSpinner});
+            s = new SimpleAdapter(getActivity(), mapArrayList, R.layout.spinner_yield,
+                    new String[]{"cid", "crop","yield"}, new int[]{R.id.textPlanCidSpinner, R.id.textPlanCropSpinner,R.id.textyield});
             selectMap.setAdapter(s);
             selectMap.setSelection(mapArrayList.indexOf(map));
 
@@ -114,6 +141,7 @@ public class PlanFarmerViewFragment extends Fragment {
             e.printStackTrace();
         }
     }
+
 
     private void swiRefreshLayou() {
         mSwipeRefreshLayout = getView().findViewById(R.id.swiRefreshLayouPlanFarmer);
@@ -164,7 +192,7 @@ public class PlanFarmerViewFragment extends Fragment {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             deleteorEditPlanFarmer(list.get(position).getNo(), list.get(position).getPdate()
-                                    , list.get(position).getCrop(), list.get(position).getArea1(),list.get(position).getCid());
+                                    , list.get(position).getCrop(), list.get(position).getArea1(),list.get(position).getCid(),list.get(position).getYield(),list.get(position).getYieldq());
                         }
                     });
                 }
@@ -178,7 +206,7 @@ public class PlanFarmerViewFragment extends Fragment {
     }
 
     //alertให้เลือกลบหรือแก้ไข
-    private void deleteorEditPlanFarmer(final String no, final String pdate, final String crop, final float area,final String cid) {
+    private void deleteorEditPlanFarmer(final String no, final String pdate, final String crop, final float area,final String cid,final String yield,final String yieldq) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
@@ -201,7 +229,7 @@ public class PlanFarmerViewFragment extends Fragment {
         builder.setPositiveButton("ดูรายละเอียด", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                editPlanFarmer(no, pdate, crop, area,cid);
+                editPlanFarmer(no, pdate, crop, area,cid,yield,yieldq);
                 dialog.dismiss();
             }
         });
@@ -249,7 +277,7 @@ public class PlanFarmerViewFragment extends Fragment {
         }
     }
 
-    private void editPlanFarmer(final String no, String pdate, String crop, float area,final String cid) {
+    private void editPlanFarmer(final String no, String pdate, String crop, float area,final String cid,final String yield,final String yieldq) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(),AlertDialog.THEME_HOLO_LIGHT);
         builder.setCancelable(false);
@@ -258,6 +286,8 @@ public class PlanFarmerViewFragment extends Fragment {
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
         view = layoutInflater.inflate(R.layout.edit_plan, null);
 
+
+        calculator();
 
         TextView texPlanMid = view.findViewById(R.id.EditTextPlanMid);
         String strTextShowmid = getActivity().getIntent().getExtras().getString("mid");
@@ -273,20 +303,29 @@ public class PlanFarmerViewFragment extends Fragment {
 
         //(int)Math.floor(area) + "-" + (int)Math.floor((area*400%400)/100) + "-" + (int)(area*400)%100;
 
-        EditText EditAddPlan1 = view.findViewById(R.id.EditAddPlan1);
-        EditText EditAddPlan2 = view.findViewById(R.id.EditAddPlan2);
-        EditText EditAddPlan3 = view.findViewById(R.id.EditAddPlan3);
+        EditAddPlan1 = view.findViewById(R.id.EditAddPlan1);
+        EditAddPlan2 = view.findViewById(R.id.EditAddPlan2);
+        EditAddPlan3 = view.findViewById(R.id.EditAddPlan3);
 
         EditAddPlan1.setText(String.valueOf((int) Math.floor(area)));
         EditAddPlan2.setText(String.valueOf((int) Math.floor((area*400%400)/100)));
         EditAddPlan3.setText(String.valueOf((int) Math.floor((area*400)%100)));
 
+        qty = view.findViewById(R.id.textQty);
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+        String sum = decimalFormat.format(Float.parseFloat(yieldq));
+        qty.setText(sum);
 
 
         map = new HashMap<String, String>();
-        map.put("crop",crop);
         map.put("cid",cid);
+        map.put("crop",crop);
+        map.put("yield",yield);
         selectcroptype1();
+
+        Log.d("cid","cid" + cid);
+        Log.d("crop","crop" + crop);
+        Log.d("yield","yield" + yield);
 
         final TextView data = view.findViewById(R.id.EditMyDate);
         ImageView selctData = view.findViewById(R.id.EditImageViewDate);

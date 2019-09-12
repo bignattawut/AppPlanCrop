@@ -149,7 +149,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/fonts1"
-                    android:text="ปริมาณการผลผลิต(ก.ก)"
+                    android:text="ประมาณการผลผลิต (ก.ก)"
                     android:textSize="22dp"
                     android:textStyle="bold" />
 

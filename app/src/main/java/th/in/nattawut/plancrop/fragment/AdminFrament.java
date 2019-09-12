@@ -110,12 +110,12 @@ public class AdminFrament extends Fragment {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity()
-                        .getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.contentAdminFragment, new HomeFragment())
-                        .addToBackStack(null)
-                        .commit();
+//                getActivity()
+//                        .getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .replace(R.id.contentAdminFragment, new MainFragment())
+//                        .addToBackStack(null)
+//                        .commit();
 
             }
         });

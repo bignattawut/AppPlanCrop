@@ -174,8 +174,8 @@ public class PlantViewFragment1 extends Fragment {
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
             map = new HashMap<String, String>();
-            map.put("", "");
-            map.put("", "");
+            map.put("did", "");
+            map.put("thai", "");
             MyArrList.add(map);
 
             for (int i = 0; i < data.length(); i++) {
@@ -228,8 +228,8 @@ public class PlantViewFragment1 extends Fragment {
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
             map = new HashMap<String, String>();
-            map.put("", "");
-            map.put("", "");
+            map.put("sid", "");
+            map.put("thai", "");
             MyArrList.add(map);
 
             for (int i = 0; i < data.length(); i++) {
@@ -446,12 +446,12 @@ public class PlantViewFragment1 extends Fragment {
     private void add() {
         TextView province = getView().findViewById(R.id.pid);
         TextView amphur = getView().findViewById(R.id.did);
-        TextView subDistrice = getView().findViewById(R.id.sid);
+        TextView sid = getView().findViewById(R.id.sid);
         TextView sdate = getView().findViewById(R.id.sdate);
 
         String provinceString = province.getText().toString().trim();
         String amphurString = amphur.getText().toString().trim();
-        String subDistriceString = subDistrice.getText().toString().trim();
+        String subDistriceString = sid.getText().toString().trim();
         String sdateString = sdate.getText().toString().trim();
 
         selectPlant(provinceString,amphurString,subDistriceString,sdateString);

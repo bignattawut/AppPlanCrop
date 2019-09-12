@@ -237,7 +237,7 @@ public class PlantPicViewFragment2 extends Fragment {
         builder.setCancelable(false);
         builder.setIcon(R.drawable.ic_action_camera);
         builder.setTitle("ข้อมูลกิจกกรมเพาะปลูก");
-        builder.setMessage("กรุณาเลือก ลบ หรือ ดูข้อมูล ?");
+        builder.setMessage("กรุณาเลือก ลบข้อมูล หรือ ดูข้อมูล ?");
         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -266,7 +266,7 @@ public class PlantPicViewFragment2 extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
         //กำหนดหัวเเรื้อง
-        builder.setTitle("กำหนดชื่อประเภทใหม่");
+        builder.setTitle("ข้อมูลกิจกกรมเพาะปลูก");
         //กำหนดเนื้อหา
 
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();

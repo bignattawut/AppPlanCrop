@@ -32,6 +32,7 @@ import com.tuann.floatingactionbuttonexpandable.FloatingActionButtonExpandable;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -80,6 +81,9 @@ public class PlantFarmerViewFragment extends Fragment {
     private ArrayAdapter<String> adpProvince;
 
     String newcid;
+    TextView qty,yield;
+    EditText rai, ngan, wa;
+    String sum;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -97,6 +101,8 @@ public class PlantFarmerViewFragment extends Fragment {
 
         edateController();
     }
+
+
 
     private void swiRefreshLayou() {
         mSwipeRefreshLayout = getView().findViewById(R.id.swiRefreshLayouPlantFarmer);
@@ -237,7 +243,6 @@ public class PlantFarmerViewFragment extends Fragment {
         });
     }
 
-
     private void selectcroptype1() {
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -247,7 +252,7 @@ public class PlantFarmerViewFragment extends Fragment {
         try {
             Myconstant myconstant = new Myconstant();
             GetData getData = new GetData(getActivity());
-            getData.execute(myconstant.getUrlCrop());
+            getData.execute(myconstant.getUrlCrop1());
 
             String jsonString = getData.get();
             Log.d("5/Jan CropType", "JSON ==>" + jsonString);
@@ -259,12 +264,13 @@ public class PlantFarmerViewFragment extends Fragment {
                 m = new HashMap<String, String>();
                 m.put("cid", c.getString("cid"));
                 m.put("crop", c.getString("crop"));
+                m.put("yield", c.getString("yield"));
                 mapArrayList.add(m);
             }
 
             final SimpleAdapter s;
-            s = new SimpleAdapter(getActivity(), mapArrayList, R.layout.spinner_plancrop,
-                    new String[]{"cid", "crop"}, new int[]{R.id.textPlanCidSpinner, R.id.textPlanCropSpinner});
+            s = new SimpleAdapter(getActivity(), mapArrayList, R.layout.spinner_yield,
+                    new String[]{"cid", "crop","yield"}, new int[]{R.id.textPlanCidSpinner, R.id.textPlanCropSpinner,R.id.textyield});
             selectMap.setAdapter(s);
             selectMap.setSelection(mapArrayList.indexOf(map));
 
@@ -273,6 +279,25 @@ public class PlantFarmerViewFragment extends Fragment {
         }
     }
 
+    private void calculator() {
+        ImageView calculator = view.findViewById(R.id.calculator);
+        calculator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+                rai = view.findViewById(R.id.EditAddPlant1);
+                ngan = view.findViewById(R.id.EditAddPlant2);
+                wa = view.findViewById(R.id.EditAddPlant3);
+                yield = view.findViewById(R.id.textyield);
+                qty = view.findViewById(R.id.textQty);
+                Float area = Float.valueOf(Float.toString(Float.parseFloat(rai.getText().toString().trim())
+                        + (Float.parseFloat(ngan.getText().toString().trim()) * 100 + Float.parseFloat(wa.getText().toString().trim())) / 400));
+                sum = decimalFormat.format((int) (Float.parseFloat(yield.getText().toString().trim())*area));
+                qty.setText(sum);
+
+            }
+        });
+    }
 
     public void showMid() {
 
@@ -300,8 +325,8 @@ public class PlantFarmerViewFragment extends Fragment {
                     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            deleteorEditPlantFarmer(list.get(position).getNo(), list.get(position).getPdate()
-                                    , list.get(position).getCrop(), list.get(position).getArea1(),list.get(position).getSno(),list.get(position).getCid());
+                            deleteorEditPlantFarmer(list.get(position).getNo(),list.get(position).getSno(),list.get(position).getPdate()
+                                    , list.get(position).getCrop(), list.get(position).getArea1(),list.get(position).getCid(),list.get(position).getYield(),list.get(position).getYieldq());
 
                         }
                     });
@@ -316,7 +341,7 @@ public class PlantFarmerViewFragment extends Fragment {
     }
 
     //alertให้เลือกลบหรือแก้ไข
-    private void deleteorEditPlantFarmer(final String no, final String pdata, final String crop, final float area,final String sno, final String cid) {
+    private void deleteorEditPlantFarmer(final String no, final String sno,final String pdata, final String crop, final float area, final String cid,final String yield,final String yieldq) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
@@ -339,7 +364,7 @@ public class PlantFarmerViewFragment extends Fragment {
         builder.setPositiveButton("ดูรายละเอียด", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                editPlantFarmer(no,sno,pdata, crop, area,cid);
+                editPlantFarmer(no,sno,pdata, crop, area,cid,yield,yieldq);
                 dialog.dismiss();
             }
         });
@@ -386,7 +411,7 @@ public class PlantFarmerViewFragment extends Fragment {
         }
     }
 
-    private void editPlantFarmer(final String no,final String sno,String pdata, String crop, float area,final String cid) {
+    private void editPlantFarmer(final String no,final String sno,String pdata, String crop, float area,final String cid,final String yield,final String yieldq) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_LIGHT);
         builder.setCancelable(false);
         //กำหนดหัวเเรื้อง
@@ -405,11 +430,24 @@ public class PlantFarmerViewFragment extends Fragment {
         //selectcroptype
         //selectcroptype(cid,crop);
 
+        calculator();
+
+//        map = new HashMap<String, String>();
+//        map.put("cid",cid);
+//        map.put("crop",crop);
+//        map.put("yield",yield);
+//        selectcroptype1();
 
         map = new HashMap<String, String>();
-        map.put("crop",crop);
         map.put("cid",cid);
+        map.put("crop",crop);
+        map.put("yield",yield);
         selectcroptype1();
+
+        Log.d("cid","cid" + cid);
+        Log.d("crop","crop" + crop);
+        Log.d("yield","yield" + yield);
+
 
 
         TextView textPDate = view.findViewById(R.id.EditMyDate);
@@ -425,6 +463,10 @@ public class PlantFarmerViewFragment extends Fragment {
         EditAddPlan3.setText(String.valueOf((int) Math.floor((area*400)%100)));
 
 
+        qty = view.findViewById(R.id.textQty);
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+        String sum = decimalFormat.format(Float.parseFloat(yieldq));
+        qty.setText(sum);
 
         builder.setView(view);
         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {

@@ -47,7 +47,6 @@
                 android:layout_height="137dp"
                 android:layout_weight="196"
                 android:src="@drawable/applogoplancrop"
-                app:civ_border_width="1dp"
                 tools:ignore="MissingConstraints" />
         </LinearLayout>
 
