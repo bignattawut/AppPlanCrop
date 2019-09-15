@@ -81,6 +81,12 @@
 
         </LinearLayout>
 
+        <TextView
+            android:text="พิกัด :"
+            android:layout_marginBottom="5dp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
         <LinearLayout
             android:padding="8dp"
             android:layout_width="match_parent"

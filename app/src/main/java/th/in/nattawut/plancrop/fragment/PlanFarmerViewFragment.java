@@ -142,7 +142,6 @@ public class PlanFarmerViewFragment extends Fragment {
         }
     }
 
-
     private void swiRefreshLayou() {
         mSwipeRefreshLayout = getView().findViewById(R.id.swiRefreshLayouPlanFarmer);
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimaryDark);

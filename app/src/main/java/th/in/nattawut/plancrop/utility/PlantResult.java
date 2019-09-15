@@ -11,6 +11,7 @@ public class PlantResult {
     private int yield;
 
 
+
     public String getCrop() {
         return crop;
     }
@@ -18,4 +19,5 @@ public class PlantResult {
     public int getYield() {
         return yield;
     }
+
 }

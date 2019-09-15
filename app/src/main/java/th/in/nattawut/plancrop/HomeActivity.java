@@ -32,6 +32,7 @@ import th.in.nattawut.plancrop.fragment.PlantFarmerViewFragment;
 import th.in.nattawut.plancrop.fragment.PlantPicViewFragment1;
 import th.in.nattawut.plancrop.fragment.PlantReportViewFragment;
 import th.in.nattawut.plancrop.fragment.PlantReportallViewFragment;
+import th.in.nattawut.plancrop.fragment.PlantResultSiteViewFragment;
 import th.in.nattawut.plancrop.fragment.PlantResultViewFragment;
 import th.in.nattawut.plancrop.fragment.TabPlanFragment;
 import th.in.nattawut.plancrop.utility.OrderService;
@@ -181,18 +182,18 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.menu_chart:
-                setTitle("ผลผลิต");
+                setTitle("ประมาณการผลผลิต");
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.contentHomeFragment, new PlantResultViewFragment())
                         .addToBackStack(null)
                         .commit();
                 break;
-//            case R.id.menu_admin:
-//                setTitle("ผู้ดูแลระบบ");
+//            case R.id.menu_result:
+//                setTitle("ผลผลิตที่ต้องแปลงเพาะปลูก");
 //                getSupportFragmentManager()
 //                        .beginTransaction()
-//                        .replace(R.id.contentHomeFragment, new AdminFrament())
+//                        .replace(R.id.contentHomeFragment, new PlantResultSiteViewFragment())
 //                        .addToBackStack(null)
 //                        .commit();
 //                break;

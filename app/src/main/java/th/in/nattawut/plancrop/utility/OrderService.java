@@ -64,6 +64,19 @@ public interface OrderService {
                                            @Query("tid") String tid,
                                            @Query("cid") String cid);
 
+
+    ///
+    @GET("plantmap.php")
+    Call<List<PlantResultSite>> getPlantResultSite(@Query("pid") String pid,
+                                           @Query("did") String did,
+                                           @Query("sid") String sid,
+                                           @Query("sdate") String sdate,
+                                           @Query("edate") String edate,
+                                           @Query("mid") String mid,
+                                           @Query("tid") String tid,
+                                           @Query("cid") String cid);
+    ///
+
     @POST("memberlogin.php")
     @FormUrlEncoded
     Call<List<LoginResponse>> getuserLogin(

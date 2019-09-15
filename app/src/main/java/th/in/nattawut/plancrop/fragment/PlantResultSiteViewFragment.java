@@ -1,8 +1,6 @@
 package th.in.nattawut.plancrop.fragment;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
@@ -14,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
@@ -38,7 +35,6 @@ import th.in.nattawut.plancrop.R;
 import th.in.nattawut.plancrop.utility.APIUtils;
 import th.in.nattawut.plancrop.utility.AddAmpur;
 import th.in.nattawut.plancrop.utility.AddProvince;
-import th.in.nattawut.plancrop.utility.AddVillag;
 import th.in.nattawut.plancrop.utility.GetData;
 import th.in.nattawut.plancrop.utility.Myconstant;
 import th.in.nattawut.plancrop.utility.OrderService;
@@ -47,11 +43,10 @@ import th.in.nattawut.plancrop.utility.PlantResultAdpter;
 import th.in.nattawut.plancrop.utility.PlantResultSite;
 import th.in.nattawut.plancrop.utility.PlantResultSiteAdpter;
 
-public class PlantResultViewFragment extends Fragment {
+public class PlantResultSiteViewFragment extends Fragment {
 
-    ListView listView,listViewSite;
+    ListView listViewSite;
     OrderService orderService;
-    List<PlantResult> list = new ArrayList<PlantResult>();
     List<PlantResultSite> listsite = new ArrayList<PlantResultSite>();
 
     ImageView selctDate;
@@ -68,9 +63,6 @@ public class PlantResultViewFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-
-
-        listView = getView().findViewById(R.id.listViewPlantResult);
         listViewSite = getView().findViewById(R.id.listViewPlantResultSite);
         orderService = APIUtils.getService();
         spProvince = getView().findViewById(R.id.spProvince);
@@ -78,7 +70,6 @@ public class PlantResultViewFragment extends Fragment {
         spAmphur = getView().findViewById(R.id.spAmphur);
 
         spSubDistrice = getView().findViewById(R.id.spSubDistrice);
-
 
 
         edateController();
@@ -92,7 +83,6 @@ public class PlantResultViewFragment extends Fragment {
         cropTypeSpinner();
 
         planFarmerSpinner();
-
     }
 
     private void SwipeRefreshLayout() {
@@ -129,7 +119,7 @@ public class PlantResultViewFragment extends Fragment {
 
             }
             SimpleAdapter sAdap;
-            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_province_result,
+            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_province,
                     new String[]{"pid", "thai"}, new int[]{R.id.pid, R.id.pidthai});
             spProvince.setAdapter(sAdap);
             spProvince.setSelection(25);
@@ -180,7 +170,7 @@ public class PlantResultViewFragment extends Fragment {
 
             }
             SimpleAdapter sAdap;
-            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_amphur_result,
+            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_amphur,
                     new String[]{"did", "thai"}, new int[]{R.id.did, R.id.didthai});
             spAmphur.setAdapter(sAdap);
             //spAmphur.setSelection(1);
@@ -233,7 +223,7 @@ public class PlantResultViewFragment extends Fragment {
                 MyArrList.add(map);
             }
             SimpleAdapter sAdap;
-            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_subdistrice_result,
+            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_subdistrice,
                     new String[]{"sid", "thai"}, new int[]{R.id.sid, R.id.sidthai});
             spSubDistrice.setAdapter(sAdap);
 
@@ -335,7 +325,7 @@ public class PlantResultViewFragment extends Fragment {
                 MyArrList.add(map);
             }
             SimpleAdapter sAdap;
-            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_sitename_result,
+            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_sitename,
                     new String[]{"mid", "name"}, new int[]{R.id.textMId, R.id.textName});
             spin.setAdapter(sAdap);
 
@@ -375,7 +365,7 @@ public class PlantResultViewFragment extends Fragment {
                 MyArrList.add(map);
             }
             SimpleAdapter sAdap;
-            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_crop_result,
+            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_crop,
                     new String[] {"tid", "croptype"}, new int[] {R.id.textTID, R.id.textCropType});
             spin.setAdapter(sAdap);
 
@@ -384,7 +374,7 @@ public class PlantResultViewFragment extends Fragment {
         }
 
     }
-//
+    //
     private void planFarmerSpinner() {
         if (android.os.Build.VERSION.SDK_INT > 9) { //setup policy เเพื่อมือถือที่มีประปฏิบัติการสูงกว่านีจะไม่สามารถconnectกับโปรโตรคอลได้
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -417,7 +407,7 @@ public class PlantResultViewFragment extends Fragment {
 
             }
             SimpleAdapter sAdap;
-            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_plancrop_reslt,
+            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_plancrop,
                     new String[]{"cid", "crop"}, new int[]{R.id.textPlanCidSpinner, R.id.textPlanCropSpinner});
             spin.setAdapter(sAdap);
 
@@ -456,31 +446,7 @@ public class PlantResultViewFragment extends Fragment {
         String nameString = nameSpinner.getText().toString().trim();
         String croptypeString = textTypeSpinner.getText().toString().trim();
         String cropString = textCropSpinner.getText().toString().trim();
-        selectPlantReportall(provinceString,amphurString,subDistriceString,sdateString,edateString,nameString,croptypeString,cropString);
         selectPlantReportSite(provinceString,amphurString,subDistriceString,sdateString,edateString,nameString,croptypeString,cropString);
-    }
-
-    private void selectPlantReportall(String provinceString,String amphurString,String subDistriceString,String sdateString, String edateString,String nameString, String croptypeString, String cropString) {
-        Call<List<PlantResult>> call = orderService.getPlantResult(provinceString,amphurString,subDistriceString,sdateString,edateString,nameString,croptypeString,cropString);
-        call.enqueue(new Callback<List<PlantResult>>() {
-            @Override
-            public void onResponse(Call<List<PlantResult>> call, Response<List<PlantResult>> response) {
-                if (response.isSuccessful()) {
-                    list = response.body();
-                    listView.setAdapter(new PlantResultAdpter(getActivity(),R.layout.frm_plantresult_view,list));
-                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            //selectResult();
-                        }
-                    });
-                }
-            }
-            @Override
-            public void onFailure(Call<List<PlantResult>> call, Throwable t) {
-
-            }
-        });
     }
 
     private void selectPlantReportSite(String provinceString,String amphurString,String subDistriceString,String sdateString, String edateString,String nameString, String croptypeString, String cropString) {
@@ -502,53 +468,10 @@ public class PlantResultViewFragment extends Fragment {
         });
     }
 
-    private void selectResult() {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setCancelable(false);
-        builder.setIcon(R.drawable.planhome);
-        builder.setTitle("ข้อมูลแปลงเพาะปลูก");
-        builder.setMessage("ต้องการดูข้อมูลแปลงเพาะปลูก หรือ ไม่");
-        builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        builder.setPositiveButton("ดูรายละเอียด", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                selectResultFarmer();
-                dialog.dismiss();
-            }
-        });
-        builder.show();
-    }
-
-    private void selectResultFarmer() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(),AlertDialog.THEME_HOLO_LIGHT);
-        builder.setCancelable(false);
-        //กำหนดหัวเเรื้อง
-        builder.setTitle("แปลงเพาะปลูก");
-        LayoutInflater layoutInflater = getActivity().getLayoutInflater();
-        View view = layoutInflater.inflate(R.layout.frm_plantresultmap_view, null);
-
-
-        builder.setView(view);
-        builder.setNegativeButton("ปิด", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        builder.show();
-    }
-
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.frm_view_plantresultsite, container, false);
+        View view = inflater.inflate(R.layout.frm_view_plantresult, container, false);
         return view;
     }
 }

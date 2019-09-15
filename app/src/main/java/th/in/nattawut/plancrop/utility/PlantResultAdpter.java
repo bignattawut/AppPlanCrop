@@ -34,14 +34,14 @@ public class PlantResultAdpter extends ArrayAdapter<PlantResult> {
 
         TextView textCrop = view.findViewById(R.id.textPlantQty);
         TextView textQty = view.findViewById(R.id.textPlantYield);
-        //TextView textArea = view.findViewById(R.id.textArea);
+        //TextView textPlantsno = view.findViewById(R.id.textPlantsno);
 
         textCrop.setText(plantResults.get(position).getCrop());
         //textQty.setText(plantResults.get(position).getYield());
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
         String s1 = decimalFormat.format(plantResults.get(position).getYield());
         textQty.setText(s1);
-        //textArea.setText(plantResults.get(position).getArea());
+        //textPlantsno.setText(plantResults.get(position).getSno());
 
 
 

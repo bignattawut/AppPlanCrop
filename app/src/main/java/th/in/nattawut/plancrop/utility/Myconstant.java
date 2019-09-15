@@ -3,7 +3,7 @@ package th.in.nattawut.plancrop.utility;
 public class Myconstant {
 
 
-    String ip = "192.168.1.149";
+    String ip = "192.168.1.116";
 
     //ล็อคอิน
     private String urlGetUser = "http://"+ip+"/android/php/memberlogin.php";

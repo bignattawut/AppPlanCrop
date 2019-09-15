@@ -56,6 +56,11 @@
                 android:id="@+id/menu_chart"
                 android:icon="@drawable/ic_harvest"
                 android:title="ผลผลิต" />
+
+            <!--<item-->
+                <!--android:id="@+id/menu_result"-->
+                <!--android:icon="@drawable/ic_harvest"-->
+                <!--android:title="ผลผลิตที่ต้องแปลงเพาะปลูก" />-->
         </menu>
     </item>
 
