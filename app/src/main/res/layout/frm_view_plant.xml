@@ -27,7 +27,7 @@
             android:layout_marginLeft="5dp"
             android:layout_centerVertical="true"
             android:text="จังหวัด :"
-            android:textSize="24dp"
+            android:textSize="22dp"
             app:fontFamily="@font/fonts1" />
 
         <Spinner
@@ -49,7 +49,7 @@
             android:layout_marginLeft="5dp"
             android:layout_centerVertical="true"
             android:text="อำเภอ :"
-            android:textSize="24dp"
+            android:textSize="22dp"
             app:fontFamily="@font/fonts1" />
 
         <Spinner
@@ -70,7 +70,7 @@
             android:layout_marginLeft="5dp"
             android:layout_centerVertical="true"
             android:text="ตำบล :"
-            android:textSize="24dp"
+            android:textSize="22dp"
             app:fontFamily="@font/fonts1" />
 
         <Spinner
@@ -80,6 +80,51 @@
             android:layout_height="wrap_content"></Spinner>
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:orientation="horizontal"
+        android:padding="1dp">
+
+        <TextView
+            android:textSize="22dp"
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:text="ประเภทพืช :" />
+
+        <Spinner
+            android:id="@+id/croptypespinner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1dp"></Spinner>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:orientation="horizontal"
+        android:padding="1dp">
+
+        <TextView
+            android:textSize="22dp"
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:text="ชื่อพืช :" />
+
+
+        <Spinner
+            android:id="@+id/crop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1dp"></Spinner>
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -92,7 +137,7 @@
             android:layout_marginLeft="5dp"
             android:layout_centerVertical="true"
             android:text="ข้อมูลตั้งแต่วันที่ :"
-            android:textSize="24dp"
+            android:textSize="22dp"
             app:fontFamily="@font/fonts1" />
 
         <TextView
@@ -102,13 +147,13 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="130dp"
             android:text="xx/xx/xxxx"
-            android:textSize="24dp"
+            android:textSize="22dp"
             app:fontFamily="@font/fonts1" />
 
         <ImageView
             android:id="@+id/imageViewDatepdate"
             android:layout_width="50dp"
-            android:layout_height="40dp"
+            android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:background="@drawable/dateplan"
             app:fontFamily="@font/fonts1" />
@@ -117,13 +162,13 @@
     <Button
         android:id="@+id/seletePlant"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/button"
         android:fontFamily="@font/fonts1"
         android:text="แสดงรายการ"
         android:textColor="@color/colorWhite"
-        android:textSize="24dp" />
+        android:textSize="23dp" />
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swiRefreshLayouPlant"

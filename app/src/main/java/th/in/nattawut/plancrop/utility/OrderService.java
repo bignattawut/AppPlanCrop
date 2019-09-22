@@ -100,10 +100,18 @@ public interface OrderService {
 //                                @Field("URL") String url);
 
 
+
+    @GET("selectplanandroidtest.php")
+    Call<List<Plan>> selectplanandroidtest(@Query("tid") String tid,
+                                           @Query("cid") String cid,
+                                           @Query("sdate") String sdate);
+
     @GET("selectplant.php")
     Call<List<Plant>> getPlant(@Query("pid") String pid,
                                @Query("did") String did,
                                @Query("sid") String sid,
+                               @Query("tid") String tid,
+                               @Query("cid") String cid,
                                @Query("sdate") String sdate);
 
 

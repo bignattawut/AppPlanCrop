@@ -243,31 +243,6 @@ public class PlanFragment extends Fragment {
                 + (Float.parseFloat(plan2.getText().toString().trim()) * 100 + Float.parseFloat(plan3.getText().toString().trim())) / 400);
 
 
-//        yield = getView().findViewById(R.id.textyield);
-//        qty = getView().findViewById(R.id.textQty);
-//        Float area = Float.valueOf(Float.toString(Float.parseFloat(plan1.getText().toString().trim())
-//                + (Float.parseFloat(plan2.getText().toString().trim()) * 100 + Float.parseFloat(plan3.getText().toString().trim())) / 400));
-//        sum = Integer.toString((int) (Float.parseFloat(yield.getText().toString().trim())*area));
-//        qty.setText(sum);
-
-//        qty.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//
-//
-//            }
-//        });
-
         MyAlertCrop myAlertCrop = new MyAlertCrop(getActivity());
         if (cidmidString.isEmpty()) {
             myAlertCrop.onrmaIDialog("โปรดกรอก", "กรุณากรอกชื่อเกษตรกร");

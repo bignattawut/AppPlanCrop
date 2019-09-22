@@ -79,6 +79,7 @@ public class PlantPicViewFragment2 extends Fragment {
     TextView str1;
     //String mediaPath = new String("/storage/emulated/0/DCIM/");
     String mediaPath = new String("/storage/emulated/0/Download/");
+    //String mediaPath = new String("/storage/emulated/0/Download/FB_IMG_1566371876498.jpg");
     //String mediaPath = new String("/storage/emulated/0/");
 
     SwipeRefreshLayout mSwipeRefreshLayout;

@@ -90,6 +90,10 @@ public class PlantViewFragment1 extends Fragment {
         //pdateController
         pdateController();
 
+        cropTypeSpinner();
+
+        planFarmerSpinner();
+
 
         listView = getView().findViewById(R.id.listViewPlant);
         orderService = APIUtils.getService();
@@ -114,7 +118,6 @@ public class PlantViewFragment1 extends Fragment {
         });
     }
 
-
     public void Province() {
         try {
             Myconstant myconstant = new Myconstant();
@@ -137,7 +140,7 @@ public class PlantViewFragment1 extends Fragment {
 
             }
             SimpleAdapter sAdap;
-            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_province,
+            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_province_plantadmin,
                     new String[]{"pid", "thai"}, new int[]{R.id.pid, R.id.pidthai});
             spProvince.setAdapter(sAdap);
             spProvince.setSelection(25);
@@ -188,7 +191,7 @@ public class PlantViewFragment1 extends Fragment {
 
             }
             SimpleAdapter sAdap;
-            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_amphur,
+            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_amphur_plantadmin,
                     new String[]{"did", "thai"}, new int[]{R.id.did, R.id.didthai});
             spAmphur.setAdapter(sAdap);
             //spAmphur.setSelection(1);
@@ -241,7 +244,7 @@ public class PlantViewFragment1 extends Fragment {
                 MyArrList.add(map);
             }
             SimpleAdapter sAdap;
-            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_subdistrice,
+            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_subdistrice_plantadmin,
                     new String[]{"sid", "thai"}, new int[]{R.id.sid, R.id.sidthai});
             spSubDistrice.setAdapter(sAdap);
 
@@ -249,6 +252,90 @@ public class PlantViewFragment1 extends Fragment {
             e.printStackTrace();
         }
     }
+
+    ////
+    private void cropTypeSpinner(){
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+        final Spinner spin = getView().findViewById(R.id.croptypespinner);
+        try {
+            Myconstant myconstant = new Myconstant();
+            GetData getData = new GetData(getActivity());
+            getData.execute(myconstant.getUrlCropType());
+
+            String jsonString = getData.get();
+            Log.d("5/Jan CropType", "JSON ==>" + jsonString);
+            JSONArray data = new JSONArray(jsonString);
+
+            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
+            HashMap<String, String> map;
+            map = new HashMap<String, String>();
+            map.put("tid", "");
+            map.put("croptype", "");
+            MyArrList.add(map);
+
+            for(int i = 0; i < data.length(); i++){
+                JSONObject c = data.getJSONObject(i);
+
+                map = new HashMap<String, String>();
+                map.put("tid", c.getString("tid"));
+                map.put("croptype", c.getString("croptype"));
+                MyArrList.add(map);
+            }
+            SimpleAdapter sAdap;
+            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_crop_plantadmin,
+                    new String[] {"tid", "croptype"}, new int[] {R.id.textTID, R.id.textCropType});
+            spin.setAdapter(sAdap);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    //
+    private void planFarmerSpinner() {
+        if (android.os.Build.VERSION.SDK_INT > 9) { //setup policy เเพื่อมือถือที่มีประปฏิบัติการสูงกว่านีจะไม่สามารถconnectกับโปรโตรคอลได้
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+        final Spinner spin = getView().findViewById(R.id.crop);
+        try {
+            Myconstant myconstant = new Myconstant();
+            GetData getData = new GetData(getActivity());
+            getData.execute(myconstant.getUrlCrop());
+
+            String jsonString = getData.get();
+            Log.d("5/Jan PlanCropSpinner", "JSON ==>" + jsonString);
+            JSONArray data = new JSONArray(jsonString);
+
+            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
+            HashMap<String, String> map;
+            map = new HashMap<String, String>();
+            map.put("cid", "");
+            map.put("crop", "");
+            MyArrList.add(map);
+
+            for (int i = 0; i < data.length(); i++) {
+                JSONObject c = data.getJSONObject(i);
+
+                map = new HashMap<String, String>();
+                map.put("cid", c.getString("cid"));
+                map.put("crop", c.getString("crop"));
+                MyArrList.add(map);
+
+            }
+            SimpleAdapter sAdap;
+            sAdap = new SimpleAdapter(getActivity(), MyArrList, R.layout.spinner_plancrop_plantadmin,
+                    new String[]{"cid", "crop"}, new int[]{R.id.textPlanCidSpinner, R.id.textPlanCropSpinner});
+            spin.setAdapter(sAdap);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    ////
 
     private void pdateController() {
         final TextView sdate = getActivity().findViewById(R.id.sdate);
@@ -447,18 +534,22 @@ public class PlantViewFragment1 extends Fragment {
         TextView province = getView().findViewById(R.id.pid);
         TextView amphur = getView().findViewById(R.id.did);
         TextView sid = getView().findViewById(R.id.sid);
+        TextView textTypeSpinner = getView().findViewById(R.id.textTID);
+        TextView textCropSpinner = getView().findViewById(R.id.textPlanCidSpinner);
         TextView sdate = getView().findViewById(R.id.sdate);
 
         String provinceString = province.getText().toString().trim();
         String amphurString = amphur.getText().toString().trim();
         String subDistriceString = sid.getText().toString().trim();
+        String croptypeString = textTypeSpinner.getText().toString().trim();
+        String cropString = textCropSpinner.getText().toString().trim();
         String sdateString = sdate.getText().toString().trim();
 
-        selectPlant(provinceString,amphurString,subDistriceString,sdateString);
+        selectPlant(provinceString,amphurString,subDistriceString,croptypeString,cropString,sdateString);
     }
 
-    private void selectPlant(String provinceString,String amphurString,String subDistriceString,String sdateString){
-        Call<List<Plant>> call = orderService.getPlant(provinceString,amphurString,subDistriceString,sdateString);
+    private void selectPlant(String provinceString,String amphurString,String subDistriceString,String croptypeString,String cropString,String sdateString){
+        Call<List<Plant>> call = orderService.getPlant(provinceString,amphurString,subDistriceString,croptypeString,cropString,sdateString);
         call.enqueue(new Callback<List<Plant>>() {
             @Override
             public void onResponse(Call<List<Plant>> call, Response<List<Plant>> response) {

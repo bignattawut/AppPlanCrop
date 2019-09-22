@@ -185,6 +185,10 @@ public class SiteFragment extends Fragment implements LocationListener {
 
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
+            map = new HashMap<String, String>();
+            map.put("mid", "");
+            map.put("name", "");
+            MyArrList.add(map);
 
             for (int i = 0; i < data.length(); i++) {
                 JSONObject c = data.getJSONObject(i);
@@ -222,6 +226,11 @@ public class SiteFragment extends Fragment implements LocationListener {
 
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
+            map = new HashMap<String, String>();
+            map.put("name", "");
+            map.put("vid", "");
+            map.put("thai", "");
+            MyArrList.add(map);
 
             for(int i = 0; i < data.length(); i++){
                 JSONObject c = data.getJSONObject(i);

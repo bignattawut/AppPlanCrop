@@ -1,5 +1,8 @@
 package th.in.nattawut.plancrop.fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import th.in.nattawut.plancrop.AdminActivity;
+import th.in.nattawut.plancrop.MainActivity;
 import th.in.nattawut.plancrop.MemberActivity;
 import th.in.nattawut.plancrop.R;
 
@@ -47,7 +51,28 @@ public class MemberFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == R.id.itemSingOut) {
-            getActivity().finish();
+            //getActivity().finish();
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setCancelable(false);
+            builder.setTitle("ต้องการออกจากระบบใช่หรือไม่?");
+            builder.setNegativeButton("ไม่ใช่", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builder.setPositiveButton("ใช่", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    startActivity(intent);
+                    //finish();
+                    getActivity().finish();
+                    dialog.dismiss();
+
+                }
+            });
+            builder.show();
         }
         return super.onOptionsItemSelected(item);
     }

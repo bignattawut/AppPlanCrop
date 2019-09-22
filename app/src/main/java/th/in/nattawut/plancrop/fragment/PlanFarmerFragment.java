@@ -284,7 +284,7 @@ public class PlanFarmerFragment extends Fragment {
                 getActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentAdminFragment, new PlanViewFragment())
+                        .replace(R.id.contentAdminFragment, new PlanViewFragment1())
                         .addToBackStack(null)
                         .commit();
             }

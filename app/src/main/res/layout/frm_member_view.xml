@@ -74,7 +74,7 @@
                 android:id="@+id/edtpassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
+                android:inputType="textPassword"
                 android:textSize="30dp"
                 app:fontFamily="@font/fonts1" />
 

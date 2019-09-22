@@ -40,6 +40,7 @@
                 android:textStyle="bold"
                 app:fontFamily="@font/fonts1" />
 
+
             <EditText
                 android:id="@+id/edtusername"
                 android:layout_width="match_parent"
@@ -58,13 +59,26 @@
                 android:textStyle="bold"
                 app:fontFamily="@font/fonts1" />
 
-            <EditText
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
                 android:id="@+id/edtpassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
+                    android:inputType="textPassword"
                 android:textSize="30dp"
                 app:fontFamily="@font/fonts1" />
+
+            </android.support.design.widget.TextInputLayout>
+            <!--<EditText-->
+                <!--android:id="@+id/edtpassword"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:inputType="text"-->
+                <!--android:textSize="30dp"-->
+                <!--app:fontFamily="@font/fonts1" />-->
 
             <!--Surname-->
             <TextView

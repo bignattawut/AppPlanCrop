@@ -87,6 +87,7 @@ public class PlanFarmerViewFragment extends Fragment {
 
     }
 
+
     private void calculator() {
         ImageView calculator = view.findViewById(R.id.calculator);
         calculator.setOnClickListener(new View.OnClickListener() {
