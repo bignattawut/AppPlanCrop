@@ -41,7 +41,7 @@ public class PlantPicAdpter2 extends ArrayAdapter<PlantActivity> {
         pdateTextView.setText(plantActivities.get(position).getPdate());
         descriptionTextView.setText(plantActivities.get(position).getDescription());
         Picasso.get()
-                .load("http://"+myconstant.ip+"/android/php/picture/activity/"+plantActivities.get(position).getPicno()+".jpg")
+                .load("https://"+myconstant.ip+"/android/php/picture/activity/"+plantActivities.get(position).getPicno()+".jpg")
                 .resize(150, 150)
                 .into(imageView);
 

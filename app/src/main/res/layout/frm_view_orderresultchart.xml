@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <LinearLayout
@@ -56,39 +55,21 @@
             android:textColor="@color/colorWhite"
             android:textSize="24dp" />
 
-        <!--<android.support.v4.widget.SwipeRefreshLayout-->
-            <!--android:id="@+id/swiRefreshLayoutPlanResult"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content">-->
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="360dp">
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/listViewOrderChartResult"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
 
-            <ListView
-                android:id="@+id/listViewPlanResult"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"></ListView>
-
-        <!--</android.support.v4.widget.SwipeRefreshLayout>-->
+        </com.github.mikephil.charting.charts.PieChart>
+        </LinearLayout>
 
     </LinearLayout>
 
 
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:gravity="end|bottom">-->
 
-        <!--<com.tuann.floatingactionbuttonexpandable.FloatingActionButtonExpandable-->
-            <!--android:id="@+id/floatingActionButtonViewOrderResult"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginRight="10dp"-->
-            <!--android:layout_marginBottom="65dp"-->
-            <!--app:fab_bg_color="#00acc1"-->
-            <!--app:fab_content="ดูสถิตการวางแผน"-->
-            <!--app:fab_icon="@drawable/ic_pie_chart"-->
-            <!--app:fab_padding_text_icon="10dp"-->
-            <!--app:fab_text_size="26dp" />-->
-    <!--</LinearLayout>-->
-
-
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 31
     defaultConfig {
         applicationId "th.in.nattawut.plancrop"
         minSdkVersion 21
         ///minSdkVersion 15 ก่อนจะติดตั้งfloatingbuttom24/5/62
-        targetSdkVersion 28
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -26,12 +26,13 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.android.support.constraint:constraint-layout:2.0.4'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation 'com.android.support:design:28.0.0'
-    implementation 'com.android.support:gridlayout-v7:28.0.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    //androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    //androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
     //implementation 'com.koushikdutta.ion:ion:2.+'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'eu.the4thfloor.volley:com.android.volley:2015.05.28'
@@ -39,22 +40,29 @@ dependencies {
     implementation 'com.loopj.android:android-async-http:1.4.9'
     implementation 'com.google.firebase:firebase-core:16.0.1'
     implementation 'com.google.firebase:firebase-storage:16.0.1'
-    implementation 'com.android.support:design:28.0.0'
+
     //text
     implementation 'com.tomer:fadingtextview:2.5'
-    implementation 'com.android.support:cardview-v7:28.0.0'
+
     implementation 'com.github.imtuann:FloatingActionButtonExpandable:1.1.2'//ลองรับsdkversion 21 ขึ้นไป
 
     implementation 'com.squareup.picasso:picasso:2.71828'//selectImages
     implementation 'com.squareup.retrofit2:retrofit:2.6.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
-    implementation 'com.android.support:recyclerview-v7:28.0.0'
+
     implementation 'com.google.code.gson:gson:2.8.5'
 
     implementation 'com.github.ganfra:material-spinner:2.0.0'
     implementation 'com.jaredrummler:material-spinner:1.3.1'
     implementation 'de.hdodenhof:circleimageview:3.0.1'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 
+    //implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support:gridlayout-v7:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
 
 }
 

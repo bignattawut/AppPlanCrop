@@ -24,6 +24,8 @@ import android.widget.TextView;
 import th.in.nattawut.plancrop.fragment.About;
 import th.in.nattawut.plancrop.fragment.FarmerViewFragment;
 import th.in.nattawut.plancrop.fragment.MainPlanFragment;
+import th.in.nattawut.plancrop.fragment.OrderResultChartFragment;
+import th.in.nattawut.plancrop.fragment.OrderResultSumViewFragment;
 import th.in.nattawut.plancrop.fragment.OrderViewRePortFragment;
 import th.in.nattawut.plancrop.fragment.PlanFarmerViewFragment;
 import th.in.nattawut.plancrop.fragment.PlanResultViewFragment;
@@ -189,14 +191,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         .addToBackStack(null)
                         .commit();
                 break;
-//            case R.id.menu_result:
-//                setTitle("ผลผลิตที่ต้องแปลงเพาะปลูก");
-//                getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .replace(R.id.contentHomeFragment, new PlantResultSiteViewFragment())
-//                        .addToBackStack(null)
-//                        .commit();
-//                break;
+            case R.id.munu_orderresultsum:
+                setTitle("สถิตความต้องการพืชปลอดสาร");
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentHomeFragment, new OrderResultSumViewFragment())
+                        .addToBackStack(null)
+                        .commit();
+                break;
 //            case R.id.menu_member:
 //                setTitle("สมาชิก");
 //                getSupportFragmentManager()

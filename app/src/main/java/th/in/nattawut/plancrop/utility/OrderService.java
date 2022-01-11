@@ -132,7 +132,12 @@ public interface OrderService {
                                      @Part MultipartBody.Part picno);
 
 
+    @GET("orderresultsum.php")
+    Call<List<OrderResultSum>> OrderResultSum();
 
+
+    @GET("orderresultbalance.php")
+    Call<List<OrderResultBalance>> OrderResultBalance();
 
 
 }

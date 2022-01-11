@@ -246,12 +246,13 @@
                     android:layout_marginLeft="5dp"
                     android:text="อำเภอ :" />
 
-                <Spinner
+               <Spinner
                     android:id="@+id/spAmphurAdmin"
                     style="@style/fonts"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="1dp"></Spinner>
+
             </LinearLayout>
 
             <LinearLayout
