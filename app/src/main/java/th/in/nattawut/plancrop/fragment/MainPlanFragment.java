@@ -47,6 +47,8 @@ public class MainPlanFragment extends Fragment {
 
         addOrder();
 
+
+
     }
     private void addPlan() {
         CardView cardViewPlanHome = getView().findViewById(R.id.CardViewPlanHome);

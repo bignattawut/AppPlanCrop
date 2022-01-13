@@ -78,7 +78,7 @@ public class PlantPicViewFragment2 extends Fragment {
     //private String mediaPath ;
     TextView str1;
     //String mediaPath = new String("/storage/emulated/0/DCIM/");
-    String mediaPath = new String("/storage/emulated/0/Download/");
+    String mediaPath = new String("image/jpg");
     //String mediaPath = new String("/storage/emulated/0/Download/FB_IMG_1566371876498.jpg");
     //String mediaPath = new String("/storage/emulated/0/");
 
@@ -154,7 +154,7 @@ public class PlantPicViewFragment2 extends Fragment {
     }
 
     private void selectPlant() {
-        if (android.os.Build.VERSION.SDK_INT > 9) { //setup policy เเพื่อมือถือที่มีประปฏิบัติการสูงกว่านีจะไม่สามารถconnectกับโปรโตรคอลได้
+        if (android.os.Build.VERSION.SDK_INT > 11) { //setup policy เเพื่อมือถือที่มีประปฏิบัติการสูงกว่านีจะไม่สามารถconnectกับโปรโตรคอลได้
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
@@ -287,7 +287,7 @@ public class PlantPicViewFragment2 extends Fragment {
         photoImageView = view.findViewById(R.id.edit_imagePhoto);
         str1 = view.findViewById(R.id.filename1);
         Picasso.get()
-                .load("http://"+myconstant.ip+"/android/php/picture/activity/"+picnoStringArrayList+".jpg")
+                .load("https://www.plancropapp.online/android/php/picture/activity/"+picnoStringArrayList+".jpg")
                 //.load("http://10.200.1.126/android/php/picture/activity/"+picnoStringArrayList+".jpg")
                 .resize(150, 150)
                 .into(photoImageView);

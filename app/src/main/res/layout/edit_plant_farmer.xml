@@ -131,15 +131,14 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <GridLayout
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginLeft="1dp"
-                android:layout_marginTop="10dp"
                 android:background="@drawable/red_button"
                 android:backgroundTint="@color/colorlightGreen"
                 android:orientation="vertical">
@@ -151,27 +150,28 @@
                     android:padding="10dp">
 
                     <TextView
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="ไร่"
-                        android:textColor="@color/colorblack" />
+                        android:textSize="24dp"
+                        android:textStyle="bold"
+                        app:fontFamily="@font/fonts1" />
 
                     <EditText
                         android:id="@+id/EditAddPlant1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="1dp"
-                        android:text="0"
+
                         android:inputType="number"
-                        android:maxLength="4" />
+                        android:text="0" />
                 </LinearLayout>
             </GridLayout>
 
             <GridLayout
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginLeft="1dp"
-                android:layout_marginTop="10dp"
+
                 android:background="@drawable/red_button"
                 android:backgroundTint="@color/colorlightGreen"
                 android:orientation="vertical">
@@ -186,23 +186,22 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="งาน"
-                        android:textColor="@color/colorblack" />
+                        android:textSize="24dp"
+                        android:textStyle="bold"
+                        app:fontFamily="@font/fonts1" />
 
                     <EditText
                         android:id="@+id/EditAddPlant2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="1dp"
-                        android:text="0"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:text="0" />
                 </LinearLayout>
             </GridLayout>
 
             <GridLayout
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginLeft="1dp"
-                android:layout_marginTop="10dp"
                 android:background="@drawable/red_button"
                 android:backgroundTint="@color/colorlightGreen"
                 android:orientation="vertical">
@@ -217,18 +216,21 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="วา"
-                        android:textColor="@color/colorblack" />
+                        android:textSize="24dp"
+                        android:textStyle="bold"
+                        app:fontFamily="@font/fonts1" />
 
                     <EditText
                         android:id="@+id/EditAddPlant3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="1dp"
-                        android:text="0"
+
                         android:inputType="number"
-                        android:maxLength="4" />
+                        android:text="0" />
                 </LinearLayout>
             </GridLayout>
+
+
         </LinearLayout>
 
         <LinearLayout
