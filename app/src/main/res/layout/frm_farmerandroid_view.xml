@@ -266,14 +266,14 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+               android:gravity="center"
                 android:orientation="horizontal">
 
                 <GridLayout
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_marginTop="10dp"
                     android:background="@drawable/red_button"
                     android:backgroundTint="@color/colorlightGreen"
                     android:orientation="vertical">
@@ -297,7 +297,7 @@
                             android:id="@+id/add1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_margin="1dp"
+
                             android:inputType="number"
                             android:text="0" />
                     </LinearLayout>
@@ -306,7 +306,7 @@
                 <GridLayout
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_marginTop="10dp"
+
                     android:background="@drawable/red_button"
                     android:backgroundTint="@color/colorlightGreen"
                     android:orientation="vertical">
@@ -329,7 +329,6 @@
                             android:id="@+id/add2"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_margin="1dp"
                             android:inputType="number"
                             android:text="0" />
                     </LinearLayout>
@@ -338,7 +337,6 @@
                 <GridLayout
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_marginTop="10dp"
                     android:background="@drawable/red_button"
                     android:backgroundTint="@color/colorlightGreen"
                     android:orientation="vertical">
@@ -361,7 +359,7 @@
                             android:id="@+id/add3"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_margin="1dp"
+
                             android:inputType="number"
                             android:text="0" />
                     </LinearLayout>

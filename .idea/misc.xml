@@ -9,15 +9,21 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidStudioProjects/app/src/main/res/drawable/bttonaddregister.xml" value="0.26205128205128203" />
+        <entry key="..\:/AndroidStudioProjects/app/src/main/res/layout/activity_admin.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudioProjects/app/src/main/res/layout/activity_home.xml" value="0.18614130434782608" />
         <entry key="..\:/AndroidStudioProjects/app/src/main/res/layout/admin2.xml" value="0.24320652173913043" />
+        <entry key="..\:/AndroidStudioProjects/app/src/main/res/layout/frm_farmer.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudioProjects/app/src/main/res/layout/frm_farmerandroid_view.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/app/src/main/res/layout/frm_login.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/app/src/main/res/layout/frm_login1.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/app/src/main/res/layout/frm_main1.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/app/src/main/res/layout/frm_member.xml" value="0.2477355072463768" />
+        <entry key="..\:/AndroidStudioProjects/app/src/main/res/layout/frm_orderresultbalance_view.xml" value="0.17552083333333332" />
+        <entry key="..\:/AndroidStudioProjects/app/src/main/res/layout/frm_orderresultsum_view.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudioProjects/app/src/main/res/layout/frm_register.xml" value="0.24320652173913043" />
         <entry key="..\:/AndroidStudioProjects/app/src/main/res/layout/frm_view_conclude.xml" value="0.25" />
+        <entry key="..\:/AndroidStudioProjects/app/src/main/res/layout/frm_view_farmer.xml" value="0.1453804347826087" />
+        <entry key="..\:/AndroidStudioProjects/app/src/main/res/layout/frm_view_orderreport.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudioProjects/app/src/main/res/layout/frm_view_register.xml" value="0.24320652173913043" />
         <entry key="..\:/AndroidStudioProjects/app/src/main/res/layout/spinner_amphur.xml" value="0.21422101449275363" />
         <entry key="..\:/AndroidStudioProjects/app/src/main/res/layout/spinner_amphur_result.xml" value="0.1" />

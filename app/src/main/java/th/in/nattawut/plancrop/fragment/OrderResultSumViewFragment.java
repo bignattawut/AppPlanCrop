@@ -49,7 +49,7 @@ public class OrderResultSumViewFragment extends Fragment {
         listViewOrderResultSum = getView().findViewById(R.id.listViewOrderResultSum);
         listViewOrderResultBalance = getView().findViewById(R.id.listViewOrderResultBalance);
         orderService = APIUtils.getService();
-        orderResultBalance();
+        //orderResultBalance();
         orderResultSum();
 
 
@@ -57,8 +57,8 @@ public class OrderResultSumViewFragment extends Fragment {
         getGrowthChart();
 
 
-        Balance = getView().findViewById(R.id.listViewOrderResultChartBalance);
-        orDerBalanceChart();
+       /*Balance = getView().findViewById(R.id.listViewOrderResultChartBalance);
+        orDerBalanceChart();**/
     }
 
     private void orDerBalanceChart() {
@@ -175,7 +175,7 @@ public class OrderResultSumViewFragment extends Fragment {
 
     }
 
-    private void orderResultBalance() {
+    /*private void orderResultBalance() {
         Call<List<OrderResultBalance>> call = orderService.OrderResultBalance();
         call.enqueue(new Callback<List<OrderResultBalance>>() {
             @Override
@@ -192,7 +192,7 @@ public class OrderResultSumViewFragment extends Fragment {
             }
         });
 
-    }
+    }**/
 
     @Nullable
     @Override
